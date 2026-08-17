@@ -1,0 +1,272 @@
+// Clase 3 — El legado del Romanticismo
+// Feed de cards: 'info' (resume una idea de la clase) y 'quiz' (la pone a prueba).
+// Tono: resumen fiel de la clase. Preguntas exigentes, con distractores plausibles.
+//
+// NUMERACIÓN: `num` (app) está desacoplado del `transcript` original. Se omite la
+// Clase 1 original ("Introducción al curso"), así que num = transcript - 1.
+export default {
+  num: 2,          // número mostrado en la app
+  transcript: 3,   // número de la transcripción original (yale-filosofia/transcripciones)
+  title: "El legado del Romanticismo",
+  source: "https://www.youtube.com/watch?v=-xeudCcrF8o",
+  feed: [
+    {
+      type: "info",
+      tag: "Panorama",
+      title: "Dos talantes en tensión",
+      body: "Ilustración y Romanticismo son las dos grandes corrientes que van a atravesar todo el curso. No son solo doctrinas: son también estados de ánimo o talantes —lo que en alemán se llama Stimmung—. Cosas antitéticas que chocan, se entremezclan y conviven en tensión: un patrón que reaparecerá una y otra vez, hasta llegar a Hegel y la dialéctica.",
+    },
+    {
+      type: "info",
+      tag: "Recapitulación",
+      title: "El ánimo ilustrado",
+      body: "La Ilustración parte de un tiempo progresivo: avanzamos hacia cosas mejores, aprendemos cada vez más y construimos sobre ese conocimiento. Es un movimiento humanista y antropocéntrico: somos especiales porque tenemos razón, y por eso merecemos derechos naturales. El talante es de clasificación, calma, orden y optimismo.",
+    },
+    {
+      type: "info",
+      tag: "Modelo",
+      title: "Las ciencias naturales como modelo",
+      body: "El modelo ilustrado es que toda la vida humana —ciencia, amor, arte, política— puede entenderse como la física newtoniana entiende la naturaleza. Isaiah Berlin usa la metáfora del rompecabezas: cada pieza colocada acerca al todo. De ahí varias creencias: toda pregunta puede responderse, existe una verdad objetiva ahí afuera y el mundo es comprensible.",
+    },
+    {
+      type: "quiz",
+      question: "¿Qué supone la metáfora del rompecabezas de Isaiah Berlin?",
+      options: [
+        "Que el conocimiento es imposible porque siempre faltan piezas",
+        "Que cada pieza de conocimiento se acumula y acerca a un todo comprensible",
+        "Que la verdad se crea, no se descubre",
+        "Que las distintas verdades son incompatibles entre sí",
+      ],
+      answer: 1,
+      explain: "Es la fe ilustrada en el progreso: el mundo es complejo pero se va armando de a poco, y cada pieza facilita colocar la siguiente. La verdad objetiva está ahí afuera, esperando ser descubierta.",
+    },
+    {
+      type: "info",
+      tag: "Política",
+      title: "Del racionalismo al liberalismo",
+      body: "De la filosofía modelada en las ciencias naturales surge el liberalismo político. El fundamento de los derechos —no ser torturado, no ser encarcelado sin causa, la libertad de expresión— es que somos criaturas dotadas de razón: la razón nos da derecho a los derechos. De ahí la abolición de la servidumbre y de la censura, el libre comercio y el gobierno por consentimiento.",
+    },
+    {
+      type: "info",
+      tag: "Rebelión",
+      title: "El Romanticismo como contra-Ilustración",
+      body: "El Romanticismo entra como una rebelión contra ese ánimo; a veces se lo llama Gegenaufklärung, la contra-Ilustración. Ante cualquier cosa que domina surge una rebelión. Si los géneros de la Ilustración son la teoría del contrato social y la Encyclopédie de Diderot, los del Romanticismo serán la poesía y el teatro. Su centro ya no es Francia, sino Alemania.",
+    },
+    {
+      type: "quiz",
+      question: "¿Qué relación tiene el Romanticismo con la Ilustración?",
+      options: [
+        "Es su continuación natural: profundiza la fe en la razón",
+        "Es una rebelión contra su ánimo, una contra-Ilustración (Gegenaufklärung)",
+        "Es indiferente a ella: se ocupa de problemas distintos",
+        "Es una versión más rigurosa de su método científico",
+      ],
+      answer: 1,
+      explain: "El Romanticismo surge como reacción contra el racionalismo, el optimismo y la armonía de intereses ilustrados. No los ignora: los combate, y por eso se lo llama contra-Ilustración.",
+    },
+    {
+      type: "info",
+      tag: "Ánimo",
+      title: "El desencanto insatisfactorio",
+      body: "El desencanto del mundo (el Entzauberung de Weber) deja de estar poblado de fuerzas mágicas: usamos la mente de manera sobria y racional. Pero ese ánimo optimista resulta, buena parte del tiempo, emocionalmente insatisfactorio. Ese es el problema del desencanto —y también del liberalismo—: toda esa racionalidad termina siendo insatisfactoria para el corazón.",
+    },
+    {
+      type: "info",
+      tag: "Palabras clave",
+      title: "Pasión, belleza, anhelo, voluntad",
+      body: "Si las palabras clave de la Ilustración eran civilización, razón y progreso, las del Romanticismo son pasión, belleza, anhelo, creación y voluntad. Hay un giro hacia el valor precioso del alma individual, muchas veces en conflicto con otras almas. La verdad no se descubre afuera mediante la experimentación: se produce en el alma, como un acto de creación.",
+    },
+    {
+      type: "info",
+      tag: "Imaginario",
+      title: "El bosque, la oscuridad, la tormenta",
+      body: "El centro de la Ilustración era Francia, y en particular el café urbano de los filósofos de moda. El del Romanticismo es Alemania y el bosque —muchos de estos autores terminan en Jena—. Si la metáfora ilustrada es la luz, los románticos aman la oscuridad y el mal tiempo: la niebla, las tormentas, la lluvia en el bosque. El Romanticismo idealiza la naturaleza.",
+    },
+    {
+      type: "quiz",
+      question: "Para el Romanticismo, ¿de dónde viene la verdad?",
+      options: [
+        "De la observación empírica y la experimentación científica",
+        "Del consenso racional entre individuos bien informados",
+        "De un acto de creación en el alma individual, más cercano al arte que a la ciencia",
+        "De la revelación religiosa y el derecho divino",
+      ],
+      answer: 2,
+      explain: "La verdad no es algo que se halla afuera en un laboratorio, sino algo que se crea. El modelo es el arte, no la ciencia: cada alma es preciosa y singular.",
+    },
+    {
+      type: "info",
+      tag: "Transición",
+      title: "Los dos Rousseau",
+      body: "Rousseau es la figura de transición por excelencia: según cuál se lea, es un ilustrado crucial o un romántico. Si se lee El contrato social, es un pensador ilustrado que colabora con Diderot en la Encyclopédie. Si se leen sus Confesiones, el tono es marcadamente romántico. Sus ideas de gobierno son ilustradas; su temperamento y su autodescripción, mucho más románticos.",
+    },
+    {
+      type: "info",
+      tag: "Nostalgia",
+      title: "La nostalgia y la Sehnsucht",
+      body: "La idealización rousseauniana del estado de naturaleza se vuelve el modelo de la nostalgia en general: el anhelo por algo del pasado que en realidad nunca existió, que recreaste en tu mente. Los románticos usan la palabra Sehnsucht: ese anhelo que se convierte en una cosa en sí misma. El objeto importa menos; lo que cuenta es la emoción del anhelo por lo inalcanzable.",
+    },
+    {
+      type: "info",
+      tag: "Ser / devenir",
+      title: "Del ser al devenir",
+      body: "Para Rousseau, dos cosas distinguen al hombre: la libre agencia y la apertura al devenir. Si la Ilustración quiere comprender cómo son las cosas, los románticos dicen: no se trata del ser, sino del devenir; ¿qué podemos llegar a ser? Somos seres singularmente indeterminados, que se autocrean. Es una distinción clave que volverá en Nietzsche y en Heidegger.",
+    },
+    {
+      type: "quiz",
+      question: "¿Por qué la nostalgia rousseauniana es paradigmática para los románticos?",
+      options: [
+        "Porque describe con exactitud histórica cómo se vivía en el estado de naturaleza",
+        "Porque es el anhelo por un pasado idealizado que nunca existió, recreado en la mente",
+        "Porque propone volver efectivamente a vivir en el bosque",
+        "Porque rechaza toda emoción en favor del cálculo racional",
+      ],
+      answer: 1,
+      explain: "La nostalgia es el anhelo por algo que en verdad nunca fue: se imagina un pasado maravilloso perdido. Rousseau nunca vuelve al bosque; solo habla de ello. Lo que cuenta es la emoción del anhelo.",
+    },
+    {
+      type: "info",
+      tag: "Autenticidad",
+      title: "La virtud de la autenticidad",
+      body: "De su Discurso sobre las ciencias y las artes, los románticos toman la virtud de la autenticidad. Para Rousseau, la sociedad y la propiedad nos corrompen: fomentan el amor propio, la vanidad y la competencia por lucirse. Bajo el «velo engañoso de la cortesía», nadie se atreve a parecer lo que es. No hay virtud sin autenticidad, y la autenticidad exige un retiro de la sociedad.",
+    },
+    {
+      type: "info",
+      tag: "Kant",
+      title: "Kant, figura de las dos corrientes",
+      body: "Kant es figura crucial tanto de la Ilustración como del Romanticismo, según en qué Kant se ponga el foco. Da la mejor definición de Ilustración en su ensayo ¿Qué es la Ilustración?: sapere aude, atrévete a saber, ten el valor de usar tu propia razón. La Ilustración es la salida del hombre de su inmadurez autoimpuesta.",
+    },
+    {
+      type: "info",
+      tag: "Epistemología",
+      title: "La cosa en sí y la revolución copernicana",
+      body: "En la Crítica de la razón pura (1781), Kant negocia un compromiso entre realismo e idealismo: el mundo existe (la Ding an sich, la cosa en sí), pero no tenemos acceso directo a él, porque no podemos salir de nuestra cabeza. Su revolución copernicana: no es la mente la que se conforma al mundo, sino los objetos los que se conforman a las estructuras de nuestra mente.",
+    },
+    {
+      type: "quiz",
+      question: "¿Por qué se dice que Kant es figura tanto de la Ilustración como del Romanticismo?",
+      options: [
+        "Porque cambió de opinión y renegó de la razón al final de su vida",
+        "Porque según en qué obra se ponga el foco —su epistemología o su filosofía moral— se lo lee de un modo u otro",
+        "Porque escribió con un estilo apasionado y romántico",
+        "Porque rechazó tanto la razón como la voluntad",
+      ],
+      answer: 1,
+      explain: "Su definición de Ilustración (sapere aude) y su epistemología son ilustradas; su filosofía moral, centrada en el libre albedrío y la voluntad, es la que los románticos toman y llevan al extremo.",
+    },
+    {
+      type: "info",
+      tag: "Moral",
+      title: "El libre albedrío postulado",
+      body: "Los románticos toman de Kant su filosofía moral, construida en cierto modo de manera opuesta a su epistemología. Para que haya moralidad tiene que haber libre albedrío: sin él no hay ética. No podemos demostrarlo, pero lo necesitamos, así que simplemente lo postulamos. Solo un individuo con libre albedrío puede tomar decisiones morales.",
+    },
+    {
+      type: "info",
+      tag: "Moral",
+      title: "El deber y el imperativo categórico",
+      body: "Actuar moralmente es actuar por sentido del deber, no solo según lo que a uno le apetece. La prueba: ¿qué pasaría si todos actuaran según el principio con el que estoy por actuar? Si sería un desastre, no está bien. Esa es una versión del imperativo categórico. Lo que importa son las intenciones, la voluntad —no las consecuencias, que escapan a nuestro control—.",
+    },
+    {
+      type: "info",
+      tag: "Dignidad",
+      title: "Fin y nunca medio",
+      body: "Para Kant, libertad y moralidad se definen mutuamente. No es solo la razón la que nos da dignidad, sino el hecho de tener libre albedrío. De ahí su principio: tratar siempre al ser humano como un fin y nunca como un medio; como un sujeto, no como un objeto. Lo que tiene equivalente tiene precio; lo que no admite equivalente tiene dignidad.",
+    },
+    {
+      type: "quiz",
+      question: "En la ética kantiana, ¿qué determina el valor moral de una acción?",
+      options: [
+        "Las consecuencias efectivas que produce en el mundo",
+        "La intención y la voluntad de actuar por sentido del deber",
+        "El placer o beneficio que reporta a quien la ejecuta",
+        "El grado en que respeta las costumbres y la cortesía sociales",
+      ],
+      answer: 1,
+      explain: "Para Kant lo que cuenta es la intención, no el resultado: podés actuar con voluntad moralmente pura y aun así provocar un desastre por redes de causalidad que no controlás. Eso no es tu culpa.",
+    },
+    {
+      type: "info",
+      tag: "Voluntad",
+      title: "Del cogito al volo",
+      body: "El legado kantiano para los románticos es la primacía de la voluntad: toman la idea de que importa el motivo porque tenemos libre albedrío, y la convierten en valor absoluto. Contraponen el cogito ergo sum cartesiano —«pienso, luego existo»— con volo ergo sum: «quiero, deseo, luego existo». La subjetividad ya no se funda en el pensar, sino en el deseo.",
+    },
+    {
+      type: "info",
+      tag: "Voluntad",
+      title: "Fichte: devenir libre es el cielo",
+      body: "Fichte, discípulo de Kant, dice que ante la palabra «libertad» su corazón se abre y florece, y ante «necesidad» se contrae dolorosamente. Ser libre no es nada; devenir libre es el cielo. El Romanticismo dedica mucho tiempo a la creación como imperativo existencial: el destino importa menos que el acto mismo de crear. La verdad se crea; el modelo es el arte, no la ciencia.",
+    },
+    {
+      type: "quiz",
+      question: "La fórmula romántica «volo ergo sum» invierte a Descartes al fundar la subjetividad en…",
+      options: [
+        "La percepción sensorial del mundo exterior",
+        "El deseo y la voluntad, en lugar del pensamiento",
+        "La duda metódica sobre todo lo dudable",
+        "La existencia garantizada por Dios",
+      ],
+      answer: 1,
+      explain: "Frente al «pienso, luego existo» cartesiano, los románticos ponen «quiero, deseo, luego existo». La existencia se funda en la voluntad y la pasión, no en la cognición.",
+    },
+    {
+      type: "info",
+      tag: "Rasgos",
+      title: "Sinceridad, tragedia, expresivismo",
+      body: "De la primacía de la voluntad surgen: el enorme valor de la sinceridad, el motivo por encima de la consecuencia y el imperativo de no traicionar jamás los propios ideales, a ningún costo. Los ideales chocan —dos hombres aman a la misma mujer y deben batirse a duelo—, porque la tragedia es endémica a la condición humana. La emoción, directa y auténtica, a menudo es violenta.",
+    },
+    {
+      type: "info",
+      tag: "Rasgos",
+      title: "La mariposa bajo el vidrio",
+      body: "Johann Georg Hamann, amigo de Kant, sostiene que las clasificaciones ilustradas carecen de sentido, porque los seres humanos son irreductiblemente únicos. Goethe critica a Mendelssohn por tratar la belleza como el entomólogo trata a las mariposas: la capturás, la ponés bajo el vidrio, la analizás, y todo el color se escurre. Está también lo sublime: lo demasiado bello para ponerse en palabras.",
+    },
+    {
+      type: "info",
+      tag: "Nacionalismo",
+      title: "Del Romanticismo al nacionalismo",
+      body: "Así como del ánimo ilustrado surge el liberalismo, del Romanticismo surge el nacionalismo: si los individuos tienen almas irreductibles, también las naciones las tienen. Viene sobre todo de Herder: los hombres existen para expresarse, y la expresión se transmite mediante la palabra. Lo decisivo de una nación no es la sangre ni la raza, sino el suelo y, por encima de todo, la lengua.",
+    },
+    {
+      type: "quiz",
+      question: "Para Herder, ¿qué define ante todo a una nación?",
+      options: [
+        "La sangre y la raza compartidas",
+        "El suelo y, sobre todo, la lengua común",
+        "Un contrato racional entre individuos libres",
+        "La adhesión a valores universales y cosmopolitas",
+      ],
+      answer: 1,
+      explain: "Herder odiaba el cosmopolitismo ilustrado. Para él lo esencial no era la sangre, sino el suelo y la lengua: las palabras que se comparten con otros son un vínculo especial, base de la comunidad orgánica.",
+    },
+    {
+      type: "info",
+      tag: "1793",
+      title: "El Terror: cuando la Ilustración se vuelve Romanticismo",
+      body: "Una manera de leer la Revolución Francesa: el Terror (1793–1794) es el momento en que la Ilustración se convierte en Romanticismo. Lo que empezó como un intento racional de implementar el liberalismo y la Declaración de los Derechos del Hombre se transforma en una orgía de sed de sangre. Danton, en la película de Wajda, muere como un romántico.",
+    },
+    {
+      type: "quiz",
+      question: "¿En qué sentido dice la clase que «el Terror es el momento en que la Ilustración se vuelve Romanticismo»?",
+      options: [
+        "Porque los jacobinos leían poesía romántica alemana",
+        "Porque un proyecto racional y liberal se transforma en una orgía de pasión y sed de sangre",
+        "Porque el Terror restauró el derecho divino de los reyes",
+        "Porque puso fin a toda forma de nacionalismo",
+      ],
+      answer: 1,
+      explain: "El intento ilustrado de instaurar racionalmente el liberalismo se desborda en violencia pasional. La razón revolucionaria llevada al extremo se convierte en su opuesto emocional.",
+    },
+    {
+      type: "info",
+      tag: "Herederos",
+      title: "El hombre del subsuelo",
+      body: "La encarnación favorita de esta crítica es Dostoievski, escritor posromántico y protoexistencialista. Sus Memorias del subsuelo son su diatriba contra la Ilustración. El hombre del subsuelo no quiere ser racional y es consciente de ese deseo: se rebela incluso contra que dos más dos sean cuatro, si lo encuentra opresivo. Lev Shestov lo llama la verdadera crítica de la razón pura —no Kant, sino Dostoievski—.",
+    },
+    {
+      type: "info",
+      tag: "Síntesis",
+      title: "El legado del Romanticismo",
+      body: "El Romanticismo surge como alter ego de la Ilustración y nos deja un legado de subjetividad radical vivida como tormento eterno. Sus sucesores serán muchos: Nietzsche, el irracionalismo como virtud en sí misma, el existencialismo y elementos del psicoanálisis freudiano. La próxima clase pasa a Hegel, que intentará pensar juntas estas corrientes antitéticas mediante la dialéctica.",
+    },
+  ],
+};

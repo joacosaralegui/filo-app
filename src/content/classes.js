@@ -8,10 +8,11 @@
 // Para habilitar una clase, importá su archivo de contenido y asignálo acá.
 
 import clase01 from "./clase02.js"; // app Clase 1 = transcripción 2
+import clase02 from "./clase03.js"; // app Clase 2 = transcripción 3
 
 export const CLASSES = [
   { num: 1, transcript: 2, title: "La herencia de la Ilustración", era: "Ilustración", content: clase01 },
-  { num: 2, transcript: 3, title: "El legado del Romanticismo", era: "Romanticismo", content: null },
+  { num: 2, transcript: 3, title: "El legado del Romanticismo", era: "Romanticismo", content: clase02 },
   { num: 3, transcript: 4, title: "Hegel y el cronotopo historicista", era: "Idealismo", content: null },
   { num: 4, transcript: 5, title: "El marxismo", era: "Materialismo", content: null },
   { num: 5, transcript: 6, title: "Nietzsche y la muerte de Dios", era: "Vitalismo", content: null },
