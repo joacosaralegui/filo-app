@@ -1,0 +1,18 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Libro">
+  <g fill="none" stroke="#6f7005" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <!-- páginas (relleno sutil) -->
+    <path d="M32 17 C24.5 12, 14.5 11.5, 8 14.5 V47 C14.5 44, 24.5 44.5, 32 49 Z"
+          fill="#6f7005" fill-opacity="0.10"/>
+    <path d="M32 17 C39.5 12, 49.5 11.5, 56 14.5 V47 C49.5 44, 39.5 44.5, 32 49 Z"
+          fill="#6f7005" fill-opacity="0.10"/>
+    <!-- lomo -->
+    <path d="M32 17 V49"/>
+    <!-- renglones -->
+    <path d="M14 23 H26" stroke-width="2.4"/>
+    <path d="M14 30 H26" stroke-width="2.4"/>
+    <path d="M14 37 H24" stroke-width="2.4"/>
+    <path d="M38 23 H50" stroke-width="2.4"/>
+    <path d="M38 30 H50" stroke-width="2.4"/>
+    <path d="M40 37 H50" stroke-width="2.4"/>
+  </g>
+</svg>
