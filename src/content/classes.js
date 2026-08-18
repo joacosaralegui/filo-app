@@ -12,6 +12,10 @@ import clase02 from "./clase03.js"; // app Clase 2 = transcripción 3
 import clase03 from "./clase04.js"; // app Clase 3 = transcripción 4
 import clase04 from "./clase05.js"; // app Clase 4 = transcripción 5
 import clase05 from "./clase06.js"; // app Clase 5 = transcripción 6
+import clase06 from "./clase07.js"; // app Clase 6 = transcripción 7
+import clase07 from "./clase08.js"; // app Clase 7 = transcripción 8
+import clase08 from "./clase09.js"; // app Clase 8 = transcripción 9
+import clase09 from "./clase10.js"; // app Clase 9 = transcripción 10
 
 export const CLASSES = [
   { num: 1, transcript: 2, title: "La herencia de la Ilustración", era: "Ilustración", content: clase01 },
@@ -19,10 +23,10 @@ export const CLASSES = [
   { num: 3, transcript: 4, title: "Hegel y el cronotopo historicista", era: "Idealismo", content: clase03 },
   { num: 4, transcript: 5, title: "El marxismo", era: "Materialismo", content: clase04 },
   { num: 5, transcript: 6, title: "Nietzsche y la muerte de Dios", era: "Vitalismo", content: clase05 },
-  { num: 6, transcript: 7, title: "Bergson: la revuelta contra el positivismo", era: "Vitalismo", content: null },
-  { num: 7, transcript: 8, title: "El leninismo: acelerar la historia", era: "Materialismo", content: null },
-  { num: 8, transcript: 9, title: "El psicoanálisis freudiano", era: "El sujeto", content: null },
-  { num: 9, transcript: 10, title: "El modernismo y la vanguardia", era: "Modernismo", content: null },
+  { num: 6, transcript: 7, title: "Bergson: la revuelta contra el positivismo", era: "Vitalismo", content: clase06 },
+  { num: 7, transcript: 8, title: "El leninismo: acelerar la historia", era: "Materialismo", content: clase07 },
+  { num: 8, transcript: 9, title: "El psicoanálisis freudiano", era: "El sujeto", content: clase08 },
+  { num: 9, transcript: 10, title: "El modernismo y la vanguardia", era: "Modernismo", content: clase09 },
   { num: 10, transcript: 11, title: "La fenomenología", era: "Fenomenología", content: null },
   { num: 11, transcript: 12, title: "El existencialismo heideggeriano", era: "Existencialismo", content: null },
   { num: 12, transcript: 13, title: "El existencialismo francés", era: "Existencialismo", content: null },
