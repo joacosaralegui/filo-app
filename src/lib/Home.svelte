@@ -1,10 +1,23 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import { progress, isComplete, isStarted, completionPct } from "./progress.js";
   export let classes = [];
   const dispatch = createEventDispatcher();
 
-  // clase objetivo del botón principal: la primera disponible
-  $: next = classes.find((c) => c.content) || null;
+  // Botón principal: si hay una clase en curso, reanudarla ("Continuar");
+  // si la última quedó completa, ofrecer la siguiente; si no, la primera.
+  $: available = classes.filter((c) => c.content);
+  $: firstAvailable = available[0] || null;
+  $: lastClass =
+    $progress.lastClass != null
+      ? classes.find((c) => c.num === $progress.lastClass && c.content)
+      : null;
+  $: resume = lastClass && !isComplete($progress, lastClass.content) ? lastClass : null;
+  $: nextAfterLast = lastClass
+    ? available.find((c) => c.num > lastClass.num) || null
+    : null;
+  $: primary = resume || (lastClass && nextAfterLast) || firstAvailable;
+  $: primaryLabel = resume ? "Continuar" : "Empezar";
 
   let tlEl;
   let homeEl;
@@ -33,9 +46,9 @@
     </div>
 
     <div class="hero-center">
-      {#if next}
-        <button class="start" on:click={() => open(next)}>Empezar</button>
-        <p class="start-info">Clase {next.num} · {next.title}</p>
+      {#if primary}
+        <button class="start" on:click={() => open(primary)}>{primaryLabel}</button>
+        <p class="start-info">Clase {primary.num} · {primary.title}</p>
       {/if}
     </div>
 
@@ -46,21 +59,37 @@
     <p class="tl-title">El recorrido</p>
     <div class="timeline">
       {#each classes as c (c.num)}
+        {@const done = !!c.content && isComplete($progress, c.content)}
+        {@const started = !!c.content && !done && isStarted($progress, c.content)}
+        {@const pct = started ? completionPct($progress, c.content) : 0}
         <button
           class="item"
           class:locked={!c.content}
+          class:completed={done}
+          class:started
+          style={started ? `--pct:${pct}%` : ""}
           on:click={() => open(c)}
           disabled={!c.content}
         >
           <div class="node-col">
             <span class="dot">
-              {#if c.content}{c.num}{:else}<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm3 8H9V7a3 3 0 0 1 6 0v3Z"/></svg>{/if}
+              {#if !c.content}<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm3 8H9V7a3 3 0 0 1 6 0v3Z"/></svg>{:else if done}<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7"/></svg>{:else}{c.num}{/if}
             </span>
           </div>
           <div class="body">
             <span class="era">{c.era}</span>
             <b>{c.title}</b>
-            <small>{c.content ? "Disponible · tocá para empezar" : "Bloqueada"}</small>
+            <small>
+              {#if !c.content}
+                Bloqueada
+              {:else if done}
+                Completada
+              {:else if started}
+                En curso · {pct}%
+              {:else}
+                Disponible · tocá para empezar
+              {/if}
+            </small>
           </div>
           {#if c.content}<span class="chev">›</span>{/if}
         </button>
@@ -136,7 +165,7 @@
     font: inherit;
     font-size: 18px;
     font-weight: 800;
-    color: var(--text);
+    color: var(--on-accent);
     transition: transform 0.1s;
   }
   .start:active { transform: scale(0.97); }
@@ -234,6 +263,11 @@
     color: var(--text-soft);
     border: 1.5px solid var(--line);
   }
+  .completed .dot {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-color: var(--accent);
+  }
 
   .body {
     flex: 1;
@@ -279,6 +313,31 @@
   .item:not(.locked) .node-col::before,
   .item:not(.locked) .node-col::after { display: none; }
   .item:not(.locked):active { transform: scale(0.99); }
+
+  /* En curso: barra de progreso translúcida de fondo, hasta --pct */
+  .item.started {
+    background:
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--accent) 20%, transparent) 0 var(--pct),
+        var(--surface) var(--pct) 100%
+      );
+    border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+  }
+  .item.started .body small {
+    color: var(--accent-ink);
+    font-weight: 700;
+  }
+
+  /* Completada: tinte de logro y borde acentuado */
+  .item.completed {
+    background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  }
+  .item.completed .body small {
+    color: var(--accent-ink);
+    font-weight: 700;
+  }
 
   .foot {
     margin-top: 26px;

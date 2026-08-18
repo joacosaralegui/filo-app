@@ -2,35 +2,40 @@
   /* ============================================================
      TOKENS DE DISEÑO — única fuente de verdad de los colores.
      Para recolorear la app, editá SOLO este bloque.
-     Paleta: Pitch Black #0f0a0a · Parchment #f5efed
-             Pacific Cyan #2292a4 · Golden Glow #bdbf09 · Chocolate #d96c06
+     Paleta: Pakistan Green #283618 · Cornsilk #fefae0 · Fern #606c38
+             Buff #dda15e · Tiger's eye #bc6c25
      ============================================================ */
 
   /* superficies (tema claro) */
-  --bg: #f5f4ed;          /* Parchment: fondo */
-  --surface: #ffffff;     /* cards / opciones */
-  --surface-2: #ecebe0;   /* parchment profundo: degradés, sheet */
-  --line: #e1dfd0;        /* bordes / separadores */
+  --bg: #faf9ef;          /* Cornsilk: fondo */
+  --surface: #fffdf4;     /* cards / opciones (blanco cálido) */
+  --surface-2: #f6efcf;   /* cornsilk profundo: degradés, sheet */
+  --line: #eae1c0;        /* bordes / separadores */
 
   /* texto */
-  --text: #0f0a0a;        /* Pitch Black */
-  --text-soft: #5f5652;   /* cuerpo secundario */
+  --text: #283618;        /* Pakistan Green (verde muy oscuro) */
+  --text-soft: #47422f;   /* cuerpo secundario */
 
-  /* rol: ACENTO / HIGHLIGHT principal = Golden Glow */
-  --accent: #bdbf09;      /* relleno/borde/decorativo (áreas grandes) */
-  --accent-ink: #6f7005;  /* versión legible para texto sobre fondo claro */
-  --accent-2: #17707e;    /* secundario (tags de quiz, chips) = cyan profundo */
+  /* rol: ACENTO / HIGHLIGHT principal = Fern (olivo).
+     Un solo valor: es oscuro, así que es legible como TEXTO sobre el
+     fondo claro (5.4:1) y también sirve de RELLENO con texto claro
+     encima. No hay versión dark/light: una sola fuente de verdad. */
+  --accent: #606c38;
+  --accent-ink: var(--accent);   /* alias por compatibilidad = mismo color */
+  --on-accent: var(--bg);        /* texto/íconos sobre relleno de acento */
 
-  /* rol: CORRECTO = Pacific Cyan */
+  /* acentos secundarios cálidos — realces y decoración */
+  --accent-2: #dda15e;    /* Buff (arena) */
+  --accent-3: #bc6c25;    /* Tiger's eye (terracota) */
+
+  /* rol: CORRECTO / INCORRECTO — provisorio (se define más adelante) */
   --good: #2292a4;        /* borde/relleno */
   --good-ink: #17707e;    /* texto legible */
-
-  /* rol: INCORRECTO = Chocolate */
   --bad: #d96c06;         /* borde/relleno */
   --bad-ink: #a3500a;     /* texto legible */
 
   /* partículas de recompensa (las lee Burst.svelte) */
-  --burst-colors: #bdbf09, #2292a4, #d96c06, #d8d94e, #5bb9c7;
+  --burst-colors: #606c38, #dda15e, #bc6c25, #8aa04a, #e9c48a;
 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: var(--text);

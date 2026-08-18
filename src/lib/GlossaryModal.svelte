@@ -25,7 +25,7 @@
       </div>
       <h3>{$activeTerm.term}</h3>
       <p>{$activeTerm.body}</p>
-      <button class="close" on:click={closeTerm}>Cerrar</button>
+      <button class="close" on:click={closeTerm}>Entendido</button>
     </div>
   </div>
 {/if}

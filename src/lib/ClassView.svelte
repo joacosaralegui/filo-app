@@ -1,18 +1,92 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
   import InfoCard from "./InfoCard.svelte";
   import QuizCard from "./QuizCard.svelte";
+  import MatchCard from "./MatchCard.svelte";
+  import ClassifyCard from "./ClassifyCard.svelte";
   import Burst from "./Burst.svelte";
+  import { classState, saveClass } from "./progress.js";
+  import { CLASSES } from "../content/classes.js";
 
   export let lecture;
   const dispatch = createEventDispatcher();
 
-  const totalQuiz = lecture.feed.filter((c) => c.type === "quiz").length;
+  // Tipos de card puntuables (interactivos). El resto ('info') no puntúa.
+  const SCORABLE = new Set(["quiz", "match", "classify"]);
+  const totalQuiz = lecture.feed.filter((c) => SCORABLE.has(c.type)).length;
 
-  let score = 0;
-  let combo = 0;
-  let answered = 0;
-  let correctCount = 0;
+  // Correcto según el tipo. 'quiz' guarda el índice elegido (número); 'match' y
+  // 'classify' guardan un objeto con { correct } (y el estado para restaurar).
+  function isCorrect(card, a) {
+    if (a === null || a === undefined) return false;
+    if (card.type === "quiz") return a === card.answer;
+    return !!a.correct;
+  }
+
+  // Cierre de la clase: invitar a la siguiente. La entrada inmediatamente
+  // posterior por número; disponible (nextClass) o aún bloqueada (lockedNext).
+  // Si no hay ninguna posterior, es la última del curso.
+  const laterClasses = CLASSES.filter((c) => c.num > lecture.num);
+  const immediateNext = laterClasses[0] || null;
+  const nextClass = immediateNext && immediateNext.content ? immediateNext : null;
+  const lockedNext = immediateNext && !immediateNext.content ? immediateNext : null;
+
+  // Estado restaurado desde localStorage (o valores por defecto).
+  const saved = classState(lecture.num);
+  let answers = { ...saved.answers }; // { [cardIndex]: índice original elegido }
+  let score = saved.score;
+  let combo = saved.combo;
+  let currentCard = saved.card;
+
+  // aciertos, derivados de las respuestas guardadas
+  $: correctCount = lecture.feed.reduce(
+    (n, c, i) => n + (SCORABLE.has(c.type) && isCorrect(c, answers[i]) ? 1 : 0),
+    0
+  );
+
+  // "Puerta": índice de la primera card interactiva aún sin responder. No se
+  // puede scrollear más allá de ella hasta contestarla; si no queda ninguna,
+  // el feed queda libre hasta el cierre.
+  $: gate = lecture.feed.findIndex(
+    (c, i) => SCORABLE.has(c.type) && answers[i] == null
+  );
+
+  let gateHint = false;
+  let gateHintTimer;
+  function nudgeGate() {
+    gateHint = true;
+    clearTimeout(gateHintTimer);
+    gateHintTimer = setTimeout(() => (gateHint = false), 1400);
+  }
+
+  // ¿Estamos parados en la puerta (o más allá)? Sirve para frenar el gesto
+  // hacia abajo ANTES de que el scroll ocurra, evitando el rebote visible.
+  function atGate() {
+    if (gate < 0 || !feedEl) return false;
+    return feedEl.scrollTop >= gate * feedEl.clientHeight - 2;
+  }
+
+  // Rueda del mouse / trackpad: bloquear el desplazamiento hacia abajo.
+  function onWheel(e) {
+    if (e.deltaY > 0 && atGate()) {
+      e.preventDefault();
+      nudgeGate();
+    }
+  }
+
+  // Touch: si el dedo sube (contenido baja = avanzar), frenar en la puerta.
+  let touchY = null;
+  function onTouchStart(e) {
+    touchY = e.touches[0].clientY;
+  }
+  function onTouchMove(e) {
+    if (touchY == null) return;
+    const dy = e.touches[0].clientY - touchY;
+    if (dy < 0 && atGate()) {
+      e.preventDefault();
+      nudgeGate();
+    }
+  }
 
   // recompensa
   let burstId = 0;
@@ -22,17 +96,27 @@
   let feedEl;
   let scrollPct = 0;
 
+  onMount(() => {
+    saveClass(lecture.num, {}); // marcar como última clase abierta
+    if (saved.card > 0 && feedEl) {
+      // salto instantáneo a la última card vista, sin pasar la puerta
+      const target = gate >= 0 ? Math.min(saved.card, gate) : saved.card;
+      feedEl.style.scrollBehavior = "auto";
+      feedEl.scrollTop = target * feedEl.clientHeight;
+      requestAnimationFrame(() => (feedEl.style.scrollBehavior = ""));
+    }
+  });
+
   function vibrate(pattern) {
     if (navigator.vibrate) navigator.vibrate(pattern);
   }
 
-  function onAnswer(e) {
-    answered += 1;
+  function onAnswer(e, i) {
+    answers = { ...answers, [i]: e.detail.save };
     if (e.detail.correct) {
       combo += 1;
       const points = 10 * combo;
       score += points;
-      correctCount += 1;
       burstId += 1;
       showPop(points, combo);
       vibrate(combo >= 3 ? [12, 20, 18] : [14]);
@@ -40,6 +124,7 @@
       combo = 0;
       vibrate([45, 40, 45]);
     }
+    saveClass(lecture.num, { answers, score, combo, card: currentCard });
   }
 
   function showPop(points, c) {
@@ -49,8 +134,25 @@
   }
 
   function onScroll() {
-    const max = feedEl.scrollHeight - feedEl.clientHeight;
+    const h = feedEl.clientHeight;
+
+    // Freno de la puerta: no dejar pasar de la primera card sin responder.
+    if (gate >= 0) {
+      const limit = gate * h;
+      if (feedEl.scrollTop > limit + 1) {
+        feedEl.scrollTop = limit;
+        nudgeGate();
+        return;
+      }
+    }
+
+    const max = feedEl.scrollHeight - h;
     scrollPct = max > 0 ? (feedEl.scrollTop / max) * 100 : 0;
+    const idx = Math.round(feedEl.scrollTop / h);
+    if (idx !== currentCard) {
+      currentCard = idx;
+      saveClass(lecture.num, { card: idx });
+    }
   }
 </script>
 
@@ -66,13 +168,24 @@
   <div class="progress"><i style="width:{scrollPct}%"></i></div>
 </div>
 
-<div class="feed" bind:this={feedEl} on:scroll={onScroll}>
-  {#each lecture.feed as card}
+<div
+  class="feed"
+  bind:this={feedEl}
+  on:scroll={onScroll}
+  on:wheel|nonpassive={onWheel}
+  on:touchstart={onTouchStart}
+  on:touchmove|nonpassive={onTouchMove}
+>
+  {#each lecture.feed as card, i}
     <section class="slide">
       {#if card.type === "info"}
         <InfoCard {card} />
+      {:else if card.type === "match"}
+        <MatchCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
+      {:else if card.type === "classify"}
+        <ClassifyCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
       {:else}
-        <QuizCard {card} on:answer={onAnswer} />
+        <QuizCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
       {/if}
     </section>
   {/each}
@@ -81,10 +194,27 @@
     <div class="end-inner">
       <div class="big">{correctCount}/{totalQuiz}</div>
       <p>respuestas correctas · {score} puntos</p>
-      <button class="home-btn" on:click={() => dispatch("back")}>Volver al inicio</button>
+
+      {#if nextClass}
+        <p class="end-msg">A continuación · Clase {nextClass.num}: {nextClass.title}</p>
+        <button class="home-btn" on:click={() => dispatch("open", nextClass)}>
+          Siguiente clase →
+        </button>
+        <button class="ghost-btn" on:click={() => dispatch("back")}>Volver al inicio</button>
+      {:else if lockedNext}
+        <p class="end-msg">Terminaste la Clase {lecture.num}. La Clase {lockedNext.num} se habilita pronto.</p>
+        <button class="home-btn" on:click={() => dispatch("back")}>Volver al inicio</button>
+      {:else}
+        <p class="end-msg strong">¡Felicitaciones! Completaste el curso.</p>
+        <button class="home-btn" on:click={() => dispatch("back")}>Volver al inicio</button>
+      {/if}
     </div>
   </section>
 </div>
+
+{#if gateHint}
+  <div class="gate-hint" role="status">Respondé para continuar</div>
+{/if}
 
 <Burst trigger={burstId} />
 
@@ -196,12 +326,24 @@
     margin: 8px 0 0;
     font-size: 16px;
   }
+  .end-msg {
+    margin: 20px 0 0;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+  .end-msg.strong {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--accent-ink);
+  }
   .home-btn {
-    margin-top: 22px;
+    margin-top: 18px;
     padding: 13px 22px;
     border-radius: 13px;
     background: var(--accent);
-    color: var(--text);
+    color: var(--on-accent);
     border: none;
     font: inherit;
     font-weight: 800;
@@ -209,6 +351,40 @@
     cursor: pointer;
   }
   .home-btn:active { transform: scale(0.98); }
+  .ghost-btn {
+    display: block;
+    margin: 12px auto 0;
+    background: none;
+    border: none;
+    color: var(--text-soft);
+    font: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .ghost-btn:active { transform: scale(0.98); }
+
+  .gate-hint {
+    position: fixed;
+    left: 50%;
+    bottom: calc(env(safe-area-inset-bottom) + 26px);
+    transform: translateX(-50%);
+    z-index: 55;
+    pointer-events: none;
+    white-space: nowrap;
+    background: var(--accent-ink);
+    color: var(--bg);
+    font-size: 13.5px;
+    font-weight: 800;
+    padding: 10px 18px;
+    border-radius: 999px;
+    box-shadow: 0 6px 22px color-mix(in srgb, var(--accent) 45%, transparent);
+    animation: gaterise 0.28s ease;
+  }
+  @keyframes gaterise {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
 
   .pop {
     position: fixed;
@@ -243,6 +419,6 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .feed { scroll-behavior: auto; }
-    .pop { animation-duration: 1ms; }
+    .pop, .gate-hint { animation-duration: 1ms; }
   }
 </style>

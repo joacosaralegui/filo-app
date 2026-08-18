@@ -10,6 +10,7 @@
 <style>
   .term {
     font: inherit;
+    font-weight: 700;
     color: var(--accent-ink);
     background: none;
     border: none;

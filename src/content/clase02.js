@@ -98,16 +98,18 @@ export default {
       body: "Locke acepta el contrato social pero invierte el punto de partida de Hobbes: el estado de naturaleza es de libertad e igualdad, no de guerra. El gobierno se funda solo en el consentimiento de los gobernados —no en el derecho divino de los reyes— y el pacto es condicional: si los gobernantes abusan del poder, el pueblo tiene derecho a reemplazarlos. Es el origen del liberalismo.",
     },
     {
-      type: "quiz",
-      question: "¿En qué se distingue Locke de Hobbes respecto del contrato social?",
-      options: [
-        "Locke rechaza el contrato y defiende el derecho divino de los reyes",
-        "Para Locke el estado de naturaleza ya es de libertad e igualdad, y el pacto es revocable si el poder abusa",
-        "Para Locke la seguridad exige ceder toda la libertad a un soberano absoluto",
-        "Locke niega que exista un estado de naturaleza",
+      type: "classify",
+      question: "¿Cada tesis es de Hobbes o de Locke?",
+      groups: ["Hobbes", "Locke"],
+      items: [
+        { text: "El estado de naturaleza es una guerra de todos contra todos", group: 0 },
+        { text: "El estado de naturaleza ya es de libertad e igualdad", group: 1 },
+        { text: "Hay que ceder todos los derechos a un soberano absoluto", group: 0 },
+        { text: "El gobierno se funda en el consentimiento de los gobernados", group: 1 },
+        { text: "Si el poder abusa, el pueblo puede reemplazarlo", group: 1 },
+        { text: "Libertad y seguridad son un juego de suma cero", group: 0 },
       ],
-      answer: 1,
-      explain: "La opción del soberano absoluto es la de Hobbes. En Locke el poder viene de abajo y está condicionado: el consentimiento puede retirarse.",
+      explain: "Hobbes parte del miedo: naturaleza como guerra y soberano absoluto que cambia libertad por seguridad. Locke invierte el punto de partida: libertad e igualdad previas, y un pacto revocable fundado en el consentimiento. Es el origen del liberalismo.",
     },
     {
       type: "info",
@@ -187,6 +189,18 @@ export default {
       options: ["Modernidad", "Modernización", "Modernismo", "Posmodernidad"],
       answer: 1,
       explain: "Son cambios concretos, materiales: modernización. La modernidad es el período; el modernismo, la respuesta estética.",
+    },
+    {
+      type: "match",
+      question: "Uní cada pensador con su aporte a la Ilustración",
+      pairs: [
+        { left: "Descartes", right: "Cogito, ergo sum: la duda radical" },
+        { left: "Hobbes", right: "El Leviatán: la guerra de todos contra todos" },
+        { left: "Locke", right: "El gobierno por consentimiento" },
+        { left: "Rousseau", right: "La voluntad general" },
+        { left: "Kant", right: "La cosa en sí y el sapere aude" },
+      ],
+      explain: "El hilo va de la epistemología (Descartes) al contrato social en tres versiones (Hobbes, Locke, Rousseau) y culmina en Kant, que define la Ilustración y a la vez marca sus límites con la cosa en sí.",
     },
     {
       type: "info",

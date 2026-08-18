@@ -83,16 +83,18 @@ export default {
       body: "El centro de la Ilustración era Francia, y en particular el café urbano de los filósofos de moda. El del Romanticismo es Alemania y el bosque —muchos de estos autores terminan en Jena—. Si la metáfora ilustrada es la luz, los románticos aman la oscuridad y el mal tiempo: la niebla, las tormentas, la lluvia en el bosque. El Romanticismo idealiza la naturaleza.",
     },
     {
-      type: "quiz",
-      question: "Para el Romanticismo, ¿de dónde viene la verdad?",
-      options: [
-        "De la observación empírica y la experimentación científica",
-        "Del consenso racional entre individuos bien informados",
-        "De un acto de creación en el alma individual, más cercano al arte que a la ciencia",
-        "De la revelación religiosa y el derecho divino",
+      type: "classify",
+      question: "¿Cada rasgo es de la Ilustración o del Romanticismo?",
+      groups: ["Ilustración", "Romanticismo"],
+      items: [
+        { text: "La razón, el progreso y la civilización", group: 0 },
+        { text: "La pasión, el anhelo y la voluntad", group: 1 },
+        { text: "La verdad se descubre afuera, por observación", group: 0 },
+        { text: "La verdad se crea en el alma, como el arte", group: 1 },
+        { text: "El café urbano de París y la metáfora de la luz", group: 0 },
+        { text: "El bosque alemán, la niebla y la tormenta", group: 1 },
       ],
-      answer: 2,
-      explain: "La verdad no es algo que se halla afuera en un laboratorio, sino algo que se crea. El modelo es el arte, no la ciencia: cada alma es preciosa y singular.",
+      explain: "La Ilustración descubre una verdad que está afuera; el Romanticismo la crea en el alma. A un talante claro, urbano y racional se opone otro apasionado, nocturno y volcado al anhelo. No se ignoran: chocan.",
     },
     {
       type: "info",
@@ -261,6 +263,18 @@ export default {
       tag: "Herederos",
       title: "El hombre del subsuelo",
       body: "La encarnación favorita de esta crítica es Dostoievski, escritor posromántico y protoexistencialista. Sus Memorias del subsuelo son su diatriba contra la Ilustración. El hombre del subsuelo no quiere ser racional y es consciente de ese deseo: se rebela incluso contra que dos más dos sean cuatro, si lo encuentra opresivo. Lev Shestov lo llama la verdadera crítica de la razón pura —no Kant, sino Dostoievski—.",
+    },
+    {
+      type: "match",
+      question: "Uní cada pensador romántico con su aporte",
+      pairs: [
+        { left: "Herder", right: "La nación se funda en el suelo y la lengua" },
+        { left: "Fichte", right: "Devenir libre es el cielo" },
+        { left: "Rousseau", right: "La autenticidad frente a la cortesía social" },
+        { left: "Hamann", right: "Cada ser humano es irreductiblemente único" },
+        { left: "Goethe", right: "La belleza no se analiza como mariposa bajo el vidrio" },
+      ],
+      explain: "Del alma individual irreductible (Hamann, Goethe) a la primacía de la voluntad (Fichte) y la autenticidad (Rousseau), hasta el salto político: si cada alma es singular, también lo es cada nación (Herder).",
     },
     {
       type: "info",

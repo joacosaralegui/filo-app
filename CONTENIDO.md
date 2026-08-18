@@ -42,10 +42,66 @@ Dos tipos, intercalados: **unas cards de info y luego las cards de quiz que las 
 - **Distractores plausibles**: idealmente la posición de otro pensador de la clase.
 - 3–4 opciones. `explain` siempre presente.
 
+### Card de clasificar — repartir en dos columnas
+
+```js
+{
+  type: "classify",
+  question: "¿Cada tesis es de Hobbes o de Locke?",
+  groups: ["Hobbes", "Locke"],   // EXACTAMENTE 2
+  items: [
+    { text: "El estado de naturaleza es una guerra de todos contra todos", group: 0 },
+    { text: "El gobierno se funda en el consentimiento de los gobernados", group: 1 },
+    // …4–6 ítems, idealmente balanceados entre los dos grupos
+  ],
+  explain: "…",   // recap del criterio de la distinción
+}
+```
+
+- `group`: índice (0 o 1) de la columna correcta. `answer` NO se usa acá.
+- Ítems cortos (una línea). El usuario arrastra cada uno a su columna.
+
+### Card de conectar — emparejar dos columnas
+
+```js
+{
+  type: "match",
+  question: "Uní cada pensador con su aporte",
+  pairs: [
+    { left: "Descartes", right: "Cogito, ergo sum: la duda radical" },
+    { left: "Hobbes", right: "El Leviatán: la guerra de todos contra todos" },
+    // …2–5 pares
+  ],
+  explain: "…",
+}
+```
+
+- `left`: etiqueta corta (típicamente un nombre). `right`: texto más largo
+  (concepto/obra). El par correcto es `left[i]` ↔ `right[i]`; la app baraja la
+  columna derecha y dibuja las líneas.
+
+### Cuándo usar cada formato
+
+- **`quiz` (opción múltiple):** el formato **por defecto**, para el uso más
+  normal. Comprender un concepto, distinguir dos posiciones, deducir la
+  consecuencia de una tesis.
+- **`classify` (dos columnas):** para **comparar** dos períodos, corrientes,
+  ideas o pensadores contrapuestos, repartiendo rasgos/tesis entre dos polos.
+  Ej.: Ilustración vs Romanticismo, Hobbes vs Locke, base vs superestructura.
+- **`match` (conectar):** para relaciones **más complejas** o de varios a varios
+  —emparejar autores↔conceptos/obras, causas↔efectos— cuando hay 4–5 elementos
+  que se cruzan. Ej.: cada pensador con su aporte.
+
+Todas las cards interactivas puntúan igual (con combo) y se corrigen en
+verde/rojo al confirmar. `explain` siempre presente en las tres.
+
 ### Ritmo
 
-~2 cards de info y después sus 1–2 quizzes. Empezá con una card de panorama y
-cerrá con una de síntesis. Una clase típica: ~12–16 info + ~8 quiz.
+~2 cards de info y después sus 1–2 cards interactivas. Empezá con una card de
+panorama y cerrá con una de síntesis. Intercalá los formatos: usá `quiz` de base
+y sumá al menos un `classify` y un `match` por clase cuando el material lo
+permita (una comparación fuerte, un set de pares autor↔idea). Una clase típica:
+~12–16 info + ~8 interactivas.
 
 ## Glosario (auto-linkeo)
 

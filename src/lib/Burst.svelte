@@ -2,7 +2,7 @@
   // Estalla un puñado de partículas desde el centro cuando cambia `trigger`.
   export let trigger = 0; // cambiar este número dispara un burst nuevo
 
-  const FALLBACK = ["#bdbf09", "#2292a4", "#d96c06"];
+  const FALLBACK = ["#606c38", "#dda15e", "#bc6c25"];
   let parts = [];
 
   $: if (trigger) spawn();

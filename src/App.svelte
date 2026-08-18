@@ -16,7 +16,7 @@
 
 {#if current}
   {#key current.num}
-    <ClassView lecture={current.content} on:back={back} />
+    <ClassView lecture={current.content} on:back={back} on:open={open} />
   {/key}
 {:else}
   <Home classes={CLASSES} on:open={open} />

@@ -32,6 +32,28 @@ for (const c of CLASSES) {
       if (!Number.isInteger(card.answer) || card.answer < 0 || card.answer >= n)
         errors.push(`${at}: answer fuera de rango (${card.answer} / ${n})`);
       if (!card.explain) warnings.push(`${at}: quiz sin explain`);
+    } else if (card.type === "match") {
+      if (!card.question) errors.push(`${at}: match sin question`);
+      const ps = Array.isArray(card.pairs) ? card.pairs : [];
+      if (ps.length < 2) errors.push(`${at}: match necesita >= 2 pares`);
+      if (ps.length > 5) warnings.push(`${at}: match con ${ps.length} pares (>5, puede no entrar)`);
+      ps.forEach((p, k) => {
+        if (!p || !p.left || !p.right) errors.push(`${at}: par ${k + 1} sin left/right`);
+      });
+      if (!card.explain) warnings.push(`${at}: match sin explain`);
+    } else if (card.type === "classify") {
+      if (!card.question) errors.push(`${at}: classify sin question`);
+      if (!Array.isArray(card.groups) || card.groups.length !== 2)
+        errors.push(`${at}: classify necesita exactamente 2 groups`);
+      const its = Array.isArray(card.items) ? card.items : [];
+      if (its.length < 2) errors.push(`${at}: classify necesita >= 2 ítems`);
+      if (its.length > 6) warnings.push(`${at}: classify con ${its.length} ítems (>6, puede no entrar)`);
+      its.forEach((it, k) => {
+        if (!it || !it.text) errors.push(`${at}: ítem ${k + 1} sin text`);
+        if (it && (it.group !== 0 && it.group !== 1))
+          errors.push(`${at}: ítem ${k + 1} con group inválido (${it && it.group})`);
+      });
+      if (!card.explain) warnings.push(`${at}: classify sin explain`);
     } else {
       errors.push(`${at}: type inválido (${card.type})`);
     }

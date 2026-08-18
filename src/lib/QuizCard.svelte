@@ -2,9 +2,25 @@
   import { createEventDispatcher } from "svelte";
   import RichText from "./RichText.svelte";
   export let card;
+  export let saved = null; // índice ORIGINAL ya elegido (al reanudar), o null
   const dispatch = createEventDispatcher();
 
-  let picked = null;
+  // Orden de opciones barajado una vez por montaje, para eliminar el sesgo
+  // posicional de la respuesta correcta. Se renderiza según `order`, pero se
+  // conserva el índice original para comparar con card.answer: la lógica de
+  // corrección no cambia. Al reentrar a la clase el componente se remonta
+  // (ver {#key} en App.svelte) y el orden se rebaraja.
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  const order = shuffle([...card.options.keys()]);
+
+  let picked = saved; // restaura la respuesta guardada si existe
   let shake = false;
   $: answered = picked !== null;
   $: correct = answered && picked === card.answer;
@@ -12,12 +28,12 @@
   function choose(i) {
     if (answered) return;
     picked = i;
-    const correct = i === card.answer;
-    if (!correct) {
+    const isCorrect = i === card.answer;
+    if (!isCorrect) {
       shake = true;
       setTimeout(() => (shake = false), 420);
     }
-    dispatch("answer", { correct });
+    dispatch("answer", { correct: isCorrect, save: i });
   }
 </script>
 
@@ -28,7 +44,7 @@
   <h2>{card.question}</h2>
 
   <div class="opts">
-    {#each card.options as opt, i}
+    {#each order as i (i)}
       <button
         class="opt"
         class:correct={answered && i === card.answer}
@@ -37,7 +53,7 @@
         on:click={() => choose(i)}
         disabled={answered}
       >
-        <span class="txt">{opt}</span>
+        <span class="txt">{card.options[i]}</span>
         {#if answered && i === card.answer}<span class="mark">✓</span>{/if}
         {#if answered && i === picked && i !== card.answer}<span class="mark">✕</span>{/if}
       </button>
