@@ -42,7 +42,7 @@
     margin: 0;
     color: var(--text-soft);
     line-height: 1.65;
-    font-size: 17px;
+    font-size: 20px;
   }
   .cue {
     margin-top: 34px;
@@ -56,6 +56,6 @@
   }
   @media (max-height: 700px) {
     h2 { font-size: 25px; }
-    p { font-size: 15.5px; }
+    p { font-size: 18px; }
   }
 </style>
