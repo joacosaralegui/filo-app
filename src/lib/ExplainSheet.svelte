@@ -94,13 +94,13 @@
   .close {
     margin-top: 20px;
     width: 100%;
-    padding: 13px;
+    padding: 14px;
     border-radius: 13px;
-    background: var(--accent);
-    color: var(--on-accent);
-    border: none;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--line);
     font: inherit;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 15px;
     cursor: pointer;
   }
