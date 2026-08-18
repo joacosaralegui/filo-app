@@ -50,8 +50,18 @@ export default {
       explain: "",
     },
 
+    // --- RESPUESTA CORTA: el estudiante ESCRIBE un término de memoria ---
+    {
+      type: "short",
+      question: "", // debe tener UNA respuesta de una o dos palabras
+      answers: ["", ""], // la 1ª es la canónica (la que se muestra al fallar);
+                          // el resto son sinónimos igual de válidos
+      explain: "",
+    },
+
     // ...seguí intercalando: ~2 infos y después las cards que las evalúan.
-    // Criterio: quiz de base; classify para comparaciones; match para lo complejo.
+    // Criterio: quiz de base; classify para comparaciones; match para lo complejo;
+    // short para el término clave que conviene saber escribir de memoria.
     // Cerrá con una card de info de síntesis.
   ],
 };

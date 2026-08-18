@@ -26,7 +26,7 @@ export default {
       question: "«Poner a Hegel patas para arriba» significa, para Marx…",
       options: [
         "Hacer que la historia retroceda en lugar de avanzar",
-        "Pasar del reino de lo ideal y metafísico al de lo concreto y material",
+        "Pasar de lo ideal a lo concreto y material",
         "Abandonar por completo la dialéctica hegeliana",
         "Sustituir la razón por la fe religiosa",
       ],
@@ -81,7 +81,7 @@ export default {
       question: "¿En qué consiste la «alienación» del trabajador para Marx?",
       options: [
         "En que el trabajador rechaza trabajar en la fábrica",
-        "En que produce solo una parte, no posee lo producido ni se conecta con ello, y se vende como una cosa",
+        "En que no es dueño de lo que produce ni de su tiempo",
         "En que emigra del campo a la ciudad",
         "En que gana un salario en dinero en vez de en especie",
       ],
@@ -111,7 +111,7 @@ export default {
       question: "«El capitalismo contiene las semillas de su propia destrucción» es una idea…",
       options: [
         "Empírica, tomada de la economía política inglesa",
-        "Dialéctica, heredada de Hegel: todo estado engendra su propia negación",
+        "Dialéctica: todo estado engendra su negación",
         "Romántica, sobre la nostalgia del pasado feudal",
         "Kantiana, sobre el deber moral de rebelarse",
       ],
@@ -147,7 +147,7 @@ export default {
       question: "En el modelo de base y superestructura, ¿qué determina la conciencia?",
       options: [
         "Las ideas y la cultura configuran la economía",
-        "La posición en la estructura económica determina cómo se piensa",
+        "La posición económica determina cómo se piensa",
         "La conciencia es libre e independiente de la clase",
         "La religión es la base y la economía la superestructura",
       ],

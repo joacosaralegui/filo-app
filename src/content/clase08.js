@@ -37,7 +37,7 @@ export default {
       options: [
         "Cambia la dirección de la historia: ya no va hacia el comunismo",
         "Niega que exista una ciencia de las leyes de la historia",
-        "No cambia la dirección de la historia, sino que busca un método para empujarla y acelerarla",
+        "No cambia el rumbo: busca cómo acelerar la historia",
         "Sostiene que la revolución debe ser pacífica y gradual",
       ],
       answer: 2,
@@ -66,7 +66,7 @@ export default {
       question: "Para Lenin, ¿por qué la conciencia de clase debe llegarle al proletariado «desde afuera»?",
       options: [
         "Porque los obreros son incapaces de toda organización colectiva",
-        "Porque, librada a sí misma, la clase obrera solo desarrolla conciencia sindical; comprender la totalidad histórica exige una vanguardia que se la lleve",
+        "Porque sola no pasa de la conciencia sindical",
         "Porque la verdadera revolución debe venir de la burguesía ilustrada",
         "Porque Marx había prohibido expresamente que los obreros se organizaran",
       ],
@@ -122,7 +122,7 @@ export default {
       question: "¿Por qué la clase llama «proletariado metafísico» al que representaban los bolcheviques en 1917?",
       options: [
         "Porque eran una mayoría abrumadora de obreros industriales",
-        "Porque no había casi obreros: fue una revolución en nombre de un proletariado que apenas existía y que «surgiría» al industrializar el país",
+        "Porque casi no había obreros: se hizo en su nombre",
         "Porque los bolcheviques rechazaban toda idea de clase social",
         "Porque el proletariado ruso era más culto y filosófico que el occidental",
       ],

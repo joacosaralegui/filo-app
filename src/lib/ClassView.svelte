@@ -1,22 +1,23 @@
 <script>
-  import { createEventDispatcher, onMount } from "svelte";
+  import { createEventDispatcher, onDestroy, onMount } from "svelte";
   import InfoCard from "./InfoCard.svelte";
   import QuizCard from "./QuizCard.svelte";
   import MatchCard from "./MatchCard.svelte";
   import ClassifyCard from "./ClassifyCard.svelte";
+  import ShortCard from "./ShortCard.svelte";
+  import ExplainSheet from "./ExplainSheet.svelte";
   import Burst from "./Burst.svelte";
-  import { classState, saveClass } from "./progress.js";
+  import { classState, saveClass, SCORABLE } from "./progress.js";
   import { CLASSES } from "../content/classes.js";
 
   export let lecture;
   const dispatch = createEventDispatcher();
 
-  // Tipos de card puntuables (interactivos). El resto ('info') no puntúa.
-  const SCORABLE = new Set(["quiz", "match", "classify"]);
   const totalQuiz = lecture.feed.filter((c) => SCORABLE.has(c.type)).length;
 
-  // Correcto según el tipo. 'quiz' guarda el índice elegido (número); 'match' y
-  // 'classify' guardan un objeto con { correct } (y el estado para restaurar).
+  // Correcto según el tipo. 'quiz' guarda el índice elegido (número); el resto
+  // ('match', 'classify', 'short') guarda un objeto con { correct } más el
+  // estado necesario para restaurar la card al reanudar.
   function isCorrect(card, a) {
     if (a === null || a === undefined) return false;
     if (card.type === "quiz") return a === card.answer;
@@ -68,6 +69,7 @@
 
   // Rueda del mouse / trackpad: bloquear el desplazamiento hacia abajo.
   function onWheel(e) {
+    cancelarAuto();
     if (e.deltaY > 0 && atGate()) {
       e.preventDefault();
       nudgeGate();
@@ -77,6 +79,7 @@
   // Touch: si el dedo sube (contenido baja = avanzar), frenar en la puerta.
   let touchY = null;
   function onTouchStart(e) {
+    cancelarAuto();
     touchY = e.touches[0].clientY;
   }
   function onTouchMove(e) {
@@ -86,6 +89,23 @@
       e.preventDefault();
       nudgeGate();
     }
+  }
+
+  // Explicación en hoja (sólo al fallar): la card no cambia de alto, así que
+  // la pregunta no se mueve al responder.
+  let sheet = null;
+
+  // Auto-avance tras acertar: deja que corra la animación de recompensa y pasa
+  // a la card siguiente. Se cancela si el usuario hace el gesto de scrollear
+  // por su cuenta (rueda o dedo), para no pelearle la navegación.
+  let autoTimer = null;
+  function cancelarAuto() {
+    clearTimeout(autoTimer);
+    autoTimer = null;
+  }
+  function irA(i) {
+    if (!feedEl) return;
+    feedEl.scrollTo({ top: i * feedEl.clientHeight, behavior: "smooth" });
   }
 
   // recompensa
@@ -120,9 +140,15 @@
       burstId += 1;
       showPop(points, combo);
       vibrate(combo >= 3 ? [12, 20, 18] : [14]);
+      cancelarAuto();
+      autoTimer = setTimeout(() => irA(i + 1), 1200);
     } else {
       combo = 0;
       vibrate([45, 40, 45]);
+      const card = lecture.feed[i];
+      if (e.detail.solucion || card.explain) {
+        sheet = { solucion: e.detail.solucion ?? null, texto: card.explain };
+      }
     }
     saveClass(lecture.num, { answers, score, combo, card: currentCard });
   }
@@ -132,6 +158,8 @@
     clearTimeout(popTimer);
     popTimer = setTimeout(() => (pop = null), 1100);
   }
+
+  onDestroy(cancelarAuto);
 
   function onScroll() {
     const h = feedEl.clientHeight;
@@ -184,6 +212,8 @@
         <MatchCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
       {:else if card.type === "classify"}
         <ClassifyCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
+      {:else if card.type === "short"}
+        <ShortCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
       {:else}
         <QuizCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
       {/if}
@@ -215,6 +245,8 @@
 {#if gateHint}
   <div class="gate-hint" role="status">Respondé para continuar</div>
 {/if}
+
+<ExplainSheet data={sheet} on:close={() => (sheet = null)} />
 
 <Burst trigger={burstId} />
 

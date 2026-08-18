@@ -54,12 +54,12 @@ export default {
       question: "El «desencanto» (Entzauberung) nombra, ante todo…",
       options: [
         "La decepción moral ante los crímenes de la Revolución",
-        "El retiro de lo mágico y lo sagrado ante una explicación racional del mundo",
+        "El retiro de lo mágico ante una explicación racional",
         "El pesimismo de Hobbes sobre la naturaleza humana",
         "El rechazo romántico de la ciencia",
       ],
       answer: 1,
-      explain: "Es un concepto de Weber: no una emoción puntual, sino el proceso por el cual el mundo deja de estar poblado de fuerzas mágicas y pasa a ser explicable y sobrio.",
+      explain: "Es un concepto de Weber: no una emoción puntual, sino el proceso por el cual el mundo deja de estar poblado de fuerzas mágicas y sagradas y pasa a ser explicable y sobrio.",
     },
     {
       type: "info",
@@ -79,7 +79,7 @@ export default {
       options: [
         "La existencia de Dios como garante de la verdad",
         "La existencia del mundo exterior captado por los sentidos",
-        "La existencia del sujeto que piensa, aun si todo lo demás fuera un engaño",
+        "La existencia del sujeto que está pensando",
         "La imposibilidad de todo conocimiento cierto",
       ],
       answer: 2,
@@ -128,12 +128,12 @@ export default {
       question: "¿Por qué la «voluntad general» de Rousseau resulta políticamente peligrosa?",
       options: [
         "Porque defiende de forma explícita la monarquía absoluta",
-        "Porque es una noción difusa del «todo» social que puede invocarse para justificar la coerción en su nombre",
+        "Porque es tan difusa que puede justificar la coerción",
         "Porque niega la posibilidad de cualquier gobierno",
         "Porque funda la autoridad en el derecho divino de los reyes",
       ],
       answer: 1,
-      explain: "Nadie sabe con exactitud qué es la voluntad general. Esa indeterminación permite que un poder afirme encarnarla y reprima en su nombre: el camino hacia el Terror.",
+      explain: "Nadie sabe con exactitud qué es esa voluntad del «todo» social. Esa indeterminación permite que un poder afirme encarnarla y reprima en su nombre: el camino hacia el Terror.",
     },
     {
       type: "info",
@@ -153,7 +153,7 @@ export default {
       options: [
         "Conocemos la cosa en sí (Ding an sich) tal como es en verdad",
         "El conocimiento se conforma pasivamente a los objetos tal como existen",
-        "Los objetos, tal como los conocemos, se conforman a las estructuras de nuestra mente",
+        "Los objetos que conocemos se conforman a nuestra mente",
         "No existe ningún mundo independiente de la mente",
       ],
       answer: 2,
@@ -164,7 +164,7 @@ export default {
       question: "El lema kantiano sapere aude expresa, ante todo…",
       options: [
         "La confianza en que la ciencia resolverá todos los problemas",
-        "El coraje de usar el propio entendimiento sin someterse a la autoridad",
+        "El coraje de servirse del propio entendimiento",
         "El deber de obedecer sin cuestionar a la razón del Estado",
         "El rechazo de toda ley y toda tradición",
       ],

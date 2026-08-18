@@ -36,7 +36,7 @@ export default {
       question: "¿Contra qué se rebelan Bergson, Freud y Husserl?",
       options: [
         "Contra el idealismo hegeliano y su fe en el Espíritu",
-        "Contra el positivismo: reducir todo conocimiento a la experiencia empírica y medible",
+        "Contra el positivismo y su fe en lo medible",
         "Contra el ateísmo militante de Nietzsche",
         "Contra el contrato social y el liberalismo político",
       ],
@@ -60,12 +60,18 @@ export default {
       question: "¿Por qué, para Bergson, es un error medir el tiempo como se mide el espacio?",
       options: [
         "Porque el tiempo no existe realmente, es solo una ilusión de la conciencia",
-        "Porque el tiempo es duración continua (durée), y cuantificarlo lo trocea en unidades discretas que traicionan su flujo",
+        "Porque el tiempo es duración continua, no partes sueltas",
         "Porque el espacio, en verdad, tampoco puede medirse con exactitud",
         "Porque solo Dios puede conocer el tiempo verdadero",
       ],
       answer: 1,
       explain: "El tiempo real es flujo, no una fila de instantes. Cortarlo en segundos es como pasar un cuchillo a través de una llama: se divide lo desplegado, no el desplegarse. Es una multiplicidad cualitativa, no cuantitativa.",
+    },
+    {
+      type: "short",
+      question: "¿Cómo llama Bergson al tiempo vivido de la conciencia?",
+      answers: ["durée", "duración"],
+      explain: "La durée es el tiempo tal como se vive: continuo, cualitativo e indivisible, frente al tiempo espacializado que miden los relojes.",
     },
     {
       type: "info",
@@ -102,7 +108,7 @@ export default {
       question: "¿Qué diferencia el tratamiento del libre albedrío en Kant y en Bergson?",
       options: [
         "Kant lo niega; Bergson lo afirma",
-        "Kant lo postula porque lo necesita para la moral; Bergson intenta probarlo ligándolo al tiempo como duración",
+        "Kant lo postula; Bergson intenta probarlo",
         "Ambos lo demuestran con el mismo argumento",
         "Kant lo funda en el tiempo; Bergson en la razón pura",
       ],
@@ -126,7 +132,7 @@ export default {
       question: "La imagen de la bala de cañón frente al proyectil que estalla ilustra que, para Bergson, la vida…",
       options: [
         "Se dirige con precisión hacia una meta única y predeterminada",
-        "No avanza hacia un telos fijo: se dispersa por líneas divergentes, con creatividad y contingencia",
+        "No avanza hacia un fin fijo: se dispersa y crea",
         "Es esencialmente destructiva y violenta",
         "Retrocede en círculos, como el tiempo cíclico premoderno",
       ],
@@ -164,7 +170,7 @@ export default {
       question: "Según La risa, ¿qué provoca lo cómico y qué función cumple reírse?",
       options: [
         "La alegría espontánea; la risa sirve para reforzar los lazos afectivos",
-        "La rigidez mecánica y automática de lo humano; la risa es un correctivo que rompe ese mecanismo",
+        "La rigidez mecánica de lo humano; la risa la corrige",
         "La transgresión moral; la risa castiga el vicio",
         "El absurdo del lenguaje; la risa libera tensión nerviosa",
       ],

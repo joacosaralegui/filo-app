@@ -1,6 +1,5 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import RichText from "./RichText.svelte";
   export let card;
   export let saved = null; // índice ORIGINAL ya elegido (al reanudar), o null
   const dispatch = createEventDispatcher();
@@ -60,9 +59,6 @@
     {/each}
   </div>
 
-  {#if answered}
-    <p class="explain"><RichText text={card.explain} /></p>
-  {/if}
 </div>
 
 <style>
@@ -140,23 +136,10 @@
   }
   .opt.correct .mark { color: var(--good-ink); }
   .opt.wrong .mark { color: var(--bad-ink); }
-  .explain {
-    margin: 18px 0 0;
-    padding-top: 15px;
-    border-top: 1px solid var(--line);
-    color: var(--text-soft);
-    line-height: 1.55;
-    font-size: 14.5px;
-    animation: rise 0.35s ease;
-  }
   @keyframes pop {
     0% { transform: scale(1); }
     45% { transform: scale(1.035); }
     100% { transform: scale(1); }
-  }
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
   }
   .shake { animation: shake 0.4s ease; }
   @keyframes shake {
@@ -171,6 +154,6 @@
     .opt { padding: 12px 14px; font-size: 14.5px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .opt.correct, .explain, .shake { animation: none; }
+    .opt.correct, .shake { animation: none; }
   }
 </style>

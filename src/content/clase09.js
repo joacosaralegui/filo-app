@@ -36,7 +36,7 @@ export default {
       question: "¿Cómo invierte Freud el modelo hegeliano y bolchevique del yo y el nosotros?",
       options: [
         "Diluye el yo en el nosotros, como los bolcheviques",
-        "Vuelve al individuo como punto de partida y perfora, dentro del sujeto, la relación entre lo consciente y lo inconsciente",
+        "Vuelve al individuo y lo parte en consciente e inconsciente",
         "Niega que exista el inconsciente y se queda solo con la conciencia",
         "Sostiene que el yo es transparente y plenamente racional",
       ],
@@ -60,7 +60,7 @@ export default {
       question: "¿Qué le basta a Freud para hablar de «complejo de Edipo» en un niño?",
       options: [
         "Que efectivamente intente hacerle daño a su padre",
-        "Que el deseo de eliminar al padre y poseer a la madre apenas titile en la mente o aparezca en un sueño, y luego se reprima",
+        "Que el deseo apenas titile o aparezca en un sueño",
         "Que la madre fomente ese deseo de forma consciente",
         "Que el niño haya sufrido un abuso real y comprobable",
       ],
@@ -108,7 +108,7 @@ export default {
       question: "Según El malestar en la civilización, ¿qué intercambio impone la vida en sociedad?",
       options: [
         "Cambia seguridad por libertad, como en Locke",
-        "Cambia felicidad por seguridad: reprimir Eros y Tánatos es el precio de convivir",
+        "Cambia felicidad por seguridad: reprimir instintos",
         "Elimina por completo la agresión humana mediante la educación",
         "Cambia razón por fe, restaurando la religión",
       ],

@@ -50,8 +50,9 @@ export function saveClass(num, patch) {
   });
 }
 
-// Tipos de card puntuables (interactivos). Debe coincidir con ClassView.
-const SCORABLE = new Set(["quiz", "match", "classify"]);
+// Tipos de card puntuables (interactivos). Única fuente de verdad: ClassView
+// también la importa de acá, para que no se desincronicen al agregar formatos.
+export const SCORABLE = new Set(["quiz", "match", "classify", "short"]);
 
 // ¿Se respondieron todas las cards interactivas de la clase?
 export function isComplete(p, lecture) {

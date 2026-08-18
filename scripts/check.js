@@ -20,6 +20,10 @@ for (const c of CLASSES) {
     errors.push(`${tag}: feed vacío`);
     continue;
   }
+  // Para detectar sesgo sistemático de longitud en las opciones (ver abajo).
+  let quizTotal = 0;
+  let quizMasLarga = 0;
+
   L.feed.forEach((card, i) => {
     const at = `${tag} · card ${i + 1}`;
     if (card.type === "info") {
@@ -32,6 +36,27 @@ for (const c of CLASSES) {
       if (!Number.isInteger(card.answer) || card.answer < 0 || card.answer >= n)
         errors.push(`${at}: answer fuera de rango (${card.answer} / ${n})`);
       if (!card.explain) warnings.push(`${at}: quiz sin explain`);
+
+      // La correcta no debe delatarse por su forma: si se puede acertar sin
+      // saber el tema —eligiendo la más larga o la única con guiones largos—
+      // el quiz mide astucia, no contenido. El arreglo es acortar la correcta
+      // (el matiz va en `explain`), no inflar los distractores.
+      if (n >= 2 && Array.isArray(card.options) && card.options[card.answer]) {
+        const largos = card.options.map((o) => String(o).length);
+        const mayorOtro = Math.max(...largos.filter((_, k) => k !== card.answer));
+        if (largos[card.answer] > mayorOtro * 1.25)
+          warnings.push(
+            `${at}: la correcta es mucho más larga (${largos[card.answer]} vs ${mayorOtro}); ` +
+              `acortala al largo de los distractores y pasá el matiz a explain`
+          );
+
+        const conRaya = card.options.map((o) => /[—–]/.test(String(o)));
+        if (conRaya[card.answer] && conRaya.filter(Boolean).length === 1)
+          warnings.push(`${at}: la correcta es la única con guion largo (—)`);
+
+        if (largos[card.answer] === Math.max(...largos)) quizMasLarga += 1;
+        quizTotal += 1;
+      }
     } else if (card.type === "match") {
       if (!card.question) errors.push(`${at}: match sin question`);
       const ps = Array.isArray(card.pairs) ? card.pairs : [];
@@ -54,10 +79,36 @@ for (const c of CLASSES) {
           errors.push(`${at}: ítem ${k + 1} con group inválido (${it && it.group})`);
       });
       if (!card.explain) warnings.push(`${at}: classify sin explain`);
+    } else if (card.type === "short") {
+      if (!card.question) errors.push(`${at}: short sin question`);
+      const as = Array.isArray(card.answers) ? card.answers : [];
+      if (as.length < 1) errors.push(`${at}: short necesita al menos 1 answer`);
+      as.forEach((a, k) => {
+        if (typeof a !== "string" || !a.trim())
+          errors.push(`${at}: answer ${k + 1} vacía`);
+        // El formato sólo corrige texto: si la respuesta esperada es larga, la
+        // comparación deja de ser confiable y conviene un quiz.
+        else if (a.trim().split(/\s+/).length > 3)
+          warnings.push(`${at}: answer "${a}" tiene >3 palabras (usá quiz)`);
+      });
+      if (!card.explain) warnings.push(`${at}: short sin explain`);
     } else {
       errors.push(`${at}: type inválido (${card.type})`);
     }
   });
+
+  // Sesgo sistemático: aunque cada quiz por separado parezca razonable, si la
+  // correcta suele ser la más larga, "elegir la más larga" se vuelve una
+  // estrategia ganadora y el quiz deja de medir el contenido. Con 4 opciones,
+  // el azar da ~25%.
+  if (quizTotal >= 5) {
+    const pct = Math.round((quizMasLarga / quizTotal) * 100);
+    if (pct > 50)
+      warnings.push(
+        `${tag}: la correcta es la opción más larga en ${quizMasLarga}/${quizTotal} quizzes (${pct}%, ` +
+          `azar ~25%): "elegir la más larga" acierta casi siempre`
+      );
+  }
 }
 
 // ---- glosario ----

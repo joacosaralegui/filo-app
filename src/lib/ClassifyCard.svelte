@@ -1,6 +1,5 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import RichText from "./RichText.svelte";
   export let card; // { question, groups:[a,b], items:[{text, group:0|1}], explain }
   export let saved = null; // { correct, assign } (al reanudar) o null
   const dispatch = createEventDispatcher();
@@ -164,7 +163,6 @@
       {allPlaced ? "Confirmar" : "Llevá cada ítem a su columna"}
     </button>
   {:else}
-    <p class="explain"><RichText text={card.explain} /></p>
   {/if}
 
   {#if drag && moved}
@@ -341,19 +339,6 @@
   }
   .confirm:disabled { opacity: 0.45; cursor: default; }
   .confirm:not(:disabled):active { transform: scale(0.985); }
-  .explain {
-    margin: 16px 0 0;
-    padding-top: 14px;
-    border-top: 1px solid var(--line);
-    color: var(--text-soft);
-    line-height: 1.55;
-    font-size: 14.5px;
-    animation: rise 0.35s ease;
-  }
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
   .shake { animation: shake 0.4s ease; }
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
@@ -367,6 +352,6 @@
     .chip { font-size: 12.5px; padding: 8px 10px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .explain, .shake { animation: none; }
+    .shake { animation: none; }
   }
 </style>

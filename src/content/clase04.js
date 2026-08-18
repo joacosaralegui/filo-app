@@ -32,7 +32,7 @@ export default {
       question: "¿Por qué Hegel insiste en que no se puede «des-tomar» la Bastilla?",
       options: [
         "Porque la Revolución fue un error que conviene olvidar",
-        "Porque la historia es irreversible: lo que sucede no se deshace y marca un giro definitivo",
+        "Porque la historia es irreversible y no vuelve atrás",
         "Porque el pueblo podría restaurar la monarquía en cualquier momento",
         "Porque las intenciones importan más que las consecuencias",
       ],
@@ -68,7 +68,7 @@ export default {
       question: "La «transformación de la cantidad en calidad» describe…",
       options: [
         "Un cambio gradual y continuo, sin rupturas",
-        "Un punto en que la acumulación de cambios de grado produce un salto a otra clase de cosa",
+        "Un salto a otra clase de cosa tras acumular grados",
         "La reducción de todo fenómeno a números medibles",
         "El retorno cíclico de la historia a su punto de partida",
       ],
@@ -92,24 +92,12 @@ export default {
       question: "Cuando Hegel dice que el Geist es «el yo que es un nosotros», quiere decir que…",
       options: [
         "El individuo debe disolverse por completo en la masa",
-        "La identidad y el significado del individuo solo existen en el contexto del todo social",
+        "El individuo solo tiene sentido en el todo social",
         "El Estado tiene siempre razón frente al individuo",
         "El espíritu es una sustancia material medible",
       ],
       answer: 1,
       explain: "Como el jugador dentro del equipo: fuera de contexto, pegarle a la pelota no significa nada. Para Hegel todo es relacional; el yo y el todo se constituyen mutuamente.",
-    },
-    {
-      type: "match",
-      question: "Uní cada concepto hegeliano con lo que nombra",
-      pairs: [
-        { left: "Geist", right: "El poder del todo: «el yo que es un nosotros»" },
-        { left: "Dialéctica", right: "El choque de contradicciones que empuja la historia" },
-        { left: "Aufhebung", right: "Negar y a la vez preservar, elevando a un nivel superior" },
-        { left: "Telos", right: "El fin ya codificado en el comienzo, como la manzana en la semilla" },
-        { left: "Búho de Minerva", right: "El sentido de algo solo se comprende en retrospectiva" },
-      ],
-      explain: "Son las piezas del sistema: el Geist se despliega por dialéctica, cada estadio se supera por Aufhebung hacia su telos, y el todo solo se entiende mirando hacia atrás —el búho que vuela al anochecer—.",
     },
     {
       type: "info",
@@ -128,12 +116,24 @@ export default {
       question: "¿En qué se diferencia Hegel de Kant respecto de la moral?",
       options: [
         "Para Hegel, como para Kant, solo cuenta la intención del agente",
-        "Para Hegel el sentido de una acción se juzga en retrospectiva, por sus consecuencias, no solo por el motivo",
+        "Para Hegel el sentido se juzga después, por sus efectos",
         "Para Hegel la moral es imposible porque no hay libre albedrío",
         "Para Hegel las consecuencias no importan nunca, solo el deber",
       ],
       answer: 1,
       explain: "Kant se queda en la intención; Hegel dice que las acciones desbordan su intención y solo se entienden mirando atrás (el caso de Chamberlain en Múnich: buenas intenciones, desastre histórico).",
+    },
+    {
+      type: "match",
+      question: "Uní cada concepto hegeliano con lo que nombra",
+      pairs: [
+        { left: "Geist", right: "El poder del todo: «el yo que es un nosotros»" },
+        { left: "Dialéctica", right: "El choque de contradicciones que empuja la historia" },
+        { left: "Aufhebung", right: "Negar y a la vez preservar, elevando a un nivel superior" },
+        { left: "Telos", right: "El fin ya codificado en el comienzo, como la manzana en la semilla" },
+        { left: "Búho de Minerva", right: "El sentido de algo solo se comprende en retrospectiva" },
+      ],
+      explain: "Son las piezas del sistema: el Geist se despliega por dialéctica, cada estadio se supera por Aufhebung hacia su telos, y el todo solo se entiende mirando hacia atrás —el búho que vuela al anochecer—.",
     },
     {
       type: "info",
@@ -164,7 +164,7 @@ export default {
       question: "¿Por qué el amo queda finalmente insatisfecho?",
       options: [
         "Porque el esclavo se niega a trabajar para él",
-        "Porque solo un sujeto puede dar reconocimiento, y él redujo al esclavo a mero objeto",
+        "Porque un objeto no puede reconocerlo",
         "Porque el amo desea en secreto ser esclavo",
         "Porque pierde su propiedad material",
       ],

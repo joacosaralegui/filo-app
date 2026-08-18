@@ -1,6 +1,5 @@
 <script>
   import { createEventDispatcher, afterUpdate, onMount, onDestroy } from "svelte";
-  import RichText from "./RichText.svelte";
   export let card;
   export let saved = null; // { correct, links } (al reanudar) o null
   const dispatch = createEventDispatcher();
@@ -252,7 +251,6 @@
       {allLinked ? "Confirmar" : "Uní todos los pares"}
     </button>
   {:else}
-    <p class="explain"><RichText text={card.explain} /></p>
   {/if}
 </div>
 
@@ -375,19 +373,6 @@
   }
   .confirm:disabled { opacity: 0.45; cursor: default; }
   .confirm:not(:disabled):active { transform: scale(0.985); }
-  .explain {
-    margin: 16px 0 0;
-    padding-top: 14px;
-    border-top: 1px solid var(--line);
-    color: var(--text-soft);
-    line-height: 1.55;
-    font-size: 14.5px;
-    animation: rise 0.35s ease;
-  }
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
   .shake { animation: shake 0.4s ease; }
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
@@ -402,6 +387,6 @@
     .board { gap: 40px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .explain, .shake { animation: none; }
+    .shake { animation: none; }
   }
 </style>

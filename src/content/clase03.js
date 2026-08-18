@@ -33,7 +33,7 @@ export default {
       question: "¿Qué supone la metáfora del rompecabezas de Isaiah Berlin?",
       options: [
         "Que el conocimiento es imposible porque siempre faltan piezas",
-        "Que cada pieza de conocimiento se acumula y acerca a un todo comprensible",
+        "Que el conocimiento se acumula hacia un todo coherente",
         "Que la verdad se crea, no se descubre",
         "Que las distintas verdades son incompatibles entre sí",
       ],
@@ -57,12 +57,12 @@ export default {
       question: "¿Qué relación tiene el Romanticismo con la Ilustración?",
       options: [
         "Es su continuación natural: profundiza la fe en la razón",
-        "Es una rebelión contra su ánimo, una contra-Ilustración (Gegenaufklärung)",
+        "Es una rebelión contra ella: la contra-Ilustración",
         "Es indiferente a ella: se ocupa de problemas distintos",
         "Es una versión más rigurosa de su método científico",
       ],
       answer: 1,
-      explain: "El Romanticismo surge como reacción contra el racionalismo, el optimismo y la armonía de intereses ilustrados. No los ignora: los combate, y por eso se lo llama contra-Ilustración.",
+      explain: "El Romanticismo surge como reacción contra el racionalismo, el optimismo y la armonía de intereses ilustrados. No los ignora: los combate, y por eso se lo llama contra-Ilustración (Gegenaufklärung).",
     },
     {
       type: "info",
@@ -119,7 +119,7 @@ export default {
       question: "¿Por qué la nostalgia rousseauniana es paradigmática para los románticos?",
       options: [
         "Porque describe con exactitud histórica cómo se vivía en el estado de naturaleza",
-        "Porque es el anhelo por un pasado idealizado que nunca existió, recreado en la mente",
+        "Porque anhela un pasado idealizado que nunca existió",
         "Porque propone volver efectivamente a vivir en el bosque",
         "Porque rechaza toda emoción en favor del cálculo racional",
       ],
@@ -149,7 +149,7 @@ export default {
       question: "¿Por qué se dice que Kant es figura tanto de la Ilustración como del Romanticismo?",
       options: [
         "Porque cambió de opinión y renegó de la razón al final de su vida",
-        "Porque según en qué obra se ponga el foco —su epistemología o su filosofía moral— se lo lee de un modo u otro",
+        "Porque su epistemología y su moral apuntan a lados distintos",
         "Porque escribió con un estilo apasionado y romántico",
         "Porque rechazó tanto la razón como la voluntad",
       ],
@@ -203,7 +203,7 @@ export default {
       question: "La fórmula romántica «volo ergo sum» invierte a Descartes al fundar la subjetividad en…",
       options: [
         "La percepción sensorial del mundo exterior",
-        "El deseo y la voluntad, en lugar del pensamiento",
+        "El deseo y la voluntad, no el pensamiento",
         "La duda metódica sobre todo lo dudable",
         "La existencia garantizada por Dios",
       ],
@@ -251,7 +251,7 @@ export default {
       question: "¿En qué sentido dice la clase que «el Terror es el momento en que la Ilustración se vuelve Romanticismo»?",
       options: [
         "Porque los jacobinos leían poesía romántica alemana",
-        "Porque un proyecto racional y liberal se transforma en una orgía de pasión y sed de sangre",
+        "Porque un proyecto racional se vuelve orgía de sangre",
         "Porque el Terror restauró el derecho divino de los reyes",
         "Porque puso fin a toda forma de nacionalismo",
       ],

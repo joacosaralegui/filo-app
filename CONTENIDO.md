@@ -41,6 +41,7 @@ Dos tipos, intercalados: **unas cards de info y luego las cards de quiz que las 
   Evitá "¿quién dijo X?"; preferí "¿en qué se diferencia A de B?".
 - **Distractores plausibles**: idealmente la posición de otro pensador de la clase.
 - 3–4 opciones. `explain` siempre presente.
+- La respuesta corrrecta tiene que ser de la misma longitud que las distractoras y mismo tono. 
 
 ### Card de clasificar — repartir en dos columnas
 
@@ -80,6 +81,51 @@ Dos tipos, intercalados: **unas cards de info y luego las cards de quiz que las 
   (concepto/obra). El par correcto es `left[i]` ↔ `right[i]`; la app baraja la
   columna derecha y dibuja las líneas.
 
+### Reglas de las opciones (quiz)
+
+**La correcta no se tiene que poder adivinar por su forma.** Si alguien que no
+leyó la clase acierta con una regla simple, el quiz mide astucia y no contenido.
+Las dos trampas más comunes —y las que `npm run check` detecta— son:
+
+- **Longitud.** La correcta sale más larga porque se la escribe con todo el
+  matiz. El arreglo es **acortarla**, no inflar los distractores: cuatro
+  opciones largas se leen peor, sobre todo en el teléfono. Apuntá a que las
+  cuatro entren en **una línea, ~45–60 caracteres**.
+- **Registro.** Guiones largos (—), dos puntos, comillas o un tono más
+  "académico" sólo en la correcta la delatan igual que la longitud. Escribila
+  tan natural y directa como las otras tres.
+
+**El matiz va en `explain`, no en la opción.** La opción sólo tiene que ser
+reconocible; el desarrollo —el porqué, la cita, la precisión— es exactamente
+para lo que está `explain`, que se muestra en una hoja aparte y tiene lugar de
+sobra. Si sentís que la opción necesita una subordinada para ser correcta, esa
+subordinada va abajo.
+
+Otras reglas: nada de «todas las anteriores», ni distractores absurdos (un
+distractor tiene que ser una **confusión plausible**, la respuesta que daría
+alguien que entendió a medias), ni pistas gramaticales que descarten opciones.
+
+### Card de respuesta corta — escribir el término de memoria
+
+```js
+{
+  type: "short",
+  question: "¿Cómo llama Bergson al tiempo vivido de la conciencia?",
+  answers: ["durée", "duración"],
+  explain: "…",
+}
+```
+
+- `answers`: todas las formas que se dan por buenas. **La primera es la
+  canónica**: es la que se muestra cuando el estudiante falla.
+- Se corrige comparando texto, sin modelos: ignora mayúsculas, tildes,
+  puntuación y artículos (`la Durée.` == `duree`), y perdona una errata cada
+  5 caracteres. En palabras cortas casi no perdona nada, para que `arte` y
+  `parte` no cuenten como lo mismo.
+- **Sólo para preguntas con una respuesta de una o dos palabras.** Si la
+  respuesta esperada es una explicación, usá `quiz`: no hay forma de corregir
+  texto libre sin equivocarse.
+
 ### Cuándo usar cada formato
 
 - **`quiz` (opción múltiple):** el formato **por defecto**, para el uso más
@@ -91,17 +137,27 @@ Dos tipos, intercalados: **unas cards de info y luego las cards de quiz que las 
 - **`match` (conectar):** para relaciones **más complejas** o de varios a varios
   —emparejar autores↔conceptos/obras, causas↔efectos— cuando hay 4–5 elementos
   que se cruzan. Ej.: cada pensador con su aporte.
+- **`short` (respuesta corta):** para el **término clave** que conviene saber
+  escribir de memoria. Es el formato más exigente —no hay opciones donde
+  apoyarse— así que reservalo para el concepto central de la clase, 1–2 por
+  clase. Ej.: «durée», «Aufhebung», «plusvalía».
 
 Todas las cards interactivas puntúan igual (con combo) y se corrigen en
-verde/rojo al confirmar. `explain` siempre presente en las tres.
+verde/rojo al confirmar. `explain` siempre presente.
 
 ### Ritmo
 
-~2 cards de info y después sus 1–2 cards interactivas. Empezá con una card de
-panorama y cerrá con una de síntesis. Intercalá los formatos: usá `quiz` de base
-y sumá al menos un `classify` y un `match` por clase cuando el material lo
-permita (una comparación fuerte, un set de pares autor↔idea). Una clase típica:
-~12–16 info + ~8 interactivas.
+Buscá **variedad y buen ritmo**, no una cadencia fija. Alterná info y práctica
+para que ninguna racha se haga larga, y variá los formatos según lo que pida el
+material: `quiz` de base, más `classify`/`match`/`short` cuando aparezca la
+ocasión (una comparación fuerte, un set de pares autor↔idea, un término que
+valga la pena fijar de memoria). Abrí con una card de panorama y cerrá con una
+de síntesis. Como orden de magnitud, una clase ronda ~12–16 info + ~8
+interactivas, pero es referencia, no cuota. Lo crítico es no saltearse ni perder ningún contenido central de la clase.
+
+**Una card sólo evalúa lo ya presentado.** No preguntes en un `quiz`, `match` o
+`short` un concepto que no apareció antes en una card de info; si el ejercicio
+sintetiza varias piezas, va después de que todas se explicaron.
 
 ## Glosario (auto-linkeo)
 

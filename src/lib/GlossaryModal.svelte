@@ -45,7 +45,7 @@
   .sheet {
     width: 100%;
     max-width: 480px;
-    background: var(--surface-2);
+    background: var(--bg);
     border: 1px solid var(--line);
     border-bottom: none;
     border-radius: 22px 22px 0 0;

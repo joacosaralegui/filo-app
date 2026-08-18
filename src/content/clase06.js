@@ -57,7 +57,7 @@ export default {
       question: "Para el Nietzsche de El nacimiento de la tragedia, ¿qué justifica la existencia?",
       options: [
         "La razón y el progreso científico",
-        "El arte y la creación: solo como fenómeno estético se justifica el mundo",
+        "El arte y la creación estética",
         "El deber moral y la compasión",
         "La fe religiosa heredada de su padre",
       ],
@@ -75,7 +75,7 @@ export default {
       question: "¿Qué le reprocha Nietzsche a Hegel en su ensayo sobre la historia?",
       options: [
         "Haber despreciado a la Grecia antigua",
-        "Haber convertido la historia en una especie de Dios que justifica el presente como su culminación",
+        "Haber divinizado la historia como un proceso",
         "Haber sido demasiado optimista sobre el progreso científico",
         "Haber negado la existencia de las contradicciones",
       ],
@@ -99,7 +99,7 @@ export default {
       question: "¿Qué es la «moral de esclavos» para Nietzsche?",
       options: [
         "La ética de quienes fueron esclavizados legalmente",
-        "La inversión que convierte la debilidad en virtud y el resentimiento en superioridad moral",
+        "La inversión que vuelve virtud a la debilidad",
         "El deber kantiano de tratar a todos como fines",
         "La moral aristocrática de los grandes hombres y héroes",
       ],
@@ -117,7 +117,7 @@ export default {
       question: "El Übermensch de Zaratustra es, ante todo…",
       options: [
         "Un superhombre invulnerable que ya existe y gobierna",
-        "Una meta imaginaria: aquello que el hombre debe superarse a sí mismo para alcanzar",
+        "Una meta por venir, algo que el hombre debe alcanzar",
         "El proletariado que hará la revolución",
         "El sabio que ha alcanzado la reconciliación con el todo",
       ],
@@ -153,7 +153,7 @@ export default {
       question: "«Dios ha muerto» significa, en la lectura de la clase…",
       options: [
         "Una demostración atea de que Dios nunca existió",
-        "Que se derrumbó la creencia en un orden que daba sentido y propósito al mundo",
+        "Que se derrumbó la creencia en un orden con sentido",
         "Que hay que fundar una religión nueva que reemplace a la vieja",
         "Que la ciencia ya explicó todos los milagros",
       ],

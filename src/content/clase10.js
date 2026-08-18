@@ -36,7 +36,7 @@ export default {
       question: "¿En qué se diferencia la alienación de Kafka de la de Marx?",
       options: [
         "En Kafka es económica; en Marx, espiritual",
-        "En Marx es estructural (la organización del trabajo aliena al obrero); en Kafka es más psicológica (el yo que ya no se reconoce)",
+        "En Marx es estructural; en Kafka, psicológica",
         "Son idénticas: ambas nacen de la línea de montaje",
         "En Kafka no hay alienación, solo humor absurdo",
       ],
@@ -55,7 +55,7 @@ export default {
       options: [
         "Porque sus sonidos se parecen naturalmente al animal",
         "Porque Dios o la biología fijaron esa correspondencia",
-        "Porque, por pura convención, se distingue de otros significantes como «gato» o «cerro»: el sentido es relacional y arbitrario",
+        "Porque es arbitrario: se define por contraste",
         "Porque su significado es idéntico en todas las lenguas",
       ],
       answer: 2,
@@ -78,7 +78,7 @@ export default {
       question: "¿Para qué sirve la ostranénie (extrañamiento) de Shklovski?",
       options: [
         "Para que la poesía sea más fácil y transparente",
-        "Para volver extrañas las cosas cotidianas y así despertarnos de la percepción automática y verlas de verdad",
+        "Para volver extrañas las cosas y verlas de verdad",
         "Para eliminar por completo el lenguaje del arte",
         "Para copiar la realidad con la mayor exactitud posible",
       ],
