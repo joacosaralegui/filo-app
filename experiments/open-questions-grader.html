@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Experimento · Corrector de preguntas abiertas (CPU)</title>
+<style>
+  :root { color-scheme: light dark; --bg:#0f1115; --card:#1a1e27; --edge:#2a2f3a; --fg:#e7e9ee; --dim:#9aa3b2; --ok:#4ade80; --bad:#f87171; --warn:#fbbf24; --accent:#c9a227; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:var(--bg); color:var(--fg); padding:24px; max-width:1100px; margin:0 auto; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  .sub { color:var(--dim); margin:0 0 20px; font-size:13px; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+  select, button { font:inherit; padding:9px 14px; border-radius:8px; border:1px solid var(--edge); background:var(--card); color:var(--fg); }
+  button.primary { background:var(--accent); color:#1a1500; border-color:var(--accent); font-weight:600; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:not-allowed; }
+  #status { color:var(--dim); font-size:13px; min-height:18px; }
+  .bar { height:4px; background:var(--edge); border-radius:2px; overflow:hidden; margin-top:6px; }
+  .bar > i { display:block; height:100%; width:0; background:var(--accent); transition:width .2s; }
+  .case { background:var(--card); border:1px solid var(--edge); border-radius:12px; padding:16px; margin-bottom:14px; }
+  .case h3 { margin:0 0 8px; font-size:14px; color:var(--accent); }
+  .ctx { font-size:13px; color:var(--dim); border-left:2px solid var(--edge); padding-left:10px; margin:6px 0; }
+  .q { font-weight:600; margin:8px 0 4px; }
+  .kp { font-size:12px; color:var(--dim); margin:2px 0; }
+  textarea { width:100%; background:#0c0e12; color:var(--fg); border:1px solid var(--edge); border-radius:8px; padding:8px; font:inherit; resize:vertical; min-height:56px; }
+  .verdict { margin-top:10px; padding:10px; border-radius:8px; background:#0c0e12; border:1px solid var(--edge); font-size:13px; }
+  .score { font-weight:700; font-size:15px; }
+  .pt-ok { color:var(--ok); } .pt-bad { color:var(--bad); }
+  .meta { color:var(--dim); font-size:11px; margin-top:6px; }
+  pre.raw { white-space:pre-wrap; font-size:11px; color:var(--dim); margin:6px 0 0; max-height:140px; overflow:auto; }
+  .tag { font-size:10px; text-transform:uppercase; letter-spacing:.05em; padding:2px 6px; border-radius:4px; background:var(--edge); color:var(--dim); margin-left:8px; }
+</style>
+</head>
+<body>
+<h1>Corrector de preguntas abiertas — banco de pruebas (CPU / WASM)</h1>
+<p class="sub">Modelos minúsculos corriendo 100% en el browser sobre CPU con llama.cpp+WASM (wllama). No requiere WebGPU. Corrección por rúbrica: el modelo solo verifica si cada punto clave está presente; el puntaje se calcula en JS. Editá las respuestas y volvé a correr.</p>
+
+<div class="row">
+  <select id="model">
+    <option value="smol360">SmolLM2-360M · q8_0 (~386 MB) · el más chico</option>
+    <option value="qwen05" selected>Qwen2.5-0.5B · q4_k_m (~380 MB)</option>
+    <option value="llama1b">Llama-3.2-1B · q4_k_m (~808 MB)</option>
+    <option value="qwen15">Qwen2.5-1.5B · q4_k_m (~1.1 GB) · referencia</option>
+  </select>
+  <button class="primary" id="run">Cargar modelo y corregir las 5</button>
+  <label style="font-size:13px;color:var(--dim)"><input type="checkbox" id="mt" checked> multi-hilo</label>
+</div>
+<div id="status">Listo. La primera corrida descarga el modelo (se cachea).</div>
+<div class="bar"><i id="prog"></i></div>
+
+<div id="cases"></div>
+
+<script type="module">
+import { Wllama } from "https://cdn.jsdelivr.net/npm/@wllama/wllama@3.6.0/esm/index.js";
+
+const WASM = {
+  "default": "https://cdn.jsdelivr.net/npm/@wllama/wllama@3.6.0/esm/wasm/wllama.wasm",
+};
+
+const MODELS = {
+  smol360: "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct-GGUF/resolve/main/smollm2-360m-instruct-q8_0.gguf",
+  qwen05:  "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  llama1b: "https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q4_K_M.gguf",
+  qwen15:  "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/resolve/main/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+};
+
+const $ = s => document.querySelector(s);
+const casesEl = $("#cases"), statusEl = $("#status"), progEl = $("#prog");
+
+const CASES = [
+  {
+    id:"correcta", etiqueta:"Correcta",
+    contexto:"Para Bergson, el tiempo de la ciencia es un tiempo espacializado, medido con relojes, homogéneo y divisible. Frente a él está la 'durée' (duración): el tiempo vivido de la conciencia, cualitativo, continuo e indivisible, donde los estados se funden unos con otros.",
+    pregunta:"¿Qué distinción central propone Bergson sobre el tiempo?",
+    puntosClave:["Identifica un tiempo objetivo/externo: el que mide la ciencia con relojes, homogéneo y divisible en partes","Identifica un tiempo interior o vivido de la conciencia (lo que Bergson llama 'durée'), aunque el estudiante no use ese nombre","Caracteriza ese tiempo vivido como continuo o cualitativo: fluye sin cortarse, no se divide en partes separadas"],
+    respuesta:"Bergson diferencia el tiempo que mide la ciencia con relojes, que es homogéneo y se puede dividir, del tiempo vivido o durée, que es cualitativo y fluye de manera continua sin partes separadas."
+  },
+  {
+    id:"parafraseada", etiqueta:"Correcta (parafraseada, sin vocabulario técnico)",
+    contexto:"Para Bergson, el tiempo de la ciencia es un tiempo espacializado, medido con relojes, homogéneo y divisible. Frente a él está la 'durée': el tiempo vivido de la conciencia, cualitativo, continuo e indivisible.",
+    pregunta:"¿Qué distinción central propone Bergson sobre el tiempo?",
+    puntosClave:["Identifica un tiempo objetivo/externo: el que mide la ciencia con relojes, homogéneo y divisible en partes","Identifica un tiempo interior o vivido de la conciencia (lo que Bergson llama 'durée'), aunque el estudiante no use ese nombre","Caracteriza ese tiempo vivido como continuo o cualitativo: fluye sin cortarse, no se divide en partes separadas"],
+    respuesta:"Una cosa es el tiempo del reloj, siempre igual y que se puede partir en pedazos, y otra muy distinta es cómo sentimos pasar el tiempo por dentro, que va todo junto y no se corta."
+  },
+  {
+    id:"parcial", etiqueta:"Parcial (le falta un punto)",
+    contexto:"Para Bergson, el tiempo de la ciencia es un tiempo espacializado, medido con relojes. Frente a él está la 'durée': el tiempo vivido de la conciencia, cualitativo, continuo e indivisible.",
+    pregunta:"¿Qué distinción central propone Bergson sobre el tiempo?",
+    puntosClave:["Identifica un tiempo objetivo/externo: el que mide la ciencia con relojes, homogéneo y divisible en partes","Identifica un tiempo interior o vivido de la conciencia (lo que Bergson llama 'durée'), aunque el estudiante no use ese nombre","Caracteriza ese tiempo vivido como continuo o cualitativo: fluye sin cortarse, no se divide en partes separadas"],
+    respuesta:"Bergson habla del tiempo del reloj y del tiempo vivido, la durée."
+  },
+  {
+    id:"incorrecta", etiqueta:"Incorrecta (confunde concepto)",
+    contexto:"Para Bergson, el tiempo de la ciencia es un tiempo espacializado, medido con relojes. Frente a él está la 'durée': el tiempo vivido de la conciencia, cualitativo, continuo e indivisible.",
+    pregunta:"¿Qué distinción central propone Bergson sobre el tiempo?",
+    puntosClave:["Identifica un tiempo objetivo/externo: el que mide la ciencia con relojes, homogéneo y divisible en partes","Identifica un tiempo interior o vivido de la conciencia (lo que Bergson llama 'durée'), aunque el estudiante no use ese nombre","Caracteriza ese tiempo vivido como continuo o cualitativo: fluye sin cortarse, no se divide en partes separadas"],
+    respuesta:"Bergson dice que el tiempo es absoluto y siempre igual para todos, como pensaba Newton, y que se puede medir de forma objetiva con exactitud."
+  },
+  {
+    id:"evasiva", etiqueta:"Evasiva / vacía",
+    contexto:"Para Bergson, el tiempo de la ciencia es un tiempo espacializado, medido con relojes. Frente a él está la 'durée': el tiempo vivido de la conciencia, cualitativo, continuo e indivisible.",
+    pregunta:"¿Qué distinción central propone Bergson sobre el tiempo?",
+    puntosClave:["Identifica un tiempo objetivo/externo: el que mide la ciencia con relojes, homogéneo y divisible en partes","Identifica un tiempo interior o vivido de la conciencia (lo que Bergson llama 'durée'), aunque el estudiante no use ese nombre","Caracteriza ese tiempo vivido como continuo o cualitativo: fluye sin cortarse, no se divide en partes separadas"],
+    respuesta:"El tiempo es un tema muy importante en la filosofía y Bergson escribió mucho sobre eso."
+  }
+];
+
+function buildMessages(c, userAnswer) {
+  const N = c.puntosClave.length;
+  const puntos = c.puntosClave.map((p,i)=>`  ${i+1}. ${p}`).join("\n");
+  const system = `Sos un corrector de filosofía en español. Para cada PUNTO CLAVE, decidí si la RESPUESTA del estudiante EXPRESA ESA IDEA.
+
+REGLAS IMPORTANTES:
+- Evaluá la IDEA, no las palabras exactas. Si el estudiante expresa el concepto con otras palabras, ejemplos o lenguaje coloquial, cuenta como PRESENTE.
+- NO exijas términos técnicos. Ejemplo: si un punto menciona "la durée" y el estudiante describe "el tiempo que sentimos por dentro, que no se corta", ESO ES PRESENTE aunque no diga la palabra "durée".
+- Para cada punto: primero CITÁ el fragmento textual de la respuesta que expresa la idea (o dejá la cita vacía si no está), y recién entonces decidí presente = true/false.
+- Sé justo: no regales puntos ausentes, pero tampoco castigues una idea correcta por estar dicha con otras palabras.
+
+Devolvé SOLO un JSON válido, sin texto extra, con EXACTAMENTE ${N} objetos en "puntos" (uno por cada punto clave, en orden), con esta forma:
+{"puntos":[{"n":1,"cita":"fragmento de la respuesta o vacío","presente":true,"por_que":"..."}],"comentario":"breve devolución para el estudiante"}`;
+  const user = `CONTEXTO (información correcta de la tarjeta):
+${c.contexto}
+
+PREGUNTA:
+${c.pregunta}
+
+PUNTOS CLAVE a verificar (son ${N}):
+${puntos}
+
+RESPUESTA DEL ESTUDIANTE:
+"${userAnswer}"
+
+Evaluá los ${N} puntos y devolvé el JSON.`;
+  return [{role:"system",content:system},{role:"user",content:user}];
+}
+
+function renderCases() {
+  casesEl.innerHTML = "";
+  CASES.forEach(c => {
+    const el = document.createElement("div");
+    el.className = "case";
+    el.innerHTML = `
+      <h3>${c.pregunta} <span class="tag">${c.etiqueta}</span></h3>
+      <div class="ctx">${c.contexto}</div>
+      ${c.puntosClave.map(p=>`<div class="kp">• ${p}</div>`).join("")}
+      <div class="q">Respuesta del estudiante (editable):</div>
+      <textarea data-id="${c.id}">${c.respuesta}</textarea>
+      <div class="verdict" id="v-${c.id}" style="display:none"></div>`;
+    casesEl.appendChild(el);
+  });
+}
+renderCases();
+
+let wllama = null, loadedKey = null;
+
+function parseJSON(text) {
+  const m = text.match(/\{[\s\S]*\}/);
+  if (!m) return null;
+  const tryParse = s => { try { return JSON.parse(s); } catch { return null; } };
+  return tryParse(m[0]) || tryParse(m[0].replace(/,\s*([}\]])/g,"$1"));
+}
+
+$("#run").addEventListener("click", async () => {
+  const key = $("#model").value;
+  const url = MODELS[key];
+  $("#run").disabled = true;
+  try {
+    if (loadedKey !== key) {
+      if (wllama) { try { await wllama.exit(); } catch {} }
+      statusEl.textContent = `Descargando/cargando modelo… (primera vez baja los pesos, luego se cachea)`;
+      wllama = new Wllama(WASM);
+      await wllama.loadModelFromUrl(url, {
+        n_ctx: 1024,
+        n_batch: 128,
+        n_threads: $("#mt").checked ? (navigator.hardwareConcurrency || 4) : 1,
+        progressCallback: ({ loaded, total }) => {
+          const pct = total ? loaded/total : 0;
+          progEl.style.width = (pct*100)+"%";
+          statusEl.textContent = `Descargando pesos… ${(pct*100).toFixed(0)}%`;
+        }
+      });
+      loadedKey = key;
+    }
+    progEl.style.width = "100%";
+
+    for (const c of CASES) {
+      const ta = document.querySelector(`textarea[data-id="${c.id}"]`);
+      const vEl = $(`#v-${c.id}`);
+      vEl.style.display = "block";
+      vEl.innerHTML = "⏳ evaluando… (CPU, puede tardar unos segundos)";
+      const t0 = performance.now();
+      let raw;
+      try {
+        const resp = await wllama.createChatCompletion({
+          messages: buildMessages(c, ta.value),
+          temperature: 0.0,
+          max_tokens: 400
+        });
+        raw = resp.choices[0].message.content;
+      } catch (err) {
+        vEl.innerHTML = `<span class="pt-bad">✗ Error de inferencia: ${err.message}</span>`;
+        continue;
+      }
+      const dt = Math.round(performance.now() - t0);
+      const parsed = parseJSON(raw);
+      if (!parsed || !Array.isArray(parsed.puntos)) {
+        vEl.innerHTML = `<span class="pt-bad">✗ No devolvió JSON parseable</span>
+          <pre class="raw">${raw.replace(/</g,"&lt;")}</pre>
+          <div class="meta">${dt} ms · ${key}</div>`;
+        continue;
+      }
+      const total = parsed.puntos.length;
+      const ok = parsed.puntos.filter(p=>p.presente).length;
+      const lines = parsed.puntos.map(p =>
+        `<div class="${p.presente?'pt-ok':'pt-bad'}">${p.presente?'✓':'✗'} Punto ${p.n}: ${(p.por_que||'').replace(/</g,"&lt;")}</div>`
+      ).join("");
+      vEl.innerHTML = `<span class="score">${ok}/${total} puntos</span>
+        <div style="margin-top:6px">${lines}</div>
+        <div style="margin-top:6px">💬 ${(parsed.comentario||'').replace(/</g,"&lt;")}</div>
+        <div class="meta">${dt} ms · ${key}</div>`;
+    }
+    statusEl.textContent = "Listo. Cambiá de modelo o editá respuestas y volvé a correr.";
+  } catch (e) {
+    statusEl.innerHTML = `<span style="color:var(--bad)">Error: ${e.message}</span>`;
+    console.error(e);
+  } finally {
+    $("#run").disabled = false;
+  }
+});
+</script>
+</body>
+</html>
