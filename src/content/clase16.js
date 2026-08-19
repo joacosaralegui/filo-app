@@ -1,0 +1,191 @@
+// Clase 16 (transcripción) — El segundo sexo (Simone de Beauvoir)
+// App Clase 15. Feed: 'info', 'quiz', 'classify' (comparar), 'match' (conectar), 'short'.
+// Tono: resumen fiel de la clase. Preguntas exigentes, con distractores plausibles.
+//
+// NUMERACIÓN: num (app) = transcript - 1. El archivo se nombra por transcript.
+export default {
+  num: 15,
+  transcript: 16,
+  title: "El segundo sexo (Simone de Beauvoir)",
+  source: "https://www.youtube.com/watch?v=UZEo2yV9AqI",
+  feed: [
+    {
+      type: "info",
+      tag: "Panorama",
+      title: "El existencialismo se hace feminismo",
+      body: "En El segundo sexo (1949), Simone de Beauvoir aplica el existencialismo a la condición de la mujer. Relee la dialéctica hegeliana del amo y el esclavo con lente existencialista: la mujer ha sido puesta como «lo Otro», objeto frente al hombre-sujeto. Su valor supremo es la libertad —reclamar la propia subjetividad—, y no lo piensa como un juego de suma cero.",
+    },
+    {
+      type: "info",
+      tag: "Repaso",
+      title: "La subjetividad es trabajo",
+      body: "Ser sujeto es pensar (Descartes): si no pensás, sos en efecto un objeto. Y pensar es trabajo —implica angustia, elegir—, y es más fácil caer en la mala fe o en el das Man conformista que asumir la propia existencia. De ahí los dos crímenes que recorren la clase: quitarle la subjetividad al otro y renunciar a la propia.",
+    },
+    {
+      type: "info",
+      tag: "Biografía",
+      title: "Quién fue Simone de Beauvoir",
+      body: "De familia católica acomodada, pierde la fortuna paterna en la Primera Guerra: sin dote, un golpe que es también una apertura. De niña soñó con ser monja; adolescente, pierde la fe, pero conserva la idea de trascendencia. En 1929 conoce a Sartre estudiando para la agrégation: por primera vez siente que alguien la iguala. Se comprometen en una relación abierta y en diálogo de por vida.",
+    },
+    {
+      type: "quiz",
+      question: "¿Sobre qué trata, ante todo, El segundo sexo según la clase?",
+      options: [
+        "Sobre abolir toda diferencia entre hombres y mujeres",
+        "Sobre cómo la mujer alcanza su propia subjetividad",
+        "Sobre reducir la opresión a un conflicto de clases",
+        "Sobre condenar el deseo y la sexualidad",
+      ],
+      answer: 1,
+      explain: "Es, ante todo, un libro sobre alcanzar la subjetividad: no ser un objeto, no dejar que el otro sea sujeto a costa de una. Su valor supremo es la libertad: la de reclamar la propia subjetividad y la responsabilidad de sostenerla.",
+    },
+    {
+      type: "info",
+      tag: "Kojève",
+      title: "El hombre como negación de lo dado",
+      body: "Una influencia central del círculo es Alexandre Kojève, que releyó obsesivamente la Fenomenología del espíritu y volvió su dialéctica del amo y el esclavo, inflexionada por Heidegger, decisiva para el existencialismo francés. Siguiendo a Heidegger, reemplaza «naturaleza» por «lo dado» (le donné) y define al hombre como negación de lo dado: esa nada, ese empujar contra lo que se nos da, es nuestro espacio de libertad.",
+    },
+    {
+      type: "quiz",
+      question: "Para Kojève, ¿qué es el hombre en su relectura de Hegel?",
+      options: [
+        "Una parte pasiva de la naturaleza dada",
+        "Negación de lo dado, y esa nada es su libertad",
+        "Una sustancia fija con una esencia eterna",
+        "El reflejo mecánico y pasivo de su base económica",
+      ],
+      answer: 1,
+      explain: "Kojève, leyendo a Hegel con Heidegger, dice que el hombre es negación de «lo dado» (le donné): siempre superando, empujando contra lo que se le da. Ese espacio de nada, de negación, es nuestro espacio de libertad e historicidad.",
+    },
+    {
+      type: "info",
+      tag: "Ética",
+      title: "La libertad sobre la facticidad",
+      body: "En Para una moral de la ambigüedad, Beauvoir da la mejor formulación de la ética existencialista: una ética de evitar la mala fe, de no huir de la propia libertad. Admira a Marx pero rechaza su determinismo, y toma de Heidegger la finitud. «La ética presupone el fracaso»: a veces no hay elecciones inocentes. Su lema: «la ética es el triunfo de la libertad sobre la facticidad».",
+    },
+    {
+      type: "quiz",
+      question: "El lema «la ética es el triunfo de la libertad sobre la facticidad» significa que…",
+      options: [
+        "la moral consiste sólo en aceptar la situación dada",
+        "ser moral es asumir la libertad pese a lo ya dado",
+        "la libertad y la ética se oponen entre sí",
+        "la facticidad hace imposible toda moral",
+      ],
+      answer: 1,
+      explain: "«Quererse moral y quererse libre son una y la misma decisión.» Partimos siempre de una facticidad —lo ya sido, la situación en que estamos arrojados—, pero la ética es trascenderla asumiendo la libertad y la responsabilidad, aquí y ahora, con la finitud.",
+    },
+    {
+      type: "info",
+      tag: "Los mandarines",
+      title: "Tres figuras del «otro»",
+      body: "En su novela Los mandarines, Beauvoir retrata los dilemas de la posguerra: rendir cuentas con la Resistencia y, de fondo, la apología del estalinismo (fue Stalin quien derrotó a Hitler; las opciones parecían nazismo o estalinismo). Sus viajes a Estados Unidos le dan una comprensión nueva de las relaciones raciales. Así reúne tres casos del «otro»: los judíos, los negros estadounidenses y las mujeres.",
+    },
+    {
+      type: "info",
+      tag: "¿Qué es una mujer?",
+      title: "El hombre como medida",
+      body: "El libro abre preguntando «¿qué es una mujer?» —y ya plantearlo supone una respuesta (el círculo hermenéutico)—. Un hombre nunca empieza presentándose como individuo de cierto sexo: se da por sentado que es el tipo absoluto, por defecto, normativo. «Ser humano» significa, ante todo, «hombre». La mujer, en cambio, se define siempre de modo relativo y derivado: una especie de deficiencia.",
+    },
+    {
+      type: "quiz",
+      question: "¿Cómo se define la mujer, según El segundo sexo?",
+      options: [
+        "Como el tipo absoluto y por defecto de lo humano",
+        "De modo relativo y derivado respecto del hombre",
+        "De forma totalmente independiente del hombre",
+        "Sólo por sus diferencias económicas de clase",
+      ],
+      answer: 1,
+      explain: "El hombre se da por sentado como el tipo absoluto, por defecto, normativo: «ser humano» significa ante todo «hombre». La mujer se define siempre de modo relativo, contingente y derivado respecto de él, como una especie de deficiencia o negativo.",
+    },
+    {
+      type: "info",
+      tag: "Lo Otro",
+      title: "«Él es el Sujeto; ella es lo Otro»",
+      body: "Aquí entra Hegel: no hay autoidentificación del sujeto sin reconocimiento a través de un otro, como el amo necesita ser reconocido por el esclavo. «Él es el Sujeto, es lo Absoluto; ella es lo Otro.» La mujer queda puesta como lo inesencial frente a lo esencial. «La categoría de lo Otro es tan primordial como la conciencia misma»: siempre hay un otro.",
+    },
+    {
+      type: "short",
+      question: "¿Con qué término (hegeliano, en clave existencialista) nombra Beauvoir a la mujer frente al hombre-sujeto?",
+      answers: ["lo Otro", "la Otra", "otredad"],
+      explain: "«Él es el Sujeto, es lo Absoluto; ella es lo Otro.» No hay autoidentificación del sujeto sin reconocimiento por un otro (Hegel, amo y esclavo); la mujer queda puesta como lo Otro, lo inesencial frente a lo esencial.",
+    },
+    {
+      type: "info",
+      tag: "Diferencia",
+      title: "La irreductibilidad biológica",
+      body: "Hay un otro para todo colonizador (los nativos) y para la burguesía (los obreros). Pero la relación entre hombres y mujeres tiene algo específico: «la división de los sexos es un hecho biológico, no un acontecimiento de la historia humana». Los otros casos del «otro» son construidos, contingentes; este tiene, para Beauvoir, una irreductibilidad biológica —una mujer puede quedar embarazada y un hombre no—.",
+    },
+    {
+      type: "quiz",
+      question: "¿Qué distingue el caso de las mujeres de otros «otros» (obreros, colonizados)?",
+      options: [
+        "Que su opresión es del todo históricamente contingente",
+        "Que se apoya en una diferencia biológica irreductible",
+        "Que es en realidad un simple conflicto de clases",
+        "Que no existe ninguna relación de dominación",
+      ],
+      answer: 1,
+      explain: "Los otros casos del «otro» son construidos, históricamente contingentes. La relación hombre-mujer tiene, para Beauvoir, una irreductibilidad biológica: «la división de los sexos es un hecho biológico, no un acontecimiento de la historia». De ahí la centralidad de la anticoncepción y el aborto.",
+    },
+    {
+      type: "info",
+      tag: "Reduccionismo",
+      title: "Marx y Freud, insuficientes",
+      body: "Beauvoir toma en serio el marxismo y el psicoanálisis, pero los halla insuficientes. Marx es demasiado reduccionista: la opresión de la mujer no se deduce de la economía ni de la propiedad privada, y su materialismo ignora la sexualidad. Freud es demasiado determinista: rechaza la elección existencial en favor de Eros, Tánatos y la represión. La mujer, como todo sujeto, elige entre trascender o alienarse.",
+    },
+    {
+      type: "classify",
+      question: "Para Beauvoir, ¿cada crítica apunta a Marx o a Freud?",
+      groups: ["Marx", "Freud"],
+      items: [
+        { text: "Reduce todo a la base socioeconómica", group: 0 },
+        { text: "Rechaza la elección en favor de Eros y Tánatos", group: 1 },
+        { text: "Deriva la opresión de la propiedad privada", group: 0 },
+        { text: "Reduce a la mujer a la «envidia del pene»", group: 1 },
+        { text: "Ignora la sexualidad y el erotismo", group: 0 },
+        { text: "Lo explica todo por pulsiones, se quiera o no", group: 1 },
+      ],
+      explain: "Marx es demasiado reduccionista: la opresión de la mujer no se deduce de la economía ni de la propiedad, y su materialismo ignora la sexualidad. Freud es demasiado determinista: niega la elección existencial y lo explica todo por pulsiones. Para Beauvoir la mujer, como todo sujeto, elige entre trascender o alienarse como objeto.",
+    },
+    {
+      type: "info",
+      tag: "Inmanencia / trascendencia",
+      title: "De objeto a sujeto",
+      body: "Beauvoir usa «inmanencia» y «trascendencia» como el en-sí y el para-sí. La inmanencia, ligada a la facticidad, es permanecer objeto; la trascendencia es actuar sobre el mundo y superarlo. La opresión brota de la tentación de huir de nosotros mismos, alienándonos. Y acusa a las mujeres de vivir a menudo en mala fe: «si la mujer nunca llega a ser esencial, es porque ella misma no lleva a cabo ese cambio».",
+    },
+    {
+      type: "classify",
+      question: "¿Cada rasgo corresponde a la inmanencia o a la trascendencia?",
+      groups: ["Inmanencia", "Trascendencia"],
+      items: [
+        { text: "Permanecer como objeto, atada a lo dado", group: 0 },
+        { text: "Actuar sobre el mundo y transformarlo", group: 1 },
+        { text: "Está muy ligada a la facticidad", group: 0 },
+        { text: "Superar la situación hacia el futuro", group: 1 },
+        { text: "La tentación de huir de la propia libertad", group: 0 },
+        { text: "Reclamar la propia subjetividad y libertad", group: 1 },
+      ],
+      explain: "La inmanencia, como el en-sí, es quedar atado a la facticidad, permanecer objeto —la tentación de la mala fe—. La trascendencia, como el para-sí, es actuar sobre el mundo y superarlo, reclamando la propia subjetividad. Beauvoir acusa a las mujeres de caer a menudo en la inmanencia.",
+    },
+    {
+      type: "match",
+      question: "Uní cada término de El segundo sexo con lo que nombra",
+      pairs: [
+        { left: "Lo Otro", right: "La mujer definida como lo inesencial frente al hombre" },
+        { left: "Reconocimiento", right: "No hay sujeto sin ser reconocido por otro (Hegel)" },
+        { left: "Inmanencia", right: "Permanecer objeto, atada a la facticidad" },
+        { left: "Trascendencia", right: "Actuar sobre el mundo y reclamar la subjetividad" },
+        { left: "Mala fe", right: "Huir de la propia libertad y responsabilidad" },
+      ],
+      explain: "El argumento de El segundo sexo: la mujer ha sido puesta como lo Otro, lo inesencial, porque no hay sujeto sin reconocimiento (Hegel). Liberarse es pasar de la inmanencia a la trascendencia —de objeto a sujeto—, dejando la mala fe y reclamando la propia libertad.",
+    },
+    {
+      type: "info",
+      tag: "Cierre",
+      title: "Por nuestra libertad y la vuestra",
+      body: "Al mantenerse como objeto, argumenta Beauvoir, la mujer también aprisiona al hombre, que se agota en parecer viril y superior. Él se liberaría con la liberación de las mujeres —y es justo lo que teme, porque todos tememos tomar posesión de la propia subjetividad—. El libro no cierra con reconciliación hegeliana, sino con la posibilidad, no la inevitabilidad, de subjetividades libres que se reconocen con deseo. No es suma cero: «por nuestra libertad y la vuestra».",
+    },
+  ],
+};

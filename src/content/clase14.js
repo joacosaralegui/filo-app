@@ -1,0 +1,191 @@
+// Clase 14 (transcripción) — La Escuela de Frankfurt
+// App Clase 13. Feed: 'info', 'quiz', 'classify' (comparar), 'match' (conectar), 'short'.
+// Tono: resumen fiel de la clase. Preguntas exigentes, con distractores plausibles.
+//
+// NUMERACIÓN: num (app) = transcript - 1. El archivo se nombra por transcript.
+export default {
+  num: 13,
+  transcript: 14,
+  title: "La Escuela de Frankfurt",
+  source: "https://www.youtube.com/watch?v=ntxMMezF804",
+  feed: [
+    {
+      type: "info",
+      tag: "Panorama",
+      title: "Una escuela que lo mezcla todo",
+      body: "La Escuela de Frankfurt —oficialmente el Instituto de Investigación Social, desde 1923— es una especie de think tank donde filósofos, teóricos literarios y musicólogos formulan la Teoría Crítica. Fusiona todas las corrientes vistas: Hegel, Marx, Freud, la fenomenología, Heidegger. Es más negativa que positiva: critica y desarma sistemas con enorme finura, pero se niega a prometer una utopía.",
+    },
+    {
+      type: "info",
+      tag: "Contexto",
+      title: "Versalles y Weimar",
+      body: "Tras la Primera Guerra, en Versalles (1919) se le carga a Alemania toda la culpa —la «cláusula de culpabilidad de guerra»—: un baño de sangre y encima «es toda tu culpa». Ese es el punto de partida psicológico de estos pensadores. Surge la República de Weimar (1919-1933): culturalmente deslumbrante y políticamente un desastre, con polarización radical y desaparición del centro.",
+    },
+    {
+      type: "quiz",
+      question: "¿Qué lección saca la clase de que los nazis llegaran al poder en 1933?",
+      options: [
+        "Que la República de Weimar era económicamente sólida",
+        "Que la democracia no protege sola del fascismo",
+        "Que el fascismo sólo llega por golpes de Estado",
+        "Que la cultura de Weimar era políticamente estable",
+      ],
+      answer: 1,
+      explain: "Hitler llegó al poder en una elección democrática. La lección: nada en la democracia impide automáticamente el fascismo, porque la gente puede votar fascistas. Con eso desaparece el espacio para hacerse a un lado.",
+    },
+    {
+      type: "info",
+      tag: "Compromiso",
+      title: "Ya no se puede mirar de costado",
+      body: "En los años treinta desaparece el espacio para no tomar posición: no se puede hacer arte, filosofía ni vivir la vida sin política, porque las apuestas son abrumadoras. De ahí la omnipresente necesidad de compromiso (engagement). Está el problema de medios y fines —Lenin: «no se puede hacer una tortilla sin romper huevos»; el siglo XX vio montañas de cáscaras y nadie probó jamás la tortilla—.",
+    },
+    {
+      type: "short",
+      question: "¿Cómo se llama (en la jerga de la época) al simpatizante del comunismo que no se afilia al Partido?",
+      answers: ["compañero de ruta", "poputchik"],
+      explain: "«Compañero de ruta» (en ruso, poputchik). Con el leninismo, afiliarse no es un trámite: es consagrar la vida a la revolución clandestina. De ahí que ser simpatizante sin dar ese paso tenga su propio nombre —el dilema con el que lucha Sartre—.",
+    },
+    {
+      type: "info",
+      tag: "Teoría Crítica",
+      title: "Interdisciplina autoconsciente",
+      body: "La Teoría Crítica combina investigación empírica (sociología, psicología social, estadística) con filosofía abstracta, e integra el yo freudiano, el fenomenológico y el existencialista. Toma lo que haga falta de donde sea para descifrar una época aterradora. La rodea un fuerte elitismo cultural, casi un culto a la alta cultura alemana. Es «crítica» porque desarma bien, no porque ofrezca una cosmovisión de recambio.",
+    },
+    {
+      type: "info",
+      tag: "Método",
+      title: "Dialéctica sí, telos no",
+      body: "De Hegel conservan la dialéctica —todo contiene las semillas de su propia negación—, pero descartan el telos, el fin garantizado de la historia. De Heidegger toman la Sorge (cuidado): estar siempre ya en el mundo significa que no hay neutralidad, siempre estamos involucrados. Buscan integrar teoría y praxis, y son normativos: no sólo describen cómo son las cosas, sino cómo deberían ser.",
+    },
+    {
+      type: "quiz",
+      question: "¿Qué toma la Escuela de Frankfurt de Hegel, y qué descarta?",
+      options: [
+        "Toma el telos y descarta la dialéctica",
+        "Toma la dialéctica y descarta el telos",
+        "Descarta a Hegel por completo",
+        "Toma tanto la dialéctica como el telos",
+      ],
+      answer: 1,
+      explain: "Conservan la dialéctica —todo contiene las semillas de su propia negación— pero descartan el telos, el fin garantizado de la historia. La historia se mueve por tensiones y contradicciones, pero no en una dirección fija.",
+    },
+    {
+      type: "classify",
+      question: "¿Cada cosa la conserva o la descarta la Teoría Crítica?",
+      groups: ["La conserva", "La descarta"],
+      items: [
+        { text: "La dialéctica: todo engendra su propia negación", group: 0 },
+        { text: "El telos, el fin garantizado de la historia", group: 1 },
+        { text: "La unión de teoría y praxis", group: 0 },
+        { text: "La reconciliación final de sujeto y objeto", group: 1 },
+        { text: "Estar siempre ya en el mundo, sin neutralidad", group: 0 },
+        { text: "Los sistemas cerrados y la verdad absoluta", group: 1 },
+      ],
+      explain: "Conservan el motor dialéctico, la unión de teoría y praxis y el estar-ya-en-el-mundo (no hay observador neutral). Descartan el fin de la historia, la reconciliación de sujeto y objeto y todo sistema cerrado con pretensión de verdad absoluta. Por eso es más negativa que positiva.",
+    },
+    {
+      type: "short",
+      question: "¿Qué palabra usa la Teoría Crítica para la acción cargada de teoría, más que la mera «práctica»?",
+      answers: ["praxis"],
+      explain: "Praxis: no basta con hablar o teorizar, hay que hacer —pero un hacer cargado de teoría—. La Teoría Crítica busca integrar teoría y praxis, y es normativa: no sólo describe cómo son las cosas, sino cómo deberían ser.",
+    },
+    {
+      type: "info",
+      tag: "Personajes",
+      title: "Horkheimer, Adorno, Reich",
+      body: "Max Horkheimer escribe el programa fundacional del Instituto. Theodor Adorno viene de la música —compositor y musicólogo— y su tesis es sobre Husserl. Wilhelm Reich es el más chiflado: revolucionario sexual que cree que no hay liberación sexual bajo el capitalismo y «descubre» una energía libidinal, el orgón, que pretende guardar en una caja. Todos son judíos alemanes de la alta burguesía y marxistas impenitentes.",
+    },
+    {
+      type: "info",
+      tag: "Benjamin",
+      title: "Walter Benjamin, dividido",
+      body: "La sensibilidad más delicada del grupo. Vive dividido entre el misticismo judío (su amigo Gershom Scholem) y el comunismo soviético (su amor por la bolchevique Asja, a la que sigue a Moscú). Su Diario de Moscú es, en el fondo, un problema de compromiso muy existencialista. De ahí una de sus grandes observaciones: donde el comunismo politiza la estética, el fascismo estetiza la política.",
+    },
+    {
+      type: "quiz",
+      question: "Según la célebre observación de Benjamin, el fascismo…",
+      options: [
+        "politiza la estética, igual que el comunismo",
+        "estetiza la política, la vuelve espectáculo",
+        "rechaza y prohíbe toda forma de arte",
+        "mantiene separados el arte y la política",
+      ],
+      answer: 1,
+      explain: "«El comunismo politiza la estética; el fascismo estetiza la política.» El fascismo convierte la política en espectáculo estético —desfiles, liturgia de masas— en lugar de poner el arte al servicio de fines políticos.",
+    },
+    {
+      type: "info",
+      tag: "Marcuse",
+      title: "Eros y civilización",
+      body: "Herbert Marcuse estudió con Heidegger y es hegeliano. En el exilio escribe Eros y civilización, una réplica a El malestar en la cultura de Freud: básicamente Marx y Freud fusionados, pero divertido de leer. Para Freud la represión de la civilización es una necesidad sin salida. Marcuse sí ve una salida, y culpa de la represión al capitalismo.",
+    },
+    {
+      type: "classify",
+      question: "Sobre la represión: ¿cada tesis es de Freud o de Marcuse?",
+      groups: ["Freud", "Marcuse"],
+      items: [
+        { text: "La represión de la civilización no tiene salida", group: 0 },
+        { text: "El capitalismo es el culpable de la represión", group: 1 },
+        { text: "Reprimir es el precio inevitable de vivir juntos", group: 0 },
+        { text: "Des-reprimir Eros le quita espacio a la agresión", group: 1 },
+        { text: "El malestar es inherente a toda cultura", group: 0 },
+        { text: "Otra civilización, no represiva, es posible", group: 1 },
+      ],
+      explain: "Freud: la represión de Eros y Tánatos es el precio necesario de la civilización, y no hay salida. Marcuse: la represión sexual es obra del capitalismo, que des-erotiza el cuerpo para el trabajo; si se libera Eros, se le resta espacio a Tánatos, a la agresión. Otra civilización sería posible.",
+    },
+    {
+      type: "info",
+      tag: "Exilio",
+      title: "La huida y el Holocausto",
+      body: "Son judíos alemanes asimilados que niegan la relevancia de su judeidad, y sin embargo deben huir de la Alemania nazi, expulsados como «no verdaderamente alemanes»: un conflicto de identidad brutal. Casi todos llegan a Estados Unidos. Benjamin no: al caer París huye hacia España, llega a la frontera el día en que se cierra y se suicida esa noche (1940). Del Holocausto se enteran en el exilio.",
+    },
+    {
+      type: "info",
+      tag: "Dialéctica de la Ilustración",
+      title: "Un libro nacido de conversaciones",
+      body: "El texto más denso e influyente. No fue «escrito» como libro: es casi una transcripción de las conversaciones de Adorno y Horkheimer en California (1943-44), recién enterados de Auschwitz, en estado de shock. No se lee con fluidez. Vuelve al comienzo del curso, a la Ilustración, y a su visión luminosa: la razón que comprende el mundo para perfeccionarlo.",
+    },
+    {
+      type: "info",
+      tag: "Lado oscuro",
+      title: "De la razón a la dominación",
+      body: "La tesis: la Ilustración tenía un lado oscuro. Al usar la razón para comprender el mundo, lo miramos como un objeto a moldear; el hombre se vuelve Dios, soberano sobre la existencia. Y el paso es «natural»: de la naturaleza-objeto a los individuos-objeto, a la dominación del hombre sobre el hombre y al sacrificio del yo al yo. Su producto último es la manada que sigue al dictador.",
+    },
+    {
+      type: "quiz",
+      question: "¿Cuál es la tesis central de Dialéctica de la Ilustración?",
+      options: [
+        "La Ilustración fue un fraude que nunca ocurrió",
+        "La razón ilustrada engendra su reverso totalitario",
+        "El totalitarismo no tiene nada que ver con la razón ilustrada",
+        "La Ilustración nos liberó del mito para siempre",
+      ],
+      answer: 1,
+      explain: "No un vínculo lineal, sino una espiral dialéctica: al usar la razón para dominar el mundo como objeto, se pasa de la naturaleza-objeto a los individuos-objeto y a la conformidad fascista. La Ilustración, hecha para emancipar, se vuelve autonegadora, totalitaria.",
+    },
+    {
+      type: "info",
+      tag: "Auschwitz",
+      title: "«Poesía después de Auschwitz»",
+      body: "Para Adorno, Auschwitz revela el sentido oculto: una historia que es progreso hacia el infierno. De ahí su frase legendaria: «escribir poesía después de Auschwitz es un acto de barbarie». Cambiará de opinión, persuadido por Paul Celan, sobreviviente que —siendo judío— elige escribir en alemán y hace con esa lengua algo nunca antes hecho, en su poema Todesfuge («Fuga de muerte»).",
+    },
+    {
+      type: "match",
+      question: "Uní cada pensador de Frankfurt con lo suyo",
+      pairs: [
+        { left: "Horkheimer", right: "El programa interdisciplinario del Instituto" },
+        { left: "Adorno", right: "«Poesía después de Auschwitz es barbarie»" },
+        { left: "Benjamin", right: "El fascismo estetiza la política" },
+        { left: "Marcuse", right: "Eros y civilización: Marx y Freud fusionados" },
+        { left: "Reich", right: "El orgón y la liberación sexual" },
+      ],
+      explain: "El grupo comparte método —dialéctica, interdisciplina, Marx y Freud— pero cada uno tira para su lado: Horkheimer arma el Instituto, Adorno y Horkheimer escriben la Dialéctica de la Ilustración, Benjamin piensa arte y política, Marcuse fusiona a Marx con Freud y Reich se va al extremo sexual.",
+    },
+    {
+      type: "info",
+      tag: "Cierre",
+      title: "¿Liberación o terror?",
+      body: "La Teoría Crítica deja una pregunta que atraviesa el siglo: la modernidad, ¿significó liberación o significó terror? La Ilustración, examinada por su lado oscuro, ya no parece la marcha luminosa de Settembrini, sino una espiral que puede acabar en la jaula de hierro y en Auschwitz. La próxima clase, Hannah Arendt piensa el totalitarismo y la naturaleza del mal.",
+    },
+  ],
+};

@@ -16,6 +16,12 @@ import clase06 from "./clase07.js"; // app Clase 6 = transcripción 7
 import clase07 from "./clase08.js"; // app Clase 7 = transcripción 8
 import clase08 from "./clase09.js"; // app Clase 8 = transcripción 9
 import clase09 from "./clase10.js"; // app Clase 9 = transcripción 10
+import clase10 from "./clase11.js"; // app Clase 10 = transcripción 11
+import clase11 from "./clase12.js"; // app Clase 11 = transcripción 12
+import clase12 from "./clase13.js"; // app Clase 12 = transcripción 13
+import clase13 from "./clase14.js"; // app Clase 13 = transcripción 14
+import clase14 from "./clase15.js"; // app Clase 14 = transcripción 15
+import clase15 from "./clase16.js"; // app Clase 15 = transcripción 16
 
 export const CLASSES = [
   { num: 1, transcript: 2, title: "La herencia de la Ilustración", era: "Ilustración", content: clase01 },
@@ -27,12 +33,12 @@ export const CLASSES = [
   { num: 7, transcript: 8, title: "El leninismo: acelerar la historia", era: "Materialismo", content: clase07 },
   { num: 8, transcript: 9, title: "El psicoanálisis freudiano", era: "El sujeto", content: clase08 },
   { num: 9, transcript: 10, title: "El modernismo y la vanguardia", era: "Modernismo", content: clase09 },
-  { num: 10, transcript: 11, title: "La fenomenología", era: "Fenomenología", content: null },
-  { num: 11, transcript: 12, title: "El existencialismo heideggeriano", era: "Existencialismo", content: null },
-  { num: 12, transcript: 13, title: "El existencialismo francés", era: "Existencialismo", content: null },
-  { num: 13, transcript: 14, title: "La Escuela de Frankfurt", era: "Teoría crítica", content: null },
-  { num: 14, transcript: 15, title: "Hannah Arendt: totalitarismo y el mal", era: "Teoría política", content: null },
-  { num: 15, transcript: 16, title: "El segundo sexo (Simone de Beauvoir)", era: "Existencialismo", content: null },
+  { num: 10, transcript: 11, title: "La fenomenología", era: "Fenomenología", content: clase10 },
+  { num: 11, transcript: 12, title: "El existencialismo heideggeriano", era: "Existencialismo", content: clase11 },
+  { num: 12, transcript: 13, title: "El existencialismo francés", era: "Existencialismo", content: clase12 },
+  { num: 13, transcript: 14, title: "La Escuela de Frankfurt", era: "Teoría crítica", content: clase13 },
+  { num: 14, transcript: 15, title: "Hannah Arendt: totalitarismo y el mal", era: "Teoría política", content: clase14 },
+  { num: 15, transcript: 16, title: "El segundo sexo (Simone de Beauvoir)", era: "Existencialismo", content: clase15 },
   { num: 16, transcript: 17, title: "Los hijos de Husserl: en busca del otro", era: "Fenomenología", content: null },
   { num: 17, transcript: 18, title: "Marxismo revisionista y existencialismo", era: "Materialismo", content: null },
   { num: 18, transcript: 19, title: "Estructuralismo y antropología", era: "Estructuralismo", content: null },
