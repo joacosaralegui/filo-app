@@ -22,6 +22,15 @@ import clase12 from "./clase13.js"; // app Clase 12 = transcripción 13
 import clase13 from "./clase14.js"; // app Clase 13 = transcripción 14
 import clase14 from "./clase15.js"; // app Clase 14 = transcripción 15
 import clase15 from "./clase16.js"; // app Clase 15 = transcripción 16
+import clase16 from "./clase17.js"; // app Clase 16 = transcripción 17
+import clase17 from "./clase18.js"; // app Clase 17 = transcripción 18
+import clase18 from "./clase19.js"; // app Clase 18 = transcripción 19
+import clase19 from "./clase20.js"; // app Clase 19 = transcripción 20
+import clase20 from "./clase21.js"; // app Clase 20 = transcripción 21
+import clase21 from "./clase22.js"; // app Clase 21 = transcripción 22
+import clase22 from "./clase23.js"; // app Clase 22 = transcripción 23
+import clase23 from "./clase24.js"; // app Clase 23 = transcripción 24
+import clase24 from "./clase25.js"; // app Clase 24 = transcripción 25
 
 export const CLASSES = [
   { num: 1, transcript: 2, title: "La herencia de la Ilustración", era: "Ilustración", content: clase01 },
@@ -39,13 +48,13 @@ export const CLASSES = [
   { num: 13, transcript: 14, title: "La Escuela de Frankfurt", era: "Teoría crítica", content: clase13 },
   { num: 14, transcript: 15, title: "Hannah Arendt: totalitarismo y el mal", era: "Teoría política", content: clase14 },
   { num: 15, transcript: 16, title: "El segundo sexo (Simone de Beauvoir)", era: "Existencialismo", content: clase15 },
-  { num: 16, transcript: 17, title: "Los hijos de Husserl: en busca del otro", era: "Fenomenología", content: null },
-  { num: 17, transcript: 18, title: "Marxismo revisionista y existencialismo", era: "Materialismo", content: null },
-  { num: 18, transcript: 19, title: "Estructuralismo y antropología", era: "Estructuralismo", content: null },
-  { num: 19, transcript: 20, title: "La violencia y lo sagrado: René Girard", era: "Estructuralismo", content: null },
-  { num: 20, transcript: 21, title: "Poder y arqueología: Michel Foucault", era: "Posestructuralismo", content: null },
-  { num: 21, transcript: 22, title: "Derrida y la deconstrucción", era: "Posestructuralismo", content: null },
-  { num: 22, transcript: 23, title: "«Antipolítica» y la filosofía de la disidencia", era: "Disidencia", content: null },
-  { num: 23, transcript: 24, title: "La controversia Heidegger", era: "Existencialismo", content: null },
-  { num: 24, transcript: 25, title: "De la modernidad a la posmodernidad", era: "Posmodernidad", content: null },
+  { num: 16, transcript: 17, title: "Los hijos de Husserl: en busca del otro", era: "Fenomenología", content: clase16 },
+  { num: 17, transcript: 18, title: "Marxismo revisionista y existencialismo", era: "Materialismo", content: clase17 },
+  { num: 18, transcript: 19, title: "Estructuralismo y antropología", era: "Estructuralismo", content: clase18 },
+  { num: 19, transcript: 20, title: "La violencia y lo sagrado: René Girard", era: "Estructuralismo", content: clase19 },
+  { num: 20, transcript: 21, title: "Poder y arqueología: Michel Foucault", era: "Posestructuralismo", content: clase20 },
+  { num: 21, transcript: 22, title: "Derrida y la deconstrucción", era: "Posestructuralismo", content: clase21 },
+  { num: 22, transcript: 23, title: "«Antipolítica» y la filosofía de la disidencia", era: "Disidencia", content: clase22 },
+  { num: 23, transcript: 24, title: "La controversia Heidegger", era: "Existencialismo", content: clase23 },
+  { num: 24, transcript: 25, title: "De la modernidad a la posmodernidad", era: "Posmodernidad", content: clase24 },
 ];
