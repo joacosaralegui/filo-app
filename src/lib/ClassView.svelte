@@ -113,6 +113,14 @@
   let pop = null;
   let popTimer;
 
+  // celebración de cierre (al llegar a la última slide)
+  let finaleId = 0;
+  let ready = false; // evita celebrar en el salto de montaje
+  let endCelebrated = false;
+  const endIndex = lecture.feed.length; // índice de la slide de cierre
+
+  $: pct = totalQuiz ? Math.round((correctCount / totalQuiz) * 100) : 0;
+
   let feedEl;
   let scrollPct = 0;
 
@@ -124,8 +132,19 @@
       feedEl.style.scrollBehavior = "auto";
       feedEl.scrollTop = target * feedEl.clientHeight;
       requestAnimationFrame(() => (feedEl.style.scrollBehavior = ""));
+      if (target >= endIndex) endCelebrated = true; // ya está en el cierre: no festejar en la carga
     }
+    // habilitar la celebración recién tras acomodar el scroll inicial
+    setTimeout(() => (ready = true), 400);
   });
+
+  // Burst de cierre: un poco más grande y sostenido que el de acierto.
+  function finale() {
+    finaleId += 1;
+    vibrate([12, 30, 14, 30, 18]);
+    setTimeout(() => (finaleId += 1), 180);
+    setTimeout(() => (finaleId += 1), 380);
+  }
 
   function vibrate(pattern) {
     if (navigator.vibrate) navigator.vibrate(pattern);
@@ -181,6 +200,11 @@
       currentCard = idx;
       saveClass(lecture.num, { card: idx });
     }
+    // llegó a la slide de cierre: festejar una vez
+    if (ready && !endCelebrated && idx >= endIndex) {
+      endCelebrated = true;
+      finale();
+    }
   }
 </script>
 
@@ -222,20 +246,39 @@
 
   <section class="slide end">
     <div class="end-inner">
-      <div class="big">{correctCount}/{totalQuiz}</div>
-      <p>respuestas correctas · {score} puntos</p>
+      <div class="medal">
+        <span class="medal-frac">{correctCount}<i>/{totalQuiz}</i></span>
+        <span class="medal-cap">correctas</span>
+      </div>
+
+      <h2 class="end-title">Clase completada</h2>
+      <p class="end-sub">Clase {lecture.num} · {lecture.title}</p>
+
+      <div class="stats">
+        <div class="stat">
+          <b>{score}</b>
+          <span>puntos</span>
+        </div>
+        <div class="stat">
+          <b>{pct}%</b>
+          <span>aciertos</span>
+        </div>
+      </div>
 
       {#if nextClass}
-        <p class="end-msg">A continuación · Clase {nextClass.num}: {nextClass.title}</p>
+        <div class="next-panel">
+          <span class="next-label">A continuación</span>
+          <span class="next-title">Clase {nextClass.num}: {nextClass.title}</span>
+        </div>
         <button class="home-btn" on:click={() => dispatch("open", nextClass)}>
           Siguiente clase →
         </button>
         <button class="ghost-btn" on:click={() => dispatch("back")}>Volver al inicio</button>
       {:else if lockedNext}
-        <p class="end-msg">Terminaste la Clase {lecture.num}. La Clase {lockedNext.num} se habilita pronto.</p>
+        <p class="end-msg">La Clase {lockedNext.num} se habilita pronto.</p>
         <button class="home-btn" on:click={() => dispatch("back")}>Volver al inicio</button>
       {:else}
-        <p class="end-msg strong">¡Felicitaciones! Completaste el curso.</p>
+        <p class="end-msg strong">¡Completaste el curso!</p>
         <button class="home-btn" on:click={() => dispatch("back")}>Volver al inicio</button>
       {/if}
     </div>
@@ -249,6 +292,7 @@
 <ExplainSheet data={sheet} on:close={() => (sheet = null)} />
 
 <Burst trigger={burstId} />
+<Burst trigger={finaleId} count={72} power={1.6} />
 
 {#if pop}
   {#key pop.id}
@@ -345,21 +389,123 @@
 
   .end-inner {
     text-align: center;
-    max-width: 460px;
+    max-width: 360px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .big {
-    font-size: 64px;
-    font-weight: 800;
+  .medal {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    background: radial-gradient(
+      circle at 50% 35%,
+      color-mix(in srgb, var(--accent) 22%, var(--surface)),
+      var(--surface)
+    );
+    border: 2px solid color-mix(in srgb, var(--accent) 55%, var(--line));
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 28%, transparent);
+    animation: medalIn 0.5s cubic-bezier(0.2, 0.8, 0.3, 1.2) both;
+  }
+  .medal-frac {
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1;
     color: var(--accent-ink);
     letter-spacing: -1px;
   }
-  .end-inner p {
+  .medal-frac i {
+    font-style: normal;
+    font-size: 22px;
+    font-weight: 800;
     color: var(--text-soft);
-    margin: 8px 0 0;
-    font-size: 16px;
+  }
+  .medal-cap {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+  }
+  @keyframes medalIn {
+    from { opacity: 0; transform: scale(0.6) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .end-title {
+    margin: 18px 0 0;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+  .end-sub {
+    margin: 4px 0 0;
+    color: var(--text-soft);
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .stats {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    width: 100%;
+  }
+  .stat {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat b {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--accent-ink);
+    letter-spacing: -0.5px;
+  }
+  .stat span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+  }
+  .next-panel {
+    margin-top: 22px;
+    width: 100%;
+    background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line));
+    border-radius: 14px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: left;
+  }
+  .next-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+  }
+  .next-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.35;
   }
   .end-msg {
-    margin: 20px 0 0;
+    margin: 22px 0 0;
     color: var(--text);
     font-size: 15px;
     font-weight: 600;
@@ -372,6 +518,7 @@
   }
   .home-btn {
     margin-top: 18px;
+    align-self: stretch;
     padding: 13px 22px;
     border-radius: 13px;
     background: var(--accent);

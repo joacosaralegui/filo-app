@@ -1,6 +1,8 @@
 <script>
   // Estalla un puñado de partículas desde el centro cuando cambia `trigger`.
   export let trigger = 0; // cambiar este número dispara un burst nuevo
+  export let count = 28; // cantidad de partículas
+  export let power = 1; // multiplica el alcance (para bursts de celebración)
 
   const FALLBACK = ["#606c38", "#dda15e", "#bc6c25"];
   let parts = [];
@@ -15,21 +17,21 @@
 
   function spawn() {
     const COLORS = palette();
-    const n = 28;
+    const n = count;
     parts = Array.from({ length: n }, (_, i) => {
       const ang = (Math.PI * 2 * i) / n + Math.random() * 0.5;
-      const dist = 90 + Math.random() * 120;
+      const dist = (90 + Math.random() * 120) * power;
       return {
         id: trigger + "-" + i,
         tx: Math.cos(ang) * dist,
-        ty: Math.sin(ang) * dist - 40, // sesgo hacia arriba
+        ty: Math.sin(ang) * dist - 40 * power, // sesgo hacia arriba
         rot: (Math.random() * 720 - 360) | 0,
         color: COLORS[(Math.random() * COLORS.length) | 0],
         size: 6 + Math.random() * 7,
         delay: Math.random() * 40,
       };
     });
-    setTimeout(() => (parts = []), 900);
+    setTimeout(() => (parts = []), 900 + 300 * (power - 1));
   }
 </script>
 
