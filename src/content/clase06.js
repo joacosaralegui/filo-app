@@ -13,7 +13,7 @@ export default {
       type: "info",
       tag: "Panorama",
       title: "Por fin, Nietzsche",
-      body: "El curso se llama «desde Nietzsche» y recién llega a él. Es más fácil de leer que Hegel —conciso, aforístico, colorido; podés leerlo en una hamaca—, pero más difícil de interpretar: sobre sus conceptos clave hay lecturas salvajemente distintas. El caso clásico es «Dios ha muerto»: una frase cortísima que llevamos siglo y medio discutiendo. Lo ubicamos como posromántico y protoexistencialista.",
+      body: "Nietzsche es más fácil de leer que Hegel —conciso, aforístico, colorido; podés leerlo en una hamaca—, pero mucho más difícil de interpretar: sobre sus conceptos clave hay lecturas salvajemente distintas. El caso clásico es «Dios ha muerto»: una frase cortísima, de sintaxis simple, que sin embargo se lleva discutiendo siglo y medio. Conviene ubicarlo de entrada: posromántico y protoexistencialista, tardío para el Romanticismo y precoz para el existencialismo.",
     },
     {
       type: "info",
@@ -50,7 +50,13 @@ export default {
       type: "info",
       tag: "Wagner",
       title: "La obsesión con Wagner",
-      body: "Nietzsche entabla una amistad intensa con Richard Wagner, que tenía un culto alrededor y convirtió la ópera en un templo: se entra con reverencia, en silencio. Wagner crea una ópera específicamente alemana, basada en el mito y lo grandioso, e introduce el leitmotiv. Su primer libro, El nacimiento de la tragedia (1872), le está dedicado. Luego rompe con él por sentir que se «vendió» al materialismo.",
+      body: "Nietzsche entabla una amistad intensa, casi de culto, con el compositor Richard Wagner. Wagner tenía su propio culto alrededor y convirtió la ópera en un templo: antes uno charlaba y tomaba algo en el palco; ahora se entra en silencio y con reverencia. Crea una ópera específicamente alemana, basada en el mito medieval y lo grandioso, e introduce el leitmotiv, dándole a la orquesta un peso narrativo nuevo.",
+    },
+    {
+      type: "info",
+      tag: "Wagner",
+      title: "El nacimiento de la tragedia",
+      body: "De ese fervor sale su primer libro, El nacimiento de la tragedia (1872), dedicado a Wagner: presenta sus dramas musicales como herederos de la tragedia griega, que convertía a los hombres en «artistas de la vida». Años después, Nietzsche rompe con Wagner con la misma pasión con que lo idolatró, sintiendo que se había «vendido» al materialismo.",
     },
     {
       type: "quiz",
@@ -150,7 +156,7 @@ export default {
     },
     {
       type: "quiz",
-      question: "«Dios ha muerto» significa, en la lectura de la clase…",
+      question: "«Dios ha muerto» significa, ante todo…",
       options: [
         "Una demostración atea de que Dios nunca existió",
         "Que se derrumbó la creencia en un orden con sentido",

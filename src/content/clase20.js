@@ -170,8 +170,14 @@ export default {
     {
       type: "info",
       tag: "Cierre",
+      title: "La crisis vuelve siempre",
+      body: "La crisis de diferenciación no es cosa del pasado: reaparece una y otra vez. Explica incluso el ascenso del nazismo en Alemania, donde los judíos estaban del todo asimilados —la ansiedad brota cuando la diferencia se borra, no cuando falta—. Siempre hay un grupo listo para ser convertido en chivo expiatorio y unir a los demás contra él.",
+    },
+    {
+      type: "info",
+      tag: "Cierre",
       title: "La verdad está en la víctima",
-      body: "La crisis de diferenciación reaparece siempre: explica el ascenso del nazismo en Alemania, donde los judíos estaban del todo asimilados —la ansiedad brota cuando la diferencia se borra, no cuando falta—. Pero Girard, católico, ofrece la salida que Freud no da: se llega a la verdad contando la historia desde la víctima. El cristianismo rompe la tradición al narrar el asesinato de Jesús desde el asesinado. Reconocer que «lo hemos matado» e identificarse con la víctima es el camino más allá del sacrificio.",
+      body: "Pero Girard, católico, ofrece la salida que Freud no daba: se llega a la verdad contando la historia desde la víctima, no desde los asesinos. El cristianismo rompe la tradición del mito al narrar el asesinato de Jesús desde el asesinado. Reconocer que «lo hemos matado» e identificarse con la víctima es, para él, el único camino más allá del sacrificio.",
     },
   ],
 };

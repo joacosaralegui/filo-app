@@ -1,6 +1,8 @@
 // Clase 25 (transcripción) — De la modernidad a la posmodernidad
 // App Clase 24. Feed: 'info', 'quiz', 'classify' (comparar), 'match' (conectar), 'short'.
-// Tono: resumen fiel de la clase. Síntesis del curso, en torno a la palabra «verdad».
+// Las cards SON la clase: enseñan en primera persona del recorrido, no resumen una
+// clase ajena. Nada de «dice la clase» / «la palabra del día». Cada card se apoya en
+// lo que la anterior ya dejó asentado. Síntesis del curso, en torno a la palabra «verdad».
 //
 // NUMERACIÓN: num (app) = transcript - 1. El archivo se nombra por transcript.
 export default {
@@ -13,19 +15,31 @@ export default {
       type: "info",
       tag: "Panorama",
       title: "La palabra es «verdad»",
-      body: "La clase final recorre el curso entero desde una palabra: verdad. No la «verdad» corriente, sino la que usaban Havel y los disidentes del comunismo: la verdad como aquello que te salva, que da sentido a la vida, que emancipa, que funda la subjetividad, aquello por lo que se vive y se muere. Con esa invocación de la verdad se cierra el arco que va de la Ilustración a la posmodernidad.",
+      body: "Todo el arco de la modernidad puede releerse desde una sola palabra: verdad. No la verdad corriente —un enunciado que coincide con los hechos—, sino la que usaban Havel y los disidentes del comunismo: la verdad como aquello que salva, que da sentido a la vida, que funda la subjetividad, aquello por lo que se vive y se muere. Con esa idea de verdad vamos a recorrer el camino que va de la Ilustración a la posmodernidad.",
+    },
+    {
+      type: "info",
+      tag: "Verdad",
+      title: "La verdad por la que se vive y se muere",
+      body: "Conviene volverla concreta. En el primer juicio político a Trump, el teniente coronel Alexander Vindman le habla a su padre, que lo había sacado de niño de la Ucrania soviética: «aquí uno no tiene que tener miedo de decir la verdad». No está usando la verdad del inglés cotidiano. Está usando la verdad de Havel: aquella por la que un disidente arriesgaba la cárcel o la vida. Esa es la que está en juego en todo lo que sigue.",
     },
     {
       type: "info",
       tag: "Ilustración",
       title: "Una historia de amor con la razón",
-      body: "La Ilustración es, en sí misma, una historia romántica: un amor con la razón humana y su potencial de asir el mundo, conocer su verdad y mejorarlo. De ahí el yo cartesiano como «el que piensa», y la verdad como aquello a lo que se llega por la razón. Es la base del liberalismo: si somos seres racionales capaces de verdad, merecemos gobernarnos. Su ánimo: el rompecabezas de Berlin, el avance hacia adelante.",
+      body: "La Ilustración suele oponerse al Romanticismo, pero ella misma es una historia de amor: un amor con la razón humana y su poder de asir el mundo, conocer su verdad y mejorarlo. De ahí el yo cartesiano como «el que piensa»: lo que nos hace humanos es ser seres pensantes. Y de ahí, directamente, el liberalismo político: si somos capaces de verdad por la razón, merecemos gobernarnos, y el poder solo es legítimo si se funda en el consentimiento.",
+    },
+    {
+      type: "info",
+      tag: "Ilustración",
+      title: "El ánimo: el rompecabezas de Berlin",
+      body: "Este amor por la razón no era fogoso sino sereno: clasificar, ordenar, avanzar. Isaiah Berlin lo capturó con la imagen del rompecabezas: el mundo es un gran rompecabezas y cada pieza bien puesta nos acerca a ver el todo; llevará tiempo, pero se avanza —no se va hacia atrás ni de costado—. Vale retener ese ánimo de progreso, porque casi todo lo que viene después será una manera de perderlo.",
     },
     {
       type: "info",
       tag: "Bodenlosigkeit",
       title: "La amenaza bajo el optimismo",
-      body: "Debajo de todo acecha la ausencia de Dios. Bauman habla de Dios en «una prolongada licencia de la que puede o no volver». Y aquí la palabra alemana del día: Bodenlosigkeit, la «falta de suelo» o carencia de fundamento, una de las palabras de Arendt. Sin Dios, ¿qué nos funda?, ¿cómo asegurarnos siquiera de que el mundo existe, o de que la razón está a la altura?",
+      body: "Bajo ese optimismo acecha algo que la Ilustración no resuelve: la ausencia de Dios. Bauman describe a Dios «en una prolongada licencia de la que puede o no volver». Hay una palabra alemana —una de las de Arendt— para lo que queda cuando Dios se va: Bodenlosigkeit, la «falta de suelo», la carencia de fundamento. Sin Dios, ¿qué nos sostiene?, ¿cómo asegurar siquiera que el mundo existe, o que la razón está a la altura de conocerlo?",
     },
     {
       type: "quiz",
@@ -47,25 +61,55 @@ export default {
     },
     {
       type: "info",
-      tag: "El eje",
-      title: "Telos, subjetividad, estructura",
-      body: "Con Hegel y Marx el tiempo se vuelve Historia con mayúscula, que avanza hacia un telos. A la vez asciende la subjetividad: el yo psicoanalítico, el fenomenológico, el existencialista —«pienso», «quiero», «deseo»—. La modernidad es, en gran parte, la elaboración de la tensión entre subjetividad y telos, entre el yo y la historia. El estructuralismo entra después y pone el tiempo entre paréntesis: lo sincrónico.",
+      tag: "Telos y subjetividad",
+      title: "La historia y el yo",
+      body: "Sin Dios que ordene el mundo, la modernidad busca reemplazos. Con Hegel y Marx el tiempo se vuelve Historia con mayúscula, que avanza hacia un telos, un fin. A la vez asciende la otra gran apuesta: la subjetividad, el yo —psicoanalítico, fenomenológico, existencialista: «pienso», «quiero», «deseo»—. Buena parte de la modernidad es la tensión entre esos dos anclajes rivales: la Historia que nos arrastra hacia un fin y el yo que reclama fundar el sentido por sí mismo.",
+    },
+    {
+      type: "info",
+      tag: "Estructuralismo",
+      title: "Poner el tiempo entre paréntesis",
+      body: "En el siglo XX aparece un tercer anclaje, distinto de los dos anteriores: el estructuralismo. En vez de preguntar de dónde viene algo y hacia qué fin va —lo diacrónico—, pregunta por el sistema de relaciones que lo sostiene ahora —lo sincrónico—. No niega el tiempo lineal: lo pone entre paréntesis. Es el mismo gesto de «poner entre paréntesis» que ya venía de Hegel y Husserl, y que una vez que se entiende ya no se suelta.",
+    },
+    {
+      type: "info",
+      tag: "Singular y universal",
+      title: "Nación y clase, las capas mediadoras",
+      body: "A la filosofía le gustan los extremos: lo singular —este individuo— y lo universal —la humanidad—. Pero entre ambos hay capas que la sociología, la historia y la política no pueden saltear: religión, etnia, nación, clase. La Ilustración deja, en el plano filosófico, telos y subjetividad; en el político, el liberalismo y el ascenso de nación y clase como categorías modernas. Son estructuras intermedias para pensar quién es uno y a qué pertenece.",
     },
     {
       type: "info",
       tag: "El encuentro",
       title: "Cómo se mueven las ideas",
-      body: "La historia intelectual es radicalmente cosmopolita: las ideas se mueven, y una vez que decís algo no sabés adónde irá ni quién lo escuchará. Se mueven por encuentros, a veces documentables: Marx y Engels, Beauvoir y Sartre, Jakobson y Lévi-Strauss, Havel y Michnik en aquella cima improbable. De cada encuentro surge algo nuevo; eso vuelve a la historia intelectual emocionante e impredecible.",
+      body: "Vale una pausa sobre el método antes de seguir. Las ideas no son monopolio de ningún grupo ni nacen puras en un solo lugar: se mueven, y una vez que algo se dice, no se sabe adónde irá ni quién lo escuchará. Se mueven sobre todo por encuentros concretos entre personas: Marx y Engels, Beauvoir y Sartre, Jakobson y Lévi-Strauss, Fanon y Sartre, Havel y Michnik. De cada encuentro sale algo que ninguno de los dos tenía por separado.",
+    },
+    {
+      type: "info",
+      tag: "Vanguardia",
+      title: "Del nihilismo radical al salto",
+      body: "La vanguardia responde al nacionalismo de entreguerras con un internacionalismo apasionado: todas las lenguas, ninguna frontera. Dura poco. Se agota en un nihilismo radical vivido como libertad radical —«todo es posible, sin red»: otra vez la falta de suelo—. Y ahí da un salto brusco: de la contingencia absoluta al utopismo y el determinismo de la revolución. Ese giro la vuelve un espejo de la modernidad entera: nace en la fragmentación y termina anhelando la totalidad.",
+    },
+    {
+      type: "quiz",
+      question: "¿Por qué la vanguardia funciona como un espejo de la modernidad entera?",
+      options: [
+        "Porque rechaza la razón y vuelve a la tradición",
+        "Porque nace en la fragmentación y anhela la totalidad",
+        "Porque defiende la frontera nacional como fundamento",
+        "Porque renuncia a toda forma de utopía",
+      ],
+      answer: 1,
+      explain: "La vanguardia empieza en la disrupción y el nihilismo radical —la vacuidad como libertad—, reconoce la falta de suelo e intenta superarla saltando al utopismo y el determinismo de la revolución. Igual que la modernidad: parte de la fragmentación y busca reconstruir un hogar, la totalidad, en un mundo sin Dios.",
     },
     {
       type: "info",
       tag: "Totalitarismo",
       title: "La Ilustración enloquecida",
-      body: "Con el nazismo y el estalinismo llega la ingeniería social a gran escala: el proyecto ilustrado enloquecido, el «Frankenstein de la modernidad». La idea de que todo puede ser ingeniado —categorizado, esculpido, calculado, optimizado—, incluidos los seres humanos. Su atractivo era el mismo del marxismo y el hegelianismo: la totalidad, «la supremacía del todo sobre las partes», sentida como un modo de superar la falta de suelo.",
+      body: "Ese anhelo de totalidad tiene una versión monstruosa. El nazismo y el estalinismo llevan la ingeniería social a gran escala: el proyecto ilustrado enloquecido, un «Frankenstein de la modernidad». La idea de que todo puede ser ingeniado —categorizado, esculpido, calculado, optimizado—, incluidos los seres humanos. Su atractivo era el mismo que el del marxismo y el hegelianismo: la totalidad, «la supremacía del todo sobre las partes» (Lukács), sentida como el modo de superar la falta de suelo.",
     },
     {
       type: "quiz",
-      question: "¿Cómo describe la clase al totalitarismo del siglo XX?",
+      question: "El totalitarismo del siglo XX se entiende mejor como…",
       options: [
         "Un rechazo plenamente romántico de toda la razón moderna",
         "La Ilustración enloquecida, que todo lo ingeniaría",
@@ -77,15 +121,39 @@ export default {
     },
     {
       type: "info",
+      tag: "Existencialismo",
+      title: "La culpa de tener que elegir",
+      body: "Frente a esa misma vacuidad hay otra salida, opuesta a la totalidad. El existencialismo de Sartre dice: no hay esencia dada, hay que crearse actuando, fundar la propia identidad eligiendo. Pero elegir tiene un costo: nos deja en angustia y en una culpa que no se va —la culpa es aquí lo que el poder será para Foucault: está en todas partes, inherente a elegir—. Y a menudo ninguna opción disponible es inocente. Koestler lo dice del excomunista: cada uno «lleva un esqueleto en el armario de su conciencia».",
+    },
+    {
+      type: "info",
+      tag: "Patočka",
+      title: "La generosidad con Heidegger",
+      body: "Que ninguna elección sea del todo inocente ayuda a entender un gesto difícil. Patočka siempre supo lo que había hecho Heidegger —estuvo en Friburgo en 1933, vivió la ocupación nazi, perdió amigos en el Holocausto— y aun así fue generoso con su nazismo: «si eras alemán en 1933, quizá sentías que no tenías más opción que probarlo». La razón: quien sobrevivió al nazismo y al estalinismo sabe que casi nadie salió con las manos limpias.",
+    },
+    {
+      type: "info",
       tag: "Heidegger",
       title: "Por qué sigue importando",
-      body: "Dado lo que hizo, ¿por qué importa tanto? Porque su filosofía superó siglos de paradigma sujeto-objeto en una filosofía de la incrustación. El Dasein no es un cogito, sino un ser profundamente incrustado en el mundo, arrojado (Geworfenheit), que elige y es responsable. A la vez radicalmente arrojado y sin fundamento (Bodenlosigkeit): vivir con autenticidad es vivir en la Unheimlichkeit, sin estar en casa. Habla a la condición humana como no lo hacían Descartes, Kant ni Husserl.",
+      body: "Y sin embargo, pese a todo eso, Heidegger sigue siendo central. Su filosofía cerró siglos de paradigma sujeto-objeto y abrió otra cosa: una filosofía de la incrustación. El Dasein no es un cogito, una conciencia que mira el mundo desde afuera, sino un ser ya metido en el mundo, arrojado (Geworfenheit) a un tiempo y un lugar que no eligió, y que desde ahí elige y responde. A la vez arrojado y sin fundamento (Bodenlosigkeit): vivir con autenticidad es vivir sin estar del todo en casa (Unheimlichkeit).",
+    },
+    {
+      type: "info",
+      tag: "Escala",
+      title: "Cuando la escala cambia de tipo",
+      body: "Estas preguntas se vuelven urgentes porque el siglo XX es un baño de sangre: los regímenes nazi y estalinista matan millones solo entre el Báltico y el mar Negro. Es un siglo en el que «los cambios de escala se vuelven cambios de tipo»: tanta muerte deja de ser más de lo mismo y pasa a ser otra cosa. Por eso importa que Heidegger ofrezca historicidad —estar situado en una historia— en lugar de la Historia con telos de Hegel, que volvería ese horror un paso necesario hacia un fin.",
     },
     {
       type: "info",
       tag: "Posmodernismo",
       title: "Un «nunca más» tardío",
-      body: "El posmodernismo es una respuesta tardía al terror, una manera diferida de decir «nunca más». El estructuralismo prometía una estructura estable; el posestructuralismo dice que no hay sistema cerrado. Para Derrida, una estructura estable exige un significado trascendental que la cierre, y eso es inherentemente totalitario. El lenguaje es inestable y el sentido titila; pero eso no es un déficit de significado, sino un excedente: infinito no es lo mismo que nada.",
+      body: "El posmodernismo es la respuesta demorada a ese horror: una manera de decir «nunca más» y de repensar el legado revolucionario, porque algo salió muy mal. Cixous lo condensa: «cuando tomaron la Bastilla, se olvidaron de la Sorbona» —hay que volver a cómo aprendemos y pensamos, no solo a quién manda—. Su tesis de fondo: el estructuralismo prometía una estructura estable, y eso es justamente lo que ya no se puede sostener.",
+    },
+    {
+      type: "info",
+      tag: "Derrida",
+      title: "El significado trascendental es totalitario",
+      body: "Derrida da el argumento clave. Una estructura estable necesita algo que la cierre y la fije desde el centro —un «significado trascendental»—, y ese cierre es en sí mismo totalitario: así como el totalitarismo borra la frontera entre víctima y verdugo, un centro que lo fija todo borra la diferencia. Pero no hay tal centro: ni lo sagrado, ni Dios. El lenguaje es inestable y el sentido titila; y eso no es falta de significado, sino exceso: infinito no es lo mismo que nada.",
     },
     {
       type: "quiz",
@@ -103,7 +171,7 @@ export default {
       type: "info",
       tag: "Modernidad líquida",
       title: "Todo lo sólido se desvanece",
-      body: "Marx fue prematuro al escribir «todo lo sólido se desvanece en el aire»: no era cierto en 1848, pero sí bajo la posmodernidad. Bauman piensa la modernidad como el intento de reemplazar viejos sólidos por sólidos nuevos; a la posmodernidad la llama modernidad líquida: abandonar ese reemplazo y abrazar la fluidez, lo efímero. Y en Espectros de Marx, Derrida muestra que no podemos despedirnos de Marx: nadie escapa de verdad a Hegel.",
+      body: "Marx fue prematuro al escribir «todo lo sólido se desvanece en el aire»: no era cierto en 1848, pero sí ahora. Bauman piensa la modernidad como el intento de reemplazar los viejos sólidos por sólidos nuevos y mejores; a lo que vino después lo llama modernidad líquida: se abandona ese reemplazo y se abraza la fluidez, lo efímero. Pero queda un problema abierto que no conviene tapar: si ya no hay ninguna verdad firme, ¿a qué aferrarse?, ¿por qué luchar?",
     },
     {
       type: "short",
@@ -113,9 +181,15 @@ export default {
     },
     {
       type: "info",
+      tag: "Espectros de Marx",
+      title: "La hauntología",
+      body: "Aun disuelto todo lo sólido, hay algo de lo que no se puede uno despedir. En Espectros de Marx, ya viejo, Derrida vuelve sobre Marx y Hegel: «hay más de uno; tiene que haber más de uno» —los muchos espectros heterogéneos de Marx, que siguen rondando—. Lo llama hauntología, una ontología del fantasma. Foucault lo había dicho de otro modo: para escapar de verdad a Hegel hay que medir cuánto de hegeliano queda incluso en aquello con que creemos pensar contra él.",
+    },
+    {
+      type: "info",
       tag: "Posverdad",
       title: "Socavar que exista la verdad",
-      body: "El posmodernismo, nacido en la izquierda, se volvió arma de la derecha. Arendt distinguía la mentira: la totalitaria reconstruye la realidad entera sin costuras, con una versión falsa pero coherente, más creíble que la verdad porque edita el azar. La posverdad —el neototalitarismo de la Rusia de Putin— hace otra cosa: socava la idea misma de que exista la verdad. «Tus hechos, mis hechos alternativos»: un nuevo nivel de Bodenlosigkeit.",
+      body: "Nacido en la izquierda, el posmodernismo terminó siendo arma de la derecha. Conviene una distinción de Arendt: la mentira totalitaria reconstruye la realidad entera sin costuras, con una versión falsa pero coherente, más creíble que la verdad porque borra el azar. La posverdad hace algo peor: no ofrece una versión, socava la idea misma de que exista la verdad. «Tus hechos, mis hechos alternativos.» Es la falta de suelo llevada a un extremo nuevo.",
     },
     {
       type: "quiz",
@@ -127,7 +201,7 @@ export default {
         "Elimina toda forma de propaganda",
       ],
       answer: 1,
-      explain: "La mentira totalitaria (Arendt) reconstruye la realidad sin costuras, con una versión falsa pero coherente, más creíble que la verdad. La posverdad —el neototalitarismo de la Rusia de Putin— hace otra cosa: mina la idea de que exista una realidad o una verdad. Un nuevo nivel de Bodenlosigkeit.",
+      explain: "La mentira totalitaria (Arendt) reconstruye la realidad sin costuras, con una versión falsa pero coherente, más creíble que la verdad. La posverdad hace otra cosa: mina la idea de que exista una realidad o una verdad. Un nuevo nivel de Bodenlosigkeit.",
     },
     {
       type: "classify",
@@ -145,9 +219,15 @@ export default {
     },
     {
       type: "info",
+      tag: "El arco",
+      title: "De la epistemología a la ética",
+      body: "Conviene mirar el recorrido completo de una vez. Empezó como epistemología: la verdad como correspondencia entre el sujeto y el objeto, aquello que la razón alcanza. Pasó por la ontología con Heidegger: la verdad ligada al modo de ser del Dasein. Y termina en la ética: la verdad como lo que se opone a la mentira, la autenticidad frente a la inautenticidad. En el medio, sosteniéndolo todo, está la historia: nada de esto es ya intemporal.",
+    },
+    {
+      type: "info",
       tag: "Verdad y responsabilidad",
       title: "Seguir buscando la verdad",
-      body: "Patočka y el joven Krzysztof Michalski hallan en Heidegger, dentro del bloque comunista, un antídoto contra Hegel: puede haber sentido sin totalidad, alguna verdad sin avanzar hacia un telos. Su idea: al estar siempre ya en el mundo, somos siempre ya responsables de él —la responsabilidad es un rasgo ontológico del Dasein—. El sentido y la verdad quizá no se asen con las manos, pero es nuestra responsabilidad seguir buscándolos. Una subjetividad robusta no relativiza la verdad: la funda.",
+      body: "Queda el paso final, y es el que responde a la pregunta que dejó la modernidad líquida. Patočka y el joven Michalski encuentran en Heidegger, dentro del bloque comunista, un antídoto contra Hegel: puede haber sentido sin totalidad, alguna verdad sin marchar hacia un telos. Su idea: como estamos siempre ya en el mundo, somos siempre ya responsables de él. La verdad quizá no se agarre con las manos, pero seguir buscándola es un deber. Una subjetividad robusta no relativiza la verdad: la funda.",
     },
     {
       type: "quiz",
@@ -163,7 +243,7 @@ export default {
     },
     {
       type: "match",
-      question: "Uní cada idea del arco del curso con lo que nombra",
+      question: "Uní cada idea del recorrido con lo que nombra",
       pairs: [
         { left: "Bodenlosigkeit", right: "La falta de suelo: sin Dios, nada nos funda" },
         { left: "Telos y subjetividad", right: "La tensión moderna entre la Historia y el yo" },
@@ -171,13 +251,13 @@ export default {
         { left: "Modernidad líquida", right: "Abrazar lo fluido y efímero, sin sólidos nuevos" },
         { left: "Posverdad", right: "Socavar que exista siquiera algo como la verdad" },
       ],
-      explain: "El arco del curso: la Ilustración reemplaza a Dios pero deja la falta de suelo (Bodenlosigkeit); la modernidad elabora la tensión entre telos y subjetividad; Heidegger nos deja incrustados y responsables; la posmodernidad se vuelve líquida; y la posverdad amenaza con disolver la verdad misma —de ahí la urgencia de seguir buscándola—.",
+      explain: "El recorrido entero: la Ilustración reemplaza a Dios pero deja la falta de suelo (Bodenlosigkeit); la modernidad elabora la tensión entre telos y subjetividad; Heidegger nos deja incrustados y responsables; la posmodernidad se vuelve líquida; y la posverdad amenaza con disolver la verdad misma —de ahí la urgencia de seguir buscándola—.",
     },
     {
       type: "info",
       tag: "Cierre",
       title: "Un momento en la autobiografía de Dios",
-      body: "Un cierre sobre el perdón, volviendo a Dios. Arendt reconoce que es Jesús quien lo descubre: perdonar es actuar de nuevo, incondicionado por el acto que lo provocó. Y una última historia: Roman Ingarden no quema las cartas de Edith Stein —así la traiciona, y por eso conocemos su historia—; Stein, monja carmelita, muere gaseada en Auschwitz por judía. Años después, el papa Juan Pablo II la canoniza: alguien que «con todo su ser, buscó la verdad». Y de la Ilustración dijo que «no es más que un breve momento en la autobiografía de Dios».",
+      body: "Queda el perdón, que nos devuelve a Dios. Arendt reconoce que es Jesús quien lo descubre: perdonar es actuar de nuevo, sin quedar atado al acto que lo provocó. Una última historia lo encarna: Roman Ingarden no quema las cartas de Edith Stein —así la traiciona, y por eso conocemos su historia—; Stein, monja carmelita, muere gaseada en Auschwitz por judía. Años después el papa Juan Pablo II la canoniza: alguien que «con todo su ser, buscó la verdad». Y de la Ilustración misma dirá que «no es más que un breve momento en la autobiografía de Dios».",
     },
   ],
 };

@@ -159,13 +159,13 @@ export default {
         { left: "Sartre", right: "La mirada: el otro me vuelve objeto" },
         { left: "Levinas", right: "El cara a cara: en el principio está el otro" },
       ],
-      explain: "El arco de la clase: Husserl deduce al otro por analogía (y lo deja como objeto); Heidegger nos pone ya en un mundo-con; Stein suma el cuerpo y la empatía; Sartre, la mirada que me objetiva; y Levinas hace del otro el fundamento ético de todo.",
+      explain: "El arco completo: Husserl deduce al otro por analogía (y lo deja como objeto); Heidegger nos pone ya en un mundo-con; Stein suma el cuerpo y la empatía; Sartre, la mirada que me objetiva; y Levinas hace del otro el fundamento ético de todo.",
     },
     {
       type: "info",
       tag: "Cierre",
       title: "La mirada y el llamado",
-      body: "Dos figuras del otro cierran la clase: para Sartre el otro siempre me mira; para Levinas, siempre me llama —hay un pedido, una convocatoria a la responsabilidad—. Así pasamos de la epistemología (Husserl) a la ontología (Heidegger) y, englobándolas, a la ética (Levinas). Todos quedaron marcados por la guerra: Levinas seculariza a Dios; Edith Stein va en dirección opuesta, se convierte al catolicismo y entra en un convento carmelita.",
+      body: "Dos figuras del otro cierran el recorrido: para Sartre el otro siempre me mira; para Levinas, siempre me llama —hay un pedido, una convocatoria a la responsabilidad—. Así pasamos de la epistemología (Husserl) a la ontología (Heidegger) y, englobándolas, a la ética (Levinas). Todos quedaron marcados por la guerra: Levinas seculariza a Dios; Edith Stein va en dirección opuesta, se convierte al catolicismo y entra en un convento carmelita.",
     },
   ],
 };

@@ -27,6 +27,12 @@ export default {
     },
     {
       type: "info",
+      tag: "Universal y particular",
+      title: "Una universalidad muy particular",
+      body: "La Ilustración trae un concepto nuevo, civilización, pero con una mirada profundamente eurocéntrica: cuando estos filósofos dicen «civilización mundial» piensan en Europa; no en toda Europa, sino en Francia; no en toda Francia, sino en París; y casi en un solo café de intelectuales. Esa tensión entre la aspiración a lo universal y una realidad muy particular —la hipocresía latente de sus ideas— va a reaparecer una y otra vez a lo largo de todo el recorrido.",
+    },
+    {
+      type: "info",
       tag: "Idea central",
       title: "Dios desplazado, no muerto",
       body: "En la Ilustración Dios no es negado ni «matado» —eso recién ocurre un siglo después, con Nietzsche—. Es degradado: pasa de un papel central a uno secundario, entre bastidores. El ateísmo todavía es demasiado radical para estar sobre la mesa. Lo que ocupa el espacio dejado por Dios es la fe en la razón.",
@@ -65,7 +71,13 @@ export default {
       type: "info",
       tag: "Modelo",
       title: "El modelo de las ciencias duras",
-      body: "La filosofía ilustrada toma como modelo a las ciencias duras: aspira a entender al ser humano y a la sociedad como el físico o el químico entienden la naturaleza. De ahí una teleología del progreso. Isaiah Berlin usa la imagen del rompecabezas: cada pieza colocada acerca al todo y facilita colocar la siguiente. Newton y el empirismo —el conocimiento ganado por observación— son su precedente; de ahí saldrá el positivismo.",
+      body: "La filosofía ilustrada toma como modelo las ciencias duras: aspira a entender al ser humano y a la sociedad como el físico o el químico entienden la naturaleza. De ahí su teleología del progreso, el «estar parados sobre hombros de gigantes»: cada avance del conocimiento se apoya en el anterior, y siempre se avanza. Isaiah Berlin lo pinta con la imagen del rompecabezas: cada pieza colocada acerca al todo y facilita colocar la siguiente.",
+    },
+    {
+      type: "info",
+      tag: "Empirismo",
+      title: "De Newton al positivismo",
+      body: "El método de ese modelo es el empirismo: el conocimiento se gana por la experiencia sensorial y la observación. Newton es el precursor clave —las leyes del movimiento y la gravedad se descubren observando y experimentando, recogiendo datos y analizándolos—. De este empirismo saldrá más tarde el positivismo: la idea de entender el mundo solo según lo observable, sin encantamiento, sin fuerzas sobrenaturales, sin nada metafísico.",
     },
     {
       type: "info",
@@ -139,7 +151,7 @@ export default {
       type: "info",
       tag: "Kant",
       title: "«¿Qué es la Ilustración?»",
-      body: "En 1784, ante la pregunta «¿Qué es la Ilustración?», Kant responde: es la salida del hombre de su autoimpuesta inmadurez. Su lema es sapere aude, «atrévete a saber»: ten el valor de servirte de tu propio entendimiento sin la tutela de un cura o un libro. No es un llamado revolucionario —Kant acepta pagar impuestos y obedecer—, sino a pensar por uno mismo.",
+      body: "En 1784 un concurso de ensayos pregunta «¿Qué es la Ilustración?». El primer premio va a Moses Mendelssohn, que pone «el destino del hombre como medida y meta»: el humanismo ilustrado, el giro de Dios al hombre. Pero el ensayo más influyente es el de Kant, que sale segundo: la Ilustración es la salida del hombre de su inmadurez autoimpuesta. Su lema, sapere aude, «atrévete a saber»: ten el valor de servirte de tu propio entendimiento, sin la tutela de un cura o un libro.",
     },
     {
       type: "info",
@@ -175,7 +187,13 @@ export default {
       type: "info",
       tag: "1789",
       title: "La Revolución Francesa",
-      body: "En julio de 1789 las ideas ilustradas se vuelven política: razón, progreso, contrato social y consentimiento de los gobernados. La Declaración de los Derechos del Hombre y del Ciudadano encarna este liberalismo naciente. Su transformación decisiva: convertir súbditos —casi propiedad del monarca— en ciudadanos, creadores del gobierno. Es también la invención de la ideología, y desembocará en el Terror.",
+      body: "En julio de 1789 las ideas ilustradas se vuelven política: razón, progreso, contrato social y consentimiento de los gobernados. La Declaración de los Derechos del Hombre y del Ciudadano encarna este liberalismo naciente. Su transformación decisiva: convertir súbditos —casi propiedad del monarca— en ciudadanos, creadores del gobierno. Es también la invención de la ideología: llevar ideas filosóficas a la vida real y reordenar el cosmos (llegan a reiniciar el calendario en el año uno).",
+    },
+    {
+      type: "info",
+      tag: "El Terror",
+      title: "Manos marchitas por el despotismo",
+      body: "Pero la Revolución trae un problema nuevo, que formula Robespierre: ¿cómo construir el mundo nuevo si quienes lo construyen ya están formados —contaminados— por el viejo mundo opresivo? «Hemos levantado el templo de la libertad con manos aún marchitas por la cruz del despotismo.» De ahí, en parte, el Terror de 1793-94, que muchos empezarán a atribuir a la voluntad general de Rousseau: el todo social invocado para reprimir en su nombre.",
     },
     {
       type: "info",
@@ -206,7 +224,7 @@ export default {
       type: "info",
       tag: "Cierre",
       title: "El optimismo ilustrado",
-      body: "El legado de la Ilustración es el optimismo: la confianza en que el conocimiento es bueno y progresivo, y en que la razón permite comprender y mejorar el mundo. Su figura literaria es Settembrini, de La montaña mágica de Thomas Mann. La clase siguiente abre la pregunta incómoda: ¿tiene la Ilustración un lado oscuro?",
+      body: "El legado de la Ilustración es el optimismo: la confianza en que el conocimiento es bueno y progresivo, y en que la razón permite comprender y mejorar el mundo. Su figura literaria es Settembrini, «la Ilustración que habla demasiado», de La montaña mágica de Thomas Mann. Pero queda una pregunta incómoda, la que abrirá el Romanticismo: ¿tiene la Ilustración un lado oscuro?",
     },
   ],
 };

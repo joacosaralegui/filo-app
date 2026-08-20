@@ -118,6 +118,12 @@ export default {
       body: "En la Primera Guerra caen cuatro imperios y en Versalles el mapa se rehace en Estados nacionales, con pasaportes y fronteras que coincidir. Frente a eso, la vanguardia opone un internacionalismo agresivo y autoconsciente, empeñado en cruzar esas fronteras: Shklovski dice que el arte «nunca reflejó el color de la bandera sobre la fortaleza». Todos quieren ser internacionales.",
     },
     {
+      type: "info",
+      tag: "Los movimientos",
+      title: "Una vanguardia plural",
+      body: "La vanguardia no es una sola cosa, sino varios movimientos. El futurismo italiano exalta la máquina, la velocidad y la agresión —Marinetti llega a decir que la guerra es hermosa—. El constructivismo borra la frontera entre arte e ingeniería: el arte como creación de vida útil. El dadaísmo es pura rebelión sin sistema —Tzara: «estoy contra los sistemas»—, la contingencia vuelta cosa. Y el surrealismo vuelve a Freud: automatismo psíquico y el collage que acopla dos realidades que no van juntas.",
+    },
+    {
       type: "match",
       question: "Uní cada movimiento de vanguardia con su rasgo",
       pairs: [

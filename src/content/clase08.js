@@ -11,7 +11,7 @@ export default {
       type: "info",
       tag: "Panorama",
       title: "¿Se puede apurar la historia?",
-      body: "El curso vuelve al tiempo, ahora con un elemento nuevo: la velocidad. Estamos en tiempo marxista, heredado de Hegel: la historia se mueve en una dirección, hacia un telos, y no se puede retroceder. Pero Marx no dice cuánto dura cada etapa. La pregunta de Lenin: si sabemos hacia dónde va la Historia, ¿podemos empujarla para que llegue más rápido?",
+      body: "Volvemos al tiempo, ahora con un elemento nuevo: la velocidad. Estamos en tiempo marxista, heredado de Hegel: la historia se mueve en una dirección, hacia un telos, y no se puede retroceder. Pero Marx no dice cuánto dura cada etapa. La pregunta de Lenin: si sabemos hacia dónde va la Historia, ¿podemos empujarla para que llegue más rápido?",
     },
     {
       type: "info",
@@ -107,9 +107,15 @@ export default {
     },
     {
       type: "info",
-      tag: "1905–1917",
-      title: "Del ensayo general a la abdicación",
-      body: "1905 es un «ensayo general»: huelgas y levantamientos sin dirección unificada; el Domingo Sangriento, cuando la policía dispara contra manifestantes, radicaliza. En 1917, con la Primera Guerra, el imperio empobrecido y hambriento; los soldados se amotinan y en marzo el zar Nicolás II abdica. Surge el «doble poder»: un gobierno provisional burgués y el Soviet de Petrogrado, más proletario.",
+      tag: "1905",
+      title: "El ensayo general",
+      body: "1905 fue un «ensayo general» de la revolución: una ola de huelgas, protestas y levantamientos campesinos sin dirección unificada. El punto de quiebre es el Domingo Sangriento —la policía del zar dispara contra una manifestación pacífica de trabajadores y mata a más de cien—, que radicaliza al país. El zar concede una Duma y algo parecido a una constitución, pero un año después se echa atrás. No fue una revolución, pero algo quedó instalado.",
+    },
+    {
+      type: "info",
+      tag: "1917",
+      title: "La abdicación y el doble poder",
+      body: "En 1917, con la Primera Guerra, el imperio está empobrecido, hambriento y harto. Los soldados empiezan a amotinarse y a negarse a combatir, y en marzo el zar Nicolás II abdica: siglos de dinastía Románov caídos en plena guerra mundial, y nadie sabe bien quién manda. Surge el «doble poder»: por un lado un gobierno provisional, burgués y liberal; por otro el Soviet de Petrogrado, más socialista y proletario.",
     },
     {
       type: "info",
@@ -119,7 +125,7 @@ export default {
     },
     {
       type: "quiz",
-      question: "¿Por qué la clase llama «proletariado metafísico» al que representaban los bolcheviques en 1917?",
+      question: "¿Por qué se llama «proletariado metafísico» al que representaban los bolcheviques en 1917?",
       options: [
         "Porque eran una mayoría abrumadora de obreros industriales",
         "Porque casi no había obreros: se hizo en su nombre",

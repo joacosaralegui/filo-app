@@ -85,7 +85,13 @@ export default {
       type: "info",
       tag: "Totalidad",
       title: "Lo verdadero es el todo",
-      body: "El lema de la Fenomenología es das Wahre ist das Ganze: «lo verdadero es el todo». Nada tiene significado tomado en aislamiento; todo es relacional, mutuamente dependiente. La Fenomenología es la Bildungsroman de la conciencia: esta atraviesa estadios de madurez, se vuelve autoconciencia y se fusiona con el Geist, superando la alienación —el gran problema de la modernidad—.",
+      body: "El lema de la Fenomenología es das Wahre ist das Ganze: «lo verdadero es el todo». Nada tiene significado tomado en aislamiento; todo es relacional, mutuamente dependiente, y solo se comprende en el conjunto. Es la misma idea del Geist llevada al plano del conocimiento: la verdad no está en las piezas sueltas, sino en cómo encajan en la totalidad.",
+    },
+    {
+      type: "info",
+      tag: "Totalidad",
+      title: "La conciencia que madura",
+      body: "¿Y cómo se llega a ese todo? La Fenomenología es una Bildungsroman —una novela de formación— cuyo protagonista es la conciencia. Esta atraviesa estadios de madurez creciente, se vuelve autoconciencia (capaz de reflexionar sobre sí misma) y a mitad del libro se fusiona con el Geist. Cada estadio es un paso en la superación de la alienación, el gran problema de la modernidad: pasar de la escisión a sentirse en casa en el mundo.",
     },
     {
       type: "quiz",
@@ -102,14 +108,26 @@ export default {
     {
       type: "info",
       tag: "Dialéctica",
-      title: "El árbol frutal y el Aufheben",
-      body: "La dialéctica ocurre cuando las contradicciones se encuentran: una posición se vuelve inestable y algo la niega. El ejemplo es el árbol: semilla, brote, flor, fruto. El fruto cancela la flor, pero no la borra: la supera, la preserva y la eleva hacia su telos. El verbo es aufheben —intraducible—: abolir sin cancelar del todo, conservar como momento de una síntesis superior.",
+      title: "La dialéctica: el árbol frutal",
+      body: "¿Cómo se mueve la historia? Por dialéctica: el choque de contradicciones. Una posición se vuelve inestable, algo la niega, y de ahí sale un estadio nuevo. El ejemplo es el árbol frutal: semilla, brote, flor, fruto. Cada estadio suplanta al anterior —el fruto llega negando la flor, no hay flor y fruto a la vez— y a la vez lo necesita: son momentos de una misma vida que avanza hacia su telos.",
+    },
+    {
+      type: "info",
+      tag: "Dialéctica",
+      title: "Aufheben: negar conservando",
+      body: "El verbo que Hegel usa para ese movimiento es aufheben (sustantivo: Aufhebung), famoso por intraducible. Reúne tres sentidos a la vez: elevar a un nivel superior, negar, y sin embargo conservar. El fruto no borra la flor: la cancela pero la preserva como un momento suyo, en una síntesis más alta. Toda la historia avanza así, negando y conservando, en una espiral hacia adelante.",
     },
     {
       type: "info",
       tag: "Retrospectiva",
-      title: "El búho de Minerva y la crítica a Kant",
-      body: "«El búho de Minerva emprende su vuelo al caer el crepúsculo»: solo mirando hacia atrás se entiende de qué se trataba algo. De ahí su polémica con Kant. Para Kant lo que cuenta es el motivo, no las consecuencias que no controlás. Hegel responde que es una noción inadecuada de la moral: las acciones casi siempre tienen consecuencias que exceden la intención, y su sentido solo aparece después.",
+      title: "El búho de Minerva",
+      body: "«El búho de Minerva emprende su vuelo al caer el crepúsculo» (Minerva es la diosa de la sabiduría). Quiere decir: el sentido de algo solo se comprende mirando hacia atrás, nunca hacia adelante. No se puede saber de qué se trataba un proceso mientras ocurre; la comprensión llega siempre en retrospectiva, cuando el todo ya se completó.",
+    },
+    {
+      type: "info",
+      tag: "Retrospectiva",
+      title: "La crítica a Kant",
+      body: "De ahí su polémica con Kant. Para Kant lo que cuenta es el motivo, y las consecuencias que no controlás no son tu culpa. Hegel responde que es una noción inadecuada de la moral: las acciones casi siempre tienen consecuencias que exceden con mucho la intención, y su sentido solo aparece después. El caso de Chamberlain en Múnich: buenas intenciones, y un desastre histórico.",
     },
     {
       type: "quiz",
@@ -139,7 +157,7 @@ export default {
       type: "info",
       tag: "Libertad",
       title: "La libertad es el reconocimiento de la necesidad",
-      body: "Para Hegel todo sucede como debe suceder; el Espíritu tiene su propio impulso objetivo. La libertad es el reconocimiento de la necesidad: cuando descubrís por qué todo es como es, perdés el deseo de que sea de otro modo. Lo único inmoral es oponerse a ese gran proceso del mundo. La alienación es no comprender la propia existencia dentro del Geist, del todo.",
+      body: "Para Hegel todo sucede como debe suceder; el Espíritu tiene su propio impulso objetivo. La libertad es el reconocimiento de la necesidad: cuando descubrís por qué todo es como es, perdés el deseo de que sea de otro modo. Lo único inmoral es oponerse a ese gran proceso del mundo. Todo apunta a un punto-telos, un final de la historia donde las contradicciones —sujeto y objeto, libertad y necesidad, razón y pasión— quedan sintetizadas hasta desaparecer: el momento místico de unidad al que apunta todo el sistema.",
     },
     {
       type: "info",
@@ -175,7 +193,7 @@ export default {
       type: "info",
       tag: "Síntesis",
       title: "La seducción del todo",
-      body: "La fuerza de Hegel es la seducción de la totalidad: la sensación de que todo, al final, encaja y va a alguna parte. Miłosz la llamó la «mordida hegeliana»; Arendt dijo que su filosofía fue el último intento de reunir ser y pensamiento, sin saber si era una morada o una prisión para la realidad. Berlin lo vio como un bosque muy oscuro. La próxima clase, Marx lo pondrá «patas para arriba».",
+      body: "La fuerza de Hegel es la seducción de la totalidad: la sensación de que todo, al final, encaja y va a alguna parte. Miłosz la llamó la «mordida hegeliana»; Arendt dijo que su filosofía fue el último intento de reunir ser y pensamiento, sin saber si era una morada o una prisión para la realidad. Berlin lo vio como un bosque muy oscuro. Lo que sigue es Marx, que tomará todo este sistema y lo pondrá «patas para arriba», anclándolo no en el Espíritu sino en la materia.",
     },
   ],
 };

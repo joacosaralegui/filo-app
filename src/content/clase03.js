@@ -14,13 +14,13 @@ export default {
       type: "info",
       tag: "Panorama",
       title: "Dos talantes en tensión",
-      body: "Ilustración y Romanticismo son las dos grandes corrientes que van a atravesar todo el curso. No son solo doctrinas: son también estados de ánimo o talantes —lo que en alemán se llama Stimmung—. Cosas antitéticas que chocan, se entremezclan y conviven en tensión: un patrón que reaparecerá una y otra vez, hasta llegar a Hegel y la dialéctica.",
+      body: "Ilustración y Romanticismo son las dos grandes corrientes que van a atravesar todo el recorrido. No son solo doctrinas: son también estados de ánimo o talantes —lo que en alemán se llama Stimmung—. Cosas antitéticas que chocan, se entremezclan y conviven en tensión: un patrón que reaparecerá una y otra vez, hasta llegar a Hegel y la dialéctica.",
     },
     {
       type: "info",
       tag: "Recapitulación",
       title: "El ánimo ilustrado",
-      body: "La Ilustración parte de un tiempo progresivo: avanzamos hacia cosas mejores, aprendemos cada vez más y construimos sobre ese conocimiento. Es un movimiento humanista y antropocéntrico: somos especiales porque tenemos razón, y por eso merecemos derechos naturales. El talante es de clasificación, calma, orden y optimismo.",
+      body: "La Ilustración parte de un tiempo progresivo: avanzamos hacia cosas mejores, aprendemos cada vez más y construimos sobre ese conocimiento. Es un movimiento humanista y antropocéntrico: somos especiales porque tenemos razón, y por eso merecemos derechos naturales. Dos supuestos suyos importan para lo que viene: la armonía de intereses (los del individuo y los del colectivo pueden reconciliarse) y la idea de que la razón conduce a la virtud (seres racionales querrán comportarse bien). Contra ambos se rebelará Dostoievski.",
     },
     {
       type: "info",
@@ -248,7 +248,7 @@ export default {
     },
     {
       type: "quiz",
-      question: "¿En qué sentido dice la clase que «el Terror es el momento en que la Ilustración se vuelve Romanticismo»?",
+      question: "¿En qué sentido el Terror es «el momento en que la Ilustración se vuelve Romanticismo»?",
       options: [
         "Porque los jacobinos leían poesía romántica alemana",
         "Porque un proyecto racional se vuelve orgía de sangre",
@@ -280,7 +280,7 @@ export default {
       type: "info",
       tag: "Síntesis",
       title: "El legado del Romanticismo",
-      body: "El Romanticismo surge como alter ego de la Ilustración y nos deja un legado de subjetividad radical vivida como tormento eterno. Sus sucesores serán muchos: Nietzsche, el irracionalismo como virtud en sí misma, el existencialismo y elementos del psicoanálisis freudiano. La próxima clase pasa a Hegel, que intentará pensar juntas estas corrientes antitéticas mediante la dialéctica.",
+      body: "El Romanticismo surge como alter ego de la Ilustración y nos deja un legado de subjetividad radical vivida como tormento eterno. Sus sucesores serán muchos: Nietzsche, el irracionalismo como virtud en sí misma, el existencialismo y elementos del psicoanálisis freudiano. Y queda planteada la pregunta que sigue: cómo pensar juntas estas dos corrientes antitéticas en vez de elegir una. Esa será la apuesta de Hegel y su dialéctica.",
     },
   ],
 };

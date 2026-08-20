@@ -23,7 +23,7 @@ export default {
     },
     {
       type: "quiz",
-      question: "¿Qué lección saca la clase de que los nazis llegaran al poder en 1933?",
+      question: "¿Qué lección deja que los nazis llegaran al poder en 1933?",
       options: [
         "Que la República de Weimar era económicamente sólida",
         "Que la democracia no protege sola del fascismo",
@@ -185,7 +185,7 @@ export default {
       type: "info",
       tag: "Cierre",
       title: "¿Liberación o terror?",
-      body: "La Teoría Crítica deja una pregunta que atraviesa el siglo: la modernidad, ¿significó liberación o significó terror? La Ilustración, examinada por su lado oscuro, ya no parece la marcha luminosa de Settembrini, sino una espiral que puede acabar en la jaula de hierro y en Auschwitz. La próxima clase, Hannah Arendt piensa el totalitarismo y la naturaleza del mal.",
+      body: "La Teoría Crítica deja una pregunta que atraviesa el siglo: la modernidad, ¿significó liberación o significó terror? La Ilustración, examinada por su lado oscuro, ya no parece la marcha luminosa de Settembrini, sino una espiral que puede acabar en la jaula de hierro y en Auschwitz. Esa pregunta abre el paso a Hannah Arendt y su análisis del totalitarismo y la naturaleza del mal.",
     },
   ],
 };

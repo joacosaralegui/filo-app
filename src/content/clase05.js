@@ -19,7 +19,7 @@ export default {
       type: "info",
       tag: "Método",
       title: "Poner a Hegel «patas para arriba»",
-      body: "Los hegelianos de izquierda toman de Hegel la centralidad de la historia, la progresión dialéctica y el pensar en totalidades; pero rechazan su metafísica. Hay que bajar todo eso del reino del espíritu a la tierra, volverlo concreto y material. Donde Hegel ve Geist, Marx ve fuerzas socioeconómicas. La dialéctica estaba «parada de cabeza»: hay que darla vuelta para hallar el núcleo racional.",
+      body: "Los hegelianos de izquierda toman de Hegel la centralidad de la historia, la progresión dialéctica y el pensar en totalidades; pero rechazan su metafísica. Hay que bajar todo eso del reino del espíritu a la tierra, volverlo concreto y material: es el paso del idealismo al materialismo. Donde Hegel habla de dialéctica del Espíritu, Marx hablará de materialismo dialéctico; donde Hegel ve Geist, Marx ve fuerzas socioeconómicas. La dialéctica estaba «parada de cabeza»: hay que darla vuelta para hallar el núcleo racional.",
     },
     {
       type: "quiz",
@@ -54,8 +54,14 @@ export default {
     {
       type: "info",
       tag: "Clases",
-      title: "Del feudalismo a la fábrica",
-      body: "El feudalismo era un mundo descentralizado y rural: nobleza terrateniente y campesinado atado a la tierra. Las fábricas concentran a la gente en las ciudades y cambian toda la estructura social. Aparecen dos clases nuevas: la burguesía, que posee las fábricas y emplea, y el proletariado, los obreros urbanos que venden su trabajo. La identidad relevante ya no es el título, sino la clase.",
+      title: "Del campo feudal a la ciudad",
+      body: "Antes del capitalismo estaba el feudalismo: un mundo descentralizado y rural. Un monarca sin alcance directo sobre cada aldea, una nobleza que hereda tierra y título, y un campesinado atado a la tierra y al ciclo de las estaciones. La enorme mayoría vivía en el campo. Las fábricas rompen ese orden: de golpe hacen falta muchos trabajadores en un mismo edificio, la gente migra a las ciudades y con eso cambia toda la estructura social.",
+    },
+    {
+      type: "info",
+      tag: "Clases",
+      title: "Burguesía y proletariado",
+      body: "En lugar de nobles, terratenientes y campesinos, aparecen dos clases nuevas, ligadas a la ciudad. La burguesía no hereda un título: posee las fábricas y, por eso, es el empleador. El proletariado son los obreros urbanos, que no poseen nada y venden su trabajo por hora. La identidad relevante ya no es el linaje, sino la clase: dueño o trabajador, el que emplea o el que es empleado y explotado.",
     },
     {
       type: "classify",
@@ -157,8 +163,14 @@ export default {
     {
       type: "info",
       tag: "Revolución",
-      title: "Conciencia de clase y revolución",
-      body: "Los trabajadores llegarán a la conciencia de clase: comprenderán que la burguesía los explota y que no hay arreglo sin que todos se levanten. Vendrá el derrocamiento violento de la burguesía, la abolición de la propiedad privada, una dictadura del proletariado de transición y, al fin, la disolución de las fronteras: cada uno según su capacidad, cada uno según su necesidad. La religión es el opio de los pueblos.",
+      title: "El despertar de la conciencia de clase",
+      body: "Todo depende de un despertar: la conciencia de clase. No es solo saber que la vida es dura, sino comprender el todo —que la burguesía nos explota y que no hay arreglo parcial sin que todos los trabajadores se levanten juntos—. En el marxismo clásico eso llega solo, orgánicamente, porque el ser determina la conciencia. Y no cabe esperar ayuda de la religión: es «el opio de los pueblos», que adormece justamente esa toma de conciencia.",
+    },
+    {
+      type: "info",
+      tag: "Revolución",
+      title: "Los pasos hacia el comunismo",
+      body: "Una vez despierta, la clase obrera actúa. Los pasos: el derrocamiento violento de la burguesía (que no cederá su propiedad por las buenas); la abolición de la propiedad privada; una dictadura del proletariado como período de transición; y, al fin, la disolución de las fronteras nacionales, hasta un mundo en que cada uno trabaja según su capacidad y recibe según su necesidad. Ese es el comunismo: el fin de la historia.",
     },
     {
       type: "info",

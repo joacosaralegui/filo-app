@@ -51,6 +51,12 @@ export default {
     },
     {
       type: "info",
+      tag: "La cura",
+      title: "Curar hablando",
+      body: "Lo más radical del método es que el tratamiento es puramente hablar. La paciente fundadora, Anna O., mejora al poner en palabras lo reprimido. El analizante se acuesta en el diván y practica la asociación libre —decir lo que venga, sin filtrar—; el analista escucha y algo se escurre por las grietas. No cura mágicamente, pero permite lidiar con eso. Es el poder de las palabras, y algo muy burgués: exige mucho tiempo y dinero.",
+    },
+    {
+      type: "info",
       tag: "Infancia",
       title: "Sexualidad infantil y complejo de Edipo",
       body: "El inconsciente empieza muy temprano, y la infancia es formativa y necesariamente traumática. Freud sostiene, escandalosamente, que la sexualidad empieza en la infancia (con una definición amplísima de lo sexual, más allá del coito). En el complejo de Edipo el niño desea a la madre y resiente al padre, hasta desear secretamente su muerte; basta con que el pensamiento titile y se reprima.",

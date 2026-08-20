@@ -120,8 +120,14 @@ export default {
     {
       type: "info",
       tag: "El perdón",
-      title: "Marcuse, Arendt, Derrida",
-      body: "Heidegger nunca pidió perdón. Marcuse, judío y ex alumno suyo, le escribió: no se puede separar al filósofo del hombre, y un filósofo no puede engañarse sobre un régimen que asesinó a millones de judíos. Heidegger alegó haberse disociado ya en 1934 y que la Gestapo lo vigilaba, pero nunca se retractó en público. Arendt, sin embargo, lo perdonó: en La condición humana hace del perdón la única redención de lo irreversible. Y Derrida dirá que sólo se perdona lo imperdonable.",
+      title: "Marcuse: el filósofo y el hombre",
+      body: "Heidegger nunca pidió perdón. Marcuse, judío y ex alumno suyo, le escribió: no se puede separar al filósofo del hombre; un filósofo puede errar en política y reconocerlo, pero no engañarse sobre un régimen que asesinó a millones de judíos solo por serlo. Heidegger alegó haberse disociado ya en 1934 y que la Gestapo lo vigilaba, pero nunca se retractó en público.",
+    },
+    {
+      type: "info",
+      tag: "El perdón",
+      title: "Arendt y Derrida",
+      body: "Arendt, en cambio, lo perdonó: en La condición humana hace del perdón la única redención de lo irreversible —perdonar es actuar de nuevo, sin quedar atado al acto que lo provocó—. Derrida lo lleva más lejos: el perdón, si significa algo, perdona precisamente lo imperdonable; debe anunciarse como la imposibilidad misma. El perdón fácil no sería perdón.",
     },
     {
       type: "quiz",

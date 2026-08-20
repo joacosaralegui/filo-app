@@ -19,7 +19,7 @@ export default {
       type: "info",
       tag: "Repaso",
       title: "La subjetividad es trabajo",
-      body: "Ser sujeto es pensar (Descartes): si no pensás, sos en efecto un objeto. Y pensar es trabajo —implica angustia, elegir—, y es más fácil caer en la mala fe o en el das Man conformista que asumir la propia existencia. De ahí los dos crímenes que recorren la clase: quitarle la subjetividad al otro y renunciar a la propia.",
+      body: "Ser sujeto es pensar (Descartes): si no pensás, sos en efecto un objeto. Y pensar es trabajo —implica angustia, elegir—, y es más fácil caer en la mala fe o en el das Man conformista que asumir la propia existencia. De ahí los dos crímenes que están en el centro de todo esto: quitarle la subjetividad al otro y renunciar a la propia.",
     },
     {
       type: "info",
@@ -29,7 +29,7 @@ export default {
     },
     {
       type: "quiz",
-      question: "¿Sobre qué trata, ante todo, El segundo sexo según la clase?",
+      question: "¿Sobre qué trata, ante todo, El segundo sexo?",
       options: [
         "Sobre abolir toda diferencia entre hombres y mujeres",
         "Sobre cómo la mujer alcanza su propia subjetividad",
@@ -42,8 +42,14 @@ export default {
     {
       type: "info",
       tag: "Kojève",
+      title: "Hegel llega a Francia",
+      body: "Una influencia central del círculo es Alexandre Kojève, un rusohablante que en un seminario parisino de los años treinta releyó obsesivamente la Fenomenología del espíritu. Su interpretación de la dialéctica del amo y el esclavo, muy inflexionada por Heidegger, se volvió decisiva para todo el existencialismo francés —y para El segundo sexo—: el sujeto solo llega a serlo si otro lo reconoce.",
+    },
+    {
+      type: "info",
+      tag: "Kojève",
       title: "El hombre como negación de lo dado",
-      body: "Una influencia central del círculo es Alexandre Kojève, que releyó obsesivamente la Fenomenología del espíritu y volvió su dialéctica del amo y el esclavo, inflexionada por Heidegger, decisiva para el existencialismo francés. Siguiendo a Heidegger, reemplaza «naturaleza» por «lo dado» (le donné) y define al hombre como negación de lo dado: esa nada, ese empujar contra lo que se nos da, es nuestro espacio de libertad.",
+      body: "Siguiendo a Heidegger, Kojève reemplaza «naturaleza» y «mundo» por lo dado (le donné): no hay un punto de vista neutral fuera del mundo. Y define al hombre como negación de lo dado: siempre superando, empujando contra lo que se le impone. Ese vacío, esa nada de la negación, es nuestro espacio de libertad, de historicidad, de acción. Nunca estamos del todo pasivos.",
     },
     {
       type: "quiz",
@@ -60,8 +66,14 @@ export default {
     {
       type: "info",
       tag: "Ética",
-      title: "La libertad sobre la facticidad",
-      body: "En Para una moral de la ambigüedad, Beauvoir da la mejor formulación de la ética existencialista: una ética de evitar la mala fe, de no huir de la propia libertad. Admira a Marx pero rechaza su determinismo, y toma de Heidegger la finitud. «La ética presupone el fracaso»: a veces no hay elecciones inocentes. Su lema: «la ética es el triunfo de la libertad sobre la facticidad».",
+      title: "La ética de la ambigüedad",
+      body: "En Para una moral de la ambigüedad, Beauvoir da la mejor formulación de la ética existencialista: ante todo, evitar la mala fe, no huir de la propia libertad ni de la carga de la subjetividad. Admira a Marx, pero rechaza su determinismo: necesita un espacio para la agencia humana dentro de la teleología. Y toma de Heidegger la finitud —somos seres para la muerte—: ese es el marco de toda decisión.",
+    },
+    {
+      type: "info",
+      tag: "Ética",
+      title: "El triunfo sobre la facticidad",
+      body: "«La ética presupone el fracaso»: la vida trae dilemas en los que a veces no hay elecciones inocentes. Y nunca partimos de una hoja en blanco, sino de una facticidad —lo que ya fuimos, la situación en que estamos arrojados—. Ser moral es trascender esa facticidad asumiendo la libertad, aquí y ahora. Su lema lo condensa todo: «la ética es el triunfo de la libertad sobre la facticidad».",
     },
     {
       type: "quiz",

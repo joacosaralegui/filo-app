@@ -179,7 +179,7 @@ export default {
       type: "info",
       tag: "Cierre",
       title: "El giro lingüístico",
-      body: "Las críticas: relativismo, abolición del sujeto y de la experiencia, ahistoricismo, dispersión de la agencia. Pero el estructuralismo abre el «giro lingüístico»: se relee toda la vida humana —historia, literatura, cultura— según el modelo del lenguaje, y todo se vuelve un constructo lingüístico. La relación precede a las partes. Y queda una pregunta: si el sujeto quedó aplastado, ¿adónde fue? La próxima clase, Girard.",
+      body: "Las críticas: relativismo, abolición del sujeto y de la experiencia, ahistoricismo, dispersión de la agencia. Pero el estructuralismo abre el «giro lingüístico»: se relee toda la vida humana —historia, literatura, cultura— según el modelo del lenguaje, y todo se vuelve un constructo lingüístico. La relación precede a las partes. Y queda una pregunta: si el sujeto quedó aplastado, ¿adónde fue? A esa pregunta responderá Girard.",
     },
   ],
 };

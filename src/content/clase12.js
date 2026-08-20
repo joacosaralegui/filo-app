@@ -215,7 +215,7 @@ export default {
       type: "info",
       tag: "Cierre",
       title: "¿Queda todavía un sujeto?",
-      body: "El Dasein reemplaza al ego trascendental y al sujeto. Pero mientras el ego de Husserl era radicalmente transparente, el Dasein nunca lo es: siempre está en algo, huyendo, tentado por la inautenticidad, con partes ocultas para sí. Ahí Heidegger está más cerca de Freud, es un «maestro de la sospecha». Y deja una pregunta para el resto del curso: sin distancia entre sujeto y objeto, ¿queda todavía un sujeto?",
+      body: "El Dasein reemplaza al ego trascendental y al sujeto. Pero mientras el ego de Husserl era radicalmente transparente, el Dasein nunca lo es: siempre está en algo, huyendo, tentado por la inautenticidad, con partes ocultas para sí. Ahí Heidegger está más cerca de Freud, es un «maestro de la sospecha». Y deja una pregunta que quedará abierta de aquí en más: sin distancia entre sujeto y objeto, ¿queda todavía un sujeto?",
     },
   ],
 };

@@ -87,6 +87,20 @@ export const GLOSSARY = {
     when: "1713–1784",
     body: "Philosophe francés, director de la Encyclopédie, obra emblemática de la Ilustración que buscaba reunir todo el saber humano de forma racional y ordenada. Colaboró con Rousseau antes de distanciarse de él. Encarna el espíritu enciclopédico, secular y comprometido de la Ilustración francesa.",
   },
+  mendelssohn: {
+    term: "Moses Mendelssohn",
+    aka: ["Moses Mendelssohn", "Mendelssohn"],
+    kind: "autor",
+    when: "1729–1786",
+    body: "Filósofo judío alemán, figura de la Ilustración (Haskalá). Ganó el primer premio del concurso de 1784 sobre «¿Qué es la Ilustración?», por delante de Kant. Puso «el destino del hombre como medida y meta de todos nuestros esfuerzos»: una formulación nítida del humanismo ilustrado, el giro de Dios al hombre.",
+  },
+  robespierre: {
+    term: "Maximilien Robespierre",
+    aka: ["Robespierre"],
+    kind: "autor",
+    when: "1758–1794",
+    body: "Líder jacobino de la Revolución Francesa y figura central del Terror (1793-94). Formuló el problema del revolucionario: cómo construir el mundo nuevo con hombres formados por el viejo —«hemos levantado el templo de la libertad con manos aún marchitas por la cruz del despotismo»—. El Terror se asociará luego a la voluntad general de Rousseau.",
+  },
   fichte: {
     term: "Johann Gottlieb Fichte",
     aka: ["Fichte"],
@@ -1161,6 +1175,13 @@ export const GLOSSARY = {
     kind: "concepto",
     when: "desde 1924",
     body: "Vanguardia que vuelve a lo freudiano con el automatismo psíquico: la asociación libre exenta de toda preocupación estética o moral. Max Ernst define el collage como «el acoplamiento de dos realidades que en apariencia no pueden acoplarse»: juntar lo que no va junto.",
+  },
+  constructivismo: {
+    term: "Constructivismo",
+    aka: ["constructivismo", "constructivista"],
+    kind: "concepto",
+    when: "desde 1915",
+    body: "Vanguardia orientada a la utilidad que borra la frontera entre arte e ingeniería, arte y diseño, arte y vida. En vez de representar el mundo, el arte debe fabricarlo: es la versión más literal del arte como creación de vida, ligada al entusiasmo por la técnica y la revolución.",
   },
   manifiesto: {
     term: "Manifiesto (de vanguardia)",
@@ -2318,5 +2339,26 @@ export const GLOSSARY = {
     kind: "autor",
     when: "1920–2005",
     body: "Filósofo y sacerdote polaco, interesado en la fenomenología, luego papa. Conoció la obra de Edith Stein a través de Ingarden y, como papa, la canonizó, diciendo que fue alguien que «con todo su ser, buscó la verdad». De la Ilustración dijo que «no es más que un breve momento en la autobiografía de Dios».",
+  },
+  koestler: {
+    term: "Arthur Koestler",
+    aka: ["Arthur Koestler", "Koestler"],
+    kind: "autor",
+    when: "1905–1983",
+    body: "Escritor húngaro-británico y excomunista. En Oscuridad al mediodía novela los juicios de Moscú, y en The God That Failed narra el desengaño de los intelectuales comunistas. Suya es la imagen de la culpa del que eligió mal: cada excomunista «lleva un esqueleto en el armario de su conciencia».",
+  },
+  cixous: {
+    term: "Hélène Cixous",
+    aka: ["Hélène Cixous", "Cixous"],
+    kind: "autor",
+    when: "1937–",
+    body: "Escritora y teórica feminista posestructuralista, judía argelina y cercana a Derrida. Suya es la frase que resume el impulso del posmodernismo de repensar cómo aprendemos y pensamos, no solo quién manda: «cuando tomaron la Bastilla, se olvidaron de la Sorbona».",
+  },
+  historicidad: {
+    term: "Historicidad",
+    aka: ["historicidad"],
+    kind: "concepto",
+    when: "Heidegger",
+    body: "El modo en que el Dasein está siempre situado en un tiempo y una historia que no elige y desde los cuales existe. Es la alternativa de Heidegger a la Historia con telos de Hegel: permite aprehender un siglo en que «los cambios de escala se vuelven cambios de tipo» sin reducirlo a un paso necesario hacia un fin.",
   },
 };

@@ -221,7 +221,7 @@ export default {
       type: "info",
       tag: "Cierre",
       title: "Fe en la razón contra la barbarie",
-      body: "En 1933 los nazis expulsan a Husserl por «no ario», y él se encierra a clarificar obsesivamente la reducción. Cree que Europa cayó en la barbarie por una pérdida de fe en la razón, y que mostrar que sí se puede alcanzar la verdad absoluta salvaría al mundo. Para él era todo o nada: o la claridad epistemológica pura, o el manicomio. La próxima clase: Heidegger.",
+      body: "En 1933 los nazis expulsan a Husserl por «no ario», y él se encierra a clarificar obsesivamente la reducción. Cree que Europa cayó en la barbarie por una pérdida de fe en la razón, y que mostrar que sí se puede alcanzar la verdad absoluta salvaría al mundo. Para él era todo o nada: o la claridad epistemológica pura, o el manicomio. De su escuela saldrá Heidegger, que dará vuelta la jerarquía: antes que la conciencia, el estar-ya-en-el-mundo.",
     },
   ],
 };

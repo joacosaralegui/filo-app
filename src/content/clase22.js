@@ -29,7 +29,7 @@ export default {
     },
     {
       type: "quiz",
-      question: "¿Por qué la clase liga el auge del posestructuralismo a 1968?",
+      question: "¿Por qué se liga el auge del posestructuralismo a 1968?",
       options: [
         "Porque en 1968 se inventó justo la palabra «deconstrucción»",
         "Porque el aplastamiento de Praga sepulta el marxismo vivido",

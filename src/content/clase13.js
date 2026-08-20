@@ -19,7 +19,7 @@ export default {
       type: "info",
       tag: "Fábula",
       title: "El hipopótamo que debe decidir",
-      body: "Sartre empieza —dice la clase— con un cuento infantil. Todos los animales bailan, juegan y corren… pero no el hipopótamo, que mira desde afuera. Hasta que la manada vuelve y lo invita: «¡vení con nosotros!». Y el hipopótamo no sabe: ¿se queda?, ¿va? Lo crucial es que debe decidir por sí mismo. A eso lo llamaremos decisionismo.",
+      body: "Un cuento infantil lo ilustra mejor que cualquier tratado. Todos los animales bailan, juegan y corren… pero no el hipopótamo, que mira desde afuera. Hasta que la manada vuelve y lo invita: «¡vení con nosotros!». Y el hipopótamo no sabe: ¿se queda?, ¿va? Lo crucial es que debe decidir por sí mismo. A eso lo llamaremos decisionismo.",
     },
     {
       type: "info",
