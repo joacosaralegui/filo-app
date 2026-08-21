@@ -55,6 +55,7 @@
     color: var(--text-soft);
     line-height: 1.65;
     font-size: 20px;
+    white-space: pre-line; /* las viñetas del body vienen en líneas propias */
   }
   .cue {
     margin-top: 34px;

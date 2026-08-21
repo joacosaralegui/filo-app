@@ -42,16 +42,18 @@ if (transcriptNum !== null) {
   classNum = transcriptNum - 1;
 }
 
-// --- Split by ## sections ---
+// --- Split by ## / ### sections ---
+// Los ### son la misma granularidad de subtítulo que los ##: cada uno abre su
+// propia sección, y por lo tanto su propia card con título.
 
 const sections = [];
 let currentSection = null;
 
 for (const line of lines) {
-  const h2Match = line.match(/^##\s+(.+)/);
-  if (h2Match) {
+  const headingMatch = line.match(/^#{2,3}\s+(.+)/);
+  if (headingMatch) {
     if (currentSection) sections.push(currentSection);
-    currentSection = { title: h2Match[1].trim(), lines: [] };
+    currentSection = { title: headingMatch[1].trim(), lines: [] };
   } else if (currentSection) {
     currentSection.lines.push(line);
   }
@@ -61,9 +63,26 @@ if (currentSection) sections.push(currentSection);
 // --- Build cards from sections, one per paragraph ---
 
 function cleanText(text) {
-  return text
-    .replace(/^---$/gm, '')
-    .replace(/^>\s?/gm, '')
+  // Primero línea por línea: las viñetas quedan como líneas propias con •, y
+  // los demás saltos de línea son prosa envuelta, así que se unen con espacio.
+  const out = [];
+  for (const raw of text.split('\n')) {
+    const line = raw.replace(/^>\s?/, '').replace(/^#{1,6}\s+/, '').trim();
+    if (!line || line === '---') continue;
+
+    const bullet = line.match(/^[-*+]\s+(.*)/);
+    if (bullet) {
+      out.push('• ' + bullet[1].trim());
+      continue;
+    }
+    const prev = out[out.length - 1];
+    if (prev !== undefined && !prev.startsWith('• ')) out[out.length - 1] = `${prev} ${line}`;
+    else out.push(line);
+  }
+
+  // Y después lo inline, que no cruza saltos de línea.
+  return out
+    .join('\n')
     .replace(/\*\*(.+?)\*\*/g, '$1')
     .replace(/\*(.+?)\*/g, '$1')
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
@@ -121,20 +140,20 @@ const outputObj = {
 };
 
 function toJS(obj) {
+  const q = (s) => JSON.stringify(s);
   const feedStr = obj.feed.map(card => {
-    const escaped = (s) => s.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
     return `    {
       type: "${card.type}",${card.continues ? '\n      continues: true,' : ''}
-      title: "${escaped(card.title)}",
-      body: "${escaped(card.body)}",
+      title: ${q(card.title)},
+      body: ${q(card.body)},
     }`;
   }).join(',\n');
 
   return `export default {
   num: ${obj.num},
   transcript: ${obj.transcript},
-  title: "${obj.title}",
-  source: "${obj.source}",
+  title: ${q(obj.title)},
+  source: ${q(obj.source)},
   feed: [
 ${feedStr},
   ],
