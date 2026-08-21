@@ -45,6 +45,9 @@
   .sheet {
     width: 100%;
     max-width: 480px;
+    max-height: 85dvh;
+    display: flex;
+    flex-direction: column;
     background: var(--bg);
     border: 1px solid var(--line);
     border-bottom: none;
@@ -95,6 +98,8 @@
     color: var(--text-soft);
     line-height: 1.65;
     font-size: 16px;
+    overflow-y: auto;
+    min-height: 0;
   }
   .close {
     width: 100%;
