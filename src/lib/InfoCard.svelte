@@ -4,8 +4,12 @@
 </script>
 
 <div class="slide-inner info">
-  {#if card.tag}<span class="tag">{card.tag}</span>{/if}
-  <h2>{card.title}</h2>
+  {#if card.continues}
+    <span class="section">↳ {card.title}</span>
+  {:else}
+    {#if card.tag}<span class="tag">{card.tag}</span>{/if}
+    <h2>{card.title}</h2>
+  {/if}
   <p><RichText text={card.body} /></p>
   <span class="cue">↓</span>
 </div>
@@ -30,6 +34,14 @@
     border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
     border-radius: 999px;
     margin-bottom: 18px;
+  }
+  .section {
+    align-self: flex-start;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: color-mix(in srgb, var(--text-soft) 55%, transparent);
+    margin-bottom: 10px;
   }
   h2 {
     font-size: 30px;

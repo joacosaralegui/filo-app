@@ -87,43 +87,26 @@ function splitParagraphs(lines) {
   return paragraphs;
 }
 
-function guessTag(title) {
-  const lower = title.toLowerCase();
-  if (lower.includes('conclusi') || lower.includes('cierre') || lower.includes('legado')) return 'Cierre';
-  if (lower.includes('palabra') || lower.includes('clave')) return 'Palabra clave';
-  if (lower.includes('modelo')) return 'Modelo';
-  if (lower.includes('panorama') || lower.includes('introducc')) return 'Panorama';
-  if (lower.includes('revoluc')) return 'Revolución';
-  return 'Idea central';
-}
-
 const cards = [];
+const skipped = [];
 for (const section of sections) {
-  const tag = guessTag(section.title);
+  const title = cleanText(section.title);
   const paragraphs = splitParagraphs(section.lines);
+  let first = true;
 
-  let sectionTag = tag;
-  let startIdx = 0;
-
-  // Check first paragraph for > tag: directive
-  if (paragraphs.length > 0) {
-    const tagMatch = paragraphs[0].match(/^>\s*tag:\s*(.+)/i);
-    if (tagMatch) {
-      sectionTag = tagMatch[1].trim();
-      startIdx = 1;
+  for (const paragraph of paragraphs) {
+    const body = cleanText(paragraph);
+    if (!body || body.length < 30) {
+      if (body) skipped.push(`${title}: ${body}`);
+      continue;
     }
-  }
 
-  for (let i = startIdx; i < paragraphs.length; i++) {
-    const body = cleanText(paragraphs[i]);
-    if (!body || body.length < 30) continue;
-
-    cards.push({
-      type: 'info',
-      tag: sectionTag,
-      title: cleanText(section.title) + (paragraphs.length - startIdx > 1 ? ` (${i - startIdx + 1})` : ''),
-      body,
-    });
+    // La primera card de la sección muestra el título; las siguientes repiten
+    // el mismo título como badge discreto (ver InfoCard.svelte).
+    const card = { type: 'info', title, body };
+    if (!first) card.continues = true;
+    cards.push(card);
+    first = false;
   }
 }
 
@@ -141,8 +124,7 @@ function toJS(obj) {
   const feedStr = obj.feed.map(card => {
     const escaped = (s) => s.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
     return `    {
-      type: "${card.type}",
-      tag: "${escaped(card.tag)}",
+      type: "${card.type}",${card.continues ? '\n      continues: true,' : ''}
       title: "${escaped(card.title)}",
       body: "${escaped(card.body)}",
     }`;
@@ -165,3 +147,7 @@ const output = toJS(outputObj);
 const outputPath = process.argv[3] || inputPath.replace(/\.md$/, '.cards.js');
 writeFileSync(outputPath, output);
 console.log(`Generated ${cards.length} info cards → ${outputPath}`);
+if (skipped.length) {
+  console.log(`\nSalteados ${skipped.length} párrafo(s) de menos de 30 caracteres:`);
+  for (const s of skipped) console.log(`  - ${s}`);
+}

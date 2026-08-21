@@ -1,7 +1,9 @@
 # Cómo se arma una clase
 
 Guía para producir el contenido de una clase de forma consistente. La referencia
-viva es `src/content/clase02.js` (la Clase 1 de la app).
+viva es `src/content/clase02.js` (la Clase 1 de la app): las cards de info salen
+de correr `scripts/md-to-cards.mjs` sobre la transcripción y las interactivas se
+escriben a mano encima.
 
 ## Numeración
 
@@ -17,13 +19,21 @@ Dos tipos, intercalados: **unas cards de info y luego las cards de quiz que las 
 ### Card de info — resume una idea de la clase
 
 ```js
-{ type: "info", tag: "Epistemología", title: "Descartes y la duda radical", body: "..." }
+{ type: "info", title: "Cogito, ergo sum", body: "..." }
+{ type: "info", continues: true, title: "Cogito, ergo sum", body: "..." }
 ```
 
-- `tag`: categoría corta (Panorama, Idea central, Contrato social, Kant…).
-- `title`: título del concepto.
+- `title`: título del concepto, que es el subtítulo `##` de la transcripción.
+- `continues`: la sección venía de la card anterior. La primera card de cada
+  subtítulo lo muestra como **título grande**; las siguientes repiten el mismo
+  `title` como **badge discreto** (`↳ Cogito, ergo sum`), así el cuerpo se lee
+  como continuación y igual sabés en qué subtítulo estás. Nunca numeres los
+  títulos con `(1)`, `(2)`: para eso está el flag.
 - `body`: **resumen fiel de la clase**. 40–70 palabras. Tono sobrio y claro, sin
   chistes ni coloquialismos propios. Fidelidad al contenido por encima del estilo.
+- `tag`: categoría corta (Panorama, Idea central, Contrato social…). **Opcional
+  y en retirada**: las clases viejas lo usan en cada card, las nuevas no lo
+  llevan. Si está, se muestra arriba del título grande.
 
 ### Card de quiz — pone a prueba lo anterior
 
