@@ -162,7 +162,10 @@ para que ninguna racha se haga larga, y variá los formatos según lo que pida e
 material: `quiz` de base, más `classify`/`match`/`short` cuando aparezca la
 ocasión (una comparación fuerte, un set de pares autor↔idea, un término que
 valga la pena fijar de memoria). Abrí con una card de panorama y cerrá con una
-de síntesis. Como orden de magnitud, una clase ronda ~12–16 info + ~8
+de síntesis.
+
+**El `match` de repaso final va siempre antes de la conclusión**, nunca después:
+la clase tiene que cerrar con el texto de cierre, no con un ejercicio. Como orden de magnitud, una clase ronda ~12–16 info + ~8
 interactivas, pero es referencia, no cuota. Lo crítico es no saltearse ni perder ningún contenido central de la clase.
 
 **Una card sólo evalúa lo ya presentado.** No preguntes en un `quiz`, `match` o
