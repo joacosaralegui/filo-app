@@ -81,7 +81,7 @@ export default {
     {
       type: "info",
       title: "El desplazo de Dios por la razón",
-      body: "Esta fe en la razón ocupa el lugar dominante que tenía el cristianismo. No matamos a Dios ni al cristianismo, pero ocurre algo que Max Weberllamará Entzauberung, desencanto. Dejamos atrás la sensación de que hay milagros, fuerzas inasibles, criaturas míticas, un más allá, dioses o al menos un Dios, para dar lugar a un mundo explicado por la razón. Hay una sobriedad en ello. Puede vivirse de dos maneras: el ánimo de los ilustrados era regocijarse en el desencanto y en la razón; pero, como veremos con el Romanticismo, mucha gente lo encontrará profundamente decepcionante.",
+      body: "Esta fe en la razón ocupa el lugar dominante que tenía el cristianismo. No matamos a Dios ni al cristianismo, pero ocurre algo que Max Weber llamará Entzauberung, 'desencanto'. Dejamos atrás la sensación de que hay milagros, fuerzas inasibles, criaturas míticas, un más allá, dioses o al menos un Dios, para dar lugar a un mundo explicado por la razón. Hay una sobriedad en ello. Puede vivirse de dos maneras: el ánimo de los ilustrados era regocijarse en el desencanto y en la razón; pero, como veremos con el Romanticismo, mucha gente lo encontrará profundamente decepcionante.",
     },
     {
       type: "info",
@@ -230,6 +230,40 @@ export default {
       ],
       answer: 2,
       explain: "Rousseau es diametralmente opuesto a Hobbes: el estado de naturaleza era virtud, y la propiedad corrompió al hombre. Y su voluntad general no es la suma de las voluntades particulares —eso es lo que él llama la voluntad de todos—, sino lo que quiere el cuerpo político como tal. Nadie la define con precisión, y después se la invocará para justificar el Terror.",
+    },
+    {
+      type: "info",
+      title: "Hume y el empirismo",
+      body: "David Hume (1711-1776) fue un filósofo, historiador, economista y ensayista escocés, que se esforzó por crear una ciencia naturalista del hombre que examinara la base psicológica de la naturaleza humana. Hume argumentó en contra de la existencia de ideas innatas, postulando que todo el conocimiento humano se deriva únicamente de la experiencia. Las ideas son derivaciones de las impresiones o sensaciones sensoriales.",
+    },
+    {
+      type: "quiz",
+      question: "Para Hume, una idea vale objetivamente cuando…",
+      options: [
+        "la razón puede deducirla sin usar los sentidos",
+        "concuerda con las impresiones de las que deriva",
+        "todos los seres humanos la comparten por igual",
+        "resulta útil para orientarse en la vida práctica",
+      ],
+      answer: 1,
+      explain: "Contra los racionalistas y sus ideas innatas, Hume sostiene que todo el conocimiento humano se deriva únicamente de la experiencia: las ideas no son otra cosa que derivaciones de las impresiones sensoriales. De ahí el criterio: rastrear una idea hasta las impresiones de las que viene es el único modo de saber si nombra algo real, y la que no puede rastrearse no es conocimiento de nada.",
+    },
+    {
+      type: "info",
+      title: "La causalidad para Hume",
+      body: "Argumentó que el razonamiento inductivo y la creencia en la causalidad no pueden justificarse racionalmente; en cambio, son el resultado de la costumbre y el hábito mental. Este problema de la inducción significa que para sacar cualquier inferencia causal de la experiencia pasada es necesario presuponer que el futuro se parecerá al pasado, una presuposición que no puede fundamentarse en la experiencia previa. Un oponente de los racionalistas, Hume sostuvo que «la razón es, y debe ser solo la esclava de las pasiones». Kant contará que fue justamente esta objeción la que lo despertó de su sueño dogmático, y a responderla dedicará su epistemología. ",
+    },
+    {
+      type: "quiz",
+      question: "¿Por qué la inferencia causal no puede justificarse racionalmente?",
+      options: [
+        "porque la razón es esclava de las pasiones",
+        "porque presupone que el futuro imitará al pasado",
+        "porque nunca llegamos a observar suficientes casos",
+        "porque los sentidos a veces nos engañan al observar",
+      ],
+      answer: 1,
+      explain: "Toda inferencia causal a partir de la experiencia pasada necesita dar por sentado que el futuro se parecerá al pasado, y esa presuposición no puede fundarse a su vez en la experiencia previa sin dar por buena de antemano justamente aquello que había que probar. No es un problema de juntar más casos: por eso Hume termina atribuyendo la creencia en la causalidad a la costumbre y el hábito mental, no a la razón.",
     },
     {
       type: "info",
