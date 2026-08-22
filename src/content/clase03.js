@@ -47,7 +47,13 @@ export default {
     {
       type: "info",
       title: "El Romanticismo como rebelión",
-      body: "El Romanticismo entra como una rebelión contra ese ánimo. A veces se lo llama Gegenaufklärung, la contra-Ilustración. Como todo en la vida, ante cualquier cosa que domina surge una rebelión en contra. Si los géneros ilustrativos de la Ilustración son la teoría del contrato social y la Encyclopédie de Diderot, los del Romanticismo van a ser la poesía y, en cierta medida, el teatro. Si el centro de la Ilustración es Francia, el centro del Romanticismo va a ser Alemania. La idea de fondo es la del desencanto del mundo —lo que Weber llama Entzauberung—: el mundo ya no es mágico, los reyes no gobiernan por derecho divino, no hay fuerzas sobrenaturales que otorguen gracia o castigo. Somos seres humanos que, de manera sobria y racional, usamos la mente para comprender el mundo.",
+      body: "El Romanticismo entra como una rebelión contra ese ánimo. A veces se lo llama Gegenaufklärung, la contra-Ilustración. Como todo en la vida, ante cualquier cosa que domina surge una rebelión en contra. Si los géneros ilustrativos de la Ilustración son la teoría del contrato social y la Encyclopédie de Diderot, los del Romanticismo van a ser la poesía y, en cierta medida, el teatro.",
+    },
+    {
+      type: "info",
+      continues: true,
+      title: "El Romanticismo como rebelión",
+      body: "Si el centro de la Ilustración es Francia, el centro del Romanticismo va a ser Alemania. La idea de fondo es la del desencanto del mundo —lo que Weber llama Entzauberung—: el mundo ya no es mágico, los reyes no gobiernan por derecho divino, no hay fuerzas sobrenaturales que otorguen gracia o castigo. Somos seres humanos que, de manera sobria y racional, usamos la mente para comprender el mundo.",
     },
     {
       type: "info",
@@ -141,7 +147,13 @@ export default {
     {
       type: "info",
       title: "La virtud de la autenticidad",
-      body: "Una de las cosas que los románticos toman de Rousseau es la virtud de la autenticidad, un gran tema romántico. El Primer discurso plantea que el burgués es siempre otro y nunca él mismo: vivimos en un mundo donde competimos por lucirnos, donde el amor propio, el orgullo, la vanidad, la presunción y el egocentrismo son la verdadera causa de nuestro descontento. Responsable de ello es la sociedad, el hecho de que ya no vivimos en el estado de naturaleza: eso creó esta corrupción, este amor propio. No es natural; es artificial, una vanidad nacida de la mirada de los demás. La propiedad es corruptora: nos lleva a la competencia y a la vanidad. La sociedad es falsificadora: nos hace fingir ser distintos de quienes somos. No hay virtud sin autenticidad, y la autenticidad exige un retiro de la sociedad.",
+      body: "Una de las cosas que los románticos toman de Rousseau es la virtud de la autenticidad, un gran tema romántico. El Primer discurso plantea que el burgués es siempre otro y nunca él mismo: vivimos en un mundo donde competimos por lucirnos, donde el amor propio, el orgullo, la vanidad, la presunción y el egocentrismo son la verdadera causa de nuestro descontento.",
+    },
+    {
+      type: "info",
+      continues: true,
+      title: "La virtud de la autenticidad",
+      body: "Responsable de ello es la sociedad, el hecho de que ya no vivimos en el estado de naturaleza: eso creó esta corrupción, este amor propio. No es natural; es artificial, una vanidad nacida de la mirada de los demás. La propiedad es corruptora: nos lleva a la competencia y a la vanidad. La sociedad es falsificadora: nos hace fingir ser distintos de quienes somos. No hay virtud sin autenticidad, y la autenticidad exige un retiro de la sociedad.",
     },
     {
       type: "info",
@@ -169,19 +181,25 @@ export default {
     {
       type: "info",
       title: "La Crítica de la razón pura (1781)",
-      body: "Primero, unas palabras sobre la Crítica de la razón pura, un libro larguísimo y complicado. La Crítica de la razón pura trata de los límites de la razón humana, pero no de un modo pesimista: trata de lo que podemos y no podemos conocer racionalmente. ¿Qué podemos comprender del mundo? ¿Existe el mundo con independencia de cómo lo percibimos? ¿Cómo sé que esta botella de agua existe y no es una proyección de mi imaginación? ¿Cómo sé cómo es el mundo con independencia de la mente, si nunca puedo salir de mi mente?",
+      body: "La Crítica de la razón pura trata de los límites de la razón humana, pero no de un modo pesimista: trata de lo que podemos y no podemos conocer racionalmente. ¿Qué podemos comprender del mundo? ¿Existe el mundo con independencia de cómo lo percibimos? ¿Cómo sé que esta botella de agua existe y no es una proyección de mi imaginación? ¿Cómo sé cómo es el mundo con independencia de la mente, si nunca puedo salir de mi mente?",
     },
     {
       type: "info",
       continues: true,
       title: "La Crítica de la razón pura (1781)",
-      body: "• El realismo decía: sí, el mundo es real, existe, y nuestra mente debe conformarse a lo que él es.\n• El idealismo decía: no, todo está dentro de nuestra cabeza; quién sabe qué ocurre afuera, no hay manera de salir.",
+      body: "• El realismo decía: sí, el mundo es real, existe, y nuestra mente debe conformarse a lo que él es.\n• El idealismo decía: no, todo está dentro de nuestra cabeza; quién sabe qué ocurre afuera, no hay manera de salir.\n\nKant llega y negocia un compromiso. Dice: sí, el mundo es real, creo que hay un mundo en sí mismo fuera de las estructuras de nuestra mente —su famosa 'Ding an sich', la cosa en sí—, pero no tenemos acceso directo a ella.",
     },
     {
       type: "info",
       continues: true,
       title: "La Crítica de la razón pura (1781)",
-      body: "Kant llega y negocia un compromiso. Dice: sí, el mundo es real, creo que hay un mundo en sí mismo —su famosa Ding an sich, la cosa en sí, expresión que conviene aprender y usar para impresionar en los cócteles (si es que todavía existen los cócteles)—, la cosa tal como existe por sí misma, fuera de las estructuras de nuestra mente. Kant cree que existe, pero también cree que no tenemos acceso directo a ella, porque no podemos salir de nuestra propia cabeza. Solo podemos comprender la realidad tal como se conforma a las estructuras de nuestra mente. La Ding an sich, en cierto sentido, es un concepto vacío: el mundo tal como no es conocido. Solo tenemos acceso al mundo tal como se nos aparece.",
+      body: "Como no podemos salir de nuestra propia cabeza, solo podemos comprender la realidad tal como se conforma a las estructuras de nuestra mente. La 'Ding an sich', en cierto sentido, es un concepto vacío: el mundo tal como no es conocido. Solo tenemos acceso al mundo tal como se nos aparece.",
+    },
+    {
+      type: "info",
+      continues: true,
+      title: "La Crítica de la razón pura (1781)",
+      body: "Kant negocia también el compromiso entre racionalismo y empirismo (que podemos dejar entre paréntesis por ahora): recibimos datos sensoriales empíricos del mundo —hay una receptividad—, pero también imponemos espontáneamente sobre esos datos las estructuras de nuestra conciencia, en particular el tiempo, el espacio y la causalidad, que están como \"cableados\" de fábrica",
     },
     {
       type: "match",
@@ -192,12 +210,6 @@ export default {
         { left: "Kant", right: "Hay una cosa en sí, pero sólo accedemos a cómo se aparece" },
       ],
       explain: "Kant negocia un compromiso entre las dos: cree que hay un mundo en sí, su Ding an sich, pero también que no tenemos acceso directo a él porque no podemos salir de nuestra propia cabeza. Sólo comprendemos la realidad tal como se conforma a las estructuras de nuestra mente, así que la cosa en sí es casi un concepto vacío: el mundo tal como no es conocido.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "La Crítica de la razón pura (1781)",
-      body: "Kant negocia también el compromiso entre racionalismo y empirismo (que podemos dejar entre paréntesis por ahora): recibimos datos sensoriales empíricos del mundo —hay una receptividad—, pero también imponemos espontáneamente sobre esos datos las estructuras de nuestra conciencia, en particular el tiempo, el espacio y la causalidad, que están como \"cableados\" de fábrica",
     },
     {
       type: "quiz",
@@ -214,7 +226,7 @@ export default {
     {
       type: "info",
       title: "Lo que los románticos toman de Kant: la filosofía moral",
-      body: "Los románticos toman de Kant su filosofía moral, construida en cierto sentido de manera opuesta a su epistemología. La Crítica de la razón pura es larguísima, detallada, técnica, ardua. La filosofía moral kantiana dice que, para que haya moralidad, tiene que haber libre albedrío. Sin libre albedrío humano no podemos hablar de ética. No podemos demostrar el libre albedrío, pero lo necesitamos, así que simplemente lo postulamos: dejamos de intentar probarlo y decimos que está ahí. (Y ya que estamos, digamos también que Dios existe.) Lo importante es que solo un individuo con libre albedrío puede tomar decisiones morales. Su filosofía moral se ocupa de la libertad del hombre, de su libre elección, de su voluntad no coaccionada, de su autonomía esencial.",
+      body: "La filosofía moral kantiana dice que, para que haya moralidad, tiene que haber libre albedrío. Sin libre albedrío humano no podemos hablar de ética. Como no podemos demostrar el libre albedrío, pero lo necesitamos, lo vamos a tener que postular, dice Kant. Dejamos de intentar probarlo y digamos que está ahí. (Y ya que estamos, digamos también que Dios existe.) Lo importante es que solo un individuo con libre albedrío puede tomar decisiones morales.",
     },
     {
       type: "info",
@@ -225,7 +237,7 @@ export default {
       type: "info",
       continues: true,
       title: "El deber, la intención, el imperativo categórico",
-      body: "Lo que importa para Kant son las intenciones. Actuar moralmente es actuar por sentido del deber, hacer lo que uno sabe que es correcto. Ahora bien, el camino al infierno está empedrado de buenas intenciones: podés actuar con intenciones moralmente puras y aun así provocar un desastre. Kant dice: no es tu culpa. Una vez que actuás, tus acciones entran en complejas redes de causalidad —seguramente oyeron hablar del efecto mariposa—, y sobre eso no podés hacer nada. Para evaluar moralmente una acción, lo que cuenta es la intención, la voluntad: ¿tenés la voluntad de actuar por sentido del deber moral? Es todo cuestión de voluntad —y los románticos van a tomar esta idea de la voluntad y a llevarla al extremo—.",
+      body: "Lo que importa para Kant son las intenciones. Actuar moralmente es actuar por sentido del deber, hacer lo que uno sabe que es correcto. Ahora bien, podés actuar con intenciones moralmente puras y aun así provocar un desastre. Kant dice: no es tu culpa. Una vez que actuás, tus acciones entran en complejas redes de causalidad y sobre eso no podés hacer nada. Para evaluar moralmente una acción, lo que cuenta es la intención, la voluntad. Los románticos van a tomar esta idea de la voluntad y a llevarla al extremo.",
     },
     {
       type: "quiz",
@@ -242,7 +254,7 @@ export default {
     {
       type: "info",
       title: "Dignidad, libertad y voluntad",
-      body: "Para Kant, libertad y moralidad se definen mutuamente; todo gira en torno a los motivos. La moralidad no puede hallarse en nada exterior a la voluntad humana. Esto atañe también a la dignidad humana: no es solo la razón la que nos da dignidad, sino el hecho de que tenemos libre albedrío. De ahí su famoso principio moral fundamental —al que la gente vuelve, igual que al sapere aude, cuando las cosas se ponen demasiado oscuras—: tratar siempre al ser humano como un fin y nunca como un medio; tratar siempre a la otra persona como un sujeto, como un agente, y no como un objeto, no como una cosa. Y su célebre definición: Todo lo que puede ser reemplazado por otra cosa de valor equivalente tiene un precio; aquello que está por encima de todo precio y no admite equivalente tiene dignidad.",
+      body: "Para Kant, libertad y moralidad se definen mutuamente; todo gira en torno a los motivos. La moralidad no puede hallarse en nada exterior a la voluntad humana. Esto atañe también a la dignidad humana: no es solo la razón la que nos da dignidad, sino el hecho de que tenemos libre albedrío. De ahí su famoso principio moral fundamental: tratar siempre a la otra persona como un sujeto, como un agente, y no como un objeto, no como una cosa. Y su célebre definición: Todo lo que puede ser reemplazado por otra cosa de valor equivalente tiene un precio; aquello que está por encima de todo precio y no admite equivalente tiene dignidad.",
     },
     {
       type: "match",
@@ -259,12 +271,12 @@ export default {
     {
       type: "info",
       title: "El legado kantiano en el Romanticismo: la primacía de la voluntad",
-      body: "El legado kantiano para los románticos va a ser la primacía de la voluntad: tenemos libre albedrío, podemos elegir actuar moralmente. El ánimo de Kant como escritor no era romántico —era un racionalista sobrio y moderado en su estilo—, pero los románticos toman esta idea de la voluntad —importa el motivo, la intención, porque tenemos libre albedrío— y la convierten en un valor absoluto. El Romanticismo va a dedicar mucho tiempo a hablar de la necesidad de actuar, de la creación como imperativo existencial: este devenir aquello en lo que podemos convertirnos. El destino, en cierto sentido, importa menos que el acto mismo de creación. La verdad no es necesariamente algo que se halla o se comprende: es algo que se crea; no algo que descubrís en un laboratorio, sino algo que producís. El modelo es el arte, no la ciencia.",
+      body: "El Romanticismo va a dedicar mucho tiempo a hablar de la necesidad de actuar, de la creación como imperativo existencial: este devenir aquello en lo que podemos convertirnos. El destino, en cierto sentido, importa menos que el acto mismo de creación. La verdad no es necesariamente algo que se halla o se comprende: es algo que se crea; no algo que descubrís en un laboratorio, sino algo que producís. El modelo es el arte, no la ciencia.",
     },
     {
       type: "info",
       title: "Del cogito al volo",
-      body: "Los románticos toman el cogito ergo sum cartesiano —\"pienso, luego existo\"— y lo contraponen con \"quiero, deseo, luego existo\". En lugar de fundar la subjetividad en la cognición, en el pensar, la fundan en el deseo, en la voluntad. Distintas maneras de contraponer razón y pasión: no es cogito ergo sum, es volo ergo sum.",
+      body: "Los románticos toman el cogito ergo sum cartesiano —\"pienso, luego existo\"— y lo contraponen con \"quiero/deseo, luego existo\". En lugar de fundar la subjetividad en la cognición, en el pensar, la fundan en el deseo, en la voluntad. Distintas maneras de contraponer razón y pasión: no es cogito ergo sum, es volo ergo sum.",
     },
     {
       type: "info",
@@ -287,7 +299,7 @@ export default {
     {
       type: "info",
       title: "Consecuencias y rasgos del Romanticismo",
-      body: "De aquí surgen: el enorme valor de la sinceridad; el motivo como más importante que la consecuencia; el imperativo de no traicionar jamás los propios ideales a ningún costo. Pueden imaginar todo el potencial de los duelos románticos: a veces hay que sacrificarse por la persona amada, a veces hay que hacer cosas irracionales para actuar según los propios sentimientos auténticos, la pureza de corazón. Los ideales chocan; a veces dos hombres aman a la misma mujer y deben batirse a duelo, y uno debe morir, porque la tragedia es endémica a la condición humana. Ese es el momento romántico por excelencia: lo importante es no traicionar tus ideales.",
+      body: "De aquí surgen: el enorme valor de la sinceridad; el motivo como más importante que la consecuencia; el imperativo de no traicionar jamás los propios ideales a ningún costo. Los ideales chocan; a veces dos hombres aman a la misma mujer y deben batirse a duelo, y uno debe morir, porque la tragedia es endémica a la condición humana. Ese es el momento romántico por excelencia: lo importante es no traicionar tus ideales.",
     },
     {
       type: "info",
