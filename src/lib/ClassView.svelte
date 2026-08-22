@@ -121,6 +121,9 @@
 
   $: pct = totalQuiz ? Math.round((correctCount / totalQuiz) * 100) : 0;
 
+  // 3 estrellas según el porcentaje de aciertos: 90% / 70% / 40%
+  $: stars = pct >= 90 ? 3 : pct >= 70 ? 2 : pct >= 40 ? 1 : 0;
+
   let feedEl;
   let scrollPct = 0;
 
@@ -246,9 +249,10 @@
 
   <section class="slide end">
     <div class="end-inner">
-      <div class="medal">
-        <span class="medal-frac">{correctCount}<i>/{totalQuiz}</i></span>
-        <span class="medal-cap">correctas</span>
+      <div class="stars" role="img" aria-label="{stars} de 3 estrellas">
+        {#each [0, 1, 2] as i}
+          <span class="star" class:on={i < stars} style="--d:{i * 140}ms">★</span>
+        {/each}
       </div>
 
       <h2 class="end-title">Clase completada</h2>
@@ -260,8 +264,8 @@
           <span>puntos</span>
         </div>
         <div class="stat">
-          <b>{pct}%</b>
-          <span>aciertos</span>
+          <b>{correctCount}<i>/{totalQuiz}</i></b>
+          <span>correctas</span>
         </div>
       </div>
 
@@ -395,47 +399,23 @@
     flex-direction: column;
     align-items: center;
   }
-  .medal {
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
+  .stars {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-    background: radial-gradient(
-      circle at 50% 35%,
-      color-mix(in srgb, var(--accent) 22%, var(--surface)),
-      var(--surface)
-    );
-    border: 2px solid color-mix(in srgb, var(--accent) 55%, var(--line));
-    box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 28%, transparent);
-    animation: medalIn 0.5s cubic-bezier(0.2, 0.8, 0.3, 1.2) both;
-  }
-  .medal-frac {
-    font-size: 38px;
-    font-weight: 900;
+    gap: 10px;
     line-height: 1;
-    color: var(--accent-ink);
-    letter-spacing: -1px;
   }
-  .medal-frac i {
-    font-style: normal;
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--text-soft);
+  .star {
+    font-size: 52px;
+    color: var(--line);
+    animation: starIn 0.45s cubic-bezier(0.2, 0.8, 0.3, 1.4) var(--d) both;
   }
-  .medal-cap {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text-soft);
+  .star.on {
+    color: var(--accent-2);
+    text-shadow: 0 4px 18px color-mix(in srgb, var(--accent-2) 55%, transparent);
   }
-  @keyframes medalIn {
-    from { opacity: 0; transform: scale(0.6) translateY(10px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
+  @keyframes starIn {
+    from { opacity: 0; transform: scale(0.4) rotate(-25deg); }
+    to { opacity: 1; transform: scale(1) rotate(0); }
   }
   .end-title {
     margin: 18px 0 0;
@@ -471,6 +451,12 @@
     font-weight: 900;
     color: var(--accent-ink);
     letter-spacing: -0.5px;
+  }
+  .stat b i {
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text-soft);
   }
   .stat span {
     font-size: 11px;
