@@ -16,6 +16,8 @@
   $: last = $progress.lastActivity;
   $: lastCourseMeta = last ? courses.find((c) => c.id === last.courseId) : null;
   $: heroActive = !!(last && lastCourseMeta);
+  // El curso destacado arriba no se repite en la lista de abajo.
+  $: otherCourses = heroActive ? courses.filter((c) => c.id !== last.courseId) : courses;
 
   const open = (c) => dispatch("open", c);
   const resume = (c, num) => dispatch("resume", { id: c.id, num });
@@ -49,21 +51,20 @@
     {@const heroAccent = accentOf(lastCourseMeta)}
     <button
       style="--course-accent: {heroAccent}"
-      class="group mb-8 flex w-full flex-col gap-3 rounded-[20px] bg-[var(--course-accent)] p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+      class="group mb-8 flex w-full flex-col gap-3 rounded-[20px] bg-surface p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
       on:click={() => resume(lastCourseMeta, last.num)}
     >
-      <span class="text-[11px] font-bold tracking-[1.4px] text-on-accent/75 uppercase">Continuar con</span>
+      <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Continuar con</span>
       <div class="flex flex-col gap-2">
-        <h2 class="font-serif text-[21px] leading-[1.25] font-semibold text-on-accent">
+        <h2 class="font-serif text-[21px] leading-[1.25] font-semibold text-text">
           Clase {last.num} · {last.title}
         </h2>
-        <p class="font-serif text-[14px] leading-[1.3] font-medium text-on-accent/80 italic">
+        <p class="font-serif text-[14px] leading-[1.3] font-medium italic [color:var(--course-accent)]">
           {lastCourseMeta.title}{lastCourseMeta.subtitle ? ` · ${lastCourseMeta.subtitle}` : ""}
         </p>
       </div>
-      <!-- Botón invertido: sobre la tarjeta llena, el claro es el que resalta. -->
       <span
-        class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-bg px-6 py-[15px] text-[15px] font-bold [color:var(--course-accent)] transition-transform group-active:scale-[0.97]"
+        class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-[var(--course-accent)] px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
       >
         Continuar
         <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
@@ -79,13 +80,14 @@
       </span>
     </button>
 
-    <p class="mb-3.5 text-xs font-bold tracking-[1.6px] text-text-soft/70 uppercase">Todos los cursos</p>
+    {#if otherCourses.length}
+      <p class="mb-3.5 text-xs font-bold tracking-[1.6px] text-text-soft/70 uppercase">Otros cursos</p>
+    {/if}
   {/if}
 
   <div class="flex flex-col gap-[18px]">
-    {#each courses as c (c.id)}
+    {#each otherCourses as c (c.id)}
       {@const cLast = lastClassOf(c.id)}
-      {@const isCurrent = heroActive && last.courseId === c.id}
       {@const cAccent = accentOf(c)}
       <button
         style="--course-accent: {cAccent}"
@@ -99,11 +101,9 @@
               >{c.subtitle}</span
             >{/if}
           <p class="mt-2.5 text-[13px] leading-normal text-text-soft">{c.blurb}</p>
-          {#if !isCurrent}
-            <small class="mt-3 text-[10.5px] font-bold tracking-[0.6px] text-text-soft/70 uppercase"
-              >{cLast == null ? "Empezar" : "Seguir viendo"}</small
-            >
-          {/if}
+          <small class="mt-3 text-[10.5px] font-bold tracking-[0.6px] text-text-soft/70 uppercase"
+            >{cLast == null ? "Empezar" : "Seguir viendo"}</small
+          >
         </div>
         <span class="self-center text-2xl font-semibold opacity-80 [color:var(--course-accent)]">›</span>
       </button>
