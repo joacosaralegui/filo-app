@@ -38,10 +38,9 @@
     <div class="cover">
       <img class="cover-img" src={socrates} alt="" />
       <div class="cover-text">
-        <h1 class="m-0 font-serif text-[46px] leading-none font-semibold tracking-[0.14em] text-text">
+        <h1 class="m-0 font-serif text-[62px] leading-none font-semibold tracking-[0.14em] text-text">
           FILO
         </h1>
-        <p class="m-0 text-[12.5px] font-semibold tracking-[0.06em] text-text">Filosofía para amateurs</p>
       </div>
     </div>
   </header>
@@ -136,8 +135,8 @@
   .cover {
     position: relative;
     overflow: hidden;
-    height: 31dvh;
-    min-height: 215px;
+    height: 25dvh;
+    min-height: 180px;
     /* radio enorme arriba = domo; el navegador lo recorta a la mitad del ancho */
     border-radius: 100vw 100vw 20px 20px;
   }
