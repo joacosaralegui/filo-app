@@ -145,7 +145,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 16%;
+    object-position: 50% 34%;
   }
   .cover-text {
     position: absolute;
