@@ -37,14 +37,11 @@
     <span class="cover-disc" aria-hidden="true"></span>
     <div class="cover">
       <img class="cover-img" src={socrates} alt="" />
-      <span class="cover-scrim" aria-hidden="true"></span>
       <div class="cover-text">
-        <h1 class="m-0 font-serif text-[46px] leading-none font-semibold tracking-[0.14em] text-on-accent">
+        <h1 class="m-0 font-serif text-[46px] leading-none font-semibold tracking-[0.14em] text-text">
           FILO
         </h1>
-        <p class="m-0 text-[12.5px] font-semibold tracking-[0.06em] text-on-accent/85">
-          Filosofía para amateurs
-        </p>
+        <p class="m-0 text-[12.5px] font-semibold tracking-[0.06em] text-text">Filosofía para amateurs</p>
       </div>
     </div>
   </header>
@@ -150,18 +147,6 @@
     height: 100%;
     object-fit: cover;
     object-position: 50% 16%;
-  }
-  /* Oscurece sólo el centro, donde va la marca: garantiza contraste sin
-     apagar la ilustración en los bordes. */
-  .cover-scrim {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse 72% 58% at 50% 50%,
-      color-mix(in srgb, var(--text) 62%, transparent) 0%,
-      color-mix(in srgb, var(--text) 30%, transparent) 55%,
-      transparent 85%
-    );
   }
   .cover-text {
     position: absolute;
