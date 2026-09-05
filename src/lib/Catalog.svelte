@@ -1,6 +1,5 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import logo from "../assets/logo.webp";
   import socrates from "../assets/socrates.webp";
   import { progress, courseStateOf } from "./progress.js";
   export let courses = [];
@@ -31,25 +30,24 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+28px)]"
 >
-  <!-- En la home el logo es la marca, no un control de navegación: va grande
-       al lado del título. Las pantallas internas usan el TopBar compacto. -->
-  <header class="mb-7 flex items-center gap-4">
-    <img class="h-[108px] w-[108px] flex-none object-contain" src={logo} alt="" aria-hidden="true" />
-    <div class="flex min-w-0 flex-col gap-1">
-      <h1 class="m-0 font-serif text-[38px] leading-[1] font-semibold tracking-[-0.5px] text-text">Filo</h1>
-      <p class="text-[13.5px] leading-snug text-text-soft">Filosofía para amateurs</p>
+  <!-- Header de la home: la lámina recortada en arco, con la marca encima.
+       Va siempre (no sólo sin progreso), así que es más baja que la portada
+       anterior para que la tarjeta de "Continuar" siga entrando en pantalla. -->
+  <header class="cover-wrap mb-8">
+    <span class="cover-disc" aria-hidden="true"></span>
+    <div class="cover">
+      <img class="cover-img" src={socrates} alt="" />
+      <span class="cover-scrim" aria-hidden="true"></span>
+      <div class="cover-text">
+        <h1 class="m-0 font-serif text-[46px] leading-none font-semibold tracking-[0.14em] text-on-accent">
+          FILO
+        </h1>
+        <p class="m-0 text-[12.5px] font-semibold tracking-[0.06em] text-on-accent/85">
+          Filosofía para amateurs
+        </p>
+      </div>
     </div>
   </header>
-
-  {#if !heroActive}
-    <!-- Estado de descubrimiento: la portada ocupa el lugar que, cuando hay
-         progreso, le corresponde a la tarjeta de "Continuar". Nunca las dos:
-         la portada no debe empujar la acción principal fuera de pantalla. -->
-    <div class="cover-wrap mb-8">
-      <span class="cover-disc" aria-hidden="true"></span>
-      <img class="cover" src={socrates} alt="" aria-hidden="true" />
-    </div>
-  {/if}
 
   {#if heroActive}
     {@const heroAccent = accentOf(lastCourseMeta)}
@@ -140,15 +138,39 @@
   }
   .cover {
     position: relative;
-    display: block;
-    width: 100%;
-    height: 42dvh;
-    min-height: 250px;
-    object-fit: cover;
-    object-position: 50% 18%;
-    border: 1px solid var(--line);
+    overflow: hidden;
+    height: 31dvh;
+    min-height: 215px;
     /* radio enorme arriba = domo; el navegador lo recorta a la mitad del ancho */
     border-radius: 100vw 100vw 20px 20px;
+  }
+  .cover-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 16%;
+  }
+  /* Oscurece sólo el centro, donde va la marca: garantiza contraste sin
+     apagar la ilustración en los bordes. */
+  .cover-scrim {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 72% 58% at 50% 50%,
+      color-mix(in srgb, var(--text) 62%, transparent) 0%,
+      color-mix(in srgb, var(--text) 30%, transparent) 55%,
+      transparent 85%
+    );
+  }
+  .cover-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 
 </style>
