@@ -300,7 +300,7 @@
           <span class="text-[15px] font-bold leading-[1.35] text-text">Clase {nextClass.num}: {nextClass.title}</span>
         </div>
         <button
-          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-accent px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
+          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-text px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
           on:click={() => dispatch("open", nextClass)}
         >
           Siguiente clase →
@@ -314,13 +314,13 @@
           La Clase {lockedNext.num} se habilita pronto.
         </p>
         <button
-          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-accent px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
+          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-text px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
           on:click={() => dispatch("back")}>Volver al inicio</button
         >
       {:else}
         <p class="mt-[22px] text-[19px] font-extrabold text-accent-ink">¡Completaste el curso!</p>
         <button
-          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-accent px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
+          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-text px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
           on:click={() => dispatch("back")}>Volver al inicio</button
         >
       {/if}

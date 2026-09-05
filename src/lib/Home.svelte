@@ -124,7 +124,7 @@
             Clase {primary.num} · {primary.title}
           </p>
           <button
-            class="cta-pop flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-[17px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
+            class="cta-pop flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[17px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
             on:click={() => open(primary)}
           >
             {primaryLabel}

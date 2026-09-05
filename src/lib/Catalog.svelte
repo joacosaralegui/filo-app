@@ -64,7 +64,7 @@
         </p>
       </div>
       <span
-        class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-[var(--course-accent)] px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
+        class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
       >
         Continuar
         <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
