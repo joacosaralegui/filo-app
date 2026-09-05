@@ -7,6 +7,12 @@
     obra: "Obra",
     evento: "Evento",
   };
+  const KIND_CLASS = {
+    autor: "bg-good/18 text-good-ink",
+    concepto: "bg-accent/24 text-accent-ink",
+    obra: "bg-bad/16 text-bad-ink",
+    evento: "bg-text/8 text-text-soft",
+  };
 
   function onKey(e) {
     if (e.key === "Escape") closeTerm();
@@ -16,107 +22,51 @@
 <svelte:window on:keydown={onKey} />
 
 {#if $activeTerm}
-  <div class="backdrop" on:click={closeTerm} role="presentation">
-    <div class="sheet" on:click|stopPropagation role="dialog" aria-modal="true">
-      <div class="grab"></div>
-      <div class="head">
-        <span class="kind kind-{$activeTerm.kind}">{KIND_LABEL[$activeTerm.kind] || ""}</span>
-        {#if $activeTerm.when}<span class="when">{$activeTerm.when}</span>{/if}
+  <div
+    class="backdrop-anim fixed inset-0 z-[80] flex items-end justify-center bg-black/55 backdrop-blur-[2px]"
+    on:click={closeTerm}
+    role="presentation"
+  >
+    <div
+      class="sheet-anim flex max-h-[85dvh] w-full max-w-[480px] flex-col rounded-t-[22px] border border-b-0 border-line bg-bg px-[22px] pt-2.5 pb-[calc(env(safe-area-inset-bottom)+24px)] [box-shadow:0_-12px_40px_rgba(0,0,0,0.5)]"
+      on:click|stopPropagation
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="mx-auto mt-1 mb-4 h-1 w-10 rounded-[3px] bg-line"></div>
+      <div class="mb-2.5 flex items-center gap-2.5">
+        <span
+          class="rounded-full px-2.5 py-1 text-[11px] font-extrabold tracking-[1.2px] uppercase {KIND_CLASS[
+            $activeTerm.kind
+          ] || ''}">{KIND_LABEL[$activeTerm.kind] || ""}</span
+        >
+        {#if $activeTerm.when}<span class="text-[13px] font-bold text-text-soft [font-variant-numeric:tabular-nums]"
+            >{$activeTerm.when}</span
+          >{/if}
       </div>
-      <h3>{$activeTerm.term}</h3>
-      <p>{$activeTerm.body}</p>
-      <button class="close" on:click={closeTerm}>Entendido</button>
+      <h3 class="mb-3 font-serif text-2xl font-extrabold tracking-[-0.3px]">{$activeTerm.term}</h3>
+      <p class="mb-[22px] min-h-0 overflow-y-auto font-serif text-base leading-[1.65] text-text-soft">
+        {$activeTerm.body}
+      </p>
+      <button
+        class="w-full cursor-pointer rounded-[13px] border border-line bg-surface p-3.5 text-[15px] font-bold text-text [font-family:inherit] active:scale-[0.99]"
+        on:click={closeTerm}>Entendido</button
+      >
     </div>
   </div>
 {/if}
 
 <style>
-  .backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 80;
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(2px);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+  /* Keyframes de entrada de la hoja modal. */
+  .backdrop-anim {
     animation: fade 0.2s ease;
   }
-  .sheet {
-    width: 100%;
-    max-width: 480px;
-    max-height: 85dvh;
-    display: flex;
-    flex-direction: column;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-bottom: none;
-    border-radius: 22px 22px 0 0;
-    padding: 10px 22px calc(env(safe-area-inset-bottom) + 24px);
-    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.5);
+  .sheet-anim {
     animation: slideup 0.26s cubic-bezier(0.16, 0.84, 0.3, 1);
   }
-  .grab {
-    width: 40px;
-    height: 4px;
-    border-radius: 3px;
-    background: var(--line);
-    margin: 4px auto 16px;
-  }
-  .head {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  .kind {
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    padding: 4px 10px;
-    border-radius: 999px;
-  }
-  .kind-autor { background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good-ink); }
-  .kind-concepto { background: color-mix(in srgb, var(--accent) 24%, transparent); color: var(--accent-ink); }
-  .kind-obra { background: color-mix(in srgb, var(--bad) 16%, transparent); color: var(--bad-ink); }
-  .kind-evento { background: color-mix(in srgb, var(--text) 8%, transparent); color: var(--text-soft); }
-  .when {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-soft);
-    font-variant-numeric: tabular-nums;
-  }
-  h3 {
-    margin: 0 0 12px;
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-  }
-  p {
-    margin: 0 0 22px;
-    color: var(--text-soft);
-    line-height: 1.65;
-    font-size: 16px;
-    overflow-y: auto;
-    min-height: 0;
-  }
-  .close {
-    width: 100%;
-    padding: 14px;
-    border-radius: 13px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    color: var(--text);
-    font: inherit;
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-  }
-  .close:active { transform: scale(0.99); }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideup { from { transform: translateY(100%); } to { transform: translateY(0); } }
   @media (prefers-reduced-motion: reduce) {
-    .backdrop, .sheet { animation-duration: 1ms; }
+    .backdrop-anim, .sheet-anim { animation-duration: 1ms; }
   }
 </style>

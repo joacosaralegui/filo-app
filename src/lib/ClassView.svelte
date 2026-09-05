@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher, onDestroy, onMount } from "svelte";
+  import TopBar from "./TopBar.svelte";
   import InfoCard from "./InfoCard.svelte";
   import QuizCard from "./QuizCard.svelte";
   import MatchCard from "./MatchCard.svelte";
@@ -8,9 +9,9 @@
   import ExplainSheet from "./ExplainSheet.svelte";
   import Burst from "./Burst.svelte";
   import { classState, saveClass, SCORABLE } from "./progress.js";
-  import { CLASSES } from "../content/classes.js";
 
   export let lecture;
+  export let classes = []; // índice del curso, para saber cuál es la siguiente
   const dispatch = createEventDispatcher();
 
   const totalQuiz = lecture.feed.filter((c) => SCORABLE.has(c.type)).length;
@@ -27,7 +28,7 @@
   // Cierre de la clase: invitar a la siguiente. La entrada inmediatamente
   // posterior por número; disponible (nextClass) o aún bloqueada (lockedNext).
   // Si no hay ninguna posterior, es la última del curso.
-  const laterClasses = CLASSES.filter((c) => c.num > lecture.num);
+  const laterClasses = classes.filter((c) => c.num > lecture.num);
   const immediateNext = laterClasses[0] || null;
   const nextClass = immediateNext && immediateNext.content ? immediateNext : null;
   const lockedNext = immediateNext && !immediateNext.content ? immediateNext : null;
@@ -211,20 +212,31 @@
   }
 </script>
 
-<div class="topbar">
-  <div class="row">
-    <button class="back" on:click={() => dispatch("back")} aria-label="Volver">‹</button>
-    <span class="crumb">Clase {lecture.num} · {lecture.title}</span>
-    <span class="score" class:bump={pop}>
-      ✦ {score}
-      {#if combo > 1}<b class="combo">×{combo}</b>{/if}
-    </span>
+<div
+  class="fixed inset-x-0 top-0 z-40 px-4 pt-[calc(env(safe-area-inset-top)+10px)] pb-2 backdrop-blur-[6px] [background:linear-gradient(var(--bg),color-mix(in_srgb,var(--bg)_70%,transparent))]"
+>
+  <div class="mx-auto max-w-[480px]">
+    <TopBar back on:back={() => dispatch("back")} on:home={() => dispatch("home")}>
+      <span class="min-w-0 flex-1 truncate text-xs font-semibold text-text-soft"
+        >Clase {lecture.num} · {lecture.title}</span
+      >
+      <span
+        class="flex-none whitespace-nowrap text-[15px] font-extrabold text-accent-ink transition-transform duration-150 {pop
+          ? 'scale-[1.14]'
+          : ''}"
+      >
+        ✦ {score}
+        {#if combo > 1}<b class="ml-[3px] text-accent-ink">×{combo}</b>{/if}
+      </span>
+    </TopBar>
   </div>
-  <div class="progress"><i style="width:{scrollPct}%"></i></div>
+  <div class="mx-auto mt-2 h-[3px] max-w-[480px] overflow-hidden rounded-[3px] bg-line">
+    <i class="block h-full bg-accent transition-[width] duration-150 ease-linear" style="width:{scrollPct}%"></i>
+  </div>
 </div>
 
 <div
-  class="feed"
+  class="h-dvh overflow-y-scroll scroll-smooth [scroll-snap-type:y_mandatory] motion-reduce:scroll-auto"
   bind:this={feedEl}
   on:scroll={onScroll}
   on:wheel|nonpassive={onWheel}
@@ -232,7 +244,9 @@
   on:touchmove|nonpassive={onTouchMove}
 >
   {#each lecture.feed as card, i}
-    <section class="slide">
+    <section
+      class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-10 [scroll-snap-align:center] [scroll-snap-stop:always]"
+    >
       {#if card.type === "info"}
         <InfoCard {card} />
       {:else if card.type === "match"}
@@ -247,50 +261,80 @@
     </section>
   {/each}
 
-  <section class="slide end">
-    <div class="end-inner">
-      <div class="stars" role="img" aria-label="{stars} de 3 estrellas">
+  <section
+    class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-10 [scroll-snap-align:center] [scroll-snap-stop:always]"
+  >
+    <div class="mx-auto flex w-full max-w-[360px] flex-col items-center text-center">
+      <div class="flex gap-2.5 leading-none" role="img" aria-label="{stars} de 3 estrellas">
         {#each [0, 1, 2] as i}
-          <span class="star" class:on={i < stars} style="--d:{i * 140}ms">★</span>
+          <span
+            class="star {i < stars
+              ? 'text-accent-2 [text-shadow:0_4px_18px_color-mix(in_srgb,var(--accent-2)_55%,transparent)]'
+              : 'text-line'}"
+            style="--d:{i * 140}ms">★</span
+          >
         {/each}
       </div>
 
-      <h2 class="end-title">Clase completada</h2>
-      <p class="end-sub">Clase {lecture.num} · {lecture.title}</p>
+      <h2 class="mt-[18px] text-2xl font-extrabold tracking-[-0.3px] text-text">Clase completada</h2>
+      <p class="mt-1 text-[13.5px] font-semibold text-text-soft">Clase {lecture.num} · {lecture.title}</p>
 
-      <div class="stats">
-        <div class="stat">
-          <b>{score}</b>
-          <span>puntos</span>
+      <div class="mt-[18px] flex w-full gap-2.5">
+        <div class="flex flex-1 flex-col gap-0.5 rounded-[14px] border border-line bg-surface px-2 pt-3 pb-2.5">
+          <b class="text-[22px] font-black tracking-[-0.5px] text-accent-ink">{score}</b>
+          <span class="text-[11px] font-bold tracking-[0.5px] text-text-soft uppercase">puntos</span>
         </div>
-        <div class="stat">
-          <b>{correctCount}<i>/{totalQuiz}</i></b>
-          <span>correctas</span>
+        <div class="flex flex-1 flex-col gap-0.5 rounded-[14px] border border-line bg-surface px-2 pt-3 pb-2.5">
+          <b class="text-[22px] font-black tracking-[-0.5px] text-accent-ink"
+            >{correctCount}<i class="not-italic text-[15px] font-extrabold text-text-soft">/{totalQuiz}</i></b
+          >
+          <span class="text-[11px] font-bold tracking-[0.5px] text-text-soft uppercase">correctas</span>
         </div>
       </div>
 
       {#if nextClass}
-        <div class="next-panel">
-          <span class="next-label">A continuación</span>
-          <span class="next-title">Clase {nextClass.num}: {nextClass.title}</span>
+        <div
+          class="mt-[22px] flex w-full flex-col gap-[3px] rounded-[14px] px-4 py-3 text-left [background:color-mix(in_srgb,var(--accent)_8%,var(--surface))] [border:1px_solid_color-mix(in_srgb,var(--accent)_30%,var(--line))]"
+        >
+          <span class="text-[11px] font-extrabold tracking-[1px] text-accent-ink uppercase">A continuación</span>
+          <span class="text-[15px] font-bold leading-[1.35] text-text">Clase {nextClass.num}: {nextClass.title}</span>
         </div>
-        <button class="home-btn" on:click={() => dispatch("open", nextClass)}>
+        <button
+          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-accent px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
+          on:click={() => dispatch("open", nextClass)}
+        >
           Siguiente clase →
         </button>
-        <button class="ghost-btn" on:click={() => dispatch("back")}>Volver al inicio</button>
+        <button
+          class="mx-auto mt-3 block cursor-pointer border-0 bg-transparent text-sm font-bold text-text-soft [font-family:inherit] active:scale-[0.98]"
+          on:click={() => dispatch("back")}>Volver al inicio</button
+        >
       {:else if lockedNext}
-        <p class="end-msg">La Clase {lockedNext.num} se habilita pronto.</p>
-        <button class="home-btn" on:click={() => dispatch("back")}>Volver al inicio</button>
+        <p class="mt-[22px] text-[15px] leading-[1.45] font-semibold text-text">
+          La Clase {lockedNext.num} se habilita pronto.
+        </p>
+        <button
+          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-accent px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
+          on:click={() => dispatch("back")}>Volver al inicio</button
+        >
       {:else}
-        <p class="end-msg strong">¡Completaste el curso!</p>
-        <button class="home-btn" on:click={() => dispatch("back")}>Volver al inicio</button>
+        <p class="mt-[22px] text-[19px] font-extrabold text-accent-ink">¡Completaste el curso!</p>
+        <button
+          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-accent px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
+          on:click={() => dispatch("back")}>Volver al inicio</button
+        >
       {/if}
     </div>
   </section>
 </div>
 
 {#if gateHint}
-  <div class="gate-hint" role="status">Respondé para continuar</div>
+  <div
+    class="gate-hint-anim fixed bottom-[calc(env(safe-area-inset-bottom)+26px)] left-1/2 z-[55] -translate-x-1/2 rounded-full bg-accent-ink px-[18px] py-2.5 text-[13.5px] font-extrabold whitespace-nowrap text-bg pointer-events-none [box-shadow:0_6px_22px_color-mix(in_srgb,var(--accent)_45%,transparent)]"
+    role="status"
+  >
+    Respondé para continuar
+  </div>
 {/if}
 
 <ExplainSheet data={sheet} on:close={() => (sheet = null)} />
@@ -300,250 +344,30 @@
 
 {#if pop}
   {#key pop.id}
-    <div class="pop" aria-hidden="true">
-      <span class="pts">+{pop.points}</span>
-      {#if pop.combo > 1}<span class="cmb">COMBO ×{pop.combo}</span>{/if}
+    <div class="pop-anim pointer-events-none fixed top-[42%] left-1/2 z-[55] flex -translate-x-1/2 flex-col items-center gap-1" aria-hidden="true">
+      <span class="text-[46px] font-black text-accent-ink [text-shadow:0_3px_16px_color-mix(in_srgb,var(--accent)_60%,transparent)]"
+        >+{pop.points}</span
+      >
+      {#if pop.combo > 1}<span class="text-[15px] font-extrabold tracking-[1.5px] text-accent-ink"
+          >COMBO ×{pop.combo}</span
+        >{/if}
     </div>
   {/key}
 {/if}
 
 <style>
-  .topbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 40;
-    padding: calc(env(safe-area-inset-top) + 10px) 16px 8px;
-    background: linear-gradient(var(--bg), color-mix(in srgb, var(--bg) 70%, transparent));
-    backdrop-filter: blur(6px);
-  }
-  .row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-  .back {
-    flex: 0 0 auto;
-    width: 30px;
-    height: 30px;
-    border-radius: 9px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    color: var(--text);
-    font-size: 20px;
-    line-height: 1;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-  }
-  .crumb {
-    flex: 1;
-    font-size: 12px;
-    color: var(--text-soft);
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .score {
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--accent-ink);
-    white-space: nowrap;
-    transition: transform 0.15s;
-  }
-  .score.bump { transform: scale(1.14); }
-  .combo {
-    color: var(--accent-ink);
-    margin-left: 3px;
-  }
-  .progress {
-    height: 3px;
-    border-radius: 3px;
-    background: var(--line);
-    overflow: hidden;
-    max-width: 480px;
-    margin: 8px auto 0;
-  }
-  .progress i {
-    display: block;
-    height: 100%;
-    background: var(--accent);
-    transition: width 0.15s linear;
-  }
-
-  .feed {
-    height: 100dvh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-  }
-  .slide {
-    min-height: 100dvh;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 90px 22px 40px;
-  }
-
-  .end-inner {
-    text-align: center;
-    max-width: 360px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .stars {
-    display: flex;
-    gap: 10px;
-    line-height: 1;
-  }
+  /* Estas quedan en CSS porque dependen de --d (delay por estrella) o de
+     una secuencia de keyframes que Tailwind no expresa bien inline. */
   .star {
     font-size: 52px;
-    color: var(--line);
     animation: starIn 0.45s cubic-bezier(0.2, 0.8, 0.3, 1.4) var(--d) both;
-  }
-  .star.on {
-    color: var(--accent-2);
-    text-shadow: 0 4px 18px color-mix(in srgb, var(--accent-2) 55%, transparent);
   }
   @keyframes starIn {
     from { opacity: 0; transform: scale(0.4) rotate(-25deg); }
     to { opacity: 1; transform: scale(1) rotate(0); }
   }
-  .end-title {
-    margin: 18px 0 0;
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.3px;
-  }
-  .end-sub {
-    margin: 4px 0 0;
-    color: var(--text-soft);
-    font-size: 13.5px;
-    font-weight: 600;
-  }
-  .stats {
-    display: flex;
-    gap: 10px;
-    margin-top: 18px;
-    width: 100%;
-  }
-  .stat {
-    flex: 1;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 12px 8px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .stat b {
-    font-size: 22px;
-    font-weight: 900;
-    color: var(--accent-ink);
-    letter-spacing: -0.5px;
-  }
-  .stat b i {
-    font-style: normal;
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--text-soft);
-  }
-  .stat span {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: var(--text-soft);
-  }
-  .next-panel {
-    margin-top: 22px;
-    width: 100%;
-    background: color-mix(in srgb, var(--accent) 8%, var(--surface));
-    border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line));
-    border-radius: 14px;
-    padding: 12px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    text-align: left;
-  }
-  .next-label {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--accent-ink);
-  }
-  .next-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.35;
-  }
-  .end-msg {
-    margin: 22px 0 0;
-    color: var(--text);
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.45;
-  }
-  .end-msg.strong {
-    font-size: 19px;
-    font-weight: 800;
-    color: var(--accent-ink);
-  }
-  .home-btn {
-    margin-top: 18px;
-    align-self: stretch;
-    padding: 13px 22px;
-    border-radius: 13px;
-    background: var(--accent);
-    color: var(--on-accent);
-    border: none;
-    font: inherit;
-    font-weight: 800;
-    font-size: 15px;
-    cursor: pointer;
-  }
-  .home-btn:active { transform: scale(0.98); }
-  .ghost-btn {
-    display: block;
-    margin: 12px auto 0;
-    background: none;
-    border: none;
-    color: var(--text-soft);
-    font: inherit;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  .ghost-btn:active { transform: scale(0.98); }
 
-  .gate-hint {
-    position: fixed;
-    left: 50%;
-    bottom: calc(env(safe-area-inset-bottom) + 26px);
-    transform: translateX(-50%);
-    z-index: 55;
-    pointer-events: none;
-    white-space: nowrap;
-    background: var(--accent-ink);
-    color: var(--bg);
-    font-size: 13.5px;
-    font-weight: 800;
-    padding: 10px 18px;
-    border-radius: 999px;
-    box-shadow: 0 6px 22px color-mix(in srgb, var(--accent) 45%, transparent);
+  .gate-hint-anim {
     animation: gaterise 0.28s ease;
   }
   @keyframes gaterise {
@@ -551,30 +375,8 @@
     to { opacity: 1; transform: translateX(-50%) translateY(0); }
   }
 
-  .pop {
-    position: fixed;
-    left: 50%;
-    top: 42%;
-    transform: translateX(-50%);
-    z-index: 55;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+  .pop-anim {
     animation: popup 1.05s ease forwards;
-  }
-  .pts {
-    font-size: 46px;
-    font-weight: 900;
-    color: var(--accent-ink);
-    text-shadow: 0 3px 16px color-mix(in srgb, var(--accent) 60%, transparent);
-  }
-  .cmb {
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    color: var(--accent-ink);
   }
   @keyframes popup {
     0% { opacity: 0; transform: translateX(-50%) translateY(14px) scale(0.7); }
@@ -583,7 +385,6 @@
     100% { opacity: 0; transform: translateX(-50%) translateY(-46px) scale(1); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .feed { scroll-behavior: auto; }
-    .pop, .gate-hint { animation-duration: 1ms; }
+    .gate-hint-anim, .pop-anim { animation-duration: 1ms; }
   }
 </style>

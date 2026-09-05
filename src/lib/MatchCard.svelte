@@ -161,16 +161,61 @@
   afterUpdate(measure);
   onMount(() => window.addEventListener("resize", measure));
   onDestroy(() => window.removeEventListener("resize", measure));
+
+  // Color del borde/nodo-ancla de cada chip: unifica el estado de selección,
+  // drag-over y corrección en un solo valor (evita pelear con Tailwind por
+  // especificidad de border-color entre varias clases condicionales).
+  function leftColor(i) {
+    if (selected && selected.side === "L" && selected.i === i) return "var(--accent)";
+    if (overTarget && overTarget.side === "L" && overTarget.i === i) return "var(--accent)";
+    if (answered) return links[i] === i ? "var(--good)" : "var(--bad)";
+    return links[i] !== undefined ? "var(--accent)" : "var(--line)";
+  }
+  function rightColor(r) {
+    if (selected && selected.side === "R" && selected.i === r) return "var(--accent)";
+    if (overTarget && overTarget.side === "R" && overTarget.i === r) return "var(--accent)";
+    if (answered) return rightToLeft[r] === r ? "var(--good)" : "var(--bad)";
+    return rightToLeft[r] !== undefined ? "var(--accent)" : "var(--line)";
+  }
+  // Anillo de foco (selección/drag-over) o tinte de fondo (correcto/incorrecto).
+  function leftStateCls(i) {
+    if (selected && selected.side === "L" && selected.i === i) return "ring-2 ring-accent/40";
+    if (overTarget && overTarget.side === "L" && overTarget.i === i) return "ring-2 ring-accent/45";
+    if (answered && links[i] === i) return "bg-good/15";
+    if (answered && links[i] !== undefined && links[i] !== i) return "bg-bad/13";
+    return "";
+  }
+  function rightStateCls(r) {
+    if (selected && selected.side === "R" && selected.i === r) return "ring-2 ring-accent/40";
+    if (overTarget && overTarget.side === "R" && overTarget.i === r) return "ring-2 ring-accent/45";
+    if (answered && rightToLeft[r] === r) return "bg-good/15";
+    if (answered && rightToLeft[r] !== undefined && rightToLeft[r] !== r) return "bg-bad/13";
+    return "";
+  }
+
+  const CHIP_CLS =
+    "chip relative flex min-h-[58px] cursor-pointer touch-none items-center gap-2 rounded-[13px] border-[1.5px] border-[var(--c)] bg-surface px-[11px] py-3 text-left text-sm leading-[1.32] text-text select-none [transition:transform_0.08s,border-color_0.18s,background-color_0.18s,box-shadow_0.18s] not-disabled:active:scale-[0.98] [@media(max-height:700px)]:min-h-[52px] [@media(max-height:700px)]:p-2.5 [@media(max-height:700px)]:text-[13px]";
+  const NODE_CLS = "h-[11px] w-[11px] flex-none rounded-full border-2 border-[var(--c)] box-border";
 </script>
 
-<div class="slide-inner match" class:shake>
-  <span class="tag" class:ok={correct} class:no={answered && !correct}>
+<div class="flex w-full max-w-[480px] flex-col justify-center {shake ? 'shake-anim' : ''}">
+  <span
+    class="mb-4 self-start rounded-full px-[13px] py-1.5 text-xs font-extrabold tracking-[1.6px] text-bg uppercase transition-colors duration-[250ms] {correct
+      ? 'bg-good'
+      : answered
+        ? 'bg-bad'
+        : 'bg-accent-ink'}"
+  >
     {answered ? (correct ? "¡Correcto!" : "Revisá las uniones") : "Conectar"}
   </span>
-  <h2>{card.question}</h2>
+  <h2
+    class="m-0 mb-[18px] font-serif text-[21px] font-extrabold leading-[1.3] tracking-[-0.3px] [@media(max-height:700px)]:mb-3.5 [@media(max-height:700px)]:text-[19px]"
+  >
+    {card.question}
+  </h2>
 
-  <div class="board" bind:this={boardEl}>
-    <svg class="wires" aria-hidden="true">
+  <div class="relative grid grid-cols-[1fr_2fr] gap-10" bind:this={boardEl}>
+    <svg class="pointer-events-none absolute inset-0 z-[2] h-full w-full overflow-visible" aria-hidden="true">
       {#each lines as ln}
         <path
           d="M {ln.x1} {ln.y1} C {ln.x1 + 24} {ln.y1}, {ln.x2 - 24} {ln.y2}, {ln.x2} {ln.y2}"
@@ -195,59 +240,43 @@
       {/if}
     </svg>
 
-    <div class="col">
+    <div class="relative z-[1] flex flex-col gap-2.5">
       {#each card.pairs as p, i}
         <button
-          class="chip left"
-          class:sel={selected && selected.side === "L" && selected.i === i}
-          class:target={overTarget && overTarget.side === "L" && overTarget.i === i}
-          class:ok={answered && links[i] === i}
-          class:no={answered && links[i] !== undefined && links[i] !== i}
-          style="--c:{answered
-            ? links[i] === i
-              ? 'var(--good)'
-              : 'var(--bad)'
-            : links[i] !== undefined
-              ? 'var(--accent)'
-              : 'var(--line)'}"
+          class="{CHIP_CLS} {leftStateCls(i)}"
+          style="--c:{leftColor(i)}"
           bind:this={leftEls[i]}
           on:pointerdown={(e) => onDown(e, "L", i)}
           disabled={answered}
         >
-          <span class="txt">{p.left}</span>
-          <span class="node" class:filled={links[i] !== undefined}></span>
+          <span class="flex-1">{p.left}</span>
+          <span class="{NODE_CLS} {links[i] !== undefined ? 'bg-[var(--c)]' : 'bg-bg'}"></span>
         </button>
       {/each}
     </div>
 
-    <div class="col">
+    <div class="relative z-[1] flex flex-col gap-2.5">
       {#each rightOrder as r (r)}
         <button
-          class="chip right"
-          class:sel={selected && selected.side === "R" && selected.i === r}
-          class:target={overTarget && overTarget.side === "R" && overTarget.i === r}
-          class:ok={answered && rightToLeft[r] === r}
-          class:no={answered && rightToLeft[r] !== undefined && rightToLeft[r] !== r}
-          style="--c:{answered
-            ? rightToLeft[r] === r
-              ? 'var(--good)'
-              : 'var(--bad)'
-            : rightToLeft[r] !== undefined
-              ? 'var(--accent)'
-              : 'var(--line)'}"
+          class="{CHIP_CLS} {rightStateCls(r)}"
+          style="--c:{rightColor(r)}"
           bind:this={rightEls[r]}
           on:pointerdown={(e) => onDown(e, "R", r)}
           disabled={answered}
         >
-          <span class="node" class:filled={rightToLeft[r] !== undefined}></span>
-          <span class="txt">{card.pairs[r].right}</span>
+          <span class="{NODE_CLS} {rightToLeft[r] !== undefined ? 'bg-[var(--c)]' : 'bg-bg'}"></span>
+          <span class="flex-1">{card.pairs[r].right}</span>
         </button>
       {/each}
     </div>
   </div>
 
   {#if !answered}
-    <button class="confirm" on:click={confirm} disabled={!allLinked}>
+    <button
+      class="mt-[18px] cursor-pointer rounded-[13px] bg-accent px-[18px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] [transition:opacity_0.18s,transform_0.08s] not-disabled:active:scale-[0.985] disabled:cursor-default disabled:opacity-45"
+      on:click={confirm}
+      disabled={!allLinked}
+    >
       {allLinked ? "Confirmar" : "Uní todos los pares"}
     </button>
   {:else}
@@ -255,125 +284,9 @@
 </div>
 
 <style>
-  .slide-inner {
-    width: 100%;
-    max-width: 480px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .shake-anim {
+    animation: shake 0.4s ease;
   }
-  .tag {
-    align-self: flex-start;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1.6px;
-    font-weight: 800;
-    color: var(--bg);
-    background: var(--accent-ink);
-    padding: 6px 13px;
-    border-radius: 999px;
-    margin-bottom: 16px;
-    transition: background 0.25s ease;
-  }
-  .tag.ok { background: var(--good); }
-  .tag.no { background: var(--bad); }
-  h2 {
-    font-size: 21px;
-    line-height: 1.3;
-    margin: 0 0 18px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-  }
-
-  .board {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 2fr; /* nombres 1/3 · conceptos 2/3 */
-    gap: 40px; /* hueco para las líneas */
-  }
-  .wires {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 2;
-    overflow: visible;
-  }
-  .col {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .chip {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-align: left;
-    background: var(--surface);
-    border: 1.5px solid var(--c);
-    border-radius: 13px;
-    padding: 12px 11px;
-    font: inherit;
-    font-size: 14px;
-    line-height: 1.32;
-    color: var(--text);
-    cursor: pointer;
-    min-height: 58px;
-    touch-action: none; /* arrastrar no debe scrollear el feed */
-    user-select: none;
-    -webkit-user-select: none;
-    transition: transform 0.08s, border-color 0.18s, background 0.18s, box-shadow 0.18s;
-  }
-  .chip:not(:disabled):active { transform: scale(0.98); }
-  .chip .txt { flex: 1; }
-
-  /* nodos-ancla en los bordes internos */
-  .node {
-    flex: 0 0 auto;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: var(--bg);
-    border: 2px solid var(--c);
-    box-sizing: border-box;
-  }
-  .node.filled { background: var(--c); }
-
-  .chip.sel {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent);
-  }
-  .chip.target {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
-  }
-  .chip.ok {
-    background: color-mix(in srgb, var(--good) 15%, transparent);
-  }
-  .chip.no {
-    background: color-mix(in srgb, var(--bad) 13%, transparent);
-  }
-
-  .confirm {
-    margin-top: 18px;
-    padding: 13px 18px;
-    border-radius: 13px;
-    background: var(--accent);
-    color: var(--on-accent);
-    border: none;
-    font: inherit;
-    font-weight: 800;
-    font-size: 15px;
-    cursor: pointer;
-    transition: opacity 0.18s, transform 0.08s;
-  }
-  .confirm:disabled { opacity: 0.45; cursor: default; }
-  .confirm:not(:disabled):active { transform: scale(0.985); }
-  .shake { animation: shake 0.4s ease; }
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
     20% { transform: translateX(-8px); }
@@ -381,12 +294,7 @@
     60% { transform: translateX(-5px); }
     80% { transform: translateX(3px); }
   }
-  @media (max-height: 700px) {
-    h2 { font-size: 19px; margin-bottom: 14px; }
-    .chip { min-height: 52px; font-size: 13px; padding: 10px; }
-    .board { gap: 40px; }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .shake { animation: none; }
+    .shake-anim { animation: none; }
   }
 </style>

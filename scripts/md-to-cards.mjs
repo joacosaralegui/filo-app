@@ -1,11 +1,25 @@
 #!/usr/bin/env node
 // Converts a class transcription markdown into info cards (JS module format).
-// Usage: node scripts/md-to-cards.mjs <input.md> [output.js]
+// Usage: node scripts/md-to-cards.mjs <input.md> [output.js] [--offset=N]
+//
+// --offset: desfasaje entre el número del encabezado del md (`# Clase N — …`) y
+// el `num` que ve el usuario. Default -1, que es la regla del curso `nietzsche`
+// (se omite su Clase 1 original). Los cursos cuyo md ya está numerado como la
+// app —`modernidad`, por ejemplo— usan --offset=0.
 
 import { readFileSync, writeFileSync } from 'fs';
 import { basename } from 'path';
 
-const inputPath = process.argv[2];
+const args = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+const flags = process.argv.slice(2).filter((a) => a.startsWith('--'));
+const offsetFlag = flags.find((f) => f.startsWith('--offset='));
+const numOffset = offsetFlag ? parseInt(offsetFlag.split('=')[1], 10) : -1;
+if (Number.isNaN(numOffset)) {
+  console.error('--offset espera un número entero, p. ej. --offset=0');
+  process.exit(1);
+}
+
+const inputPath = args[0];
 if (!inputPath) {
   console.error('Usage: node scripts/md-to-cards.mjs <input.md> [output.js]');
   process.exit(1);
@@ -37,9 +51,9 @@ for (const line of lines) {
   }
 }
 
-// App numbering: num = transcript - 1 (clase 1 original is skipped)
+// App numbering: num = transcript + offset (ver --offset arriba)
 if (transcriptNum !== null) {
-  classNum = transcriptNum - 1;
+  classNum = transcriptNum + numOffset;
 }
 
 // --- Split by ## / ### sections ---
@@ -62,7 +76,7 @@ if (currentSection) sections.push(currentSection);
 
 // --- Build cards from sections, one per paragraph ---
 
-function cleanText(text) {
+function cleanText(text, { keepBold = true } = {}) {
   // Primero línea por línea: las viñetas quedan como líneas propias con •, y
   // los demás saltos de línea son prosa envuelta, así que se unen con espacio.
   const out = [];
@@ -80,12 +94,16 @@ function cleanText(text) {
     else out.push(line);
   }
 
-  // Y después lo inline, que no cruza saltos de línea.
+  // Y después lo inline, que no cruza saltos de línea. Las negritas de la
+  // transcripción se conservan (RichText las renderiza); se apartan primero
+  // para que la regex de itálicas no se coma sus asteriscos.
+  const BOLD = '\u0000';
   return out
     .join('\n')
-    .replace(/\*\*(.+?)\*\*/g, '$1')
-    .replace(/\*(.+?)\*/g, '$1')
+    .replace(/\*\*(.+?)\*\*/g, `${BOLD}$1${BOLD}`)
+    .replace(/(?<!\*)\*(?!\*)([^*\n]+?)\*(?!\*)/g, '$1')
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(new RegExp(BOLD, 'g'), keepBold ? '**' : '')
     .trim();
 }
 
@@ -109,13 +127,13 @@ function splitParagraphs(lines) {
 const cards = [];
 const skipped = [];
 for (const section of sections) {
-  const title = cleanText(section.title);
+  const title = cleanText(section.title, { keepBold: false }); // el título ya va en negrita
   const paragraphs = splitParagraphs(section.lines);
   let first = true;
 
   for (const paragraph of paragraphs) {
     const body = cleanText(paragraph);
-    if (!body || body.length < 30) {
+    if (!body || body.replace(/\*\*/g, '').length < 30) { // los ** no cuentan como texto
       if (body) skipped.push(`${title}: ${body}`);
       continue;
     }
@@ -163,7 +181,7 @@ ${feedStr},
 
 const output = toJS(outputObj);
 
-const outputPath = process.argv[3] || inputPath.replace(/\.md$/, '.cards.js');
+const outputPath = args[1] || inputPath.replace(/\.md$/, '.cards.js');
 writeFileSync(outputPath, output);
 console.log(`Generated ${cards.length} info cards → ${outputPath}`);
 if (skipped.length) {

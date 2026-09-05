@@ -1,7 +1,8 @@
-// PLANTILLA de clase. Copiá este archivo a claseNN.js (NN = num con cero) y
-// completá. Guía completa en ../../CONTENIDO.md. Referencia viva: clase02.js.
+// PLANTILLA de clase. Copiá este archivo a <curso>/claseNN.js y completá.
+// Guía completa en ../CONTENIDO.md. Referencia viva: nietzsche/clase02.js.
 //
-// Recordá: transcript = num + 1.
+// `transcript` es opcional: sólo lo llevan los cursos armados desde
+// transcripciones numeradas (en Nietzsche, transcript = num + 1).
 
 export default {
   num: 0,            // número en la app

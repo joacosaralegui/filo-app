@@ -36,112 +36,59 @@
   }
 </script>
 
-<div class="slide-inner quiz" class:shake>
-  <span class="tag" class:ok={correct} class:no={answered && !correct}>
+<div class="flex w-full max-w-[480px] flex-col justify-center {shake ? 'shake-anim' : ''}">
+  <span
+    class="mb-[18px] self-start rounded-full px-[13px] py-1.5 text-xs font-extrabold tracking-[1.6px] text-bg uppercase transition-colors duration-[250ms] {correct
+      ? 'bg-good'
+      : answered
+        ? 'bg-bad'
+        : 'bg-accent-ink'}"
+  >
     {answered ? (correct ? "¡Correcto!" : "Incorrecto") : "Pregunta"}
   </span>
-  <h2>{card.question}</h2>
+  <h2
+    class="m-0 mb-[22px] font-serif text-[23px] font-extrabold leading-[1.32] tracking-[-0.3px] [@media(max-height:700px)]:mb-4 [@media(max-height:700px)]:text-[20px]"
+  >
+    {card.question}
+  </h2>
 
-  <div class="opts">
+  <div class="flex flex-col gap-2.5">
     {#each order as i (i)}
+      {@const optCls = !answered
+        ? ""
+        : i === card.answer
+          ? "border-good bg-good/22 text-good-ink pop-anim"
+          : i === picked
+            ? "border-bad bg-bad/16 text-bad-ink"
+            : "opacity-40"}
       <button
-        class="opt"
-        class:correct={answered && i === card.answer}
-        class:wrong={answered && i === picked && i !== card.answer}
-        class:dim={answered && i !== card.answer && i !== picked}
+        class="flex cursor-pointer items-center gap-2.5 rounded-[14px] border-[1.5px] border-line bg-surface px-4 py-[15px] text-left text-[15.5px] leading-[1.4] text-text [font-family:inherit] [transition:transform_0.08s,background-color_0.18s,border-color_0.18s,opacity_0.18s] not-disabled:active:scale-[0.985] [@media(max-height:700px)]:px-3.5 [@media(max-height:700px)]:py-3 [@media(max-height:700px)]:text-[14.5px] {optCls}"
         on:click={() => choose(i)}
         disabled={answered}
       >
-        <span class="txt">{card.options[i]}</span>
-        {#if answered && i === card.answer}<span class="mark">✓</span>{/if}
-        {#if answered && i === picked && i !== card.answer}<span class="mark">✕</span>{/if}
+        <span class="flex-1">{card.options[i]}</span>
+        {#if answered && i === card.answer}<span class="text-[17px] font-extrabold text-good-ink">✓</span>{/if}
+        {#if answered && i === picked && i !== card.answer}<span class="text-[17px] font-extrabold text-bad-ink"
+            >✕</span
+          >{/if}
       </button>
     {/each}
   </div>
-
 </div>
 
 <style>
-  .slide-inner {
-    width: 100%;
-    max-width: 480px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .tag {
-    align-self: flex-start;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1.6px;
-    font-weight: 800;
-    color: var(--bg);
-    background: var(--accent-ink);
-    padding: 6px 13px;
-    border-radius: 999px;
-    margin-bottom: 18px;
-    transition: background 0.25s ease;
-  }
-  .tag.ok {
-    background: var(--good);
-  }
-  .tag.no {
-    background: var(--bad);
-  }
-  h2 {
-    font-size: 23px;
-    line-height: 1.32;
-    margin: 0 0 22px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-  }
-  .opts {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .opt {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-align: left;
-    background: var(--surface);
-    border: 1.5px solid var(--line);
-    border-radius: 14px;
-    padding: 15px 16px;
-    font: inherit;
-    font-size: 15.5px;
-    line-height: 1.4;
-    color: var(--text);
-    cursor: pointer;
-    transition: transform 0.08s, background 0.18s, border-color 0.18s, opacity 0.18s;
-  }
-  .opt .txt { flex: 1; }
-  .opt:not(:disabled):active { transform: scale(0.985); }
-  .opt.correct {
-    background: color-mix(in srgb, var(--good) 22%, transparent);
-    border-color: var(--good);
-    color: var(--good-ink);
+  /* Keyframes: la vibración al fallar y el "pop" al marcar la correcta. */
+  .pop-anim {
     animation: pop 0.4s ease;
   }
-  .opt.wrong {
-    background: color-mix(in srgb, var(--bad) 16%, transparent);
-    border-color: var(--bad);
-    color: var(--bad-ink);
-  }
-  .opt.dim { opacity: 0.4; }
-  .mark {
-    font-weight: 800;
-    font-size: 17px;
-  }
-  .opt.correct .mark { color: var(--good-ink); }
-  .opt.wrong .mark { color: var(--bad-ink); }
   @keyframes pop {
     0% { transform: scale(1); }
     45% { transform: scale(1.035); }
     100% { transform: scale(1); }
   }
-  .shake { animation: shake 0.4s ease; }
+  .shake-anim {
+    animation: shake 0.4s ease;
+  }
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
     20% { transform: translateX(-8px); }
@@ -149,11 +96,7 @@
     60% { transform: translateX(-5px); }
     80% { transform: translateX(3px); }
   }
-  @media (max-height: 700px) {
-    h2 { font-size: 20px; margin-bottom: 16px; }
-    .opt { padding: 12px 14px; font-size: 14.5px; }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .opt.correct, .shake { animation: none; }
+    .pop-anim, .shake-anim { animation: none; }
   }
 </style>

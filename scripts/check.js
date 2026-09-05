@@ -1,7 +1,12 @@
 // Validación de contenido: corré `npm run check`.
 // Chequea las clases activas y el glosario, y sale con código 1 si hay errores.
-import { CLASSES } from "../src/content/classes.js";
-import { GLOSSARY } from "../src/content/glossary.js";
+import { COURSES } from "../src/content/courses.js";
+
+// El contenido vive por curso (src/content/<id>/curso.js): se cargan todos y se
+// validan juntos. Cada curso trae sus clases y su propio glosario.
+const CONTENT = [];
+for (const meta of COURSES) CONTENT.push({ id: meta.id, ...(await meta.load()).default });
+const CLASSES = CONTENT.flatMap((c) => c.classes.map((k) => ({ ...k, courseId: c.id })));
 
 const errors = [];
 const warnings = [];
@@ -9,9 +14,16 @@ const KINDS = new Set(["autor", "concepto", "obra", "evento"]);
 
 // ---- clases ----
 for (const c of CLASSES) {
-  const tag = `Clase ${c.num}`;
-  if (c.transcript !== c.num + 1)
-    warnings.push(`${tag}: transcript (${c.transcript}) != num+1 (${c.num + 1})`);
+  const tag = `${c.courseId} · Clase ${c.num}`;
+  // El desfasaje entre `num` y `transcript` depende del curso: `nietzsche` omite
+  // su Clase 1 original (offset -1), `modernidad` numera sus md como la app
+  // (offset 0). El curso lo declara en `numOffset`; si no declara `transcript`,
+  // no hay nada que chequear.
+  const offset = COURSES.find((x) => x.id === c.courseId)?.numOffset ?? -1;
+  if (c.transcript != null && c.transcript + offset !== c.num)
+    warnings.push(
+      `${tag}: transcript (${c.transcript}) + offset (${offset}) != num (${c.num})`,
+    );
   if (!c.content) continue; // bloqueada: nada que validar
 
   const L = c.content;
@@ -112,19 +124,25 @@ for (const c of CLASSES) {
 }
 
 // ---- glosario ----
-const seenAlias = new Map();
-for (const [slug, e] of Object.entries(GLOSSARY)) {
-  const tag = `glosario · ${slug}`;
-  if (!e.term) errors.push(`${tag}: sin term`);
-  if (!KINDS.has(e.kind)) errors.push(`${tag}: kind inválido (${e.kind})`);
-  if (!e.body) errors.push(`${tag}: sin body`);
-  if (!e.when) warnings.push(`${tag}: sin when (fechas)`);
-  const akas = e.aka && e.aka.length ? e.aka : [e.term];
-  for (const a of akas) {
-    const k = String(a).toLowerCase();
-    if (seenAlias.has(k) && seenAlias.get(k) !== slug)
-      warnings.push(`${tag}: alias "${a}" ya usado por "${seenAlias.get(k)}"`);
-    else seenAlias.set(k, slug);
+// Por curso: dos cursos distintos pueden repetir un slug o un alias sin que sea
+// un problema, porque nunca están cargados a la vez.
+let terms = 0;
+for (const course of CONTENT) {
+  const seenAlias = new Map();
+  for (const [slug, e] of Object.entries(course.glossary)) {
+    terms += 1;
+    const tag = `${course.id} · glosario · ${slug}`;
+    if (!e.term) errors.push(`${tag}: sin term`);
+    if (!KINDS.has(e.kind)) errors.push(`${tag}: kind inválido (${e.kind})`);
+    if (!e.body) errors.push(`${tag}: sin body`);
+    if (!e.when) warnings.push(`${tag}: sin when (fechas)`);
+    const akas = e.aka && e.aka.length ? e.aka : [e.term];
+    for (const a of akas) {
+      const k = String(a).toLowerCase();
+      if (seenAlias.has(k) && seenAlias.get(k) !== slug)
+        warnings.push(`${tag}: alias "${a}" ya usado por "${seenAlias.get(k)}"`);
+      else seenAlias.set(k, slug);
+    }
   }
 }
 
@@ -138,5 +156,6 @@ if (errors.length) {
   process.exit(1);
 }
 console.log(
-  `\n✓ OK — ${active} clase(s) activa(s), ${Object.keys(GLOSSARY).length} términos. ${warnings.length} aviso(s).`
+  `\n✓ OK — ${CONTENT.length} curso(s), ${active} clase(s) activa(s), ${terms} términos. ` +
+    `${warnings.length} aviso(s).`
 );

@@ -22,90 +22,42 @@
 <svelte:window on:keydown={onKey} />
 
 {#if data}
-  <div class="backdrop" on:click={cerrar} role="presentation">
-    <div class="sheet" on:click|stopPropagation role="dialog" aria-modal="true">
-      <div class="grab"></div>
-      <span class="kind">¿Por qué?</span>
+  <div
+    class="backdrop-anim fixed inset-0 z-[80] flex items-end justify-center bg-black/55 backdrop-blur-[2px]"
+    on:click={cerrar}
+    role="presentation"
+  >
+    <div
+      class="sheet-anim w-full max-w-[480px] rounded-t-[22px] border border-b-0 border-line bg-bg px-[22px] pt-2.5 pb-[calc(env(safe-area-inset-bottom)+24px)] [box-shadow:0_-12px_40px_rgba(0,0,0,0.5)]"
+      on:click|stopPropagation
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="mx-auto mb-3.5 h-1 w-10 rounded-[3px] bg-line"></div>
+      <span class="inline-block rounded-full bg-bad px-2.5 py-1 text-[11px] font-extrabold tracking-[1.4px] text-bg uppercase"
+        >¿Por qué?</span
+      >
       {#if data.solucion}
-        <h3>{data.solucion}</h3>
+        <h3 class="mt-3 font-serif text-[21px] font-extrabold tracking-[-0.3px] text-accent-ink">{data.solucion}</h3>
       {/if}
       {#if data.texto}
-        <p><RichText text={data.texto} /></p>
+        <p class="mt-3 font-serif text-[15px] leading-[1.6] text-text-soft"><RichText text={data.texto} /></p>
       {/if}
-      <button class="close" on:click={cerrar}>Entendido</button>
+      <button
+        class="mt-5 w-full cursor-pointer rounded-[13px] border border-line bg-surface p-3.5 text-[15px] font-bold text-text [font-family:inherit] active:scale-[0.99]"
+        on:click={cerrar}>Entendido</button
+      >
     </div>
   </div>
 {/if}
 
 <style>
-  .backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 80;
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(2px);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+  /* Keyframes de entrada de la hoja modal. */
+  .backdrop-anim {
     animation: fade 0.2s ease;
   }
-  .sheet {
-    width: 100%;
-    max-width: 480px;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-bottom: none;
-    border-radius: 22px 22px 0 0;
-    padding: 10px 22px calc(env(safe-area-inset-bottom) + 24px);
-    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.5);
+  .sheet-anim {
     animation: slideup 0.26s cubic-bezier(0.16, 0.84, 0.3, 1);
-  }
-  .grab {
-    width: 40px;
-    height: 4px;
-    border-radius: 3px;
-    background: var(--line);
-    margin: 0 auto 14px;
-  }
-  .kind {
-    display: inline-block;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
-    font-weight: 800;
-    color: var(--bg);
-    background: var(--bad);
-    padding: 4px 10px;
-    border-radius: 999px;
-  }
-  h3 {
-    margin: 12px 0 0;
-    font-size: 21px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-    color: var(--accent-ink);
-  }
-  p {
-    margin: 12px 0 0;
-    color: var(--text-soft);
-    line-height: 1.6;
-    font-size: 15px;
-  }
-  .close {
-    margin-top: 20px;
-    width: 100%;
-    padding: 14px;
-    border-radius: 13px;
-    background: var(--surface);
-    color: var(--text);
-    border: 1px solid var(--line);
-    font: inherit;
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-  }
-  .close:active {
-    transform: scale(0.99);
   }
   @keyframes fade {
     from { opacity: 0; }
@@ -116,6 +68,6 @@
     to { transform: translateY(0); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .backdrop, .sheet { animation-duration: 1ms; }
+    .backdrop-anim, .sheet-anim { animation-duration: 1ms; }
   }
 </style>

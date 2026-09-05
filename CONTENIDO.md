@@ -1,14 +1,26 @@
 # Cómo se arma una clase
 
-Guía para producir el contenido de una clase de forma consistente. La referencia
-viva es `src/content/clase02.js` (la Clase 1 de la app): las cards de info salen
-de correr `scripts/md-to-cards.mjs` sobre la transcripción y las interactivas se
-escriben a mano encima.
+Guía para producir el contenido de una clase de forma consistente.
+
+**El método, en dos pasos y en este orden:**
+
+1. **Las cards de info se generan, no se escriben.** Salen de correr
+   `scripts/md-to-cards.mjs` sobre la transcripción: cada párrafo del `.md` es el
+   `body` de una card, literal. Nadie las reescribe, resume, parte ni reordena a
+   mano. **La transcripción curada es la fuente de verdad**: si falta contenido,
+   sobra una card o hay que partir una idea en dos, se edita el `.md` y se vuelve
+   a generar.
+2. **Las cards interactivas se escriben a mano encima** del feed generado, con el
+   criterio de esta guía. Ojo: regenerar pisa el feed entero, así que hay que
+   volver a intercalarlas.
+
+La referencia viva es `src/content/nietzsche/clase02.js` (la Clase 1 de la app).
 
 ## Numeración
 
 - `num` = número que ve el usuario en la app.
-- `transcript` = número del archivo en `../filosofia/yale-filosofia/transcripciones/`.
+- `transcript` = número del archivo en `../filosofia/yale-filosofia/transcripciones/`
+  (para el curso `nietzsche`; cada curso tiene su propia carpeta de transcripciones).
 - Relación: **`transcript = num + 1`** (se omite la Clase 1 original, "Introducción al curso").
 
 ## El feed
@@ -29,11 +41,12 @@ Dos tipos, intercalados: **unas cards de info y luego las cards de quiz que las 
   `title` como **badge discreto** (`↳ Cogito, ergo sum`), así el cuerpo se lee
   como continuación y igual sabés en qué subtítulo estás. Nunca numeres los
   títulos con `(1)`, `(2)`: para eso está el flag.
-- `body`: **resumen fiel de la clase**. 40–70 palabras. Tono sobrio y claro, sin
-  chistes ni coloquialismos propios. Fidelidad al contenido por encima del estilo.
-- `tag`: categoría corta (Panorama, Idea central, Contrato social…). **Opcional
-  y en retirada**: las clases viejas lo usan en cada card, las nuevas no lo
-  llevan. Si está, se muestra arriba del título grande.
+- `body`: **sale tal cual del párrafo de la transcripción**, vía el generador. Lo
+  que se ajusta es el `.md`: párrafos de 40–70 palabras, tono sobrio y claro, sin
+  chistes ni coloquialismos. Fidelidad al contenido por encima del estilo.
+  Admite `**negritas**` para la frase o el término clave del párrafo (se renderizan
+  como `<strong>`); usalas con cuentagotas, una o dos por card. El generador las
+  preserva y limpia el resto del markdown (itálicas, links, viñetas → •).
 
 ### Card de quiz — pone a prueba lo anterior
 
@@ -100,7 +113,7 @@ Las dos trampas más comunes —y las que `npm run check` detecta— son:
 - **Longitud.** La correcta sale más larga porque se la escribe con todo el
   matiz. El arreglo es **acortarla**, no inflar los distractores: cuatro
   opciones largas se leen peor, sobre todo en el teléfono. Apuntá a que las
-  cuatro entren en **una línea, ~45–60 caracteres**.
+  cuatro entren en **una línea, ~50–70 caracteres**.
 - **Registro.** Guiones largos (—), dos puntos, comillas o un tono más
   "académico" sólo en la correcta la delatan igual que la longitud. Escribila
   tan natural y directa como las otras tres.
@@ -165,8 +178,10 @@ valga la pena fijar de memoria). Abrí con una card de panorama y cerrá con una
 de síntesis.
 
 **El `match` de repaso final va siempre antes de la conclusión**, nunca después:
-la clase tiene que cerrar con el texto de cierre, no con un ejercicio. Como orden de magnitud, una clase ronda ~12–16 info + ~8
-interactivas, pero es referencia, no cuota. Lo crítico es no saltearse ni perder ningún contenido central de la clase.
+la clase tiene que cerrar con el texto de cierre, no con un ejercicio. Como orden
+de magnitud, una clase ronda ~10-15 interactivas sobre las ~30–40 info que salgan
+del md, pero es referencia, no cuota. Lo crítico es que las interactivas no se
+salteen ningún contenido central de la clase.
 
 **Una card sólo evalúa lo ya presentado.** No preguntes en un `quiz`, `match` o
 `short` un concepto que no apareció antes en una card de info; si el ejercicio
@@ -175,7 +190,8 @@ sintetiza varias piezas, va después de que todas se explicaron.
 ## Glosario (auto-linkeo)
 
 Los términos se vuelven clicables solos. Para cada autor/concepto/obra/evento
-nuevo que aparezca en las cards, agregá una entrada en `src/content/glossary.js`:
+nuevo que aparezca en las cards, agregá una entrada en
+`src/content/<curso>/glossary.js`:
 
 ```js
 kant: {
@@ -189,15 +205,19 @@ kant: {
 
 - No dupliques slugs ni alias ya existentes (el glosario es acumulativo entre clases).
 - `when`: autores = nacimiento–muerte; conceptos/obras/eventos = época o año de origen.
-- No agregues términos genéricos (p. ej. "razón") que aparecerían por todos lados.
+- Conmplenta con contenido al estilo wikipedia para cubrir las bases del concepto versus repetir lo que se dice en la clase.
 
 ## Activar la clase
 
-1. Creá `src/content/claseNN.js` (NN = `num` con cero, p. ej. `clase05.js`).
-2. En `src/content/classes.js`, importá el archivo y asignálo al `content` de la
-   entrada correspondiente (deja de estar `null` → aparece desbloqueada).
-3. Validá: `npm run check`.
+El contenido vive por curso: `src/content/<curso>/` con sus `claseNN.js`, su
+`glossary.js` y un `curso.js` que exporta `{ classes, glossary }`. El registro de
+cursos es `src/content/courses.js`.
 
-## Atajo
+1. Generá el feed de info:
+   `node scripts/md-to-cards.mjs "<transcripción.md>" src/content/<curso>/claseNN.js`
+   (NN = `transcript` con cero, p. ej. `clase05.js`).
+2. Intercalá las cards interactivas a mano.
+3. En `src/content/<curso>/curso.js`, importá el archivo y asignálo al `content` de
+   la entrada correspondiente (deja de estar `null` → aparece desbloqueada).
+4. Validá: `npm run check`.
 
-Con Claude Code: `/nueva-clase <num>` hace todo lo anterior desde la transcripción.

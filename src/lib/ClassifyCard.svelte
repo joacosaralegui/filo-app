@@ -103,55 +103,87 @@
     }
     dispatch("answer", { correct: ok, save: { correct: ok, assign: { ...placement } } });
   }
+
+  const CHIP_CLS =
+    "cursor-grab touch-none select-none rounded-[11px] border-[1.5px] border-line bg-surface px-[11px] py-[9px] text-left text-[13.5px] leading-[1.3] text-text [transition:transform_0.08s,border-color_0.16s,background-color_0.16s,box-shadow_0.16s] active:cursor-grabbing [@media(max-height:700px)]:px-2.5 [@media(max-height:700px)]:py-2 [@media(max-height:700px)]:text-[12.5px]";
+
+  // Estado visual del chip: selección (tap-to-place), "fantasma" mientras se
+  // arrastra, y corrección (sólo en los ya ubicados, tras confirmar).
+  function chipStateCls(i, isPlaced) {
+    let cls = "";
+    if (sel === i) cls += " border-text-soft [box-shadow:0_0_0_2px_color-mix(in_srgb,var(--text-soft)_30%,transparent)]";
+    if (drag && drag.i === i && moved) cls += " opacity-35";
+    if (isPlaced && answered) {
+      cls +=
+        placement[i] === card.items[i].group
+          ? " cursor-default border-good bg-good/14 text-good-ink"
+          : " cursor-default border-bad bg-bad/12 text-bad-ink";
+    }
+    return cls;
+  }
 </script>
 
-<div class="slide-inner classify" class:shake>
-  <span class="tag" class:ok={correct} class:no={answered && !correct}>
+<div class="flex w-full max-w-[480px] flex-col justify-center {shake ? 'shake-anim' : ''}">
+  <span
+    class="mb-4 self-start rounded-full px-[13px] py-1.5 text-xs font-extrabold tracking-[1.6px] text-bg uppercase transition-colors duration-[250ms] {correct
+      ? 'bg-good'
+      : answered
+        ? 'bg-bad'
+        : 'bg-accent-ink'}"
+  >
     {answered ? (correct ? "¡Correcto!" : "Revisá la clasificación") : "Clasificar"}
   </span>
-  <h2>{card.question}</h2>
+  <h2
+    class="m-0 mb-4 font-serif text-[21px] font-extrabold leading-[1.3] tracking-[-0.3px] [@media(max-height:700px)]:mb-3 [@media(max-height:700px)]:text-[19px]"
+  >
+    {card.question}
+  </h2>
 
   {#if !answered}
-    <div class="pool" class:armed={sel !== null} on:pointerdown={poolTap}>
+    <div
+      class="mb-3 flex min-h-[52px] flex-wrap content-center gap-[7px] rounded-[14px] bg-surface-2 p-2.5 {sel !== null
+        ? '[outline:1.5px_dashed_color-mix(in_srgb,var(--text-soft)_40%,transparent)] [outline-offset:-3px]'
+        : ''}"
+      on:pointerdown={poolTap}
+    >
       {#if poolItems.length}
         {#each poolItems as i (i)}
           <button
-            class="chip"
-            class:sel={sel === i}
-            class:ghosted={drag && drag.i === i && moved}
-            on:pointerdown={(e) => onPointerDown(e, i)}
-          >{card.items[i].text}</button>
+            class="{CHIP_CLS} flex-initial {chipStateCls(i, false)}"
+            on:pointerdown={(e) => onPointerDown(e, i)}>{card.items[i].text}</button
+          >
         {/each}
       {:else}
-        <span class="poolhint">Todo clasificado — confirmá abajo</span>
+        <span class="m-auto text-[13px] font-semibold text-text-soft">Todo clasificado — confirmá abajo</span>
       {/if}
     </div>
   {/if}
 
-  <div class="zones">
+  <div class="mb-3 grid grid-cols-2 gap-2.5">
     {#each card.groups as g, gi}
       <div
-        class="zone"
-        class:over={overGroup === gi}
-        class:armed={sel !== null && !answered}
+        class="zone rounded-[14px] border-[1.5px] border-dashed border-line p-2 [background:color-mix(in_srgb,var(--surface-2)_45%,transparent)] [transition:border-color_0.15s,background-color_0.15s,box-shadow_0.15s] {overGroup ===
+          gi || (sel !== null && !answered)
+          ? 'border-solid border-text-soft bg-surface-2 [box-shadow:inset_0_0_0_1px_color-mix(in_srgb,var(--text-soft)_25%,transparent)]'
+          : ''}"
         data-group={gi}
         on:pointerdown={() => zoneTap(gi)}
       >
-        <span class="zlabel">{g}</span>
-        <div class="drop">
+        <span class="block pt-0.5 pb-2 text-center text-xs font-extrabold tracking-[0.4px] text-text-soft uppercase"
+          >{g}</span
+        >
+        <div class="flex min-h-[54px] flex-col gap-[7px]">
           {#each grouped[gi] as i (i)}
             <button
-              class="chip placed"
-              class:ok={answered && placement[i] === card.items[i].group}
-              class:no={answered && placement[i] !== card.items[i].group}
-              class:sel={sel === i}
-              class:ghosted={drag && drag.i === i && moved}
+              class="{CHIP_CLS} w-full {chipStateCls(i, true)}"
               on:pointerdown={(e) => onPointerDown(e, i)}
-              disabled={answered}
-            >{card.items[i].text}</button>
+              disabled={answered}>{card.items[i].text}</button
+            >
           {/each}
           {#if grouped[gi].length === 0 && !answered}
-            <span class="empty">Soltá acá</span>
+            <span class="grid min-h-[54px] place-items-center text-[12.5px] font-semibold [color:color-mix(in_srgb,var(--text-soft)_60%,transparent)]"
+              >Soltá acá</span
+            >
           {/if}
         </div>
       </div>
@@ -159,187 +191,30 @@
   </div>
 
   {#if !answered}
-    <button class="confirm" on:click={confirm} disabled={!allPlaced}>
+    <button
+      class="mt-3.5 cursor-pointer rounded-[13px] bg-accent px-[18px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] [transition:opacity_0.18s,transform_0.08s] not-disabled:active:scale-[0.985] disabled:cursor-default disabled:opacity-45"
+      on:click={confirm}
+      disabled={!allPlaced}
+    >
       {allPlaced ? "Confirmar" : "Llevá cada ítem a su columna"}
     </button>
   {:else}
   {/if}
 
   {#if drag && moved}
-    <div class="ghost" style="left:{drag.x}px; top:{drag.y}px; width:{drag.w}px">{drag.label}</div>
+    <div
+      class="fixed z-[60] [transform:translate(-50%,-50%)_rotate(-1.5deg)] rounded-[11px] border-[1.5px] border-text-soft bg-surface px-[11px] py-[9px] text-[13.5px] leading-[1.3] font-semibold text-text [box-shadow:0_10px_24px_rgba(0,0,0,0.18)] pointer-events-none"
+      style="left:{drag.x}px; top:{drag.y}px; width:{drag.w}px"
+    >
+      {drag.label}
+    </div>
   {/if}
 </div>
 
 <style>
-  .slide-inner {
-    width: 100%;
-    max-width: 480px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .shake-anim {
+    animation: shake 0.4s ease;
   }
-  .tag {
-    align-self: flex-start;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1.6px;
-    font-weight: 800;
-    color: var(--bg);
-    background: var(--accent-ink);
-    padding: 6px 13px;
-    border-radius: 999px;
-    margin-bottom: 16px;
-    transition: background 0.25s ease;
-  }
-  .tag.ok { background: var(--good); }
-  .tag.no { background: var(--bad); }
-  h2 {
-    font-size: 21px;
-    line-height: 1.3;
-    margin: 0 0 16px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-  }
-
-  /* columnas destino — NEUTRAS: se distinguen por etiqueta y posición, no por
-     color (evita insinuar 'correcta' o 'preferida'). */
-  .zones {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 12px;
-  }
-  .zone {
-    border: 1.5px dashed var(--line);
-    border-radius: 14px;
-    padding: 8px;
-    background: color-mix(in srgb, var(--surface-2) 45%, transparent);
-    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
-  }
-  .zone.over,
-  .zone.armed {
-    border-color: var(--text-soft);
-    border-style: solid;
-    background: var(--surface-2);
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text-soft) 25%, transparent);
-  }
-  .zlabel {
-    display: block;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-    color: var(--text-soft);
-    padding: 2px 0 8px;
-  }
-  .drop {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    min-height: 54px;
-  }
-  .empty {
-    display: grid;
-    place-items: center;
-    min-height: 54px;
-    font-size: 12.5px;
-    color: color-mix(in srgb, var(--text-soft) 60%, transparent);
-    font-weight: 600;
-  }
-
-  .pool {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    padding: 10px;
-    border-radius: 14px;
-    background: var(--surface-2);
-    min-height: 52px;
-    align-content: center;
-    margin-bottom: 12px;
-  }
-  .pool.armed {
-    outline: 1.5px dashed color-mix(in srgb, var(--text-soft) 40%, transparent);
-    outline-offset: -3px;
-  }
-  .poolhint {
-    margin: auto;
-    font-size: 13px;
-    color: var(--text-soft);
-    font-weight: 600;
-  }
-
-  .chip {
-    text-align: left;
-    background: var(--surface);
-    border: 1.5px solid var(--line);
-    border-radius: 11px;
-    padding: 9px 11px;
-    font: inherit;
-    font-size: 13.5px;
-    line-height: 1.3;
-    color: var(--text);
-    cursor: grab;
-    touch-action: none; /* el arrastre no debe hacer scroll del feed */
-    user-select: none;
-    -webkit-user-select: none;
-    transition: transform 0.08s, border-color 0.16s, background 0.16s, box-shadow 0.16s;
-  }
-  .chip:active { cursor: grabbing; }
-  .pool .chip { flex: 0 1 auto; }
-  .placed { width: 100%; }
-  .chip.sel {
-    border-color: var(--text-soft);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--text-soft) 30%, transparent);
-  }
-  .chip.ghosted { opacity: 0.35; }
-  .chip.ok {
-    border-color: var(--good);
-    background: color-mix(in srgb, var(--good) 14%, transparent);
-    color: var(--good-ink);
-    cursor: default;
-  }
-  .chip.no {
-    border-color: var(--bad);
-    background: color-mix(in srgb, var(--bad) 12%, transparent);
-    color: var(--bad-ink);
-    cursor: default;
-  }
-
-  /* clon que sigue al dedo/cursor mientras se arrastra */
-  .ghost {
-    position: fixed;
-    z-index: 60;
-    transform: translate(-50%, -50%) rotate(-1.5deg);
-    background: var(--surface);
-    border: 1.5px solid var(--text-soft);
-    border-radius: 11px;
-    padding: 9px 11px;
-    font-size: 13.5px;
-    line-height: 1.3;
-    font-weight: 600;
-    color: var(--text);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-    pointer-events: none;
-  }
-
-  .confirm {
-    margin-top: 14px;
-    padding: 13px 18px;
-    border-radius: 13px;
-    background: var(--accent);
-    color: var(--on-accent);
-    border: none;
-    font: inherit;
-    font-weight: 800;
-    font-size: 15px;
-    cursor: pointer;
-    transition: opacity 0.18s, transform 0.08s;
-  }
-  .confirm:disabled { opacity: 0.45; cursor: default; }
-  .confirm:not(:disabled):active { transform: scale(0.985); }
-  .shake { animation: shake 0.4s ease; }
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
     20% { transform: translateX(-8px); }
@@ -347,11 +222,7 @@
     60% { transform: translateX(-5px); }
     80% { transform: translateX(3px); }
   }
-  @media (max-height: 700px) {
-    h2 { font-size: 19px; margin-bottom: 12px; }
-    .chip { font-size: 12.5px; padding: 8px 10px; }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .shake { animation: none; }
+    .shake-anim { animation: none; }
   }
 </style>

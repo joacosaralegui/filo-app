@@ -36,9 +36,10 @@
 </script>
 
 {#if parts.length}
-  <div class="burst" aria-hidden="true">
+  <div class="pointer-events-none fixed inset-0 z-[60] grid place-items-center" aria-hidden="true">
     {#each parts as p (p.id)}
       <span
+        class="absolute h-[var(--s)] w-[var(--s)] rounded-[2px] bg-[var(--c)] opacity-0"
         style="--tx:{p.tx}px; --ty:{p.ty}px; --rot:{p.rot}deg; --c:{p.color}; --s:{p.size}px; --d:{p.delay}ms"
       ></span>
     {/each}
@@ -46,21 +47,7 @@
 {/if}
 
 <style>
-  .burst {
-    position: fixed;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-    z-index: 60;
-  }
   span {
-    position: absolute;
-    width: var(--s);
-    height: var(--s);
-    background: var(--c);
-    border-radius: 2px;
-    opacity: 0;
     animation: fly 780ms cubic-bezier(0.15, 0.7, 0.3, 1) var(--d) forwards;
   }
   @keyframes fly {

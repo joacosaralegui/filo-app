@@ -40,17 +40,35 @@
       responder();
     }
   }
+
+  $: fieldCls = !answered ? "" : correct ? "border-good bg-good/22 pop-anim" : "border-bad bg-bad/16";
+  $: inkCls = correct ? "text-good-ink" : "text-bad-ink";
 </script>
 
-<div class="slide-inner short" class:shake>
-  <span class="tag" class:ok={correct} class:no={answered && !correct}>
+<div class="flex w-full max-w-[480px] flex-col justify-center {shake ? 'shake-anim' : ''}">
+  <span
+    class="mb-[18px] self-start rounded-full px-[13px] py-1.5 text-xs font-extrabold tracking-[1.6px] text-bg uppercase transition-colors duration-[250ms] {correct
+      ? 'bg-good'
+      : answered
+        ? 'bg-bad'
+        : 'bg-accent-ink'}"
+  >
     {answered ? (correct ? "¡Correcto!" : "Incorrecto") : "Escribí la respuesta"}
   </span>
-  <h2>{card.question}</h2>
+  <h2
+    class="m-0 mb-[22px] font-serif text-[23px] font-extrabold leading-[1.32] tracking-[-0.3px] [@media(max-height:700px)]:mb-4 [@media(max-height:700px)]:text-[20px]"
+  >
+    {card.question}
+  </h2>
 
-  <div class="field" class:correct={answered && correct} class:wrong={answered && !correct}>
+  <div
+    class="flex items-center gap-2.5 rounded-[14px] border-[1.5px] border-line bg-surface px-4 py-1 transition-colors duration-[180ms] {fieldCls}"
+  >
     <input
       type="text"
+      class="min-w-0 flex-1 border-0 bg-transparent py-3.5 text-[16.5px] text-text outline-none [font-family:inherit] disabled:opacity-100 [@media(max-height:700px)]:py-3 [@media(max-height:700px)]:text-base {answered
+        ? inkCls
+        : ''}"
       bind:value={texto}
       on:keydown={onKeydown}
       disabled={answered}
@@ -62,105 +80,32 @@
       aria-label="Tu respuesta"
     />
     {#if answered}
-      <span class="mark">{correct ? "✓" : "✕"}</span>
+      <span class="text-[17px] font-extrabold {inkCls}">{correct ? "✓" : "✕"}</span>
     {/if}
   </div>
 
   {#if !answered}
-    <button class="send" on:click={responder} disabled={!texto.trim()}>Responder</button>
+    <button
+      class="mt-3.5 cursor-pointer self-start rounded-[13px] bg-accent px-[22px] py-3 text-[15px] font-extrabold text-on-accent [font-family:inherit] not-disabled:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-45"
+      on:click={responder}
+      disabled={!texto.trim()}>Responder</button
+    >
   {/if}
 </div>
 
 <style>
-  .slide-inner {
-    width: 100%;
-    max-width: 480px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .tag {
-    align-self: flex-start;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1.6px;
-    font-weight: 800;
-    color: var(--bg);
-    background: var(--accent-ink);
-    padding: 6px 13px;
-    border-radius: 999px;
-    margin-bottom: 18px;
-    transition: background 0.25s ease;
-  }
-  .tag.ok { background: var(--good); }
-  .tag.no { background: var(--bad); }
-  h2 {
-    font-size: 23px;
-    line-height: 1.32;
-    margin: 0 0 22px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-  }
-  .field {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--surface);
-    border: 1.5px solid var(--line);
-    border-radius: 14px;
-    padding: 4px 16px;
-    transition: background 0.18s, border-color 0.18s;
-  }
-  .field.correct {
-    background: color-mix(in srgb, var(--good) 22%, transparent);
-    border-color: var(--good);
+  /* Keyframes: la vibración al fallar y el "pop" al acertar el campo. */
+  .pop-anim {
     animation: pop 0.4s ease;
   }
-  .field.wrong {
-    background: color-mix(in srgb, var(--bad) 16%, transparent);
-    border-color: var(--bad);
-  }
-  input {
-    flex: 1;
-    min-width: 0;
-    background: none;
-    border: none;
-    outline: none;
-    font: inherit;
-    font-size: 16.5px;
-    padding: 14px 0;
-    color: var(--text);
-  }
-  .field.correct input { color: var(--good-ink); }
-  .field.wrong input { color: var(--bad-ink); }
-  input:disabled { opacity: 1; }
-  .mark {
-    font-weight: 800;
-    font-size: 17px;
-  }
-  .field.correct .mark { color: var(--good-ink); }
-  .field.wrong .mark { color: var(--bad-ink); }
-  .send {
-    margin-top: 14px;
-    align-self: flex-start;
-    padding: 12px 22px;
-    border-radius: 13px;
-    background: var(--accent);
-    color: var(--on-accent);
-    border: none;
-    font: inherit;
-    font-weight: 800;
-    font-size: 15px;
-    cursor: pointer;
-  }
-  .send:disabled { opacity: 0.45; cursor: not-allowed; }
-  .send:not(:disabled):active { transform: scale(0.98); }
   @keyframes pop {
     0% { transform: scale(1); }
     45% { transform: scale(1.035); }
     100% { transform: scale(1); }
   }
-  .shake { animation: shake 0.4s ease; }
+  .shake-anim {
+    animation: shake 0.4s ease;
+  }
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
     20% { transform: translateX(-8px); }
@@ -168,11 +113,7 @@
     60% { transform: translateX(-5px); }
     80% { transform: translateX(3px); }
   }
-  @media (max-height: 700px) {
-    h2 { font-size: 20px; margin-bottom: 16px; }
-    input { font-size: 16px; padding: 12px 0; }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .field.correct, .shake { animation: none; }
+    .pop-anim, .shake-anim { animation: none; }
   }
 </style>

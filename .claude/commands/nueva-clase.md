@@ -12,17 +12,25 @@ Seguí este proceso, respetando la guía `CONTENIDO.md` del repo:
 1. **Mapeo:** `transcript = num + 1`. Ubicá la transcripción en
    `/home/joaco/joaco/filosofia/yale-filosofia/transcripciones/` cuyo archivo
    empiece con ese número (con cero adelante si es < 10).
-2. **Leé `CONTENIDO.md` entera** y respetá el esquema de card, el tono (resumen
-   fiel, sin fuzz), la dificultad de los quizzes y el formato de glosario. Usá
-   `src/content/clase02.js` como referencia de estilo.
+2. **Leé `CONTENIDO.md` entera** y respetá el esquema de card, la dificultad de
+   los quizzes y el formato de glosario. Usá `src/content/nietzsche/clase02.js`
+   como referencia de estilo.
 3. **Leé la transcripción COMPLETA** antes de escribir nada.
-4. **Creá `src/content/claseNN.js`** (NN = número de `transcript` con cero, es
-   decir `num + 1`; p. ej. la Clase 5 de la app → `clase06.js`, como los archivos
-   ya existentes) copiando la estructura de `_plantilla.js`: `num`, `transcript`,
-   `title`, `source`, y `feed[]` con cards de info y cards interactivas
-   intercaladas (unas infos y después las que las evalúan). Info = resumen fiel.
-   Hay **cuatro formatos interactivos** (ver `CONTENIDO.md` para el schema y el
-   criterio de cada uno):
+4. **Generá las cards de info con el script — no las escribas vos:**
+
+   ```bash
+   node scripts/md-to-cards.mjs "<transcripción.md>" src/content/nietzsche/claseNN.js
+   ```
+
+   NN = número de `transcript` con cero (`num + 1`; p. ej. la Clase 5 de la app →
+   `clase06.js`). Cada párrafo del md es el `body` de una card, literal: **no los
+   reescribas, no los resumas, no los partas ni los reordenes, y no agregues
+   cards de info propias.** La transcripción curada es la fuente de verdad; si
+   algo falta o sobra, se edita el `.md` y se vuelve a generar. Si te parece que
+   falta contenido, decíselo al usuario en vez de completarlo por tu cuenta.
+5. **Intercalá a mano las cards interactivas** en el `feed` generado (unas infos
+   y después las que las evalúan). Hay **cuatro formatos interactivos**
+   (ver `CONTENIDO.md` para el schema y el criterio de cada uno):
    - `quiz` (opción múltiple): el formato **por defecto**, uso más normal.
    **Regla de oro de las opciones:** la correcta no se tiene que poder adivinar
    por su forma. Escribila **corta y natural**, del mismo largo y registro que
@@ -43,15 +51,16 @@ Seguí este proceso, respetando la guía `CONTENIDO.md` del repo:
      válidos. Nunca lo uses si la respuesta esperada es una explicación.
 
    Usá `quiz` de base y sumá al menos un `classify` y un `match` por clase cuando
-   el material lo permita, más 1–2 `short` con los términos centrales. Empezá con una card de panorama y cerrá con una de
-   síntesis.
-5. **Alimentá el glosario** `src/content/glossary.js` con los autores/conceptos/
-   obras/eventos nuevos, con fechas. No dupliques slugs ni alias existentes.
-6. **Activá la clase** en `src/content/classes.js`: importá `claseNN.js` y
+   el material lo permita, más 1–2 `short` con los términos centrales. El `match`
+   de repaso final va **antes** de la card de conclusión: la clase cierra con el
+   texto de cierre, nunca con un ejercicio.
+6. **Alimentá el glosario** `src/content/nietzsche/glossary.js` con los autores/
+   conceptos/obras/eventos nuevos, con fechas. No dupliques slugs ni alias existentes.
+7. **Activá la clase** en `src/content/nietzsche/curso.js`: importá `claseNN.js` y
    asignálo al `content` de la entrada correspondiente.
-7. **Validá:** corré `npm --prefix /home/joaco/joaco/filo-app run check` y
+8. **Validá:** corré `npm --prefix /home/joaco/joaco/filo-app run check` y
    corregí lo que marque.
-8. **Mostrá un resumen** (cuántas cards info y cuántas interactivas de cada tipo
+9. **Mostrá un resumen** (cuántas cards info y cuántas interactivas de cada tipo
    —quiz/classify/match/short—, términos nuevos agregados) y **pedile al usuario que
    revise los matices filosóficos** antes de dar la clase por cerrada.
 
