@@ -272,7 +272,6 @@
       >
         <span class="text-accent-2">★</span>
         {correctCount}/{totalQuiz}
-        {#if combo > 1}<b class="ml-[3px] text-accent-3">×{combo}</b>{/if}
       </span>
 
       <button

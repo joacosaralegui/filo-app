@@ -88,35 +88,6 @@
 
   {/if}
 
-  <!-- Tira del álbum: una sola línea, sin caja, para no competir con la
-       tarjeta de "Continuar". Los medallones superpuestos se leen como
-       "colección" sin necesidad de explicar nada. -->
-  {#if album.length}
-    <button
-      class="mb-8 flex w-full cursor-pointer items-center gap-3 rounded-2xl border border-line bg-transparent px-4 py-3 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
-      on:click={() => dispatch("album")}
-    >
-      <img class="h-14 w-14 flex-none object-contain" src={albumIcon} alt="" aria-hidden="true" />
-      <div class="flex flex-col">
-        <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Álbum</span>
-        <span class="font-serif text-[15px] font-semibold text-text">{album.length} de {TOTAL}</span>
-      </div>
-      <div class="ml-auto flex">
-        <!-- invertido: el más nuevo va último en el DOM, así queda encima -->
-        {#each album.slice(0, 4).reverse() as c (c.slug)}
-          <span class="mini">
-            {#if c.img}
-              <img class="h-full w-full object-cover" src={c.img} alt="" />
-            {:else}
-              <span class="mini-ph">{c.nombre.replace(/^(La|El|A) /, "").charAt(0)}</span>
-            {/if}
-          </span>
-        {/each}
-      </div>
-      <span class="text-2xl font-semibold text-text-soft/50">›</span>
-    </button>
-  {/if}
-
   {#if heroActive && otherCourses.length}
     <p class="mb-3.5 text-xs font-bold tracking-[1.6px] text-text-soft/70 uppercase">Otros cursos</p>
   {/if}
@@ -146,7 +117,36 @@
     {/each}
   </div>
 
-  <footer class="mt-auto pt-9 text-center text-xs text-text-soft/70">Se irán sumando más cursos.</footer>
+  <!-- Tira del álbum: cierra la pantalla, anclada abajo. Los medallones
+       superpuestos se leen como "colección" sin explicar nada. El pt asegura
+       aire cuando la lista de cursos es larga y el margen auto se anula. -->
+  {#if album.length}
+    <div class="mt-auto pt-8">
+      <button
+        class="flex w-full cursor-pointer items-center gap-3 rounded-2xl border border-line bg-transparent px-4 py-3 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+        on:click={() => dispatch("album")}
+      >
+      <img class="h-14 w-14 flex-none object-contain" src={albumIcon} alt="" aria-hidden="true" />
+      <div class="flex flex-col">
+        <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Álbum</span>
+        <span class="font-serif text-[15px] font-semibold text-text">{album.length} de {TOTAL}</span>
+      </div>
+      <div class="ml-auto flex">
+        <!-- invertido: el más nuevo va último en el DOM, así queda encima -->
+        {#each album.slice(0, 4).reverse() as c (c.slug)}
+          <span class="mini">
+            {#if c.img}
+              <img class="h-full w-full object-cover" src={c.img} alt="" />
+            {:else}
+              <span class="mini-ph">{c.nombre.replace(/^(La|El|A) /, "").charAt(0)}</span>
+            {/if}
+          </span>
+        {/each}
+      </div>
+        <span class="text-2xl font-semibold text-text-soft/50">›</span>
+      </button>
+    </div>
+  {/if}
 </div>
 
 <style>
