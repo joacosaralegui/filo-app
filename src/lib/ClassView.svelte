@@ -266,7 +266,7 @@
       <!-- Los aciertos, no puntos: es exactamente lo que determina las
            estrellas, así que se ve la calificación real en todo momento. -->
       <span
-        class="flex-none whitespace-nowrap text-[15px] font-extrabold text-text transition-transform duration-150 {pop
+        class="flex-none whitespace-nowrap text-[15px] font-extrabold text-accent transition-transform duration-150 {pop
           ? 'scale-[1.14]'
           : ''}"
       >
