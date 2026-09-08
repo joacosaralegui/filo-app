@@ -11,7 +11,6 @@
 
   $: ganados = cromosGanados($progress);
   $: cuantos = ALBUM.filter((c) => ganados[c.slug]).length;
-  $: pct = Math.round((cuantos / TOTAL) * 100);
 </script>
 
 <div
@@ -19,13 +18,16 @@
 >
   <TopBar back backLabel="Volver" on:back={() => dispatch("back")} on:home={() => dispatch("back")} />
 
-  <header class="mt-7 mb-7">
-    <h1 class="m-0 font-serif text-[32px] leading-none font-semibold tracking-[-0.3px] text-text">Álbum</h1>
-    <p class="mt-2 text-[13px] font-semibold text-text-soft">
-      {cuantos} de {TOTAL} · un cromo por clase, con 3 estrellas
-    </p>
-    <div class="mt-3 h-1 overflow-hidden rounded-full bg-line">
-      <i class="block h-full rounded-full bg-accent transition-[width] duration-500" style="width:{pct}%"></i>
+  <header class="mt-7 mb-7 flex items-start gap-4">
+    <div class="flex min-w-0 flex-1 flex-col">
+      <h1 class="m-0 font-serif text-[32px] leading-none font-semibold tracking-[-0.3px] text-text">Álbum</h1>
+      <p class="mt-2.5 text-[13px] leading-normal text-text-soft">
+        Sacá 3 estrellas en una clase para quedarte con su cromo.
+      </p>
+    </div>
+    <div class="flex flex-none flex-col items-end">
+      <span class="font-serif text-[42px] leading-none font-semibold text-accent">{cuantos}</span>
+      <span class="mt-1 text-[12px] font-semibold text-text-soft">de {TOTAL}</span>
     </div>
   </header>
 
