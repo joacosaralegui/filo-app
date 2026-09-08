@@ -3,6 +3,7 @@
   import Home from "./lib/Home.svelte";
   import ClassView from "./lib/ClassView.svelte";
   import Album from "./lib/Album.svelte";
+  import BottomNav from "./lib/BottomNav.svelte";
   import GlossaryModal from "./lib/GlossaryModal.svelte";
   import { COURSES, findCourse } from "./content/courses.js";
   import { loadCourse, unloadCourse } from "./lib/courses.js";
@@ -12,6 +13,7 @@
   let course = null; // curso cargado: manifiesto + { classes, glossary }
   let loading = false;
   let token = 0; // descarta cargas que quedaron viejas al cambiar de ruta rápido
+  let restarts = 0; // fuerza el remontaje de la clase al reiniciarla
 
   // La ruta manda: el hash decide qué curso hay cargado y qué clase se ve.
   $: sync($route.courseId);
@@ -51,11 +53,14 @@
 {#if $route.album}
   <Album on:back={() => toCatalog()} on:open={(e) => toClass(e.detail.courseId, e.detail.num)} />
 {:else if current}
-  {#key current.num}
+  <!-- `restarts` entra en la key para que al reiniciar la clase el componente
+       se vuelva a montar: su estado se lee del progreso una sola vez, al montar. -->
+  {#key `${current.num}-${restarts}`}
     <ClassView
       lecture={current.content}
       classes={course.classes}
       courseId={course.id}
+      on:restart={() => (restarts += 1)}
       on:back={() => toCourse(course.id)}
       on:home={() => toCatalog()}
       on:open={(e) => toClass(course.id, e.detail.num)}
@@ -74,6 +79,16 @@
     courses={COURSES}
     on:open={(e) => toCourse(e.detail.id)}
     on:resume={(e) => toClass(e.detail.id, e.detail.num)}
+    on:album={() => toAlbum()}
+  />
+{/if}
+
+<!-- La barra inferior no va dentro de una clase: ahí el feed es inmersivo. -->
+{#if !current}
+  <BottomNav
+    active={$route.album ? "album" : course ? "curso" : "inicio"}
+    on:inicio={() => toCatalog()}
+    on:curso={(e) => toCourse(e.detail.id)}
     on:album={() => toAlbum()}
   />
 {/if}

@@ -3,7 +3,6 @@
   // falta es el motor del álbum, así que los bloqueados se dibujan igual, en
   // plano y con el nombre a la vista.
   import { createEventDispatcher } from "svelte";
-  import TopBar from "./TopBar.svelte";
   import { progress, cromosGanados } from "./progress.js";
   import { ALBUM, TOTAL } from "./cromos.js";
   import { COURSES } from "../content/courses.js";
@@ -14,6 +13,12 @@
   $: ganados = cromosGanados($progress);
   $: cuantos = ALBUM.filter((c) => ganados[c.slug]).length;
 
+  // Anillo de progreso: se dibuja con un solo trazo al que le recortamos el
+  // dash según la proporción conseguida.
+  const R = 18;
+  const CIRC = 2 * Math.PI * R;
+  $: dashOffset = CIRC * (1 - cuantos / TOTAL);
+
   // Agrupados por curso: dentro de cada sección el orden es el de las clases,
   // así el álbum se lee como la línea de tiempo de los dos cursos.
   const secciones = COURSES.map((curso) => ({
@@ -23,9 +28,8 @@
 </script>
 
 <div
-  class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+40px)]"
+  class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+100px)]"
 >
-  <TopBar back backLabel="Volver" on:back={() => dispatch("back")} on:home={() => dispatch("back")} />
 
   <!-- Apertura: el mismo arco que la portada de la home, pero más bajo y con
        un panel cálido en vez de foto — rima con ella sin competirle. -->
@@ -36,13 +40,32 @@
   <header class="mb-8 flex items-start gap-4">
     <div class="flex min-w-0 flex-1 flex-col gap-2.5">
       <h1 class="m-0 font-serif text-[32px] leading-none font-semibold tracking-[-0.3px] text-text">Álbum</h1>
-      <p class="text-[13px] leading-normal text-text-soft">
+      <!-- Angosta a propósito: el salto de línea libera el ancho que necesita
+           el anillo de la derecha. -->
+      <p class="max-w-[19ch] text-[13px] leading-normal text-text-soft">
         Sacá 3 estrellas en una clase para quedarte con su cromo.
       </p>
     </div>
-    <span class="mt-1 flex-none font-serif text-[26px] leading-none font-semibold whitespace-nowrap text-accent"
-      >{cuantos} de {TOTAL}</span
-    >
+    <div class="mt-1 flex flex-none items-center gap-2.5">
+      <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+        <circle cx="22" cy="22" r={R} fill="none" stroke="var(--line)" stroke-width="4" />
+        <circle
+          cx="22"
+          cy="22"
+          r={R}
+          fill="none"
+          stroke="var(--accent)"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-dasharray={CIRC}
+          stroke-dashoffset={dashOffset}
+          transform="rotate(-90 22 22)"
+        />
+      </svg>
+      <span class="font-serif text-[22px] leading-none font-semibold whitespace-nowrap text-accent"
+        >{cuantos} de {TOTAL}</span
+      >
+    </div>
   </header>
 
   {#each secciones as seccion (seccion.titulo)}
@@ -87,13 +110,16 @@
   .apertura {
     display: grid;
     place-items: center;
-    height: 172px;
+    height: 176px;
+    /* el medallón es más alto que el panel: se recorta arriba y abajo, y por
+       eso llena el arco en vez de flotar adentro */
+    overflow: hidden;
     border-radius: 100vw 100vw 20px 20px;
     background: color-mix(in srgb, var(--surface-2) 70%, transparent);
   }
   .medallon {
-    width: 136px;
-    height: 136px;
+    width: 196px;
+    height: 196px;
     object-fit: contain;
   }
 </style>

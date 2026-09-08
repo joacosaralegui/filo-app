@@ -36,7 +36,7 @@
 </script>
 
 <div
-  class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+28px)]"
+  class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+90px)]"
 >
   <!-- Header de la home: la lámina recortada en arco, con la marca encima.
        Va siempre (no sólo sin progreso), así que es más baja que la portada

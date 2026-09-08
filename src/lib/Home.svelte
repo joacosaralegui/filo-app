@@ -1,6 +1,5 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import TopBar from "./TopBar.svelte";
   import {
     progress,
     courseStateOf,
@@ -62,14 +61,8 @@
   bind:this={homeEl}
 >
   <section
-    class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+44px)] pb-[calc(env(safe-area-inset-bottom)+24px)] [scroll-snap-align:start] [scroll-snap-stop:always]"
+    class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+44px)] pb-[calc(env(safe-area-inset-bottom)+90px)] [scroll-snap-align:start] [scroll-snap-stop:always]"
   >
-    <TopBar
-      back
-      backLabel="Volver a cursos"
-      on:back={() => dispatch("back")}
-      on:home={() => dispatch("back")}
-    />
 
     <!-- Un solo bloque alineado a la izquierda (mismo eje que las cards del
          catálogo) y centrado verticalmente en el espacio libre: el aire queda
@@ -150,7 +143,7 @@
   </section>
 
   <section
-    class="mx-auto max-w-[480px] px-[22px] pt-7 pb-[calc(env(safe-area-inset-bottom)+50px)] [scroll-snap-align:start]"
+    class="mx-auto max-w-[480px] px-[22px] pt-7 pb-[calc(env(safe-area-inset-bottom)+110px)] [scroll-snap-align:start]"
     bind:this={tlEl}
   >
     <p class="mb-3 text-xs font-bold uppercase tracking-[1.6px] text-text-soft/70">El recorrido</p>

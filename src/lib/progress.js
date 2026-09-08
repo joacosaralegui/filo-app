@@ -103,6 +103,21 @@ export function saveClass(num, patch) {
   });
 }
 
+// Borra el avance de una clase (respuestas, combo y posición) para volver a
+// hacerla de cero. NO toca los cromos: lo ganado está ganado.
+export function resetClass(num) {
+  if (!activeCourse) return;
+  progress.update((p) => {
+    const course = courseStateOf(p, activeCourse);
+    const classes = { ...course.classes };
+    delete classes[num];
+    return {
+      ...p,
+      courses: { ...p.courses, [activeCourse]: { ...course, classes } },
+    };
+  });
+}
+
 // --- álbum de cromos ---
 // Guarda { [slug]: timestamp } al tope del progreso, fuera de los cursos: el
 // álbum es uno solo para toda la app. Una vez ganado, no se pierde — rehacer

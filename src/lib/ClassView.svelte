@@ -8,7 +8,7 @@
   import ShortCard from "./ShortCard.svelte";
   import ExplainSheet from "./ExplainSheet.svelte";
   import Burst from "./Burst.svelte";
-  import { classState, saveClass, ganarCromo, SCORABLE } from "./progress.js";
+  import { classState, saveClass, resetClass, ganarCromo, SCORABLE } from "./progress.js";
   import { cromoDeClase } from "./cromos.js";
 
   export let lecture;
@@ -180,6 +180,25 @@
     saveClass(lecture.num, { answers, combo, card: currentCard });
   }
 
+  // Reinicio de la clase, en dos toques: el primero pide confirmación y se
+  // arrepiente solo a los 3s. Es destructivo (borra las respuestas) pero no
+  // grave, así que no amerita un modal.
+  let confirmReset = false;
+  let resetTimer;
+  function pedirReset() {
+    if (!confirmReset) {
+      confirmReset = true;
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => (confirmReset = false), 3000);
+      return;
+    }
+    clearTimeout(resetTimer);
+    confirmReset = false;
+    cancelarAuto();
+    resetClass(lecture.num);
+    dispatch("restart", { num: lecture.num });
+  }
+
   function showPop(c) {
     pop = { id: ++burstId, combo: c };
     clearTimeout(popTimer);
@@ -236,6 +255,29 @@
         {correctCount}/{totalQuiz}
         {#if combo > 1}<b class="ml-[3px] text-accent-3">×{combo}</b>{/if}
       </span>
+
+      <button
+        class="flex-none cursor-pointer rounded-full border-0 bg-transparent p-1 [font-family:inherit] {confirmReset
+          ? 'text-bad'
+          : 'text-text-soft/60'}"
+        on:click={pedirReset}
+        aria-label={confirmReset ? "Confirmar reinicio de la clase" : "Reiniciar la clase"}
+      >
+        {#if confirmReset}
+          <span class="px-1 text-[12px] font-extrabold whitespace-nowrap">¿Reiniciar?</span>
+        {:else}
+          <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"
+            ><path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M20 11.5a8 8 0 1 1-2.4-5.7M20 4v5h-5"
+            /></svg
+          >
+        {/if}
+      </button>
     </TopBar>
   </div>
   <div class="mx-auto mt-2 h-[3px] max-w-[480px] overflow-hidden rounded-[3px] bg-line">
