@@ -122,12 +122,16 @@ export function resetClass(num) {
 // Guarda { [slug]: timestamp } al tope del progreso, fuera de los cursos: el
 // álbum es uno solo para toda la app. Una vez ganado, no se pierde — rehacer
 // una clase peor no te saca el cromo.
+// Devuelve true sólo si el cromo era nuevo: la ceremonia de revelación se
+// dispara con eso, así rehacer una clase no fabrica recompensas falsas.
 export function ganarCromo(slug) {
-  progress.update((p) =>
-    p.cromos && p.cromos[slug]
-      ? p
-      : { ...p, cromos: { ...(p.cromos || {}), [slug]: Date.now() } }
-  );
+  let nuevo = false;
+  progress.update((p) => {
+    if (p.cromos && p.cromos[slug]) return p;
+    nuevo = true;
+    return { ...p, cromos: { ...(p.cromos || {}), [slug]: Date.now() } };
+  });
+  return nuevo;
 }
 
 export function cromosGanados(p) {

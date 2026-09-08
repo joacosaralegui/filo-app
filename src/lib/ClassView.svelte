@@ -128,6 +128,7 @@
 
   // El cromo que otorga esta clase, con las 3 estrellas.
   $: cromo = courseId ? cromoDeClase(courseId, lecture.num) : null;
+  let revelado = null; // el cromo recién ganado, mientras dura la ceremonia
 
   let feedEl;
   let scrollPct = 0;
@@ -230,7 +231,9 @@
     // llegó a la slide de cierre: festejar una vez
     if (ready && !endCelebrated && idx >= endIndex) {
       endCelebrated = true;
-      if (stars === 3 && cromo) ganarCromo(cromo.slug);
+      // La ceremonia sólo si el cromo era nuevo (ganarCromo devuelve false si
+      // ya lo tenías). Se muestra encima del cierre, no en lugar de él.
+      if (stars === 3 && cromo && ganarCromo(cromo.slug)) revelado = cromo;
       finale();
     }
   }
@@ -378,6 +381,32 @@
   </div>
 {/if}
 
+<!-- Ceremonia del cromo. Va sobre el burst de cierre (z-60), así las partículas
+     estallan POR DETRÁS de la carta. -->
+{#if revelado}
+  <div class="reveal-fondo fixed inset-0 z-[70] flex flex-col items-center justify-center gap-6 px-[22px]">
+    <div class="relative grid place-items-center">
+      <span class="reveal-halo" aria-hidden="true"></span>
+      <div class="reveal-carta overflow-hidden rounded-3xl bg-surface p-3">
+        {#if revelado.img}
+          <img class="block h-[210px] w-[210px] rounded-2xl object-cover" src={revelado.img} alt="" />
+        {/if}
+      </div>
+    </div>
+
+    <div class="reveal-texto flex flex-col items-center gap-2 text-center">
+      <span class="text-[11px] font-extrabold tracking-[2px] text-accent-3 uppercase">Nuevo cromo</span>
+      <span class="font-serif text-[26px] leading-tight font-semibold text-text">{revelado.nombre}</span>
+      <button
+        class="mt-4 cursor-pointer rounded-2xl border-0 bg-text px-7 py-3.5 text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.97]"
+        on:click={() => (revelado = null)}
+      >
+        Seguir
+      </button>
+    </div>
+  </div>
+{/if}
+
 <ExplainSheet data={sheet} on:close={() => (sheet = null)} />
 
 <Burst trigger={burstId} />
@@ -406,6 +435,52 @@
     to { opacity: 1; transform: scale(1) rotate(0); }
   }
 
+  /* ---------- ceremonia del cromo ----------
+     La carta entra girando sobre su eje vertical, como cuando se da vuelta una
+     figurita, y pasa de largo el tamaño final antes de asentarse. El halo sale
+     detrás en el mismo momento del impacto. */
+  .reveal-fondo {
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(3px);
+    animation: fade-suave 0.3s ease both;
+  }
+  .reveal-carta {
+    box-shadow: 0 24px 60px -20px color-mix(in srgb, var(--text) 45%, transparent);
+    animation: cromo-in 0.72s cubic-bezier(0.16, 0.9, 0.3, 1.05) 0.1s both;
+  }
+  .reveal-halo {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--accent-2) 70%, transparent) 0%,
+      transparent 70%
+    );
+    animation: halo 0.9s ease-out 0.34s both;
+  }
+  .reveal-texto {
+    animation: texto-in 0.5s ease 0.5s both;
+  }
+  @keyframes fade-suave {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes cromo-in {
+    0% { opacity: 0; transform: perspective(900px) rotateY(-160deg) scale(0.45); }
+    65% { opacity: 1; transform: perspective(900px) rotateY(12deg) scale(1.07); }
+    100% { opacity: 1; transform: perspective(900px) rotateY(0) scale(1); }
+  }
+  @keyframes halo {
+    from { opacity: 0.75; transform: scale(0.45); }
+    to { opacity: 0; transform: scale(1.85); }
+  }
+  @keyframes texto-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .gate-hint-anim {
     animation: gaterise 0.28s ease;
   }
@@ -425,5 +500,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .gate-hint-anim, .pop-anim { animation-duration: 1ms; }
+    .reveal-carta, .reveal-texto, .reveal-fondo { animation-duration: 1ms; }
+    .reveal-halo { animation: none; opacity: 0; }
   }
 </style>
