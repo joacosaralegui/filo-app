@@ -15,7 +15,7 @@
 
   // Anillo de progreso: se dibuja con un solo trazo al que le recortamos el
   // dash según la proporción conseguida.
-  const R = 18;
+  const R = 14;
   const CIRC = 2 * Math.PI * R;
   $: dashOffset = CIRC * (1 - cuantos / TOTAL);
 
@@ -31,40 +31,34 @@
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+100px)]"
 >
 
-  <!-- Apertura: el mismo arco que la portada de la home, pero más bajo y con
-       un panel cálido en vez de foto — rima con ella sin competirle. -->
-  <div class="apertura mt-5 mb-6">
+  <!-- Apertura: el arco de la portada, con el título y el conteo apoyados
+       sobre la propia ilustración. El degradado la funde con el panel hacia
+       abajo, así el texto se lee sin necesidad de oscurecer nada. -->
+  <header class="apertura mt-5 mb-8">
     <img class="medallon" src={albumIcon} alt="" aria-hidden="true" />
-  </div>
-
-  <header class="mb-8 flex items-start gap-4">
-    <div class="flex min-w-0 flex-1 flex-col gap-2.5">
-      <h1 class="m-0 font-serif text-[32px] leading-none font-semibold tracking-[-0.3px] text-text">Álbum</h1>
-      <!-- Angosta a propósito: el salto de línea libera el ancho que necesita
-           el anillo de la derecha. -->
-      <p class="max-w-[19ch] text-[13px] leading-normal text-text-soft">
-        Sacá 3 estrellas en una clase para quedarte con su cromo.
-      </p>
-    </div>
-    <div class="mt-1 flex flex-none items-center gap-2.5">
-      <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
-        <circle cx="22" cy="22" r={R} fill="none" stroke="var(--line)" stroke-width="4" />
-        <circle
-          cx="22"
-          cy="22"
-          r={R}
-          fill="none"
-          stroke="var(--accent)"
-          stroke-width="4"
-          stroke-linecap="round"
-          stroke-dasharray={CIRC}
-          stroke-dashoffset={dashOffset}
-          transform="rotate(-90 22 22)"
-        />
-      </svg>
-      <span class="font-serif text-[22px] leading-none font-semibold whitespace-nowrap text-accent"
-        >{cuantos} de {TOTAL}</span
-      >
+    <span class="velo" aria-hidden="true"></span>
+    <div class="apertura-texto">
+      <h1 class="m-0 font-serif text-[30px] leading-none font-semibold tracking-[-0.3px] text-text">Álbum</h1>
+      <div class="flex flex-none items-center gap-2">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+          <circle cx="17" cy="17" r={R} fill="none" stroke="var(--line)" stroke-width="3.5" />
+          <circle
+            cx="17"
+            cy="17"
+            r={R}
+            fill="none"
+            stroke="var(--accent)"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            stroke-dasharray={CIRC}
+            stroke-dashoffset={dashOffset}
+            transform="rotate(-90 17 17)"
+          />
+        </svg>
+        <span class="font-serif text-[19px] leading-none font-semibold whitespace-nowrap text-accent"
+          >{cuantos} de {TOTAL}</span
+        >
+      </div>
     </div>
   </header>
 
@@ -108,11 +102,12 @@
      ilustración del álbum es un objeto recortado, no una escena, así que en
      vez de ir a sangre se apoya sobre el panel. */
   .apertura {
+    position: relative;
     display: grid;
     place-items: center;
-    height: 176px;
-    /* el medallón es más alto que el panel: se recorta arriba y abajo, y por
-       eso llena el arco en vez de flotar adentro */
+    height: 214px;
+    /* el medallón es más grande que el panel: lo recorta el arco, y por eso
+       lo llena en vez de flotar adentro */
     overflow: hidden;
     border-radius: 100vw 100vw 20px 20px;
     background: color-mix(in srgb, var(--surface-2) 70%, transparent);
@@ -121,5 +116,30 @@
     width: 196px;
     height: 196px;
     object-fit: contain;
+    /* sube para dejarle el pie del arco al título */
+    margin-bottom: 40px;
+  }
+  /* Funde la base de la ilustración con el panel: el texto se apoya sobre
+     color plano sin tener que oscurecer la imagen. */
+  .velo {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 58%;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--surface-2) 92%, transparent) 30%,
+      transparent
+    );
+  }
+  .apertura-texto {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 20px 16px;
   }
 </style>

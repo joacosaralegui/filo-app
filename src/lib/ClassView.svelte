@@ -1,6 +1,5 @@
 <script>
   import { createEventDispatcher, onDestroy, onMount } from "svelte";
-  import TopBar from "./TopBar.svelte";
   import InfoCard from "./InfoCard.svelte";
   import QuizCard from "./QuizCard.svelte";
   import MatchCard from "./MatchCard.svelte";
@@ -243,8 +242,25 @@
   class="fixed inset-x-0 top-0 z-40 px-4 pt-[calc(env(safe-area-inset-top)+10px)] pb-2 backdrop-blur-[6px] [background:linear-gradient(var(--bg),color-mix(in_srgb,var(--bg)_70%,transparent))]"
 >
   <div class="mx-auto max-w-[480px]">
-    <TopBar back on:back={() => dispatch("back")} on:home={() => dispatch("home")}>
-      <span class="min-w-0 flex-1 truncate text-xs font-semibold text-text-soft"
+    <div class="flex items-center gap-2.5">
+      <button
+        class="grid h-11 w-11 flex-none cursor-pointer place-items-center rounded-2xl border border-line bg-surface text-text transition-transform active:scale-[0.94]"
+        on:click={() => dispatch("back")}
+        aria-label="Volver"
+      >
+        <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"
+          ><path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 5l-7 7 7 7"
+          /></svg
+        >
+      </button>
+
+      <span class="min-w-0 flex-1 truncate text-[14px] font-semibold text-text"
         >Clase {lecture.num} · {lecture.title}</span
       >
       <!-- Los aciertos, no puntos: es exactamente lo que determina las
@@ -281,7 +297,7 @@
           >
         {/if}
       </button>
-    </TopBar>
+    </div>
   </div>
   <div class="mx-auto mt-2 h-[3px] max-w-[480px] overflow-hidden rounded-[3px] bg-line">
     <i class="block h-full bg-accent transition-[width] duration-150 ease-linear" style="width:{scrollPct}%"></i>

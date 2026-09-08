@@ -62,7 +62,6 @@
       courseId={course.id}
       on:restart={() => (restarts += 1)}
       on:back={() => toCourse(course.id)}
-      on:home={() => toCatalog()}
       on:open={(e) => toClass(course.id, e.detail.num)}
     />
   {/key}

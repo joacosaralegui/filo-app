@@ -41,7 +41,10 @@
   --line: #eae1c0;        /* bordes / separadores */
 
   /* texto */
-  --text: #283618;        /* Pakistan Green (verde muy oscuro) */
+  /* Verde oliva oscuro: bastante más cerca del Fern del acento que el
+     Pakistan Green que había antes (#283618), sin perder legibilidad —
+     7.7:1 sobre el fondo, arriba del 7:1 que pide AAA para texto. */
+  --text: #44552a;
   --text-soft: #47422f;   /* cuerpo secundario */
 
   /* rol: ACENTO / HIGHLIGHT principal = Fern (olivo).
