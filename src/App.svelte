@@ -49,7 +49,7 @@
 </script>
 
 {#if $route.album}
-  <Album on:back={() => toCatalog()} />
+  <Album on:back={() => toCatalog()} on:open={(e) => toClass(e.detail.courseId, e.detail.num)} />
 {:else if current}
   {#key current.num}
     <ClassView

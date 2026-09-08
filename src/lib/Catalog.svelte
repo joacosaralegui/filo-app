@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import socrates from "../assets/socrates.webp";
+  import albumIcon from "../assets/album.webp";
   import { progress, courseStateOf, cromosGanados } from "./progress.js";
   import { conseguidos, TOTAL } from "./cromos.js";
   export let courses = [];
@@ -95,13 +96,14 @@
       class="mb-8 flex w-full cursor-pointer items-center gap-3 rounded-2xl border border-line bg-transparent px-4 py-3 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
       on:click={() => dispatch("album")}
     >
+      <img class="h-11 w-11 flex-none object-contain" src={albumIcon} alt="" aria-hidden="true" />
       <div class="flex flex-col">
         <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Álbum</span>
         <span class="font-serif text-[15px] font-semibold text-text">{album.length} de {TOTAL}</span>
       </div>
       <div class="ml-auto flex">
         <!-- invertido: el más nuevo va último en el DOM, así queda encima -->
-        {#each album.slice(0, 5).reverse() as c (c.slug)}
+        {#each album.slice(0, 4).reverse() as c (c.slug)}
           <span class="mini">
             {#if c.img}
               <img class="h-full w-full object-cover" src={c.img} alt="" />
