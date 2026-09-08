@@ -27,17 +27,22 @@
 >
   <TopBar back backLabel="Volver" on:back={() => dispatch("back")} on:home={() => dispatch("back")} />
 
-  <header class="mt-6 mb-8">
-    <div class="flex items-center gap-4">
-      <img class="h-[76px] w-[76px] flex-none object-contain" src={albumIcon} alt="" aria-hidden="true" />
-      <div class="flex min-w-0 flex-1 flex-col gap-1">
-        <h1 class="m-0 font-serif text-[32px] leading-none font-semibold tracking-[-0.3px] text-text">Álbum</h1>
-        <span class="font-serif text-[22px] leading-none font-semibold text-accent">{cuantos} de {TOTAL}</span>
-      </div>
+  <!-- Apertura: el mismo arco que la portada de la home, pero más bajo y con
+       un panel cálido en vez de foto — rima con ella sin competirle. -->
+  <div class="apertura mt-5 mb-6">
+    <img class="medallon" src={albumIcon} alt="" aria-hidden="true" />
+  </div>
+
+  <header class="mb-8 flex items-start gap-4">
+    <div class="flex min-w-0 flex-1 flex-col gap-2.5">
+      <h1 class="m-0 font-serif text-[32px] leading-none font-semibold tracking-[-0.3px] text-text">Álbum</h1>
+      <p class="text-[13px] leading-normal text-text-soft">
+        Sacá 3 estrellas en una clase para quedarte con su cromo.
+      </p>
     </div>
-    <p class="mt-4 text-[13px] leading-normal text-text-soft">
-      Sacá 3 estrellas en una clase para quedarte con su cromo.
-    </p>
+    <span class="mt-1 flex-none font-serif text-[26px] leading-none font-semibold whitespace-nowrap text-accent"
+      >{cuantos} de {TOTAL}</span
+    >
   </header>
 
   {#each secciones as seccion (seccion.titulo)}
@@ -74,3 +79,21 @@
     </div>
   {/each}
 </div>
+
+<style>
+  /* Mismo arco que la portada de la home, más bajo y con panel cálido: la
+     ilustración del álbum es un objeto recortado, no una escena, así que en
+     vez de ir a sangre se apoya sobre el panel. */
+  .apertura {
+    display: grid;
+    place-items: center;
+    height: 172px;
+    border-radius: 100vw 100vw 20px 20px;
+    background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  }
+  .medallon {
+    width: 136px;
+    height: 136px;
+    object-fit: contain;
+  }
+</style>

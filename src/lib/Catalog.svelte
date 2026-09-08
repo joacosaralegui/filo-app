@@ -96,7 +96,7 @@
       class="mb-8 flex w-full cursor-pointer items-center gap-3 rounded-2xl border border-line bg-transparent px-4 py-3 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
       on:click={() => dispatch("album")}
     >
-      <img class="h-11 w-11 flex-none object-contain" src={albumIcon} alt="" aria-hidden="true" />
+      <img class="h-14 w-14 flex-none object-contain" src={albumIcon} alt="" aria-hidden="true" />
       <div class="flex flex-col">
         <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Álbum</span>
         <span class="font-serif text-[15px] font-semibold text-text">{album.length} de {TOTAL}</span>

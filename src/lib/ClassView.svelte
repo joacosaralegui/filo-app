@@ -38,7 +38,6 @@
   // Estado restaurado desde localStorage (o valores por defecto).
   const saved = classState(lecture.num);
   let answers = { ...saved.answers }; // { [cardIndex]: índice original elegido }
-  let score = saved.score;
   let combo = saved.combo;
   let currentCard = saved.card;
 
@@ -163,10 +162,10 @@
     answers = { ...answers, [i]: e.detail.save };
     if (e.detail.correct) {
       combo += 1;
-      const points = 10 * combo;
-      score += points;
       burstId += 1;
-      showPop(points, combo);
+      // El pop celebra la racha, no el acierto suelto: para uno solo ya está
+      // el burst y el cartel de "¡Correcto!".
+      if (combo > 1) showPop(combo);
       vibrate(combo >= 3 ? [12, 20, 18] : [14]);
       cancelarAuto();
       autoTimer = setTimeout(() => irA(i + 1), 1200);
@@ -178,11 +177,11 @@
         sheet = { solucion: e.detail.solucion ?? null, texto: card.explain };
       }
     }
-    saveClass(lecture.num, { answers, score, combo, card: currentCard });
+    saveClass(lecture.num, { answers, combo, card: currentCard });
   }
 
-  function showPop(points, c) {
-    pop = { id: ++burstId, points, combo: c };
+  function showPop(c) {
+    pop = { id: ++burstId, combo: c };
     clearTimeout(popTimer);
     popTimer = setTimeout(() => (pop = null), 1100);
   }
@@ -226,13 +225,16 @@
       <span class="min-w-0 flex-1 truncate text-xs font-semibold text-text-soft"
         >Clase {lecture.num} · {lecture.title}</span
       >
+      <!-- Los aciertos, no puntos: es exactamente lo que determina las
+           estrellas, así que se ve la calificación real en todo momento. -->
       <span
-        class="flex-none whitespace-nowrap text-[15px] font-extrabold text-accent-ink transition-transform duration-150 {pop
+        class="flex-none whitespace-nowrap text-[15px] font-extrabold text-text transition-transform duration-150 {pop
           ? 'scale-[1.14]'
           : ''}"
       >
-        ✦ {score}
-        {#if combo > 1}<b class="ml-[3px] text-accent-ink">×{combo}</b>{/if}
+        <span class="text-accent-2">★</span>
+        {correctCount}/{totalQuiz}
+        {#if combo > 1}<b class="ml-[3px] text-accent-3">×{combo}</b>{/if}
       </span>
     </TopBar>
   </div>
@@ -285,18 +287,9 @@
       <h2 class="mt-[18px] text-2xl font-extrabold tracking-[-0.3px] text-text">Clase completada</h2>
       <p class="mt-1 text-[13.5px] font-semibold text-text-soft">Clase {lecture.num} · {lecture.title}</p>
 
-      <div class="mt-[18px] flex w-full gap-2.5">
-        <div class="flex flex-1 flex-col gap-0.5 rounded-[14px] border border-line bg-surface px-2 pt-3 pb-2.5">
-          <b class="text-[22px] font-black tracking-[-0.5px] text-accent-ink">{score}</b>
-          <span class="text-[11px] font-bold tracking-[0.5px] text-text-soft uppercase">puntos</span>
-        </div>
-        <div class="flex flex-1 flex-col gap-0.5 rounded-[14px] border border-line bg-surface px-2 pt-3 pb-2.5">
-          <b class="text-[22px] font-black tracking-[-0.5px] text-accent-ink"
-            >{correctCount}<i class="not-italic text-[15px] font-extrabold text-text-soft">/{totalQuiz}</i></b
-          >
-          <span class="text-[11px] font-bold tracking-[0.5px] text-text-soft uppercase">correctas</span>
-        </div>
-      </div>
+      <p class="mt-3.5 text-[13px] font-bold tracking-[0.5px] text-text-soft uppercase">
+        {correctCount} de {totalQuiz} correctas
+      </p>
 
       {#if nextClass}
         <div
@@ -351,12 +344,10 @@
 {#if pop}
   {#key pop.id}
     <div class="pop-anim pointer-events-none fixed top-[42%] left-1/2 z-[55] flex -translate-x-1/2 flex-col items-center gap-1" aria-hidden="true">
-      <span class="text-[46px] font-black text-accent-ink [text-shadow:0_3px_16px_color-mix(in_srgb,var(--accent)_60%,transparent)]"
-        >+{pop.points}</span
+      <span class="text-[46px] font-black text-accent-3 [text-shadow:0_3px_16px_color-mix(in_srgb,var(--accent-2)_65%,transparent)]"
+        >×{pop.combo}</span
       >
-      {#if pop.combo > 1}<span class="text-[15px] font-extrabold tracking-[1.5px] text-accent-ink"
-          >COMBO ×{pop.combo}</span
-        >{/if}
+      <span class="text-[15px] font-extrabold tracking-[1.5px] text-accent-3">seguidas</span>
     </div>
   {/key}
 {/if}

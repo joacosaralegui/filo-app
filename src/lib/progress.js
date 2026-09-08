@@ -7,14 +7,14 @@
 // por todos los componentes.
 //
 // Guarda, por clase: las respuestas de los quizzes (índice ORIGINAL elegido),
-// el puntaje, el combo y la última card vista (para reanudar donde quedaste).
+// el combo y la última card vista (para reanudar donde quedaste).
 // `lastClass` alimenta el botón "Continuar" de la home del curso; `lastCourse`,
 // el del catálogo.
 import { writable, get } from "svelte/store";
 
 const KEY = "filo-progress-v2";
 const OLD_KEY = "filo-progress-v1";
-const EMPTY_CLASS = { answers: {}, score: 0, combo: 0, card: 0 };
+const EMPTY_CLASS = { answers: {}, combo: 0, card: 0 };
 const EMPTY_COURSE = { lastClass: null, classes: {} };
 
 function load() {
