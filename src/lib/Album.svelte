@@ -25,10 +25,9 @@
         Sacá 3 estrellas en una clase para quedarte con su cromo.
       </p>
     </div>
-    <div class="flex flex-none flex-col items-end">
-      <span class="font-serif text-[42px] leading-none font-semibold text-accent">{cuantos}</span>
-      <span class="mt-1 text-[12px] font-semibold text-text-soft">de {TOTAL}</span>
-    </div>
+    <span class="mt-1 flex-none font-serif text-[26px] leading-none font-semibold whitespace-nowrap text-accent"
+      >{cuantos} de {TOTAL}</span
+    >
   </header>
 
   <div class="grid grid-cols-3 gap-x-3 gap-y-5">
