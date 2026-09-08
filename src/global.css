@@ -7,6 +7,7 @@
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --color-line: var(--line);
 
   --color-text: var(--text);
@@ -38,6 +39,7 @@
   --bg: #faf9ef;          /* Cornsilk: fondo */
   --surface: #fffdf4;     /* cards / opciones (blanco cálido) */
   --surface-2: #f6efcf;   /* cornsilk profundo: degradés, sheet */
+  --surface-3: #e2ceb0;   /* arena: bloques que necesitan despegarse del fondo */
   --line: #eae1c0;        /* bordes / separadores */
 
   /* texto */

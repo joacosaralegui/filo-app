@@ -123,27 +123,30 @@
   {#if album.length}
     <div class="mt-auto pt-8">
       <button
-        class="flex w-full cursor-pointer items-center gap-3 rounded-2xl border border-line bg-transparent px-4 py-3 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+        class="relative flex w-full cursor-pointer items-center gap-3 overflow-hidden rounded-2xl border-0 bg-surface-3 px-4 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+        style="--album-img: url({albumIcon})"
         on:click={() => dispatch("album")}
       >
-      <img class="h-14 w-14 flex-none object-contain" src={albumIcon} alt="" aria-hidden="true" />
-      <div class="flex flex-col">
-        <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Álbum</span>
-        <span class="font-serif text-[15px] font-semibold text-text">{album.length} de {TOTAL}</span>
-      </div>
-      <div class="ml-auto flex">
-        <!-- invertido: el más nuevo va último en el DOM, así queda encima -->
-        {#each album.slice(0, 4).reverse() as c (c.slug)}
-          <span class="mini">
-            {#if c.img}
-              <img class="h-full w-full object-cover" src={c.img} alt="" />
-            {:else}
-              <span class="mini-ph">{c.nombre.replace(/^(La|El|A) /, "").charAt(0)}</span>
-            {/if}
-          </span>
-        {/each}
-      </div>
-        <span class="text-2xl font-semibold text-text-soft/50">›</span>
+        <span class="tira-fondo" aria-hidden="true"></span>
+
+        <div class="relative flex flex-col">
+          <span class="text-xs font-bold tracking-[1.4px] text-text-soft/75 uppercase">Álbum</span>
+          <span class="font-serif text-[18px] font-semibold text-text">{album.length} de {TOTAL}</span>
+        </div>
+
+        <div class="relative ml-auto flex">
+          <!-- invertido: el más nuevo va último en el DOM, así queda encima -->
+          {#each album.slice(0, 4).reverse() as c (c.slug)}
+            <span class="mini">
+              {#if c.img}
+                <img class="h-full w-full object-cover" src={c.img} alt="" />
+              {:else}
+                <span class="mini-ph">{c.nombre.replace(/^(La|El|A) /, "").charAt(0)}</span>
+              {/if}
+            </span>
+          {/each}
+        </div>
+        <span class="relative text-2xl font-semibold text-text-soft/50">›</span>
       </button>
     </div>
   {/if}
@@ -183,6 +186,20 @@
     object-fit: cover;
     object-position: 50% 34%;
   }
+  /* La ilustración del álbum, enorme y translúcida: entra por el centro y se
+     pierde por los cuatro lados, funcionando como textura del bloque. */
+  .tira-fondo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    background: var(--album-img) center / contain no-repeat;
+    opacity: 0.24;
+    pointer-events: none;
+  }
+
   /* medallones superpuestos de la tira del álbum */
   .mini {
     width: 40px;
@@ -191,8 +208,9 @@
     overflow: hidden;
     border-radius: 50%;
     background: var(--surface-2);
-    /* el aro del color de fondo es lo que separa uno de otro al solaparse */
-    box-shadow: 0 0 0 3px var(--bg);
+    /* el aro toma el color del bloque: separa un medallón del siguiente sin
+       que se vea un borde claro alrededor */
+    box-shadow: 0 0 0 3px var(--surface-3);
   }
   .mini + .mini {
     margin-left: -13px;
