@@ -13,8 +13,6 @@
 //   title    : título del curso
 //   subtitle : segunda línea del hero (se muestra en el color de acento)
 //   blurb    : una frase de qué recorre el curso (pantalla de selección)
-//   period   : período histórico que recorre el curso, para la mini
-//              infografía de la home del curso (opcional)
 //   source   : { label, url } de la fuente original (opcional)
 //   theme    : overrides de tokens de global.css (opcional), p. ej.
 //              { "--accent": "#7b4b94" }. Se aplican al entrar al curso.
@@ -25,10 +23,9 @@
 export const COURSES = [
   {
     id: "nietzsche",
-    title: "Contemporánea",
-    subtitle: "desde Nietzsche",
+    title: "Filosofía contemporánea",
+    subtitle: "Siglo XVIII a hoy",
     blurb: "De la herencia de la Ilustración a la posmodernidad.",
-    period: "Siglos XVIII–XX",
     source: {
       label: "European Intellectual History since Nietzsche",
       url: "https://www.youtube.com/playlist?list=PLh9mgdi4rNezUjm7niGdUWjnL0lHSDh0U",
@@ -40,10 +37,9 @@ export const COURSES = [
   },
   {
     id: "modernidad",
-    title: "Moderna",
-    subtitle: "de Montaigne a Hamann",
-    blurb: "Los siglos XVII y XVIII: de la Reforma a la crisis de la Ilustración.",
-    period: "Siglos XVI–XVIII",
+    title: "Filosofía moderna",
+    subtitle: "Siglos XVII y XVIII",
+    blurb: "De la Reforma a la crisis de la Ilustración.",
     source: {
       label: "Historia de las ideas en la modernidad — Maestría en Filosofía, UNQ",
       url: "",

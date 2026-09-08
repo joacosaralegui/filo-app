@@ -85,11 +85,8 @@
         </p>
       {/if}
 
-      {#if course.period || topIdeas.length}
+      {#if topIdeas.length}
         <div class="mt-9 flex flex-col items-start gap-3">
-          {#if course.period}<p class="m-0 text-[11px] font-bold uppercase tracking-[1.6px] text-text-soft/60">
-              {course.period}
-            </p>{/if}
           {#if topIdeas.length}
             <!-- Mini línea de tiempo: la línea va detrás (primera en el DOM) y
                  cada nodo, posicionado, la tapa — de ahí el efecto de "cuenta"

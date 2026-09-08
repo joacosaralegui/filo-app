@@ -123,7 +123,7 @@
   {#if album.length}
     <div class="mt-auto pt-8">
       <button
-        class="relative flex w-full cursor-pointer items-center gap-3 overflow-hidden rounded-2xl border-0 bg-surface-3 px-4 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+        class="relative flex w-full cursor-pointer items-center gap-3 overflow-hidden rounded-2xl border-0 bg-surface-3 px-4 py-[22px] text-left [font-family:inherit] transition-transform active:scale-[0.99]"
         style="--album-img: url({albumIcon})"
         on:click={() => dispatch("album")}
       >
