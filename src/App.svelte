@@ -2,11 +2,12 @@
   import Catalog from "./lib/Catalog.svelte";
   import Home from "./lib/Home.svelte";
   import ClassView from "./lib/ClassView.svelte";
+  import Album from "./lib/Album.svelte";
   import GlossaryModal from "./lib/GlossaryModal.svelte";
   import { COURSES, findCourse } from "./content/courses.js";
   import { loadCourse, unloadCourse } from "./lib/courses.js";
   import { setCourse, setLastActivity } from "./lib/progress.js";
-  import { route, toCatalog, toCourse, toClass } from "./lib/router.js";
+  import { route, toCatalog, toAlbum, toCourse, toClass } from "./lib/router.js";
 
   let course = null; // curso cargado: manifiesto + { classes, glossary }
   let loading = false;
@@ -47,11 +48,14 @@
   $: if (current) setLastActivity(course.id, current);
 </script>
 
-{#if current}
+{#if $route.album}
+  <Album on:back={() => toCatalog()} />
+{:else if current}
   {#key current.num}
     <ClassView
       lecture={current.content}
       classes={course.classes}
+      courseId={course.id}
       on:back={() => toCourse(course.id)}
       on:home={() => toCatalog()}
       on:open={(e) => toClass(course.id, e.detail.num)}
@@ -70,6 +74,7 @@
     courses={COURSES}
     on:open={(e) => toCourse(e.detail.id)}
     on:resume={(e) => toClass(e.detail.id, e.detail.num)}
+    on:album={() => toAlbum()}
   />
 {/if}
 

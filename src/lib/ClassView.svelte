@@ -8,10 +8,12 @@
   import ShortCard from "./ShortCard.svelte";
   import ExplainSheet from "./ExplainSheet.svelte";
   import Burst from "./Burst.svelte";
-  import { classState, saveClass, SCORABLE } from "./progress.js";
+  import { classState, saveClass, ganarCromo, SCORABLE } from "./progress.js";
+  import { cromoDeClase } from "./cromos.js";
 
   export let lecture;
   export let classes = []; // índice del curso, para saber cuál es la siguiente
+  export let courseId = null; // para saber qué cromo otorga esta clase
   const dispatch = createEventDispatcher();
 
   const totalQuiz = lecture.feed.filter((c) => SCORABLE.has(c.type)).length;
@@ -125,6 +127,9 @@
   // 3 estrellas según el porcentaje de aciertos: 90% / 70% / 40%
   $: stars = pct >= 90 ? 3 : pct >= 70 ? 2 : pct >= 40 ? 1 : 0;
 
+  // El cromo que otorga esta clase, con las 3 estrellas.
+  $: cromo = courseId ? cromoDeClase(courseId, lecture.num) : null;
+
   let feedEl;
   let scrollPct = 0;
 
@@ -207,6 +212,7 @@
     // llegó a la slide de cierre: festejar una vez
     if (ready && !endCelebrated && idx >= endIndex) {
       endCelebrated = true;
+      if (stars === 3 && cromo) ganarCromo(cromo.slug);
       finale();
     }
   }

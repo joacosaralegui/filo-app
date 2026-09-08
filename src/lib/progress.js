@@ -103,6 +103,22 @@ export function saveClass(num, patch) {
   });
 }
 
+// --- álbum de cromos ---
+// Guarda { [slug]: timestamp } al tope del progreso, fuera de los cursos: el
+// álbum es uno solo para toda la app. Una vez ganado, no se pierde — rehacer
+// una clase peor no te saca el cromo.
+export function ganarCromo(slug) {
+  progress.update((p) =>
+    p.cromos && p.cromos[slug]
+      ? p
+      : { ...p, cromos: { ...(p.cromos || {}), [slug]: Date.now() } }
+  );
+}
+
+export function cromosGanados(p) {
+  return p.cromos || {};
+}
+
 // Tipos de card puntuables (interactivos). Única fuente de verdad: ClassView
 // también la importa de acá, para que no se desincronicen al agregar formatos.
 export const SCORABLE = new Set(["quiz", "match", "classify", "short"]);

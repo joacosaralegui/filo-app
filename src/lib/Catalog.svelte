@@ -1,7 +1,8 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import socrates from "../assets/socrates.webp";
-  import { progress, courseStateOf } from "./progress.js";
+  import { progress, courseStateOf, cromosGanados } from "./progress.js";
+  import { conseguidos, TOTAL } from "./cromos.js";
   export let courses = [];
   const dispatch = createEventDispatcher();
 
@@ -18,6 +19,10 @@
   $: heroActive = !!(last && lastCourseMeta);
   // El curso destacado arriba no se repite en la lista de abajo.
   $: otherCourses = heroActive ? courses.filter((c) => c.id !== last.courseId) : courses;
+
+  // Álbum: sin ningún cromo la tira no aparece — mostrar una colección en cero
+  // a alguien que todavía no empezó desalienta y ensucia la home.
+  $: album = conseguidos(cromosGanados($progress));
 
   const open = (c) => dispatch("open", c);
   const resume = (c, num) => dispatch("resume", { id: c.id, num });
@@ -80,9 +85,38 @@
       </span>
     </button>
 
-    {#if otherCourses.length}
-      <p class="mb-3.5 text-xs font-bold tracking-[1.6px] text-text-soft/70 uppercase">Otros cursos</p>
-    {/if}
+  {/if}
+
+  <!-- Tira del álbum: una sola línea, sin caja, para no competir con la
+       tarjeta de "Continuar". Los medallones superpuestos se leen como
+       "colección" sin necesidad de explicar nada. -->
+  {#if album.length}
+    <button
+      class="mb-8 flex w-full cursor-pointer items-center gap-3 rounded-2xl border border-line bg-transparent px-4 py-3 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+      on:click={() => dispatch("album")}
+    >
+      <div class="flex flex-col">
+        <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Álbum</span>
+        <span class="font-serif text-[15px] font-semibold text-text">{album.length} de {TOTAL}</span>
+      </div>
+      <div class="ml-auto flex">
+        <!-- invertido: el más nuevo va último en el DOM, así queda encima -->
+        {#each album.slice(0, 5).reverse() as c (c.slug)}
+          <span class="mini">
+            {#if c.img}
+              <img class="h-full w-full object-cover" src={c.img} alt="" />
+            {:else}
+              <span class="mini-ph">{c.nombre.replace(/^(La|El|A) /, "").charAt(0)}</span>
+            {/if}
+          </span>
+        {/each}
+      </div>
+      <span class="text-2xl font-semibold text-text-soft/50">›</span>
+    </button>
+  {/if}
+
+  {#if heroActive && otherCourses.length}
+    <p class="mb-3.5 text-xs font-bold tracking-[1.6px] text-text-soft/70 uppercase">Otros cursos</p>
   {/if}
 
   <div class="flex flex-col gap-[18px]">
@@ -147,6 +181,31 @@
     object-fit: cover;
     object-position: 50% 34%;
   }
+  /* medallones superpuestos de la tira del álbum */
+  .mini {
+    width: 40px;
+    height: 40px;
+    flex: none;
+    overflow: hidden;
+    border-radius: 50%;
+    background: var(--surface-2);
+    /* el aro del color de fondo es lo que separa uno de otro al solaparse */
+    box-shadow: 0 0 0 3px var(--bg);
+  }
+  .mini + .mini {
+    margin-left: -13px;
+  }
+  .mini-ph {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--text-soft) 60%, transparent);
+  }
+
   .cover-text {
     position: absolute;
     inset: 0;

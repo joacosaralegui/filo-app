@@ -95,3 +95,44 @@ generous margins. No text, no labels, no names.
 
 Contá con que las caras van a salir genéricas: a ese tamaño el modelo no
 sostiene el parecido. Es una guía de paleta y de aire, nada más.
+
+---
+
+# Cromos de ideas (complemento)
+
+Las 20 clases que no tienen un pensador como cromo. Con estos, cada una de las
+40 clases desbloquea exactamente un cromo.
+
+Mismo bloque de estilo que los retratos (medallón circular, disco de color
+plano, hojas de laurel, grabado punteado, paleta de la app), cambiando el
+sujeto: en vez de un busto, un objeto o escena simbólica.
+
+## Moderna
+
+| Clase | Cromo | Descripción para generar |
+|---|---|---|
+| 2 · La nueva ciencia | La matematización de la naturaleza | an armillary sphere beside a telescope, over a page of geometric diagrams |
+| 10 · La Ilustración en Inglaterra | El librepensamiento | a coffee-house table with scattered pamphlets and a burning candle |
+| 12 · La Aufklärung alemana | Aufklärung | an oil lamp illuminating an open book, rays spreading from the flame |
+| 13 · Lessing | La parábola de los tres anillos | three interlocking golden rings resting on velvet |
+| 15 · Kant y la minoría de edad | Sapere aude | a hand breaking a thin chain, light entering through an open doorway |
+| 16 · Hamann | La metacrítica de la razón | a quill pen laid across a page of geometric proofs, ink blotting the figures |
+
+## Contemporánea
+
+| Clase | Cromo | Descripción para generar |
+|---|---|---|
+| 1 · La herencia de la Ilustración | La herencia | a broken classical column with a lantern set on top of the stump |
+| 2 · El legado del Romanticismo | El Romanticismo | a lone figure seen from behind facing a stormy mountain range |
+| 7 · El leninismo | Acelerar la historia | a steam locomotive rushing forward, a red star on its front |
+| 9 · El modernismo y la vanguardia | La vanguardia | a shattered violin and fragmented geometric planes, cubist arrangement |
+| 10 · La fenomenología | A las cosas mismas | a single clay pitcher on a table, radiating observation lines from an eye |
+| 13 · La Escuela de Frankfurt | La teoría crítica | a cracked gramophone horn above a grid of city rooftops |
+| 16 · Los hijos de Husserl | El rostro del otro | two classical profiles facing each other, almost touching |
+| 17 · Marxismo revisionista | La praxis | a worker's hammer resting on an open book |
+| 18 · Estructuralismo y antropología | La estructura | a woven textile pattern dissolving into a diagram of knots, a tribal mask |
+| 19 · Girard | El chivo expiatorio | a goat standing alone before a crowd of shadowed silhouettes |
+| 21 · Derrida | La deconstrucción | a printed word unravelling into loose threads at its edges |
+| 22 · La antipolítica | Vivir en la verdad | a single candle burning in a dark window |
+| 23 · La controversia Heidegger | La controversia | a wooden lectern split in two, papers scattered |
+| 24 · De la modernidad a la posmodernidad | La posmodernidad | a hall of mirrors reflecting the same classical bust endlessly |

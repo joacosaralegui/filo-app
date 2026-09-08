@@ -1,6 +1,7 @@
 // Router mínimo por hash. Tres rutas, nada más:
 //
 //   #/                  catálogo de cursos
+//   #/album             álbum de cromos
 //   #/<curso>           home del curso
 //   #/<curso>/<num>     una clase del curso
 //
@@ -15,9 +16,11 @@ export function parseHash(hash) {
     .replace(/^#\/?/, "")
     .split("/")
     .filter(Boolean);
+  // #/album es la única ruta que no cuelga de un curso.
+  if (parts[0] === "album") return { album: true, courseId: null, num: null };
   const [courseId, rawNum] = parts;
   const num = rawNum != null && /^\d+$/.test(rawNum) ? Number(rawNum) : null;
-  return { courseId: courseId || null, num };
+  return { album: false, courseId: courseId || null, num };
 }
 
 export const route = readable(parseHash(location.hash), (set) => {
@@ -40,5 +43,6 @@ function go(path, replace = false) {
 }
 
 export const toCatalog = (replace) => go("#/", replace);
+export const toAlbum = (replace) => go("#/album", replace);
 export const toCourse = (id, replace) => go(`#/${id}`, replace);
 export const toClass = (id, num, replace) => go(`#/${id}/${num}`, replace);
