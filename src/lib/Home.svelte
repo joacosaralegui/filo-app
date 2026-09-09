@@ -3,15 +3,18 @@
   import {
     progress,
     courseStateOf,
+    cromosGanados,
     isComplete,
     isStarted,
     completionPct,
   } from "./progress.js";
+  import { cromoDeClase } from "./cromos.js";
   // Curso cargado: manifiesto (title, subtitle, source, period) + classes.
   export let course;
   const dispatch = createEventDispatcher();
 
   $: classes = course.classes || [];
+  $: ganados = cromosGanados($progress);
 
   // Botón principal: si hay una clase en curso, reanudarla ("Continuar");
   // si la última quedó completa, ofrecer la siguiente; si no, la primera.
@@ -73,18 +76,6 @@
             >{course.subtitle}</span
           >{/if}
       </h1>
-      {#if course.source}
-        <p class="mt-[14px] font-serif text-[13px] italic leading-[1.55] text-text-soft">
-          Construido a partir de
-          <a
-            class="text-accent-ink no-underline [border-bottom:1px_dotted_color-mix(in_srgb,var(--accent-ink)_55%,transparent)]"
-            href={course.source.url}
-            target="_blank"
-            rel="noopener">{course.source.label}</a
-          >.
-        </p>
-      {/if}
-
       {#if topIdeas.length}
         <div class="mt-9 flex flex-col items-start gap-3">
           {#if topIdeas.length}
@@ -110,9 +101,6 @@
 
       {#if primary}
         <div class="mt-9 flex flex-col gap-3">
-          <p class="m-0 text-[13px] font-semibold text-text-soft">
-            Clase {primary.num} · {primary.title}
-          </p>
           <button
             class="cta-pop flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[17px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
             on:click={() => open(primary)}
@@ -159,6 +147,8 @@
         {@const eraCls = !c.content ? "opacity-35" : "opacity-60"}
         {@const titleCls = !c.content ? "text-text-soft opacity-55" : "text-text"}
         {@const statusCls = started || done ? "text-accent-ink opacity-100" : "text-text-soft opacity-50"}
+        {@const cr = cromoDeClase(course.id, c.num)}
+        {@const crGot = !!(cr && ganados[cr.slug])}
         <button
           class="relative flex w-full items-center gap-[15px] rounded-2xl bg-surface p-4 text-left text-inherit [font-family:inherit] disabled:cursor-default not-disabled:active:scale-[0.98]"
           class:cursor-pointer={!!c.content}
@@ -180,6 +170,24 @@
             {:else if started}{pct}%
             {/if}
           </span>
+
+          <!-- El cromo que otorga la clase: puesto o su silueta, según si ya
+               lo ganaste. Deja ver qué hay en juego sin salir del recorrido. -->
+          {#if cr}
+            <span
+              class="h-8 w-8 flex-none overflow-hidden rounded-lg {crGot ? 'bg-surface-2' : 'bg-line/60'}"
+            >
+              {#if crGot && cr.img}
+                <img class="h-full w-full object-cover" src={cr.img} alt="" />
+              {:else}
+                <span class="grid h-full w-full place-items-center">
+                  <span
+                    class="h-[42%] w-[42%] bg-line {cr.tipo === 'autor' ? 'rounded-full' : 'rounded-[2px]'}"
+                  ></span>
+                </span>
+              {/if}
+            </span>
+          {/if}
           {#if started}<span
               class="absolute right-4 bottom-2 left-[65px] h-0.5 rounded-full bg-accent"
               style="width:{pct}%"
@@ -187,9 +195,18 @@
         </button>
       {/each}
     </div>
-    <footer class="mt-[22px] text-center text-xs text-text-soft/70">
-      Se irán habilitando más clases pronto.
-    </footer>
+    <!-- La atribución baja acá: sacarla del hero lo despeja, pero el crédito
+         de la fuente no se pierde. -->
+    {#if course.source}
+      <footer class="mt-6 text-center font-serif text-[12px] italic leading-[1.5] text-text-soft/70">
+        Construido a partir de
+        {#if course.source.url}
+          <a class="underline decoration-dotted" href={course.source.url} target="_blank" rel="noopener"
+            >{course.source.label}</a
+          >
+        {:else}{course.source.label}{/if}.
+      </footer>
+    {/if}
   </section>
 </div>
 

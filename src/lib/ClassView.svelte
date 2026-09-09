@@ -7,7 +7,7 @@
   import ShortCard from "./ShortCard.svelte";
   import ExplainSheet from "./ExplainSheet.svelte";
   import Burst from "./Burst.svelte";
-  import { classState, saveClass, resetClass, ganarCromo, SCORABLE } from "./progress.js";
+  import { progress, classState, saveClass, resetClass, ganarCromo, SCORABLE } from "./progress.js";
   import { cromoDeClase } from "./cromos.js";
 
   export let lecture;
@@ -16,6 +16,11 @@
   const dispatch = createEventDispatcher();
 
   const totalQuiz = lecture.feed.filter((c) => SCORABLE.has(c.type)).length;
+
+  // La clase abre con una slide de portada, así que la card `i` del feed vive
+  // en la slide `i + PORTADA`. Todo lo que traduce entre índice de feed e
+  // índice de slide pasa por esta constante.
+  const PORTADA = 1;
 
   // Correcto según el tipo. 'quiz' guarda el índice elegido (número); el resto
   // ('match', 'classify', 'short') guarda un objeto con { correct } más el
@@ -65,7 +70,7 @@
   // hacia abajo ANTES de que el scroll ocurra, evitando el rebote visible.
   function atGate() {
     if (gate < 0 || !feedEl) return false;
-    return feedEl.scrollTop >= gate * feedEl.clientHeight - 2;
+    return feedEl.scrollTop >= (gate + PORTADA) * feedEl.clientHeight - 2;
   }
 
   // Rueda del mouse / trackpad: bloquear el desplazamiento hacia abajo.
@@ -104,9 +109,10 @@
     clearTimeout(autoTimer);
     autoTimer = null;
   }
+  // `i` es índice de FEED; acá se traduce a slide.
   function irA(i) {
     if (!feedEl) return;
-    feedEl.scrollTo({ top: i * feedEl.clientHeight, behavior: "smooth" });
+    feedEl.scrollTo({ top: (i + PORTADA) * feedEl.clientHeight, behavior: "smooth" });
   }
 
   // recompensa
@@ -118,7 +124,7 @@
   let finaleId = 0;
   let ready = false; // evita celebrar en el salto de montaje
   let endCelebrated = false;
-  const endIndex = lecture.feed.length; // índice de la slide de cierre
+  const endIndex = lecture.feed.length + PORTADA; // índice de la slide de cierre
 
   $: pct = totalQuiz ? Math.round((correctCount / totalQuiz) * 100) : 0;
 
@@ -136,7 +142,7 @@
     saveClass(lecture.num, {}); // marcar como última clase abierta
     if (saved.card > 0 && feedEl) {
       // salto instantáneo a la última card vista, sin pasar la puerta
-      const target = gate >= 0 ? Math.min(saved.card, gate) : saved.card;
+      const target = gate >= 0 ? Math.min(saved.card, gate + PORTADA) : saved.card;
       feedEl.style.scrollBehavior = "auto";
       feedEl.scrollTop = target * feedEl.clientHeight;
       requestAnimationFrame(() => (feedEl.style.scrollBehavior = ""));
@@ -212,7 +218,7 @@
 
     // Freno de la puerta: no dejar pasar de la primera card sin responder.
     if (gate >= 0) {
-      const limit = gate * h;
+      const limit = (gate + PORTADA) * h;
       if (feedEl.scrollTop > limit + 1) {
         feedEl.scrollTop = limit;
         nudgeGate();
@@ -311,6 +317,37 @@
   on:touchstart={onTouchStart}
   on:touchmove|nonpassive={onTouchMove}
 >
+  <!-- Portada de la clase: anuncia de qué va, muestra el cromo en juego (o su
+       silueta, si todavía no lo ganaste) y enseña el gesto con la flecha. -->
+  <section
+    class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-10 [scroll-snap-align:center] [scroll-snap-stop:always]"
+  >
+    <div class="flex w-full max-w-[480px] flex-col items-center text-center">
+      {#if cromo}
+        {@const ganado = !!$progress.cromos?.[cromo.slug]}
+        <div class="mb-7 h-[132px] w-[132px] overflow-hidden rounded-2xl {ganado ? 'bg-surface' : 'bg-line/50'}">
+          {#if ganado && cromo.img}
+            <img class="h-full w-full object-cover" src={cromo.img} alt="" />
+          {:else}
+            <span class="grid h-full w-full place-items-center">
+              <span class="h-[42%] w-[42%] bg-line {cromo.tipo === 'autor' ? 'rounded-full' : 'rounded-md'}"
+              ></span>
+            </span>
+          {/if}
+        </div>
+      {/if}
+
+      <span class="text-[11px] font-bold tracking-[1.8px] text-text-soft/70 uppercase">
+        Clase {lecture.num}
+      </span>
+      <h2 class="mt-3 font-serif text-[32px] leading-[1.2] font-semibold tracking-[-0.3px] text-text">
+        {lecture.title}
+      </h2>
+
+      <span class="cue mt-10 text-[22px] text-line">↓</span>
+    </div>
+  </section>
+
   {#each lecture.feed as card, i}
     <section
       class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-10 [scroll-snap-align:center] [scroll-snap-stop:always]"
@@ -448,6 +485,15 @@
   @keyframes starIn {
     from { opacity: 0; transform: scale(0.4) rotate(-25deg); }
     to { opacity: 1; transform: scale(1) rotate(0); }
+  }
+
+  /* La flecha de la portada, que enseña que se avanza scrolleando. */
+  .cue {
+    animation: bob 1.6s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(6px); opacity: 1; }
   }
 
   /* ---------- ceremonia del cromo ----------
