@@ -52,45 +52,45 @@
     class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+44px)] pb-[calc(env(safe-area-inset-bottom)+90px)] [scroll-snap-align:start] [scroll-snap-stop:always]"
   >
 
-    <!-- Un solo bloque alineado a la izquierda (mismo eje que las cards del
-         catálogo) y centrado verticalmente en el espacio libre: el aire queda
-         repartido arriba y abajo, no como dos huecos entre islas sueltas. -->
-    <div class="my-auto flex flex-col">
+    <!-- Todo el curso en una sola tarjeta, igual que el hero del catálogo:
+         portada, nombre, de qué va y la acción, en una misma pieza. -->
+    <div class="my-auto flex flex-col gap-4 rounded-[20px] bg-surface p-5">
       {#if course.portada}
-        <img
-          class="mb-7 h-[250px] w-full rounded-2xl bg-surface-2 object-cover"
-          src={imagenDe(course.portada)}
-          alt=""
-        />
-      {/if}
-      <h1 class="m-0 font-serif text-[33px] leading-[1.16] font-semibold tracking-[-0.3px]">
-        {course.title}{#if course.subtitle}<br /><span class="font-medium italic text-accent-ink"
-            >{course.subtitle}</span
-          >{/if}
-      </h1>
-      {#if course.blurb}
-        <p class="mt-4 text-[15px] leading-[1.6] text-text-soft">{course.blurb}</p>
+        <!-- Cuadrada, que es la proporción del arte: entra entera, sin recorte. -->
+        <img class="aspect-square w-full rounded-xl object-cover" src={imagenDe(course.portada)} alt="" />
       {/if}
 
+      <div class="flex flex-col gap-1.5">
+        <h1 class="m-0 font-serif text-[27px] leading-[1.15] font-semibold tracking-[-0.3px] text-text">
+          {course.title}
+        </h1>
+        {#if course.subtitle}
+          <p class="font-serif text-[15px] leading-[1.3] font-medium text-accent italic">
+            {course.subtitle}
+          </p>
+        {/if}
+        {#if course.blurb}
+          <p class="mt-1.5 text-[13.5px] leading-[1.55] text-text-soft">{course.blurb}</p>
+        {/if}
+      </div>
+
       {#if primary}
-        <div class="mt-9 flex flex-col gap-3">
-          <button
-            class="flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[17px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
-            on:click={() => open(primary)}
+        <button
+          class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[15px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
+          on:click={() => open(primary)}
+        >
+          {primaryLabel}
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
+            ><path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5l7 7-7 7"
+            /></svg
           >
-            {primaryLabel}
-            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"
-              ><path
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 5l7 7-7 7"
-              /></svg
-            >
-          </button>
-        </div>
+        </button>
       {/if}
     </div>
 
