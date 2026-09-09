@@ -18,15 +18,25 @@
   $: last = $progress.lastActivity;
   $: lastCourseMeta = last ? courses.find((c) => c.id === last.courseId) : null;
   $: heroActive = !!(last && lastCourseMeta);
-  // El curso destacado arriba no se repite en la lista de abajo.
-  $: otherCourses = heroActive ? courses.filter((c) => c.id !== last.courseId) : courses;
+
+  // Sin nada empezado, la primera pantalla no puede quedar vacía: la ficha de
+  // "continuar" se reemplaza por una de "empezar por", con la misma forma, que
+  // propone el primer curso. La pregunta de arriba —qué hago ahora— se contesta
+  // siempre; sólo cambia la respuesta.
+  $: sugerido = courses[0] || null;
 
   // Álbum: sin ningún cromo la tira no aparece — mostrar una colección en cero
-  // a alguien que todavía no empezó desalienta y ensucia la home.
+  // a alguien que todavía no empezó desalienta y ensucia la pantalla.
   $: album = conseguidos(cromosGanados($progress));
 
   const open = (c) => dispatch("open", c);
   const resume = (c, num) => dispatch("resume", { id: c.id, num });
+
+  let scrollEl;
+  let cursosEl;
+  function verCursos() {
+    if (scrollEl && cursosEl) scrollEl.scrollTo({ top: cursosEl.offsetTop, behavior: "smooth" });
+  }
 
   // Color de marca de cada curso (declarado en su manifiesto — ver
   // content/courses.js). Se previsualiza acá, ANTES de entrar, con una
@@ -35,95 +45,99 @@
   const accentOf = (c) => (c && c.theme && c.theme["--accent"]) || "var(--accent)";
 </script>
 
+<!-- Dos pantallas: la primera contesta "qué hago ahora" (portada, la ficha de
+     avanzar y el álbum); la segunda, "qué hay" (todos los cursos). -->
 <div
-  class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+90px)]"
+  class="h-dvh overflow-y-auto scroll-smooth [scroll-snap-type:y_mandatory]"
+  bind:this={scrollEl}
 >
-  <!-- Header de la home: la lámina recortada en arco, con la marca encima.
-       Va siempre (no sólo sin progreso), así que es más baja que la portada
-       anterior para que la tarjeta de "Continuar" siga entrando en pantalla. -->
-  <header class="cover-wrap mb-8">
-    <span class="cover-disc" aria-hidden="true"></span>
-    <div class="cover">
-      <img class="cover-img" src={socrates} alt="" />
-      <div class="cover-text">
-        <h1 class="m-0 font-serif text-[62px] leading-none font-semibold tracking-[0.14em] text-text">
-          FILO
-        </h1>
-      </div>
-    </div>
-  </header>
-
-  {#if heroActive}
-    {@const heroAccent = accentOf(lastCourseMeta)}
-    <button
-      style="--course-accent: {heroAccent}"
-      class="group mb-8 flex w-full flex-col gap-3 rounded-[20px] bg-surface p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
-      on:click={() => resume(lastCourseMeta, last.num)}
-    >
-      <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Continuar con</span>
-      <div class="flex flex-col gap-2">
-        <h2 class="font-serif text-[21px] leading-[1.25] font-semibold text-text">
-          Clase {last.num} · {last.title}
-        </h2>
-        <p class="font-serif text-[14px] leading-[1.3] font-medium italic [color:var(--course-accent)]">
-          {lastCourseMeta.title}{lastCourseMeta.subtitle ? ` · ${lastCourseMeta.subtitle}` : ""}
-        </p>
-      </div>
-      <span
-        class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
-      >
-        Continuar
-        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
-          ><path
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M9 5l7 7-7 7"
-          /></svg
-        >
-      </span>
-    </button>
-
-  {/if}
-
-  {#if heroActive && otherCourses.length}
-    <p class="mb-3.5 text-xs font-bold tracking-[1.6px] text-text-soft/70 uppercase">Otros cursos</p>
-  {/if}
-
-  <div class="flex flex-col gap-[18px]">
-    {#each otherCourses as c (c.id)}
-      {@const cLast = lastClassOf(c.id)}
-      {@const cAccent = accentOf(c)}
-      <button
-        style="--course-accent: {cAccent}"
-        class="flex w-full cursor-pointer items-center gap-3 rounded-2xl bg-surface p-5 text-left [font-family:inherit] active:scale-[0.995]"
-        on:click={() => open(c)}
-      >
-        <div class="flex min-w-0 flex-1 flex-col">
-          <b class="font-serif text-[22px] leading-[1.25] font-semibold text-text">{c.title}</b>
-          {#if c.subtitle}<span
-              class="font-serif text-[15px] leading-[1.3] font-medium italic [color:var(--course-accent)]"
-              >{c.subtitle}</span
-            >{/if}
-          <p class="mt-2.5 text-[13px] leading-normal text-text-soft">{c.blurb}</p>
-          <small class="mt-3 text-[10.5px] font-bold tracking-[0.6px] text-text-soft/70 uppercase"
-            >{cLast == null ? "Empezar" : "Seguir viendo"}</small
-          >
+  <section
+    class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+90px)] [scroll-snap-align:start] [scroll-snap-stop:always]"
+  >
+    <!-- Header de la home: la lámina recortada en arco, con la marca encima. -->
+    <header class="cover-wrap mb-8">
+      <span class="cover-disc" aria-hidden="true"></span>
+      <div class="cover">
+        <img class="cover-img" src={socrates} alt="" />
+        <div class="cover-text">
+          <h1 class="m-0 font-serif text-[62px] leading-none font-semibold tracking-[0.14em] text-text">
+            FILO
+          </h1>
         </div>
-        <span class="self-center text-2xl font-semibold opacity-80 [color:var(--course-accent)]">›</span>
-      </button>
-    {/each}
-  </div>
+      </div>
+    </header>
 
-  <!-- Tira del álbum: cierra la pantalla, anclada abajo. Los medallones
-       superpuestos se leen como "colección" sin explicar nada. El pt asegura
-       aire cuando la lista de cursos es larga y el margen auto se anula. -->
-  {#if album.length}
-    <div class="mt-auto pt-8">
+    <!-- La ficha de avanzar. Con progreso reanuda; sin progreso propone por
+         dónde empezar, con la misma forma: la pregunta es la misma. -->
+    {#if heroActive}
+      {@const heroAccent = accentOf(lastCourseMeta)}
       <button
-        class="relative flex w-full cursor-pointer items-center gap-3 overflow-hidden rounded-2xl border-0 bg-surface-3 px-4 py-[22px] text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+        style="--course-accent: {heroAccent}"
+        class="group flex w-full flex-col gap-3 rounded-[20px] bg-surface p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+        on:click={() => resume(lastCourseMeta, last.num)}
+      >
+        <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Continuar con</span>
+        <div class="flex flex-col gap-2">
+          <h2 class="font-serif text-[21px] leading-[1.25] font-semibold text-text">
+            Clase {last.num} · {last.title}
+          </h2>
+          <p class="font-serif text-[14px] leading-[1.3] font-medium italic [color:var(--course-accent)]">
+            {lastCourseMeta.title}{lastCourseMeta.subtitle ? ` · ${lastCourseMeta.subtitle}` : ""}
+          </p>
+        </div>
+        <span
+          class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
+        >
+          Continuar
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
+            ><path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5l7 7-7 7"
+            /></svg
+          >
+        </span>
+      </button>
+    {:else if sugerido}
+      <button
+        style="--course-accent: {accentOf(sugerido)}"
+        class="group flex w-full flex-col gap-3 rounded-[20px] bg-surface p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+        on:click={() => resume(sugerido, 1)}
+      >
+        <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Empezá por</span>
+        <div class="flex flex-col gap-2">
+          <h2 class="font-serif text-[21px] leading-[1.25] font-semibold text-text">{sugerido.title}</h2>
+          <p class="font-serif text-[14px] leading-[1.3] font-medium italic [color:var(--course-accent)]">
+            {sugerido.subtitle}
+          </p>
+          <p class="text-[13px] leading-normal text-text-soft">{sugerido.blurb}</p>
+        </div>
+        <span
+          class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
+        >
+          Empezar
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
+            ><path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5l7 7-7 7"
+            /></svg
+          >
+        </span>
+      </button>
+    {/if}
+
+    <!-- Tira del álbum. Los medallones superpuestos se leen como "colección"
+         sin explicar nada. -->
+    {#if album.length}
+      <button
+        class="relative mt-5 flex w-full cursor-pointer items-center gap-3 overflow-hidden rounded-2xl border-0 bg-surface-3 px-4 py-[22px] text-left [font-family:inherit] transition-transform active:scale-[0.99]"
         style="--album-img: url({albumIcon})"
         on:click={() => dispatch("album")}
       >
@@ -148,8 +162,45 @@
         </div>
         <span class="relative text-2xl font-semibold text-text-soft/50">›</span>
       </button>
+    {/if}
+
+    <button
+      class="mt-auto cursor-pointer self-center border-0 bg-transparent pt-8 text-[13px] font-semibold text-text-soft/75 [font-family:inherit]"
+      on:click={verCursos}>Ver los cursos ↓</button
+    >
+  </section>
+
+  <!-- Segunda pantalla: todos los cursos, incluido el que estás haciendo. -->
+  <section
+    class="mx-auto max-w-[480px] px-[22px] pt-8 pb-[calc(env(safe-area-inset-bottom)+110px)] [scroll-snap-align:start]"
+    bind:this={cursosEl}
+  >
+    <p class="mb-3.5 text-xs font-bold tracking-[1.6px] text-text-soft/70 uppercase">Cursos</p>
+    <div class="flex flex-col gap-[18px]">
+      {#each courses as c (c.id)}
+        {@const cLast = lastClassOf(c.id)}
+        {@const cAccent = accentOf(c)}
+        <button
+          style="--course-accent: {cAccent}"
+          class="flex w-full cursor-pointer items-center gap-3 rounded-2xl bg-surface p-5 text-left [font-family:inherit] active:scale-[0.995]"
+          on:click={() => open(c)}
+        >
+          <div class="flex min-w-0 flex-1 flex-col">
+            <b class="font-serif text-[22px] leading-[1.25] font-semibold text-text">{c.title}</b>
+            {#if c.subtitle}<span
+                class="font-serif text-[15px] leading-[1.3] font-medium italic [color:var(--course-accent)]"
+                >{c.subtitle}</span
+              >{/if}
+            <p class="mt-2.5 text-[13px] leading-normal text-text-soft">{c.blurb}</p>
+            <small class="mt-3 text-[10.5px] font-bold tracking-[0.6px] text-text-soft/70 uppercase"
+              >{cLast == null ? "Empezar" : "Seguir viendo"}</small
+            >
+          </div>
+          <span class="self-center text-2xl font-semibold opacity-80 [color:var(--course-accent)]">›</span>
+        </button>
+      {/each}
     </div>
-  {/if}
+  </section>
 </div>
 
 <style>
