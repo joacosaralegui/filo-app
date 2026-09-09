@@ -354,10 +354,9 @@
 
       <!-- El gesto se enseña acá: la portada es la única slide sin nada que
            responder, así que es donde conviene decir cómo se avanza. -->
-      <div class="cue mt-10 flex flex-col items-center gap-2">
-        <span class="text-[12px] font-semibold text-text-soft/70">Deslizá para empezar</span>
-        <span class="text-[22px] text-text-soft/55">↓</span>
-      </div>
+      <span class="mt-10 flex items-center gap-1.5 text-[12px] font-semibold text-text-soft/70">
+        Deslizá para empezar <span class="text-[15px] leading-none">↓</span>
+      </span>
     </div>
   </section>
 
@@ -498,15 +497,6 @@
   @keyframes starIn {
     from { opacity: 0; transform: scale(0.4) rotate(-25deg); }
     to { opacity: 1; transform: scale(1) rotate(0); }
-  }
-
-  /* La flecha de la portada, que enseña que se avanza scrolleando. */
-  .cue {
-    animation: bob 1.6s ease-in-out infinite;
-  }
-  @keyframes bob {
-    0%, 100% { transform: translateY(0); opacity: 0.5; }
-    50% { transform: translateY(6px); opacity: 1; }
   }
 
   /* ---------- ceremonia del cromo ----------
