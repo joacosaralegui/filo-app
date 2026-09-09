@@ -36,7 +36,6 @@
        abajo, así el texto se lee sin necesidad de oscurecer nada. -->
   <header class="apertura mt-5 mb-8">
     <img class="medallon" src={albumIcon} alt="" aria-hidden="true" />
-    <span class="velo" aria-hidden="true"></span>
     <div class="apertura-texto">
       <h1 class="m-0 font-serif text-[30px] leading-none font-semibold tracking-[-0.3px] text-text">Álbum</h1>
       <div class="flex flex-none items-center gap-2">
@@ -103,7 +102,7 @@
     position: relative;
     display: grid;
     place-items: center;
-    height: 214px;
+    height: 224px;
     /* el medallón es más grande que el panel: lo recorta el arco, y por eso
        lo llena en vez de flotar adentro */
     overflow: hidden;
@@ -111,24 +110,12 @@
     background: color-mix(in srgb, var(--surface-2) 70%, transparent);
   }
   .medallon {
-    width: 196px;
-    height: 196px;
+    width: 188px;
+    height: 188px;
     object-fit: contain;
-    /* sube para dejarle el pie del arco al título */
-    margin-bottom: 40px;
-  }
-  /* Funde la base de la ilustración con el panel: el texto se apoya sobre
-     color plano sin tener que oscurecer la imagen. */
-  .velo {
-    position: absolute;
-    inset-inline: 0;
-    bottom: 0;
-    height: 58%;
-    background: linear-gradient(
-      to top,
-      color-mix(in srgb, var(--surface-2) 92%, transparent) 30%,
-      transparent
-    );
+    /* Sube lo suficiente para despejar la franja del título: sin velo encima,
+       el texto tiene que caer sobre el panel y no sobre la ilustración. */
+    margin-bottom: 66px;
   }
   .apertura-texto {
     position: absolute;

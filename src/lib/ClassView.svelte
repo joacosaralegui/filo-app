@@ -372,7 +372,7 @@
         {#each [0, 1, 2] as i}
           <span
             class="star {i < stars
-              ? 'text-accent-2 [text-shadow:0_4px_18px_color-mix(in_srgb,var(--accent-2)_55%,transparent)]'
+              ? 'text-accent-2'
               : 'text-line'}"
             style="--d:{i * 140}ms">★</span
           >
@@ -465,7 +465,7 @@
 {#if pop}
   {#key pop.id}
     <div class="pop-anim pointer-events-none fixed top-[42%] left-1/2 z-[55] flex -translate-x-1/2 flex-col items-center gap-1" aria-hidden="true">
-      <span class="text-[46px] font-black text-accent-3 [text-shadow:0_3px_16px_color-mix(in_srgb,var(--accent-2)_65%,transparent)]"
+      <span class="text-[46px] font-black text-accent-3"
         >×{pop.combo}</span
       >
       <span class="text-[15px] font-extrabold tracking-[1.5px] text-accent-3">seguidas</span>
