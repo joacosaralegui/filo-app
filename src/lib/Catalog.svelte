@@ -139,18 +139,18 @@
     <div class="flex flex-col gap-[18px]">
       {#each courses as c (c.id)}
         <button
-          class="flex w-full cursor-pointer items-center gap-3 rounded-2xl bg-surface p-5 text-left [font-family:inherit] active:scale-[0.995]"
+          class="flex w-full cursor-pointer items-center gap-4 rounded-2xl bg-surface p-5 text-left [font-family:inherit] active:scale-[0.995]"
           on:click={() => open(c)}
         >
           {#if c.portada}
-            <span class="h-14 w-14 flex-none self-start overflow-hidden rounded-xl bg-surface-2">
+            <span class="h-[84px] w-[84px] flex-none overflow-hidden rounded-xl bg-surface-2">
               <img class="h-full w-full object-cover" src={imagenDe(c.portada)} alt="" />
             </span>
           {/if}
           <div class="flex min-w-0 flex-1 flex-col">
-            <b class="font-serif text-[22px] leading-[1.25] font-semibold text-text">{c.title}</b>
+            <b class="font-serif text-[22px] leading-[1.12] font-semibold text-text">{c.title}</b>
             {#if c.subtitle}<span
-                class="font-serif text-[15px] leading-[1.3] font-medium italic text-accent"
+                class="mt-1 font-serif text-[15px] leading-[1.25] font-medium italic text-accent"
                 >{c.subtitle}</span
               >{/if}
           </div>
