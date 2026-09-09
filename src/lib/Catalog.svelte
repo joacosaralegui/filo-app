@@ -3,7 +3,7 @@
   import socrates from "../assets/socrates.webp";
   import albumIcon from "../assets/album.webp";
   import { progress, courseStateOf, cromosGanados } from "./progress.js";
-  import { conseguidos, TOTAL } from "./cromos.js";
+  import { conseguidos, imagenDe, TOTAL } from "./cromos.js";
   export let courses = [];
   const dispatch = createEventDispatcher();
 
@@ -148,6 +148,11 @@
           class="flex w-full cursor-pointer items-center gap-3 rounded-2xl bg-surface p-5 text-left [font-family:inherit] active:scale-[0.995]"
           on:click={() => open(c)}
         >
+          {#if c.portada}
+            <span class="h-14 w-14 flex-none self-start overflow-hidden rounded-xl bg-surface-2">
+              <img class="h-full w-full object-cover" src={imagenDe(c.portada)} alt="" />
+            </span>
+          {/if}
           <div class="flex min-w-0 flex-1 flex-col">
             <b class="font-serif text-[22px] leading-[1.25] font-semibold text-text">{c.title}</b>
             {#if c.subtitle}<span

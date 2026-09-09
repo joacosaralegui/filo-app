@@ -19,6 +19,10 @@ const porSlug = Object.fromEntries(
 );
 
 export const ALBUM = CROMOS.map((c) => ({ ...c, img: porSlug[c.slug] || null }));
+
+// La imagen suelta de un cromo, por slug. La usan los cursos como portada
+// prestada hasta que tengan arte propio.
+export const imagenDe = (slug) => porSlug[slug] || null;
 export const TOTAL = ALBUM.length;
 
 // El cromo que otorga una clase (o null si no otorga ninguno).

@@ -8,7 +8,7 @@
     isStarted,
     completionPct,
   } from "./progress.js";
-  import { cromoDeClase } from "./cromos.js";
+  import { cromoDeClase, imagenDe } from "./cromos.js";
   // Curso cargado: manifiesto (title, subtitle, source, period) + classes.
   export let course;
   const dispatch = createEventDispatcher();
@@ -71,6 +71,11 @@
          catálogo) y centrado verticalmente en el espacio libre: el aire queda
          repartido arriba y abajo, no como dos huecos entre islas sueltas. -->
     <div class="my-auto flex flex-col">
+      {#if course.portada}
+        <span class="mb-6 h-[88px] w-[88px] overflow-hidden rounded-2xl bg-surface-2">
+          <img class="h-full w-full object-cover" src={imagenDe(course.portada)} alt="" />
+        </span>
+      {/if}
       <h1 class="m-0 font-serif text-[33px] leading-[1.16] font-semibold tracking-[-0.3px]">
         {course.title}{#if course.subtitle}<br /><span class="font-medium italic text-accent-ink"
             >{course.subtitle}</span

@@ -14,6 +14,8 @@
 //   subtitle : segunda línea del hero (se muestra en el color de acento)
 //   blurb    : una frase de qué recorre el curso (pantalla de selección)
 //   source   : { label, url } de la fuente original (opcional)
+//   portada  : imagen que representa al curso. Por ahora reusa el slug de un
+//              cromo; el día que cada curso tenga arte propio, cambia acá.
 //   theme    : overrides de tokens de global.css (opcional), p. ej.
 //              { "--accent": "#7b4b94" }. Se aplican al entrar al curso.
 //              Hoy ningún curso lo usa: todos comparten la paleta.
@@ -27,6 +29,7 @@ export const COURSES = [
     title: "Filosofía contemporánea",
     subtitle: "Siglo XVIII a hoy",
     blurb: "De la herencia de la Ilustración a la posmodernidad.",
+    portada: "romanticismo",
     source: {
       label: "European Intellectual History since Nietzsche",
       url: "https://www.youtube.com/playlist?list=PLh9mgdi4rNezUjm7niGdUWjnL0lHSDh0U",
@@ -38,6 +41,7 @@ export const COURSES = [
     title: "Filosofía moderna",
     subtitle: "Siglos XVII y XVIII",
     blurb: "De la Reforma a la crisis de la Ilustración.",
+    portada: "nueva-ciencia",
     source: {
       label: "Historia de las ideas en la modernidad — Maestría en Filosofía, UNQ",
       url: "",
