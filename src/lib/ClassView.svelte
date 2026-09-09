@@ -213,6 +213,16 @@
 
   onDestroy(cancelarAuto);
 
+  // Persistir la posición es barato en apariencia pero no lo es: cada llamada
+  // serializa TODO el progreso y hace un setItem sincrónico. En medio de un
+  // scroll eso come frames, así que se escribe recién cuando el scroll frena.
+  let guardarTimer;
+  function guardarPosicion(idx) {
+    clearTimeout(guardarTimer);
+    guardarTimer = setTimeout(() => saveClass(lecture.num, { card: idx }), 300);
+  }
+  onDestroy(() => clearTimeout(guardarTimer));
+
   function onScroll() {
     const h = feedEl.clientHeight;
 
@@ -220,7 +230,12 @@
     if (gate >= 0) {
       const limit = (gate + PORTADA) * h;
       if (feedEl.scrollTop > limit + 1) {
+        // Instantáneo a propósito: el contenedor tiene scroll-behavior smooth,
+        // así que asignar scrollTop animaría el rebote y pelearía contra el
+        // impulso del dedo.
+        feedEl.style.scrollBehavior = "auto";
         feedEl.scrollTop = limit;
+        requestAnimationFrame(() => (feedEl.style.scrollBehavior = ""));
         nudgeGate();
         return;
       }
@@ -231,7 +246,7 @@
     const idx = Math.round(feedEl.scrollTop / h);
     if (idx !== currentCard) {
       currentCard = idx;
-      saveClass(lecture.num, { card: idx });
+      guardarPosicion(idx);
     }
     // llegó a la slide de cierre: festejar una vez
     if (ready && !endCelebrated && idx >= endIndex) {
