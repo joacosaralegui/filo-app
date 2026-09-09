@@ -9,7 +9,7 @@
     completionPct,
   } from "./progress.js";
   import { cromoDeClase, imagenDe } from "./cromos.js";
-  // Curso cargado: manifiesto (title, subtitle, source, period) + classes.
+  // Curso cargado: manifiesto (title, subtitle, blurb, portada, source) + classes.
   export let course;
   const dispatch = createEventDispatcher();
 
@@ -31,21 +31,6 @@
     : null;
   $: primary = resume || (lastClass && nextAfterLast) || firstAvailable;
   $: primaryLabel = resume ? "Continuar" : "Empezar";
-
-  // Mini infografía: las primeras corrientes/eras distintas que recorre el
-  // curso, en orden de aparición — una fila de chips arriba del botón.
-  $: topIdeas = uniqueEras(classes).slice(0, 6);
-  function uniqueEras(list) {
-    const seen = new Set();
-    const out = [];
-    for (const c of list) {
-      if (c.era && !seen.has(c.era)) {
-        seen.add(c.era);
-        out.push(c.era);
-      }
-    }
-    return out;
-  }
 
   let tlEl;
   let homeEl;
@@ -72,42 +57,25 @@
          repartido arriba y abajo, no como dos huecos entre islas sueltas. -->
     <div class="my-auto flex flex-col">
       {#if course.portada}
-        <span class="mb-6 h-[88px] w-[88px] overflow-hidden rounded-2xl bg-surface-2">
-          <img class="h-full w-full object-cover" src={imagenDe(course.portada)} alt="" />
-        </span>
+        <img
+          class="mb-7 h-[190px] w-full rounded-2xl bg-surface-2 object-cover"
+          src={imagenDe(course.portada)}
+          alt=""
+        />
       {/if}
       <h1 class="m-0 font-serif text-[33px] leading-[1.16] font-semibold tracking-[-0.3px]">
         {course.title}{#if course.subtitle}<br /><span class="font-medium italic text-accent-ink"
             >{course.subtitle}</span
           >{/if}
       </h1>
-      {#if topIdeas.length}
-        <div class="mt-9 flex flex-col items-start gap-3">
-          {#if topIdeas.length}
-            <!-- Mini línea de tiempo: la línea va detrás (primera en el DOM) y
-                 cada nodo, posicionado, la tapa — de ahí el efecto de "cuenta"
-                 ensartada. El alto fijo de fila (h-7) mantiene los nodos
-                 alineados con los extremos de la línea. -->
-            <div class="relative flex flex-col items-start gap-2">
-              <span class="line-pop absolute top-[14px] bottom-[14px] left-1 w-px bg-line" aria-hidden="true"></span>
-              {#each topIdeas as era, i (era)}
-                <div class="idea-pop relative flex h-7 items-center gap-3" style="--delay:{i * 90}ms">
-                  <span class="h-[9px] w-[9px] flex-none rounded-full border-2 border-accent bg-bg"></span>
-                  <span
-                    class="rounded-full border border-line bg-surface px-3 text-[11px] leading-7 font-bold tracking-[0.4px] text-accent-ink uppercase"
-                    >{era}</span
-                  >
-                </div>
-              {/each}
-            </div>
-          {/if}
-        </div>
+      {#if course.blurb}
+        <p class="mt-4 text-[15px] leading-[1.6] text-text-soft">{course.blurb}</p>
       {/if}
 
       {#if primary}
         <div class="mt-9 flex flex-col gap-3">
           <button
-            class="cta-pop flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[17px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
+            class="flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[17px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
             on:click={() => open(primary)}
           >
             {primaryLabel}
@@ -196,34 +164,3 @@
   </section>
 </div>
 
-<style>
-  /* Entrada escalonada de los chips de era y del botón. Quedan en CSS porque
-     el delay de cada chip se calcula en JS (--delay, por índice). */
-  .idea-pop {
-    opacity: 0;
-    animation: pop-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    animation-delay: var(--delay);
-  }
-  .line-pop {
-    opacity: 0;
-    animation: fade-in 0.5s ease forwards 0.05s;
-  }
-  .cta-pop {
-    opacity: 0;
-    animation: fade-in 0.4s ease forwards 0.4s;
-  }
-  @keyframes fade-in {
-    to { opacity: 1; }
-  }
-  @keyframes pop-in {
-    from { opacity: 0; transform: translateY(6px) scale(0.9); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .idea-pop,
-    .cta-pop {
-      animation: none;
-      opacity: 1;
-    }
-  }
-</style>

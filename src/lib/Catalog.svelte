@@ -2,15 +2,10 @@
   import { createEventDispatcher } from "svelte";
   import socrates from "../assets/socrates.webp";
   import albumIcon from "../assets/album.webp";
-  import { progress, courseStateOf, cromosGanados } from "./progress.js";
+  import { progress, cromosGanados } from "./progress.js";
   import { conseguidos, imagenDe, TOTAL } from "./cromos.js";
   export let courses = [];
   const dispatch = createEventDispatcher();
-
-  // El catálogo sólo conoce el manifiesto liviano de cada curso: el contenido
-  // se carga recién al entrar. Por eso acá no hay % de avance, sólo la última
-  // clase abierta, que sí está guardada en el progreso.
-  $: lastClassOf = (id) => courseStateOf($progress, id).lastClass;
 
   // Última actividad CROSS-CURSO (la guarda App.svelte al abrir una clase):
   // es la única superficie de "continuar" de la app — un tap, sin elegir
@@ -143,7 +138,6 @@
     <p class="mb-3.5 text-xs font-bold tracking-[1.6px] text-text-soft/70 uppercase">Cursos</p>
     <div class="flex flex-col gap-[18px]">
       {#each courses as c (c.id)}
-        {@const cLast = lastClassOf(c.id)}
         <button
           class="flex w-full cursor-pointer items-center gap-3 rounded-2xl bg-surface p-5 text-left [font-family:inherit] active:scale-[0.995]"
           on:click={() => open(c)}
@@ -159,10 +153,6 @@
                 class="font-serif text-[15px] leading-[1.3] font-medium italic text-accent"
                 >{c.subtitle}</span
               >{/if}
-            <p class="mt-2.5 text-[13px] leading-normal text-text-soft">{c.blurb}</p>
-            <small class="mt-3 text-[10.5px] font-bold tracking-[0.6px] text-text-soft/70 uppercase"
-              >{cLast == null ? "Empezar" : "Seguir viendo"}</small
-            >
           </div>
           <span class="self-center text-2xl font-semibold opacity-80 text-accent">›</span>
         </button>
