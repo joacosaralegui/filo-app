@@ -1,5 +1,5 @@
 // PLANTILLA de clase. Copiá este archivo a <curso>/claseNN.js y completá.
-// Guía completa en ../CONTENIDO.md. Referencia viva: nietzsche/clase02.js.
+// Guía completa en ../CONTENIDO.md. Referencia viva: contemporanea/clase02.js.
 //
 // `transcript` es opcional: sólo lo llevan los cursos armados desde
 // transcripciones numeradas (en Nietzsche, transcript = num + 1).

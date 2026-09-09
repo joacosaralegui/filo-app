@@ -13,13 +13,13 @@ Seguí este proceso, respetando la guía `CONTENIDO.md` del repo:
    `/home/joaco/joaco/filosofia/yale-filosofia/transcripciones/` cuyo archivo
    empiece con ese número (con cero adelante si es < 10).
 2. **Leé `CONTENIDO.md` entera** y respetá el esquema de card, la dificultad de
-   los quizzes y el formato de glosario. Usá `src/content/nietzsche/clase02.js`
+   los quizzes y el formato de glosario. Usá `src/content/contemporanea/clase02.js`
    como referencia de estilo.
 3. **Leé la transcripción COMPLETA** antes de escribir nada.
 4. **Generá las cards de info con el script — no las escribas vos:**
 
    ```bash
-   node scripts/md-to-cards.mjs "<transcripción.md>" src/content/nietzsche/claseNN.js
+   node scripts/md-to-cards.mjs "<transcripción.md>" src/content/contemporanea/claseNN.js
    ```
 
    NN = número de `transcript` con cero (`num + 1`; p. ej. la Clase 5 de la app →
@@ -54,9 +54,9 @@ Seguí este proceso, respetando la guía `CONTENIDO.md` del repo:
    el material lo permita, más 1–2 `short` con los términos centrales. El `match`
    de repaso final va **antes** de la card de conclusión: la clase cierra con el
    texto de cierre, nunca con un ejercicio.
-6. **Alimentá el glosario** `src/content/nietzsche/glossary.js` con los autores/
+6. **Alimentá el glosario** `src/content/contemporanea/glossary.js` con los autores/
    conceptos/obras/eventos nuevos, con fechas. No dupliques slugs ni alias existentes.
-7. **Activá la clase** en `src/content/nietzsche/curso.js`: importá `claseNN.js` y
+7. **Activá la clase** en `src/content/contemporanea/curso.js`: importá `claseNN.js` y
    asignálo al `content` de la entrada correspondiente.
 8. **Validá:** corré `npm --prefix /home/joaco/joaco/filo-app run check` y
    corregí lo que marque.

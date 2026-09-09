@@ -3,9 +3,9 @@
 // Usage: node scripts/md-to-cards.mjs <input.md> [output.js] [--offset=N]
 //
 // --offset: desfasaje entre el número del encabezado del md (`# Clase N — …`) y
-// el `num` que ve el usuario. Default -1, que es la regla del curso `nietzsche`
+// el `num` que ve el usuario. Default -1, que es la regla del curso `contemporanea`
 // (se omite su Clase 1 original). Los cursos cuyo md ya está numerado como la
-// app —`modernidad`, por ejemplo— usan --offset=0.
+// app —`moderna`, por ejemplo— usan --offset=0.
 
 import { readFileSync, writeFileSync } from 'fs';
 import { basename } from 'path';

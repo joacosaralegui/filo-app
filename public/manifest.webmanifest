@@ -1,7 +1,7 @@
 {
-  "name": "Filo · cursos de historia de las ideas",
+  "name": "Filo · historia de las ideas",
   "short_name": "Filo",
-  "description": "Estudiá cursos de historia de las ideas con un feed de cards, quizzes y un diccionario filosófico.",
+  "description": "Estudiá historia de las ideas con un feed de cards, quizzes y un diccionario filosófico.",
   "start_url": ".",
   "scope": ".",
   "display": "standalone",

@@ -15,8 +15,8 @@ const KINDS = new Set(["autor", "concepto", "obra", "evento"]);
 // ---- clases ----
 for (const c of CLASSES) {
   const tag = `${c.courseId} · Clase ${c.num}`;
-  // El desfasaje entre `num` y `transcript` depende del curso: `nietzsche` omite
-  // su Clase 1 original (offset -1), `modernidad` numera sus md como la app
+  // El desfasaje entre `num` y `transcript` depende del curso: `contemporanea` omite
+  // su Clase 1 original (offset -1), `moderna` numera sus md como la app
   // (offset 0). El curso lo declara en `numOffset`; si no declara `transcript`,
   // no hay nada que chequear.
   const offset = COURSES.find((x) => x.id === c.courseId)?.numOffset ?? -1;

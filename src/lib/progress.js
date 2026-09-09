@@ -20,7 +20,7 @@ const EMPTY_COURSE = { lastClass: null, classes: {} };
 function load() {
   try {
     const raw = localStorage.getItem(KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) return migrarIds(JSON.parse(raw));
     const old = localStorage.getItem(OLD_KEY);
     if (old) return migrateV1(JSON.parse(old));
   } catch {
@@ -29,13 +29,39 @@ function load() {
   return {};
 }
 
-// v1 guardaba un solo curso, plano: { lastClass, classes }. Era Nietzsche.
+// v1 guardaba un solo curso, plano: { lastClass, classes }. Era el que hoy se
+// llama `contemporanea`.
 function migrateV1(v1) {
   return {
-    lastCourse: "nietzsche",
+    lastCourse: "contemporanea",
     courses: {
-      nietzsche: { lastClass: v1.lastClass ?? null, classes: v1.classes || {} },
+      contemporanea: { lastClass: v1.lastClass ?? null, classes: v1.classes || {} },
     },
+  };
+}
+
+// Los cursos se renombraron para que el id acompañe al título. El progreso está
+// indexado por ese id, así que hay que remapear lo guardado o se pierde.
+const IDS_VIEJOS = { nietzsche: "contemporanea", modernidad: "moderna" };
+
+function migrarIds(p) {
+  const cursos = { ...(p.courses || {}) };
+  let tocado = false;
+  for (const [viejo, nuevo] of Object.entries(IDS_VIEJOS)) {
+    if (!cursos[viejo]) continue;
+    // Si por lo que sea ya existiera el nuevo, gana el nuevo: es el vigente.
+    cursos[nuevo] = cursos[nuevo] || cursos[viejo];
+    delete cursos[viejo];
+    tocado = true;
+  }
+  if (!tocado && !IDS_VIEJOS[p.lastCourse] && !IDS_VIEJOS[p.lastActivity?.courseId]) return p;
+  return {
+    ...p,
+    courses: cursos,
+    lastCourse: IDS_VIEJOS[p.lastCourse] || p.lastCourse,
+    lastActivity: p.lastActivity
+      ? { ...p.lastActivity, courseId: IDS_VIEJOS[p.lastActivity.courseId] || p.lastActivity.courseId }
+      : p.lastActivity,
   };
 }
 
