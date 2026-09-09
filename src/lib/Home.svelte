@@ -58,7 +58,7 @@
     <div class="my-auto flex flex-col">
       {#if course.portada}
         <img
-          class="mb-7 h-[190px] w-full rounded-2xl bg-surface-2 object-cover"
+          class="mb-7 h-[250px] w-full rounded-2xl bg-surface-2 object-cover"
           src={imagenDe(course.portada)}
           alt=""
         />
