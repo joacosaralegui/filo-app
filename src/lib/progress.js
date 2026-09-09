@@ -196,3 +196,39 @@ export function completionPct(p, lecture) {
   });
   return total > 0 ? Math.round((done / total) * 100) : 0;
 }
+
+// --- desafío diario ---
+// El desafío es un juego aparte: NO toca las respuestas de las clases ni los
+// cromos. De él se guarda una sola cosa: qué día lo completaste y con cuánto,
+// que es lo que apaga o enciende el tilde de la home.
+
+// La fecha local en ISO corto. Local y no UTC a propósito: el "día" del
+// desafío tiene que ser el día del usuario, no el del meridiano de Greenwich.
+export function hoyISO(d = new Date()) {
+  const mes = String(d.getMonth() + 1).padStart(2, "0");
+  const dia = String(d.getDate()).padStart(2, "0");
+  return `${d.getFullYear()}-${mes}-${dia}`;
+}
+
+// El desafío de hoy, si ya lo completaste (o null).
+export function desafioDeHoy(p) {
+  const dia = p.desafio?.dia;
+  return dia && dia.fecha === hoyISO() ? dia : null;
+}
+
+export function saveDesafio(aciertos, total) {
+  if (!total) return;
+  progress.update((p) => {
+    // Por las dudas: si ya había uno de hoy, gana el primero. El desafío se
+    // juega una vez.
+    if (p.desafio?.dia?.fecha === hoyISO()) return p;
+    return { ...p, desafio: { dia: { fecha: hoyISO(), aciertos, total } } };
+  });
+}
+
+// Cursos con algún avance guardado. El desafío los usa para preguntar sobre lo
+// que ya viste; si no hay ninguno, entra con todos.
+export function cursosEmpezados(p) {
+  const cursos = p.courses || {};
+  return Object.keys(cursos).filter((id) => Object.keys(cursos[id].classes || {}).length > 0);
+}

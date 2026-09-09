@@ -4,9 +4,15 @@ import { setGlossary } from "./glossary.js";
 
 const cache = new Map();
 
-export async function loadCourse(meta) {
+// Sólo el contenido, sin efectos: no toca el glosario ni el tema. Lo usa el
+// desafío, que junta preguntas de varios cursos a la vez y no "entra" a ninguno.
+export async function loadContent(meta) {
   if (!cache.has(meta.id)) cache.set(meta.id, (await meta.load()).default);
-  const content = cache.get(meta.id);
+  return cache.get(meta.id);
+}
+
+export async function loadCourse(meta) {
+  const content = await loadContent(meta);
   setGlossary(content.glossary);
   applyTheme(meta.theme);
   return { ...meta, ...content };

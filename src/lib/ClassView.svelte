@@ -280,38 +280,16 @@
         >Clase {lecture.num} · {lecture.title}</span
       >
       <!-- Los aciertos, no puntos: es exactamente lo que determina las
-           estrellas, así que se ve la calificación real en todo momento. -->
+           estrellas, así que se ve la calificación real en todo momento. En
+           píldora, para que se lea como un marcador y no como texto suelto
+           pegado al título. -->
       <span
-        class="flex-none whitespace-nowrap text-[15px] font-extrabold text-accent transition-transform duration-150 {pop
+        class="flex flex-none items-center gap-1 rounded-full border border-line bg-surface px-2.5 py-[5px] text-[13.5px] font-extrabold whitespace-nowrap text-accent transition-transform duration-150 {pop
           ? 'scale-[1.14]'
           : ''}"
       >
-        <span class="text-accent-2">★</span>
-        {correctCount}/{totalQuiz}
+        <span class="text-accent-2">★</span>{correctCount}/{totalQuiz}
       </span>
-
-      <button
-        class="flex-none cursor-pointer rounded-full border-0 bg-transparent p-1 [font-family:inherit] {confirmReset
-          ? 'text-bad'
-          : 'text-text-soft/60'}"
-        on:click={pedirReset}
-        aria-label={confirmReset ? "Confirmar reinicio de la clase" : "Reiniciar la clase"}
-      >
-        {#if confirmReset}
-          <span class="px-1 text-[12px] font-extrabold whitespace-nowrap">¿Reiniciar?</span>
-        {:else}
-          <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"
-            ><path
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M20 11.5a8 8 0 1 1-2.4-5.7M20 4v5h-5"
-            /></svg
-          >
-        {/if}
-      </button>
     </div>
   </div>
   <div class="mx-auto mt-2 h-[3px] max-w-[480px] overflow-hidden rounded-[3px] bg-line">
@@ -330,7 +308,7 @@
   <!-- Portada de la clase: anuncia de qué va, muestra el cromo en juego (o su
        silueta, si todavía no lo ganaste) y enseña el gesto con la flecha. -->
   <section
-    class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-10 [scroll-snap-align:center] [scroll-snap-stop:always]"
+    class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-[calc(env(safe-area-inset-bottom)+86px)] [scroll-snap-align:center] [scroll-snap-stop:always]"
   >
     <div class="flex w-full max-w-[480px] flex-col items-center text-center">
       {#if cromo}
@@ -362,7 +340,7 @@
 
   {#each lecture.feed as card, i}
     <section
-      class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-10 [scroll-snap-align:center] [scroll-snap-stop:always]"
+      class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-[calc(env(safe-area-inset-bottom)+86px)] [scroll-snap-align:center] [scroll-snap-stop:always]"
     >
       {#if card.type === "info"}
         <InfoCard {card} />
@@ -379,7 +357,7 @@
   {/each}
 
   <section
-    class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-10 [scroll-snap-align:center] [scroll-snap-stop:always]"
+    class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-[calc(env(safe-area-inset-bottom)+86px)] [scroll-snap-align:center] [scroll-snap-stop:always]"
   >
     <div class="mx-auto flex w-full max-w-[360px] flex-col items-center text-center">
       <div class="flex gap-2.5 leading-none" role="img" aria-label="{stars} de 3 estrellas">
@@ -393,52 +371,72 @@
         {/each}
       </div>
 
-      <h2 class="mt-[18px] text-2xl font-extrabold tracking-[-0.3px] text-text">Clase completada</h2>
-      <p class="mt-1 text-[13.5px] font-semibold text-text-soft">Clase {lecture.num} · {lecture.title}</p>
-
-      <p class="mt-3.5 text-[13px] font-bold tracking-[0.5px] text-text-soft uppercase">
+      <!-- Un dato por renglón y cada uno con su trabajo: qué pasó, cómo te
+           fue. El título de la clase no se repite acá — lo tenés en la barra de
+           arriba, y a esta altura ya sabés qué clase hiciste. -->
+      <h2 class="mt-5 m-0 font-serif text-[26px] leading-none font-semibold text-text">
+        Clase completada
+      </h2>
+      <p class="mt-2.5 text-[13.5px] font-semibold text-text-soft/80">
         {correctCount} de {totalQuiz} correctas
       </p>
 
-      {#if nextClass}
-        <div
-          class="mt-[22px] flex w-full flex-col gap-[3px] rounded-[14px] px-4 py-3 text-left [background:color-mix(in_srgb,var(--accent)_8%,var(--surface))] [border:1px_solid_color-mix(in_srgb,var(--accent)_30%,var(--line))]"
-        >
-          <span class="text-[11px] font-extrabold tracking-[1px] text-accent-ink uppercase">A continuación</span>
-          <span class="text-[15px] font-bold leading-[1.35] text-text">Clase {nextClass.num}: {nextClass.title}</span>
-        </div>
-        <button
-          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-text px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
-          on:click={() => dispatch("open", nextClass)}
-        >
-          Siguiente clase →
-        </button>
-        <button
-          class="mx-auto mt-3 block cursor-pointer border-0 bg-transparent text-sm font-bold text-text-soft [font-family:inherit] active:scale-[0.98]"
-          on:click={() => dispatch("back")}>Volver al inicio</button
-        >
-      {:else if lockedNext}
-        <p class="mt-[22px] text-[15px] leading-[1.45] font-semibold text-text">
+      {#if lockedNext}
+        <p class="mt-4 text-[13.5px] leading-[1.45] font-semibold text-text-soft">
           La Clase {lockedNext.num} se habilita pronto.
         </p>
+      {:else if !nextClass}
+        <p class="mt-4 font-serif text-[17px] font-semibold text-accent-ink">¡Completaste el curso!</p>
+      {/if}
+
+      <!-- La acción principal se lleva puesta la tarjeta de "a continuación":
+           decía lo mismo que el botón y sumaba una caja. Ahora el botón anuncia
+           a dónde vas. -->
+      {#if nextClass}
         <button
-          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-text px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
-          on:click={() => dispatch("back")}>Volver al inicio</button
+          class="mt-6 flex w-full cursor-pointer flex-col items-center gap-1 rounded-[14px] border-0 bg-text px-5 py-3.5 [font-family:inherit] transition-transform active:scale-[0.98]"
+          on:click={() => dispatch("open", nextClass)}
         >
+          <span class="text-[15px] font-extrabold text-on-accent">Siguiente clase →</span>
+          <span class="line-clamp-1 text-[12px] font-semibold text-on-accent/70"
+            >Clase {nextClass.num} · {nextClass.title}</span
+          >
+        </button>
       {:else}
-        <p class="mt-[22px] text-[19px] font-extrabold text-accent-ink">¡Completaste el curso!</p>
         <button
-          class="mt-[18px] cursor-pointer self-stretch rounded-[13px] bg-text px-[22px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] active:scale-[0.98]"
-          on:click={() => dispatch("back")}>Volver al inicio</button
+          class="mt-6 w-full cursor-pointer rounded-[14px] border-0 bg-text px-5 py-[15px] text-[15px] font-extrabold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
+          on:click={() => dispatch("back")}>Volver al recorrido</button
         >
       {/if}
+
+      <!-- Las secundarias en una fila, no apiladas: se leen como el pie de la
+           pantalla y no como una lista de sobras debajo del botón.
+           Rehacer sigue pidiendo dos toques porque borra las respuestas (los
+           cromos no se tocan: lo ganado está ganado). -->
+      <div class="mt-4 flex items-center gap-3 text-[13px] font-bold text-text-soft/70">
+        {#if nextClass}
+          <button
+            class="cursor-pointer border-0 bg-transparent text-inherit [font-family:inherit] active:scale-[0.97]"
+            on:click={() => dispatch("back")}>Volver al recorrido</button
+          >
+          <span class="opacity-40" aria-hidden="true">·</span>
+        {/if}
+        <button
+          class="cursor-pointer border-0 bg-transparent [font-family:inherit] active:scale-[0.97] {confirmReset
+            ? 'text-bad'
+            : 'text-inherit'}"
+          on:click={pedirReset}
+        >
+          {confirmReset ? "¿Seguro? Tocá de nuevo" : "Rehacer la clase"}
+        </button>
+      </div>
     </div>
   </section>
 </div>
 
 {#if gateHint}
   <div
-    class="gate-hint-anim fixed bottom-[calc(env(safe-area-inset-bottom)+26px)] left-1/2 z-[55] -translate-x-1/2 rounded-full bg-accent-ink px-[18px] py-2.5 text-[13.5px] font-extrabold whitespace-nowrap text-bg pointer-events-none [box-shadow:0_6px_22px_color-mix(in_srgb,var(--accent)_45%,transparent)]"
+    class="gate-hint-anim fixed bottom-[calc(env(safe-area-inset-bottom)+96px)] left-1/2 z-[55] -translate-x-1/2 rounded-full bg-accent-ink px-[18px] py-2.5 text-[13.5px] font-extrabold whitespace-nowrap text-bg pointer-events-none [box-shadow:0_6px_22px_color-mix(in_srgb,var(--accent)_45%,transparent)]"
     role="status"
   >
     Respondé para continuar
@@ -549,18 +547,18 @@
     animation: gaterise 0.28s ease;
   }
   @keyframes gaterise {
-    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
-    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .pop-anim {
     animation: popup 1.05s ease forwards;
   }
   @keyframes popup {
-    0% { opacity: 0; transform: translateX(-50%) translateY(14px) scale(0.7); }
-    18% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1.05); }
-    32% { transform: translateX(-50%) translateY(0) scale(1); }
-    100% { opacity: 0; transform: translateX(-50%) translateY(-46px) scale(1); }
+    0% { opacity: 0; transform: translateY(14px) scale(0.7); }
+    18% { opacity: 1; transform: translateY(0) scale(1.05); }
+    32% { transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-46px) scale(1); }
   }
   @media (prefers-reduced-motion: reduce) {
     .gate-hint-anim, .pop-anim { animation-duration: 1ms; }

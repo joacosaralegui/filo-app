@@ -1,14 +1,20 @@
-// Router mínimo por hash. Tres rutas, nada más:
+// Router mínimo por hash. Cuatro raíces (una por pestaña de la barra) más las
+// pantallas que cuelgan de ellas:
 //
-//   #/                  catálogo de cursos
-//   #/album             álbum de cromos
-//   #/<curso>           home del curso
-//   #/<curso>/<num>     una clase del curso
+//   #/                      inicio
+//   #/cursos                catálogo de cursos
+//   #/cursos/<curso>        el recorrido de un curso
+//   #/cursos/<curso>/<num>  una clase
+//   #/album                 álbum de cromos
+//   #/desafio               ronda de preguntas
 //
 // Va por hash (y no por History API) para que ande igual servido desde un
 // subdirectorio en GitHub Pages y desde la PWA instalada, sin config de server.
-// Como cada navegación es una entrada del historial, el botón "atrás" del
-// teléfono retrocede dentro de la app en vez de cerrarla.
+//
+// Regla de historial: cambiar de pestaña REEMPLAZA la entrada actual, entrar a
+// un detalle (un curso, una clase) apila. Así el "atrás" del teléfono deshace
+// profundidad, que es lo que el usuario espera, y no un paseo por las
+// pestañas que fue tocando.
 import { readable } from "svelte/store";
 
 export function parseHash(hash) {
@@ -16,11 +22,18 @@ export function parseHash(hash) {
     .replace(/^#\/?/, "")
     .split("/")
     .filter(Boolean);
-  // #/album es la única ruta que no cuelga de un curso.
-  if (parts[0] === "album") return { album: true, courseId: null, num: null };
-  const [courseId, rawNum] = parts;
-  const num = rawNum != null && /^\d+$/.test(rawNum) ? Number(rawNum) : null;
-  return { album: false, courseId: courseId || null, num };
+  const num = (s) => (s != null && /^\d+$/.test(s) ? Number(s) : null);
+
+  if (!parts.length) return { view: "inicio", courseId: null, num: null };
+  if (parts[0] === "album") return { view: "album", courseId: null, num: null };
+  if (parts[0] === "desafio") return { view: "desafio", courseId: null, num: null };
+  if (parts[0] === "cursos") {
+    if (!parts[1]) return { view: "cursos", courseId: null, num: null };
+    return { view: "curso", courseId: parts[1], num: num(parts[2]) };
+  }
+  // Rutas viejas (#/<curso> y #/<curso>/<num>): se resuelven como curso, y
+  // App.svelte las normaliza a la forma nueva sin dejar rastro en el historial.
+  return { view: "curso", courseId: parts[0], num: num(parts[1]), legacy: true };
 }
 
 export const route = readable(parseHash(location.hash), (set) => {
@@ -30,8 +43,7 @@ export const route = readable(parseHash(location.hash), (set) => {
 });
 
 // `replace` reemplaza la entrada actual del historial en vez de apilar una
-// nueva: se usa para las redirecciones (ruta inválida → catálogo), que no
-// tienen que quedar en el "atrás".
+// nueva: lo usan los cambios de pestaña y las redirecciones.
 function go(path, replace = false) {
   if (location.hash === path) return;
   if (!replace) {
@@ -42,7 +54,12 @@ function go(path, replace = false) {
   window.dispatchEvent(new Event("hashchange")); // replaceState no lo dispara
 }
 
-export const toCatalog = (replace) => go("#/", replace);
-export const toAlbum = (replace) => go("#/album", replace);
-export const toCourse = (id, replace) => go(`#/${id}`, replace);
-export const toClass = (id, num, replace) => go(`#/${id}/${num}`, replace);
+// Las cuatro raíces son destinos de pestaña: por defecto reemplazan.
+export const toInicio = (replace = true) => go("#/", replace);
+export const toCatalog = (replace = true) => go("#/cursos", replace);
+export const toAlbum = (replace = true) => go("#/album", replace);
+// El desafío no es pestaña: se entra desde inicio, así que apila.
+export const toDesafio = (replace = false) => go("#/desafio", replace);
+// Detalles: apilan.
+export const toCourse = (id, replace = false) => go(`#/cursos/${id}`, replace);
+export const toClass = (id, num, replace = false) => go(`#/cursos/${id}/${num}`, replace);
