@@ -137,13 +137,6 @@
         {@const done = !!c.content && isComplete($progress, c.content)}
         {@const started = !!c.content && !done && isStarted($progress, c.content)}
         {@const pct = started ? completionPct($progress, c.content) : 0}
-        {@const nodeCls = !c.content
-          ? "border-line text-text-soft/40 [border-style:dashed]"
-          : done
-            ? "border-accent bg-accent text-on-accent"
-            : started
-              ? "border-accent text-accent-ink"
-              : "border-line text-text-soft"}
         {@const eraCls = !c.content ? "opacity-35" : "opacity-60"}
         {@const titleCls = !c.content ? "text-text-soft opacity-55" : "text-text"}
         {@const statusCls = started || done ? "text-accent-ink opacity-100" : "text-text-soft opacity-50"}
@@ -155,43 +148,31 @@
           on:click={() => open(c)}
           disabled={!c.content}
         >
-          <span
-            class="grid h-[34px] w-[34px] flex-none place-items-center rounded-full border-[1.5px] font-serif text-[13px] font-semibold {nodeCls}"
-          >
-            {#if !c.content}<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm3 8H9V7a3 3 0 0 1 6 0v3Z"/></svg>{:else if done}<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7"/></svg>{:else}{c.num}{/if}
-          </span>
+          <!-- El cromo ocupa el lugar que tenían los números. Se ve siempre:
+               apagado mientras no lo ganaste, a todo color cuando sí. -->
+          {#if cr}
+            <span class="h-12 w-12 flex-none overflow-hidden rounded-xl bg-surface-2">
+              <img
+                class="h-full w-full object-cover {crGot ? '' : 'opacity-45 grayscale-[0.9]'}"
+                src={cr.img}
+                alt=""
+              />
+            </span>
+          {/if}
           <span class="flex min-w-0 flex-1 flex-col gap-0.5">
-            <span class="text-[10px] font-bold tracking-[1.1px] text-text-soft uppercase {eraCls}">{c.era}</span>
+            <!-- El número se mudó acá: encima del cromo no había un color de
+                 texto que sirviera (15 de 40 tienen el centro oscuro). -->
+            <span class="text-[10px] font-bold tracking-[1.1px] text-text-soft uppercase {eraCls}"
+              >Clase {c.num} · {c.era}</span
+            >
             <span class="font-serif text-[16.5px] font-semibold leading-[1.3] {titleCls}">{c.title}</span>
           </span>
-          <span class="flex-none text-[11px] font-bold {statusCls}">
+          <span class="flex-none text-[13px] font-bold {statusCls}">
             {#if !c.content}Bloqueada
             {:else if done}Completada
             {:else if started}{pct}%
             {/if}
           </span>
-
-          <!-- El cromo que otorga la clase: puesto o su silueta, según si ya
-               lo ganaste. Deja ver qué hay en juego sin salir del recorrido. -->
-          {#if cr}
-            <span
-              class="h-8 w-8 flex-none overflow-hidden rounded-lg {crGot ? 'bg-surface-2' : 'bg-line/60'}"
-            >
-              {#if crGot && cr.img}
-                <img class="h-full w-full object-cover" src={cr.img} alt="" />
-              {:else}
-                <span class="grid h-full w-full place-items-center">
-                  <span
-                    class="h-[42%] w-[42%] bg-line {cr.tipo === 'autor' ? 'rounded-full' : 'rounded-[2px]'}"
-                  ></span>
-                </span>
-              {/if}
-            </span>
-          {/if}
-          {#if started}<span
-              class="absolute right-4 bottom-2 left-[65px] h-0.5 rounded-full bg-accent"
-              style="width:{pct}%"
-            ></span>{/if}
         </button>
       {/each}
     </div>

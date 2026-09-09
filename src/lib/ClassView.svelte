@@ -325,15 +325,13 @@
     <div class="flex w-full max-w-[480px] flex-col items-center text-center">
       {#if cromo}
         {@const ganado = !!$progress.cromos?.[cromo.slug]}
-        <div class="mb-7 h-[132px] w-[132px] overflow-hidden rounded-2xl {ganado ? 'bg-surface' : 'bg-line/50'}">
-          {#if ganado && cromo.img}
-            <img class="h-full w-full object-cover" src={cromo.img} alt="" />
-          {:else}
-            <span class="grid h-full w-full place-items-center">
-              <span class="h-[42%] w-[42%] bg-line {cromo.tipo === 'autor' ? 'rounded-full' : 'rounded-md'}"
-              ></span>
-            </span>
-          {/if}
+        <!-- El cromo en juego, apagado hasta que lo ganes. -->
+        <div class="mb-7 h-[132px] w-[132px] overflow-hidden rounded-2xl bg-surface-2">
+          <img
+            class="h-full w-full object-cover {ganado ? '' : 'opacity-45 grayscale-[0.9]'}"
+            src={cromo.img}
+            alt=""
+          />
         </div>
       {/if}
 
