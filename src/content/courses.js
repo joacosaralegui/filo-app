@@ -16,6 +16,7 @@
 //   source   : { label, url } de la fuente original (opcional)
 //   theme    : overrides de tokens de global.css (opcional), p. ej.
 //              { "--accent": "#7b4b94" }. Se aplican al entrar al curso.
+//              Hoy ningún curso lo usa: todos comparten la paleta.
 //   numOffset: desfasaje entre el `transcript` del md y el `num` de la app
 //              (default -1, la regla de `contemporanea`, que omite su Clase 1)
 //   load     : () => import("./<id>/curso.js")
@@ -30,9 +31,6 @@ export const COURSES = [
       label: "European Intellectual History since Nietzsche",
       url: "https://www.youtube.com/playlist?list=PLh9mgdi4rNezUjm7niGdUWjnL0lHSDh0U",
     },
-    // Color de marca del curso (Fern, la base de la paleta): explícito acá
-    // para que el catálogo pueda mostrarlo SIN cargar el curso.
-    theme: { "--accent": "#606c38", "--burst-colors": "#606c38, #dda15e, #bc6c25, #8aa04a, #e9c48a" },
     load: () => import("./contemporanea/curso.js"),
   },
   {
@@ -44,7 +42,6 @@ export const COURSES = [
       label: "Historia de las ideas en la modernidad — Maestría en Filosofía, UNQ",
       url: "",
     },
-    theme: { "--accent": "#b0763a", "--burst-colors": "#b0763a, #d99b57, #8f5b26, #e8c48a, #c98a4a" },
     numOffset: 0,
     load: () => import("./moderna/curso.js"),
   },

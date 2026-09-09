@@ -36,11 +36,6 @@
     if (scrollEl && cursosEl) scrollEl.scrollTo({ top: cursosEl.offsetTop, behavior: "smooth" });
   }
 
-  // Color de marca de cada curso (declarado en su manifiesto — ver
-  // content/courses.js). Se previsualiza acá, ANTES de entrar, con una
-  // variable CSS escopeada a cada card; adentro del curso ya se aplica
-  // globalmente vía lib/courses.js → applyTheme.
-  const accentOf = (c) => (c && c.theme && c.theme["--accent"]) || "var(--accent)";
 </script>
 
 <div
@@ -68,9 +63,7 @@
     <!-- La ficha de avanzar. Con progreso reanuda; sin progreso propone por
          dónde empezar, con la misma forma: la pregunta es la misma. -->
     {#if heroActive}
-      {@const heroAccent = accentOf(lastCourseMeta)}
       <button
-        style="--course-accent: {heroAccent}"
         class="group flex w-full flex-col gap-3 rounded-[20px] bg-surface p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
         on:click={() => resume(lastCourseMeta, last.num)}
       >
@@ -79,7 +72,7 @@
           <h2 class="font-serif text-[21px] leading-[1.25] font-semibold text-text">
             Clase {last.num} · {last.title}
           </h2>
-          <p class="font-serif text-[14px] leading-[1.3] font-medium italic [color:var(--course-accent)]">
+          <p class="font-serif text-[14px] leading-[1.3] font-medium italic text-accent">
             {lastCourseMeta.title}{lastCourseMeta.subtitle ? ` · ${lastCourseMeta.subtitle}` : ""}
           </p>
         </div>
@@ -151,16 +144,14 @@
     <div class="flex flex-col gap-[18px]">
       {#each courses as c (c.id)}
         {@const cLast = lastClassOf(c.id)}
-        {@const cAccent = accentOf(c)}
         <button
-          style="--course-accent: {cAccent}"
           class="flex w-full cursor-pointer items-center gap-3 rounded-2xl bg-surface p-5 text-left [font-family:inherit] active:scale-[0.995]"
           on:click={() => open(c)}
         >
           <div class="flex min-w-0 flex-1 flex-col">
             <b class="font-serif text-[22px] leading-[1.25] font-semibold text-text">{c.title}</b>
             {#if c.subtitle}<span
-                class="font-serif text-[15px] leading-[1.3] font-medium italic [color:var(--course-accent)]"
+                class="font-serif text-[15px] leading-[1.3] font-medium italic text-accent"
                 >{c.subtitle}</span
               >{/if}
             <p class="mt-2.5 text-[13px] leading-normal text-text-soft">{c.blurb}</p>
@@ -168,7 +159,7 @@
               >{cLast == null ? "Empezar" : "Seguir viendo"}</small
             >
           </div>
-          <span class="self-center text-2xl font-semibold opacity-80 [color:var(--course-accent)]">›</span>
+          <span class="self-center text-2xl font-semibold opacity-80 text-accent">›</span>
         </button>
       {/each}
     </div>
