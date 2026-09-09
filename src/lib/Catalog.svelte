@@ -17,13 +17,11 @@
   // curso primero. Si no hay nada empezado, el catálogo es puro descubrimiento.
   $: last = $progress.lastActivity;
   $: lastCourseMeta = last ? courses.find((c) => c.id === last.courseId) : null;
+  // La home se parte en dos pantallas SÓLO cuando hay algo que continuar: la
+  // primera contesta "qué hago ahora" y la segunda "qué hay". Sin progreso no
+  // hay ficha ni álbum que poner arriba, así que partirla dejaría una pantalla
+  // vacía; ahí es una sola, portada y cursos de corrido.
   $: heroActive = !!(last && lastCourseMeta);
-
-  // Sin nada empezado, la primera pantalla no puede quedar vacía: la ficha de
-  // "continuar" se reemplaza por una de "empezar por", con la misma forma, que
-  // propone el primer curso. La pregunta de arriba —qué hago ahora— se contesta
-  // siempre; sólo cambia la respuesta.
-  $: sugerido = courses[0] || null;
 
   // Álbum: sin ningún cromo la tira no aparece — mostrar una colección en cero
   // a alguien que todavía no empezó desalienta y ensucia la pantalla.
@@ -45,14 +43,14 @@
   const accentOf = (c) => (c && c.theme && c.theme["--accent"]) || "var(--accent)";
 </script>
 
-<!-- Dos pantallas: la primera contesta "qué hago ahora" (portada, la ficha de
-     avanzar y el álbum); la segunda, "qué hay" (todos los cursos). -->
 <div
-  class="h-dvh overflow-y-auto scroll-smooth [scroll-snap-type:y_mandatory]"
+  class={heroActive ? "h-dvh overflow-y-auto scroll-smooth [scroll-snap-type:y_mandatory]" : ""}
   bind:this={scrollEl}
 >
   <section
-    class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+90px)] [scroll-snap-align:start] [scroll-snap-stop:always]"
+    class="mx-auto flex max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] {heroActive
+      ? 'min-h-dvh pb-[calc(env(safe-area-inset-bottom)+90px)] [scroll-snap-align:start] [scroll-snap-stop:always]'
+      : ''}"
   >
     <!-- Header de la home: la lámina recortada en arco, con la marca encima. -->
     <header class="cover-wrap mb-8">
@@ -101,36 +99,6 @@
           >
         </span>
       </button>
-    {:else if sugerido}
-      <button
-        style="--course-accent: {accentOf(sugerido)}"
-        class="group flex w-full flex-col gap-3 rounded-[20px] bg-surface p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
-        on:click={() => resume(sugerido, 1)}
-      >
-        <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Empezá por</span>
-        <div class="flex flex-col gap-2">
-          <h2 class="font-serif text-[21px] leading-[1.25] font-semibold text-text">{sugerido.title}</h2>
-          <p class="font-serif text-[14px] leading-[1.3] font-medium italic [color:var(--course-accent)]">
-            {sugerido.subtitle}
-          </p>
-          <p class="text-[13px] leading-normal text-text-soft">{sugerido.blurb}</p>
-        </div>
-        <span
-          class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
-        >
-          Empezar
-          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
-            ><path
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9 5l7 7-7 7"
-            /></svg
-          >
-        </span>
-      </button>
     {/if}
 
     <!-- Tira del álbum. Los medallones superpuestos se leen como "colección"
@@ -164,15 +132,19 @@
       </button>
     {/if}
 
-    <button
-      class="mt-auto cursor-pointer self-center border-0 bg-transparent pt-8 text-[13px] font-semibold text-text-soft/75 [font-family:inherit]"
-      on:click={verCursos}>Ver los cursos ↓</button
-    >
+    {#if heroActive}
+      <button
+        class="mt-auto cursor-pointer self-center border-0 bg-transparent pt-8 text-[13px] font-semibold text-text-soft/75 [font-family:inherit]"
+        on:click={verCursos}>Ver los cursos ↓</button
+      >
+    {/if}
   </section>
 
-  <!-- Segunda pantalla: todos los cursos, incluido el que estás haciendo. -->
+  <!-- Todos los cursos, incluido el que estás haciendo. -->
   <section
-    class="mx-auto max-w-[480px] px-[22px] pt-8 pb-[calc(env(safe-area-inset-bottom)+110px)] [scroll-snap-align:start]"
+    class="mx-auto max-w-[480px] px-[22px] pt-8 pb-[calc(env(safe-area-inset-bottom)+110px)] {heroActive
+      ? '[scroll-snap-align:start]'
+      : ''}"
     bind:this={cursosEl}
   >
     <p class="mb-3.5 text-xs font-bold tracking-[1.6px] text-text-soft/70 uppercase">Cursos</p>
