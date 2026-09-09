@@ -13,12 +13,6 @@
   $: ganados = cromosGanados($progress);
   $: cuantos = ALBUM.filter((c) => ganados[c.slug]).length;
 
-  // Anillo de progreso: se dibuja con un solo trazo al que le recortamos el
-  // dash según la proporción conseguida.
-  const R = 14;
-  const CIRC = 2 * Math.PI * R;
-  $: dashOffset = CIRC * (1 - cuantos / TOTAL);
-
   // Agrupados por curso: dentro de cada sección el orden es el de las clases,
   // así el álbum se lee como la línea de tiempo de los dos cursos.
   const secciones = COURSES.map((curso) => ({
@@ -38,26 +32,9 @@
     <h1 class="mt-5 m-0 font-serif text-[32px] leading-none font-semibold tracking-[-0.3px] text-text">
       Álbum
     </h1>
-    <div class="mt-3.5 flex items-center gap-2">
-      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
-        <circle cx="17" cy="17" r={R} fill="none" stroke="var(--line)" stroke-width="3.5" />
-        <circle
-          cx="17"
-          cy="17"
-          r={R}
-          fill="none"
-          stroke="var(--accent)"
-          stroke-width="3.5"
-          stroke-linecap="round"
-          stroke-dasharray={CIRC}
-          stroke-dashoffset={dashOffset}
-          transform="rotate(-90 17 17)"
-        />
-      </svg>
-      <span class="font-serif text-[19px] leading-none font-semibold whitespace-nowrap text-accent"
-        >{cuantos} de {TOTAL}</span
-      >
-    </div>
+    <span class="mt-3 font-serif text-[28px] leading-none font-semibold whitespace-nowrap text-accent-3"
+      >{cuantos} de {TOTAL}</span
+    >
   </header>
 
   {#each secciones as seccion (seccion.titulo)}
