@@ -1,3 +1,7 @@
 node_modules
 dist
 .DS_Store
+
+# Fuentes de ilustración: pesan ~17 MB y el build usa las versiones
+# optimizadas de src/assets. Se quedan en local.
+/*.png
