@@ -23,7 +23,7 @@
   <p
     class="m-0 font-serif text-[20px] leading-[1.65] whitespace-pre-line text-text-soft [@media(max-height:700px)]:text-[18px]"
   ><RichText text={card.body} /></p>
-  <span class="cue mt-[34px] text-[22px] text-line">↓</span>
+  <span class="cue mt-[34px] text-[22px] text-text-soft/55">↓</span>
 </div>
 
 <style>

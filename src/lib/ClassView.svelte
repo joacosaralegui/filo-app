@@ -346,7 +346,7 @@
            responder, así que es donde conviene decir cómo se avanza. -->
       <div class="mt-10 flex flex-col items-center gap-2">
         <span class="text-[12px] font-semibold text-text-soft/70">Deslizá para empezar</span>
-        <span class="cue text-[22px] text-line">↓</span>
+        <span class="cue text-[22px] text-text-soft/55">↓</span>
       </div>
     </div>
   </section>
