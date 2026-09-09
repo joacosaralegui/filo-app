@@ -60,7 +60,7 @@
 </script>
 
 <div
-  class="relative h-dvh overflow-y-auto scroll-smooth [scroll-snap-type:y_mandatory]"
+  class="relative h-dvh overflow-y-auto [scroll-snap-type:y_mandatory]"
   bind:this={homeEl}
 >
   <section

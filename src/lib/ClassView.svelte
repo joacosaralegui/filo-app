@@ -143,9 +143,7 @@
     if (saved.card > 0 && feedEl) {
       // salto instantáneo a la última card vista, sin pasar la puerta
       const target = gate >= 0 ? Math.min(saved.card, gate + PORTADA) : saved.card;
-      feedEl.style.scrollBehavior = "auto";
-      feedEl.scrollTop = target * feedEl.clientHeight;
-      requestAnimationFrame(() => (feedEl.style.scrollBehavior = ""));
+      feedEl.scrollTo({ top: target * feedEl.clientHeight, behavior: "instant" });
       if (target >= endIndex) endCelebrated = true; // ya está en el cierre: no festejar en la carga
     }
     // habilitar la celebración recién tras acomodar el scroll inicial
@@ -230,12 +228,9 @@
     if (gate >= 0) {
       const limit = (gate + PORTADA) * h;
       if (feedEl.scrollTop > limit + 1) {
-        // Instantáneo a propósito: el contenedor tiene scroll-behavior smooth,
-        // así que asignar scrollTop animaría el rebote y pelearía contra el
-        // impulso del dedo.
-        feedEl.style.scrollBehavior = "auto";
-        feedEl.scrollTop = limit;
-        requestAnimationFrame(() => (feedEl.style.scrollBehavior = ""));
+        // Instantáneo y explícito: el rebote de la puerta nunca se anima,
+        // porque animarlo sería pelearle al impulso del dedo.
+        feedEl.scrollTo({ top: limit, behavior: "instant" });
         nudgeGate();
         return;
       }
@@ -325,7 +320,7 @@
 </div>
 
 <div
-  class="h-dvh overflow-y-scroll scroll-smooth [scroll-snap-type:y_mandatory] motion-reduce:scroll-auto"
+  class="h-dvh overflow-y-scroll [scroll-snap-type:y_mandatory]"
   bind:this={feedEl}
   on:scroll={onScroll}
   on:wheel|nonpassive={onWheel}

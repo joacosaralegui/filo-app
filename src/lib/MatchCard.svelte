@@ -271,16 +271,13 @@
     </div>
   </div>
 
-  {#if !answered}
-    <button
-      class="mt-[18px] cursor-pointer rounded-[13px] bg-accent px-[18px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] [transition:opacity_0.18s,transform_0.08s] not-disabled:active:scale-[0.985] disabled:cursor-default disabled:opacity-45"
+  <button
+      class="mt-[18px] cursor-pointer rounded-[13px] bg-accent px-[18px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] [transition:opacity_0.18s,transform_0.08s] not-disabled:active:scale-[0.985] disabled:cursor-default disabled:opacity-45 {answered ? 'invisible' : ''}"
       on:click={confirm}
-      disabled={!allLinked}
+      disabled={answered || !allLinked}
     >
       {allLinked ? "Confirmar" : "Uní todos los pares"}
     </button>
-  {:else}
-  {/if}
 </div>
 
 <style>

@@ -190,16 +190,13 @@
     {/each}
   </div>
 
-  {#if !answered}
-    <button
-      class="mt-3.5 cursor-pointer rounded-[13px] bg-accent px-[18px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] [transition:opacity_0.18s,transform_0.08s] not-disabled:active:scale-[0.985] disabled:cursor-default disabled:opacity-45"
-      on:click={confirm}
-      disabled={!allPlaced}
-    >
-      {allPlaced ? "Confirmar" : "Llevá cada ítem a su columna"}
-    </button>
-  {:else}
-  {/if}
+  <button
+    class="mt-3.5 cursor-pointer rounded-[13px] bg-accent px-[18px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] [transition:opacity_0.18s,transform_0.08s] not-disabled:active:scale-[0.985] disabled:cursor-default disabled:opacity-45 {answered ? 'invisible' : ''}"
+    on:click={confirm}
+    disabled={answered || !allPlaced}
+  >
+    {allPlaced ? "Confirmar" : "Llevá cada ítem a su columna"}
+  </button>
 
   {#if drag && moved}
     <div

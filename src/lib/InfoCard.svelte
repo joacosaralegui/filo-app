@@ -23,16 +23,5 @@
   <p
     class="m-0 font-serif text-[20px] leading-[1.65] whitespace-pre-line text-text-soft [@media(max-height:700px)]:text-[18px]"
   ><RichText text={card.body} /></p>
-  <span class="cue mt-[34px] text-[22px] text-text-soft/55">↓</span>
 </div>
 
-<style>
-  /* Queda en CSS: keyframe infinito, no hay utilidad Tailwind equivalente. */
-  .cue {
-    animation: bob 1.6s ease-in-out infinite;
-  }
-  @keyframes bob {
-    0%, 100% { transform: translateY(0); opacity: 0.5; }
-    50% { transform: translateY(6px); opacity: 1; }
-  }
-</style>

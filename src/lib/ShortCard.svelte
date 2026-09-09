@@ -84,13 +84,15 @@
     {/if}
   </div>
 
-  {#if !answered}
-    <button
-      class="mt-3.5 cursor-pointer self-start rounded-[13px] bg-accent px-[22px] py-3 text-[15px] font-extrabold text-on-accent [font-family:inherit] not-disabled:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-45"
-      on:click={responder}
-      disabled={!texto.trim()}>Responder</button
-    >
-  {/if}
+  <!-- Queda en su lugar aunque ya hayas respondido: si se saca del DOM la card
+       cambia de alto y, como la slide centra vertical, la pregunta salta. -->
+  <button
+    class="mt-3.5 cursor-pointer self-start rounded-[13px] bg-accent px-[22px] py-3 text-[15px] font-extrabold text-on-accent [font-family:inherit] not-disabled:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-45 {answered
+      ? 'invisible'
+      : ''}"
+    on:click={responder}
+    disabled={answered || !texto.trim()}>Responder</button
+  >
 </div>
 
 <style>

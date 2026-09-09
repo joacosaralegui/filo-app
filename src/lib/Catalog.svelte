@@ -44,7 +44,7 @@
 </script>
 
 <div
-  class={heroActive ? "h-dvh overflow-y-auto scroll-smooth [scroll-snap-type:y_mandatory]" : ""}
+  class={heroActive ? "h-dvh overflow-y-auto [scroll-snap-type:y_mandatory]" : ""}
   bind:this={scrollEl}
 >
   <section
@@ -58,7 +58,7 @@
       <div class="cover">
         <img class="cover-img" src={socrates} alt="" />
         <div class="cover-text">
-          <h1 class="m-0 font-serif text-[62px] leading-none font-semibold tracking-[0.14em] text-text">
+          <h1 class="marca m-0 font-serif text-[62px] leading-none font-semibold tracking-[0.14em]">
             FILO
           </h1>
         </div>
@@ -180,6 +180,17 @@
      La lámina compone con dos recursos que replicamos acá para que interfaz e
      ilustración se lean como una sola pieza: el arco y los discos de color
      plano asomando por detrás. */
+
+  /* La marca sobre la lámina: relleno claro con un contorno de tinta fina.
+     El contorno es lo que la despega —sobre el papel crema de la ilustración
+     un blanco sin borde desaparecería— y de paso le da el aire de tallado.
+     `paint-order` manda dibujar el trazo DEBAJO del relleno, si no el borde
+     se comería el interior de las letras. */
+  .marca {
+    color: var(--surface);
+    -webkit-text-stroke: 1.5px color-mix(in srgb, var(--text) 55%, transparent);
+    paint-order: stroke fill;
+  }
 
   /* portada: el arco de la lámina, con un disco ocre asomando por detrás */
   .cover-wrap {
