@@ -31,14 +31,14 @@
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+100px)]"
 >
 
-  <!-- Apertura: el arco de la portada, con el título y el conteo apoyados
-       sobre la propia ilustración. El degradado la funde con el panel hacia
-       abajo, así el texto se lee sin necesidad de oscurecer nada. -->
-  <header class="apertura mt-5 mb-8">
-    <img class="medallon" src={albumIcon} alt="" aria-hidden="true" />
+  <!-- Apertura: el título a la izquierda y el medallón saliéndose del margen
+       derecho, cortado por el borde de la columna. Es el mismo recurso que la
+       lámina de Sócrates, donde las hojas y los discos entran y salen del
+       cuadro — y de paso el texto nunca toca la ilustración. -->
+  <header class="apertura mt-4 mb-8">
     <div class="apertura-texto">
-      <h1 class="m-0 font-serif text-[30px] leading-none font-semibold tracking-[-0.3px] text-text">Álbum</h1>
-      <div class="flex flex-none items-center gap-2">
+      <h1 class="m-0 font-serif text-[32px] leading-none font-semibold tracking-[-0.3px] text-text">Álbum</h1>
+      <div class="mt-4 flex items-center gap-2">
         <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
           <circle cx="17" cy="17" r={R} fill="none" stroke="var(--line)" stroke-width="3.5" />
           <circle
@@ -59,6 +59,7 @@
         >
       </div>
     </div>
+    <img class="sello" src={albumIcon} alt="" aria-hidden="true" />
   </header>
 
   {#each secciones as seccion (seccion.titulo)}
@@ -100,31 +101,28 @@
      vez de ir a sangre se apoya sobre el panel. */
   .apertura {
     position: relative;
-    display: grid;
-    place-items: center;
-    height: 224px;
-    /* el medallón es más grande que el panel: lo recorta el arco, y por eso
-       lo llena en vez de flotar adentro */
+    display: flex;
+    align-items: center;
+    min-height: 178px;
+    /* se come el padding derecho de la página para que el medallón llegue al
+       borde de la columna, y ahí lo corta */
+    margin-right: -22px;
     overflow: hidden;
-    border-radius: 100vw 100vw 20px 20px;
-    background: color-mix(in srgb, var(--surface-2) 70%, transparent);
-  }
-  .medallon {
-    width: 188px;
-    height: 188px;
-    object-fit: contain;
-    /* Sube lo suficiente para despejar la franja del título: sin velo encima,
-       el texto tiene que caer sobre el panel y no sobre la ilustración. */
-    margin-bottom: 66px;
   }
   .apertura-texto {
+    position: relative;
+    z-index: 1;
+    /* le deja el flanco derecho al medallón */
+    padding-right: 150px;
+  }
+  .sello {
     position: absolute;
-    inset-inline: 0;
-    bottom: 0;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 0 20px 16px;
+    top: 50%;
+    right: -46px;
+    width: 194px;
+    height: 194px;
+    transform: translateY(-50%);
+    object-fit: contain;
+    pointer-events: none;
   }
 </style>
