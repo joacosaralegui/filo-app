@@ -342,7 +342,12 @@
         {lecture.title}
       </h2>
 
-      <span class="cue mt-10 text-[22px] text-line">↓</span>
+      <!-- El gesto se enseña acá: la portada es la única slide sin nada que
+           responder, así que es donde conviene decir cómo se avanza. -->
+      <div class="mt-10 flex flex-col items-center gap-2">
+        <span class="text-[12px] font-semibold text-text-soft/70">Deslizá para empezar</span>
+        <span class="cue text-[22px] text-line">↓</span>
+      </div>
     </div>
   </section>
 
