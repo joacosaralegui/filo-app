@@ -31,35 +31,33 @@
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+100px)]"
 >
 
-  <!-- Apertura: el título a la izquierda y el medallón saliéndose del margen
-       derecho, cortado por el borde de la columna. Es el mismo recurso que la
-       lámina de Sócrates, donde las hojas y los discos entran y salen del
-       cuadro — y de paso el texto nunca toca la ilustración. -->
-  <header class="apertura mt-4 mb-8">
-    <div class="apertura-texto">
-      <h1 class="m-0 font-serif text-[32px] leading-none font-semibold tracking-[-0.3px] text-text">Álbum</h1>
-      <div class="mt-4 flex items-center gap-2">
-        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
-          <circle cx="17" cy="17" r={R} fill="none" stroke="var(--line)" stroke-width="3.5" />
-          <circle
-            cx="17"
-            cy="17"
-            r={R}
-            fill="none"
-            stroke="var(--accent)"
-            stroke-width="3.5"
-            stroke-linecap="round"
-            stroke-dasharray={CIRC}
-            stroke-dashoffset={dashOffset}
-            transform="rotate(-90 17 17)"
-          />
-        </svg>
-        <span class="font-serif text-[19px] leading-none font-semibold whitespace-nowrap text-accent"
-          >{cuantos} de {TOTAL}</span
-        >
-      </div>
+  <!-- Apertura tipo portada: la ilustración sola, sin caja que la contenga, y
+       el título centrado debajo. -->
+  <header class="mt-3 mb-9 flex flex-col items-center text-center">
+    <img class="h-[184px] w-[184px] object-contain" src={albumIcon} alt="" aria-hidden="true" />
+    <h1 class="mt-5 m-0 font-serif text-[32px] leading-none font-semibold tracking-[-0.3px] text-text">
+      Álbum
+    </h1>
+    <div class="mt-3.5 flex items-center gap-2">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <circle cx="17" cy="17" r={R} fill="none" stroke="var(--line)" stroke-width="3.5" />
+        <circle
+          cx="17"
+          cy="17"
+          r={R}
+          fill="none"
+          stroke="var(--accent)"
+          stroke-width="3.5"
+          stroke-linecap="round"
+          stroke-dasharray={CIRC}
+          stroke-dashoffset={dashOffset}
+          transform="rotate(-90 17 17)"
+        />
+      </svg>
+      <span class="font-serif text-[19px] leading-none font-semibold whitespace-nowrap text-accent"
+        >{cuantos} de {TOTAL}</span
+      >
     </div>
-    <img class="sello" src={albumIcon} alt="" aria-hidden="true" />
   </header>
 
   {#each secciones as seccion (seccion.titulo)}
@@ -95,34 +93,3 @@
   {/each}
 </div>
 
-<style>
-  /* Mismo arco que la portada de la home, más bajo y con panel cálido: la
-     ilustración del álbum es un objeto recortado, no una escena, así que en
-     vez de ir a sangre se apoya sobre el panel. */
-  .apertura {
-    position: relative;
-    display: flex;
-    align-items: center;
-    min-height: 178px;
-    /* se come el padding derecho de la página para que el medallón llegue al
-       borde de la columna, y ahí lo corta */
-    margin-right: -22px;
-    overflow: hidden;
-  }
-  .apertura-texto {
-    position: relative;
-    z-index: 1;
-    /* le deja el flanco derecho al medallón */
-    padding-right: 150px;
-  }
-  .sello {
-    position: absolute;
-    top: 50%;
-    right: -46px;
-    width: 194px;
-    height: 194px;
-    transform: translateY(-50%);
-    object-fit: contain;
-    pointer-events: none;
-  }
-</style>
