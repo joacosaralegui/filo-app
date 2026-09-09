@@ -74,17 +74,15 @@
           on:click={() => dispatch("open", { courseId: c.curso, num: c.clase })}
           aria-label="Clase {c.clase} · {c.nombre}"
         >
-          <div class="aspect-square w-full overflow-hidden rounded-xl {got ? 'bg-surface' : 'bg-line/60'}">
-            {#if got && c.img}
-              <img class="h-full w-full object-cover" src={c.img} alt="" />
-            {:else}
-              <!-- Silueta: círculo para los retratos, cuadrado para las ideas.
-                   Insinúa qué tipo de cromo falta sin revelar el arte. -->
-              <span class="grid h-full w-full place-items-center">
-                <span class="h-[46%] w-[46%] bg-line {c.tipo === 'autor' ? 'rounded-full' : 'rounded-[3px]'}"
-                ></span>
-              </span>
-            {/if}
+          <!-- El cromo se ve siempre: apagado y desaturado mientras falta, a
+               todo color cuando lo ganaste. El contraste entre los dos estados
+               es lo que hace que llenar el álbum se sienta. -->
+          <div class="aspect-square w-full overflow-hidden rounded-xl bg-surface-2">
+            <img
+              class="h-full w-full object-cover {got ? '' : 'opacity-45 grayscale-[0.9]'}"
+              src={c.img}
+              alt=""
+            />
           </div>
           <span
             class="line-clamp-2 text-center text-[10px] leading-tight font-semibold {got
