@@ -5,8 +5,10 @@ son los de Play Console; el conteo de caracteres está al lado de cada campo.
 
 ## Nombre de la app (máx. 30)
 
-**Pendiente.** "Pensadores: ideas que cambiaron el mundo" tiene 40 caracteres y no
-entra. Propuesta: "Pensadores" solo, con "Ideas que cambiaron el mundo" en el gráfico.
+**Pensadores**
+
+El nombre solo, sin agregado. "Ideas que cambiaron el mundo" va en el gráfico
+de funciones.
 
 ## Descripción breve (máx. 80)
 
