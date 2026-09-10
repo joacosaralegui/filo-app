@@ -25,7 +25,7 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
-  <RootHeader img={socrates} title="PENSADORES" big wash={0.35} position="50% 30%" zoom={1.9} />
+  <RootHeader img={socrates} title="Pensadores" wash={0.35} position="50% 30%" zoom={1.9} />
 
   <!-- La pieza fuerte: seguir donde quedaste. Sin nada empezado ocupa el mismo
        lugar y la misma forma, pero manda a elegir curso: la pregunta que la

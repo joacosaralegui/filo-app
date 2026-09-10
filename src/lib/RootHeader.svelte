@@ -9,7 +9,6 @@
   // Las pantallas de detalle usan la otra familia (back + título, DetailHeader).
   export let img;
   export let title;
-  export let big = false; // el título gigante de la marca, sólo en Inicio
   // Encuadre de la lámina dentro del arco: cada una tiene su punto de interés
   // en otra altura (`object-position`).
   export let position = "50% 34%";
@@ -31,11 +30,9 @@
   <span class="cover-disc" aria-hidden="true"></span>
   <div class="cover" style="--wash: {wash}">
     <img class="cover-img" style="object-position: {position}; scale: {zoom}" src={img} alt="" />
-    <div class="cover-text" class:bajo={big}>
+    <div class="cover-text">
       <h1
-        class="m-0 font-serif leading-none font-semibold text-text {big
-          ? 'text-[clamp(30px,9.5vw,42px)] tracking-[0.08em]'
-          : 'text-[46px] tracking-[0.01em]'}"
+        class="m-0 font-serif text-[clamp(30px,9.5vw,42px)] leading-none font-semibold tracking-[0.08em] text-text uppercase"
       >
         {title}
       </h1>
@@ -81,10 +78,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-  }
-  /* En Inicio el título va más abajo: centrado, queda sobre la frente de
-     Sócrates y se lee alto dentro del arco. */
-  .cover-text.bajo {
+    /* Centrado, el título se lee alto dentro del arco: lo bajamos. */
     padding-top: 50px;
   }
 </style>
