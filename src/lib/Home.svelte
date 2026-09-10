@@ -25,7 +25,7 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
-  <RootHeader img={socrates} title="FILO" big wash={0.35} position="50% 30%" zoom={1.9} />
+  <RootHeader img={socrates} title="PENSADORES" big wash={0.35} position="50% 30%" zoom={1.9} />
 
   <!-- La pieza fuerte: seguir donde quedaste. Sin nada empezado ocupa el mismo
        lugar y la misma forma, pero manda a elegir curso: la pregunta que la
@@ -45,7 +45,7 @@
         </p>
       </div>
       <span
-        class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
+        class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
       >
         Continuar
         <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
@@ -73,7 +73,7 @@
         Elegí un curso y andá clase por clase. Cada una termina en un cromo para el álbum.
       </p>
       <span
-        class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-text px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
+        class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
       >
         Ver los cursos
         <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"

@@ -60,7 +60,7 @@
 
     {#if primary}
       <button
-        class="mt-1 flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl border-0 bg-text px-6 py-[15px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
+        class="mt-1 flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl border-0 bg-accent px-6 py-[15px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
         on:click={() => open(primary)}
       >
         {primaryLabel} · Clase {primary.num}

@@ -394,7 +394,7 @@
            a dónde vas. -->
       {#if nextClass}
         <button
-          class="mt-6 flex w-full cursor-pointer flex-col items-center gap-1 rounded-[14px] border-0 bg-text px-5 py-3.5 [font-family:inherit] transition-transform active:scale-[0.98]"
+          class="mt-6 flex w-full cursor-pointer flex-col items-center gap-1 rounded-[14px] border-0 bg-accent px-5 py-3.5 [font-family:inherit] transition-transform active:scale-[0.98]"
           on:click={() => dispatch("open", nextClass)}
         >
           <span class="text-[15px] font-extrabold text-on-accent">Siguiente clase →</span>
@@ -404,7 +404,7 @@
         </button>
       {:else}
         <button
-          class="mt-6 w-full cursor-pointer rounded-[14px] border-0 bg-text px-5 py-[15px] text-[15px] font-extrabold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
+          class="mt-6 w-full cursor-pointer rounded-[14px] border-0 bg-accent px-5 py-[15px] text-[15px] font-extrabold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
           on:click={() => dispatch("back")}>Volver al recorrido</button
         >
       {/if}
@@ -460,7 +460,7 @@
       <span class="text-[11px] font-extrabold tracking-[2px] text-accent-3 uppercase">Nuevo cromo</span>
       <span class="font-serif text-[26px] leading-tight font-semibold text-text">{revelado.nombre}</span>
       <button
-        class="mt-4 cursor-pointer rounded-2xl border-0 bg-text px-7 py-3.5 text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.97]"
+        class="mt-4 cursor-pointer rounded-2xl border-0 bg-accent px-7 py-3.5 text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.97]"
         on:click={() => (revelado = null)}
       >
         Seguir

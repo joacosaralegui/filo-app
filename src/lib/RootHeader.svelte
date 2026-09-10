@@ -34,7 +34,7 @@
     <div class="cover-text">
       <h1
         class="m-0 font-serif leading-none font-semibold text-text {big
-          ? 'text-[62px] tracking-[0.14em]'
+          ? 'text-[clamp(32px,10.5vw,46px)] tracking-[0.08em]'
           : 'text-[46px] tracking-[0.01em]'}"
       >
         {title}

@@ -211,7 +211,7 @@
         {aciertos}/{ronda.length}
       </p>
       <button
-        class="mt-8 w-full cursor-pointer rounded-2xl border-0 bg-text px-6 py-[15px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
+        class="mt-8 w-full cursor-pointer rounded-2xl border-0 bg-accent px-6 py-[15px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
         on:click={() => dispatch("salir")}>Volver al inicio</button
       >
     </div>

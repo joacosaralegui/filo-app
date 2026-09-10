@@ -1,7 +1,8 @@
 {
-  "name": "Filo · historia de las ideas",
-  "short_name": "Filo",
-  "description": "Estudiá historia de las ideas con un feed de cards, quizzes y un diccionario filosófico.",
+  "name": "Pensadores · Ideas que cambiaron el mundo",
+  "short_name": "Pensadores",
+  "description": "Clases interactivas de nivel universitario sobre la historia de la filosofía, de Descartes a Foucault. Ideas que cambiaron el mundo.",
+  "categories": ["education", "books"],
   "start_url": ".",
   "scope": ".",
   "display": "standalone",
