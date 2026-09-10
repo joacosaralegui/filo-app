@@ -31,10 +31,10 @@
   <span class="cover-disc" aria-hidden="true"></span>
   <div class="cover" style="--wash: {wash}">
     <img class="cover-img" style="object-position: {position}; scale: {zoom}" src={img} alt="" />
-    <div class="cover-text">
+    <div class="cover-text" class:bajo={big}>
       <h1
         class="m-0 font-serif leading-none font-semibold text-text {big
-          ? 'text-[clamp(32px,10.5vw,46px)] tracking-[0.08em]'
+          ? 'text-[clamp(30px,9.5vw,42px)] tracking-[0.08em]'
           : 'text-[46px] tracking-[0.01em]'}"
       >
         {title}
@@ -81,5 +81,10 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+  }
+  /* En Inicio el título va más abajo: centrado, queda sobre la frente de
+     Sócrates y se lee alto dentro del arco. */
+  .cover-text.bajo {
+    padding-top: 50px;
   }
 </style>
