@@ -1,5 +1,5 @@
 export default {
-  num: 17,
+  num: 13,
   transcript: 18,
   title: "Marxismo revisionista y existencialismo",
   source: "https://www.youtube.com/watch?v=Rh2FjZu2pNc",

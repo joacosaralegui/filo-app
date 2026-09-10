@@ -20,9 +20,9 @@ const EMPTY_COURSE = { lastClass: null, classes: {} };
 function load() {
   try {
     const raw = localStorage.getItem(KEY);
-    if (raw) return migrarIds(JSON.parse(raw));
+    if (raw) return migrarCorte(migrarIds(JSON.parse(raw)));
     const old = localStorage.getItem(OLD_KEY);
-    if (old) return migrateV1(JSON.parse(old));
+    if (old) return migrarCorte(migrateV1(JSON.parse(old)));
   } catch {
     /* almacenamiento no disponible o JSON corrupto: arrancamos de cero */
   }
@@ -43,6 +43,34 @@ function migrateV1(v1) {
 // Los cursos se renombraron para que el id acompañe al título. El progreso está
 // indexado por ese id, así que hay que remapear lo guardado o se pierde.
 const IDS_VIEJOS = { nietzsche: "contemporanea", modernidad: "moderna" };
+
+// El curso `contemporanea` ahora arranca en Nietzsche: sus cuatro primeras
+// clases (Ilustración, Romanticismo, Hegel, Marx) pasaron a `moderna`, así que
+// todas las demás bajaron cuatro números. Sin esto, el progreso guardado
+// quedaría corrido y apuntando a clases que ya no son las mismas.
+const CORTE_CONTEMPORANEA = 4;
+
+function migrarCorte(p) {
+  const c = p.courses?.contemporanea;
+  if (!c || c.corteAplicado) return p;
+  const classes = {};
+  for (const [num, estado] of Object.entries(c.classes || {})) {
+    const nuevo = Number(num) - CORTE_CONTEMPORANEA;
+    if (nuevo >= 1) classes[nuevo] = estado;
+  }
+  const desplazar = (n) => (typeof n === "number" && n - CORTE_CONTEMPORANEA >= 1 ? n - CORTE_CONTEMPORANEA : null);
+  return {
+    ...p,
+    courses: {
+      ...p.courses,
+      contemporanea: { ...c, classes, lastClass: desplazar(c.lastClass), corteAplicado: true },
+    },
+    lastActivity:
+      p.lastActivity?.courseId === "contemporanea"
+        ? { ...p.lastActivity, num: desplazar(p.lastActivity.num) }
+        : p.lastActivity,
+  };
+}
 
 function migrarIds(p) {
   const cursos = { ...(p.courses || {}) };

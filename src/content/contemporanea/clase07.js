@@ -1,5 +1,5 @@
 export default {
-  num: 6,
+  num: 2,
   transcript: 7,
   title: "Henri Bergson: la revuelta contra el positivismo",
   source: "https://www.youtube.com/watch?v=fhIW-E9wZe8",

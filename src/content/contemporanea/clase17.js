@@ -1,5 +1,5 @@
 export default {
-  num: 16,
+  num: 12,
   transcript: 17,
   title: "Los hijos de Husserl: en busca del otro",
   source: "https://www.youtube.com/watch?v=RXwWPT1RGWM",

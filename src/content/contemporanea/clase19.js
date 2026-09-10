@@ -1,5 +1,5 @@
 export default {
-  num: 18,
+  num: 14,
   transcript: 19,
   title: "Estructuralismo y antropología",
   source: "https://www.youtube.com/watch?v=k0ZLNVIrdcU",

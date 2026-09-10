@@ -1,5 +1,5 @@
 export default {
-  num: 22,
+  num: 18,
   transcript: 23,
   title: "\"Antipolítica\" y la filosofía de la disidencia",
   source: "https://www.youtube.com/watch?v=94b025iHtAw",

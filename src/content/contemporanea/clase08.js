@@ -1,5 +1,5 @@
 export default {
-  num: 7,
+  num: 3,
   transcript: 8,
   title: "El leninismo: acelerar la historia",
   source: "https://www.youtube.com/watch?v=2F3PzB2iVa4",

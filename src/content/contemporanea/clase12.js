@@ -1,5 +1,5 @@
 export default {
-  num: 11,
+  num: 7,
   transcript: 12,
   title: "El existencialismo heideggeriano",
   source: "https://www.youtube.com/watch?v=l1jzdqwMePs",

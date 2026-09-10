@@ -1,5 +1,5 @@
 export default {
-  num: 5,
+  num: 1,
   transcript: 6,
   title: "Nietzsche y la muerte de Dios",
   source: "https://www.youtube.com/watch?v=MqbQ0loF3zM",

@@ -20,27 +20,29 @@
 //              { "--accent": "#7b4b94" }. Se aplican al entrar al curso.
 //              Hoy ningún curso lo usa: todos comparten la paleta.
 //   numOffset: desfasaje entre el `transcript` del md y el `num` de la app
-//              (default -1, la regla de `contemporanea`, que omite su Clase 1)
+//              (default -1; `contemporanea` usa -5 porque arranca en Nietzsche
+//              y `moderna` 0 porque sus md ya están numerados como la app)
 //   load     : () => import("./<id>/curso.js")
 
 export const COURSES = [
   {
     id: "contemporanea",
     title: "Filosofía contemporánea",
-    subtitle: "Siglo XVIII a hoy",
-    blurb: "De la herencia de la Ilustración a la posmodernidad.",
-    portada: "romanticismo",
+    subtitle: "De Nietzsche a hoy",
+    blurb: "De la muerte de Dios a la posmodernidad.",
+    portada: "herencia",
     source: {
       label: "European Intellectual History since Nietzsche",
       url: "https://www.youtube.com/playlist?list=PLh9mgdi4rNezUjm7niGdUWjnL0lHSDh0U",
     },
+    numOffset: -5,
     load: () => import("./contemporanea/curso.js"),
   },
   {
     id: "moderna",
     title: "Filosofía moderna",
-    subtitle: "Siglos XVII y XVIII",
-    blurb: "De la Reforma a la crisis de la Ilustración.",
+    subtitle: "Del siglo XVII a Marx",
+    blurb: "De la Reforma al final del idealismo alemán.",
     portada: "nueva-ciencia",
     source: {
       label: "Historia de las ideas en la modernidad — Maestría en Filosofía, UNQ",

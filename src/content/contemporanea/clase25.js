@@ -1,5 +1,5 @@
 export default {
-  num: 24,
+  num: 20,
   transcript: 25,
   title: "De la modernidad a la posmodernidad",
   source: "https://www.youtube.com/watch?v=teqykibLJwE",

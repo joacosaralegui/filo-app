@@ -1,5 +1,5 @@
 export default {
-  num: 14,
+  num: 10,
   transcript: 15,
   title: "Hannah Arendt: el totalitarismo y la naturaleza del mal",
   source: "https://www.youtube.com/watch?v=Naev-AFcN5k",

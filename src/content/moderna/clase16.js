@@ -333,19 +333,19 @@ export default {
     {
       type: "info",
       title: "Lo que queda abierto",
-      body: "Este curso termina acá, en 1784, y el punto de llegada no es una conclusión sino una discusión abierta. En el mismo año se publican la respuesta de Kant, la de Mendelssohn y la carta de Hamann, y las tres dicen cosas incompatibles sobre qué es la Ilustración y si hay que desearla.",
+      body: "Llegamos a 1784, y el punto de llegada no es una conclusión sino una discusión abierta. En el mismo año se publican la respuesta de Kant, la de Mendelssohn y la carta de Hamann, y las tres dicen cosas incompatibles sobre qué es la Ilustración y si hay que desearla.",
     },
     {
       type: "info",
       continues: true,
       title: "Lo que queda abierto",
-      body: "Vale la pena medir la distancia recorrida. El curso empezó con la Reforma reclamando el derecho de cada creyente a interpretar por sí mismo, y con el escepticismo de Montaigne desconfiando de la costumbre. Termina con la razón instalada como tribunal universal, y con alguien preguntando si ese tribunal no es la vieja tutela con otro nombre.",
+      body: "Vale la pena medir la distancia recorrida. El curso empezó con la Reforma reclamando el derecho de cada creyente a interpretar por sí mismo, y con el escepticismo de Montaigne desconfiando de la costumbre. Llega hasta la razón instalada como tribunal universal, y hasta alguien preguntando si ese tribunal no es la vieja tutela con otro nombre.",
     },
     {
       type: "info",
       continues: true,
       title: "Lo que queda abierto",
-      body: "Lo que sigue está fuera de este recorrido. La polémica sobre el spinozismo va a poner en cuestión si la Ilustración conduce al fatalismo y al nihilismo; Fichte, Schelling y Hegel van a intentar rehacer el sistema desde el punto en que Kant lo dejó; el romanticismo va a hacer suyas las objeciones de Hamann.",
+      body: "Es el punto donde la modernidad deja de construirse y empieza a discutirse a sí misma. De acá en adelante, nadie va a poder defender la razón sin antes decir con qué derecho lo hace, y ninguna respuesta va a poder ignorar la objeción de Hamann sobre el lenguaje.",
     },
     {
       type: "match",
@@ -362,7 +362,7 @@ export default {
       type: "info",
       continues: true,
       title: "Lo que queda abierto",
-      body: "Y ahí empieza el otro curso de esta app, «Contemporánea», que arranca en Nietzsche y cuya primera clase se llama justamente «La herencia de la Ilustración». El corte no es arbitrario: es el punto donde la modernidad deja de construirse y empieza a discutirse a sí misma.",
+      body: "La reacción no es una sola. El romanticismo va a hacer suyas estas objeciones y convertirlas en programa estético; la polémica sobre el spinozismo va a poner en cuestión si la Ilustración conduce al fatalismo. Pero hay una tercera vía, que no rechaza a Kant sino que lo acusa de haberse quedado corto, y es la que sigue en la clase que viene.",
     },
   ],
 };

@@ -1,11 +1,11 @@
 # Cromos — guía de generación
 
 Álbum de cromos para el sistema de progresión: una carta por filósofo, en el
-mismo estilo que `socrates.png` / `logo.png`.
+mismo estilo que `arte/socrates.png` / `arte/logo.png`.
 
 ## Método
 
-1. **Pasá `socrates.png` como imagen de referencia** en cada generación. Nano
+1. **Pasá `arte/socrates.png` como imagen de referencia** en cada generación. Nano
    banana (Gemini 2.5 Flash Image) condiciona por imagen: la consistencia de
    estilo entre 20 cromos sale de ahí, no de la descripción textual.
 2. **Un render por filósofo.** No un grid de 20: cada cromo necesita su propio
@@ -46,12 +46,12 @@ SUBJECT: [FILÓSOFO + RASGOS]
 Y la línea del sujeto, por cromo. Los rasgos icónicos importan: sin ellos el
 modelo devuelve veinte bustos griegos genéricos.
 
-## Roster (20)
+## Roster (22)
 
 Sacados de los glosarios de los dos cursos. Los rasgos son los mínimos para que
 cada uno salga reconocible.
 
-### Moderna — de Montaigne a Hamann
+### Moderna — de Montaigne a Marx
 
 | # | Filósofo | Rasgos para el prompt |
 |---|---|---|
@@ -65,21 +65,23 @@ cada uno salga reconocible.
 | 8 | David Hume | round full face, ruddy heavy cheeks, small powdered wig |
 | 9 | Jean-Jacques Rousseau | fur hat, soft round face, dark alert eyes |
 | 10 | Immanuel Kant | small thin face, high domed forehead, small powdered wig, sharp chin |
+| 11 | J. G. Fichte | severe hollow-cheeked face, sharp aquiline nose, short brushed-forward hair, high stiff collar |
+| 12 | F. W. J. Schelling | youthful broad face, wide-set intense eyes, tousled dark curls, loose romantic cravat |
+| 13 | G. W. F. Hegel | severe downturned mouth, heavy jowls, swept-back grey hair, high collar |
+| 14 | Karl Marx | enormous full white beard, thick mane of hair, broad forehead |
 
 ### Contemporánea — desde Nietzsche
 
 | # | Filósofo | Rasgos para el prompt |
 |---|---|---|
-| 11 | G. W. F. Hegel | severe downturned mouth, heavy jowls, swept-back grey hair, high collar |
-| 12 | Karl Marx | enormous full white beard, thick mane of hair, broad forehead |
-| 13 | Friedrich Nietzsche | huge drooping walrus moustache, intense deep-set eyes, heavy brow |
-| 14 | Sigmund Freud | neatly trimmed grey beard, round wire glasses, cigar |
-| 15 | Henri Bergson | high bald domed forehead, thin face, small white moustache |
-| 16 | Martin Heidegger | small dark moustache, receding hairline, peasant jacket |
-| 17 | Jean-Paul Sartre | round thick-rimmed glasses, one eye askew, receding hair, pipe |
-| 18 | Simone de Beauvoir | dark hair swept up in a turban-style updo, strong brows, elegant profile |
-| 19 | Hannah Arendt | dark short wavy bob, cigarette holder, arched brows |
-| 20 | Michel Foucault | completely bald, round glasses, turtleneck |
+| 1 | Friedrich Nietzsche | huge drooping walrus moustache, intense deep-set eyes, heavy brow |
+| 2 | Sigmund Freud | neatly trimmed grey beard, round wire glasses, cigar |
+| 3 | Henri Bergson | high bald domed forehead, thin face, small white moustache |
+| 4 | Martin Heidegger | small dark moustache, receding hairline, peasant jacket |
+| 5 | Jean-Paul Sartre | round thick-rimmed glasses, one eye askew, receding hair, pipe |
+| 6 | Simone de Beauvoir | dark hair swept up in a turban-style updo, strong brows, elegant profile |
+| 7 | Hannah Arendt | dark short wavy bob, cigarette holder, arched brows |
+| 8 | Michel Foucault | completely bald, round glasses, turtleneck |
 
 ## Si aun así querés la hoja de contacto
 
@@ -117,22 +119,21 @@ sujeto: en vez de un busto, un objeto o escena simbólica.
 | 13 · Lessing | La parábola de los tres anillos | three interlocking golden rings resting on velvet |
 | 15 · Kant y la minoría de edad | Sapere aude | a hand breaking a thin chain, light entering through an open doorway |
 | 16 · Hamann | La metacrítica de la razón | a quill pen laid across a page of geometric proofs, ink blotting the figures |
+| 19 · El romanticismo de Jena | El Romanticismo | a lone figure seen from behind facing a stormy mountain range |
 
 ## Contemporánea
 
 | Clase | Cromo | Descripción para generar |
 |---|---|---|
-| 1 · La herencia de la Ilustración | La herencia | a broken classical column with a lantern set on top of the stump |
-| 2 · El legado del Romanticismo | El Romanticismo | a lone figure seen from behind facing a stormy mountain range |
-| 7 · El leninismo | Acelerar la historia | a steam locomotive rushing forward, a red star on its front |
-| 9 · El modernismo y la vanguardia | La vanguardia | a shattered violin and fragmented geometric planes, cubist arrangement |
-| 10 · La fenomenología | A las cosas mismas | a single clay pitcher on a table, radiating observation lines from an eye |
-| 13 · La Escuela de Frankfurt | La teoría crítica | a cracked gramophone horn above a grid of city rooftops |
-| 16 · Los hijos de Husserl | El rostro del otro | two classical profiles facing each other, almost touching |
-| 17 · Marxismo revisionista | La praxis | a worker's hammer resting on an open book |
-| 18 · Estructuralismo y antropología | La estructura | a woven textile pattern dissolving into a diagram of knots, a tribal mask |
-| 19 · Girard | El chivo expiatorio | a goat standing alone before a crowd of shadowed silhouettes |
-| 21 · Derrida | La deconstrucción | a printed word unravelling into loose threads at its edges |
-| 22 · La antipolítica | Vivir en la verdad | a single candle burning in a dark window |
-| 23 · La controversia Heidegger | La controversia | a wooden lectern split in two, papers scattered |
-| 24 · De la modernidad a la posmodernidad | La posmodernidad | a hall of mirrors reflecting the same classical bust endlessly |
+| 3 · El leninismo | Acelerar la historia | a steam locomotive rushing forward, a red star on its front |
+| 5 · El modernismo y la vanguardia | La vanguardia | a shattered violin and fragmented geometric planes, cubist arrangement |
+| 6 · La fenomenología | A las cosas mismas | a single clay pitcher on a table, radiating observation lines from an eye |
+| 9 · La Escuela de Frankfurt | La teoría crítica | a cracked gramophone horn above a grid of city rooftops |
+| 12 · Los hijos de Husserl | El rostro del otro | two classical profiles facing each other, almost touching |
+| 13 · Marxismo revisionista | La praxis | a worker's hammer resting on an open book |
+| 14 · Estructuralismo y antropología | La estructura | a woven textile pattern dissolving into a diagram of knots, a tribal mask |
+| 15 · Girard | El chivo expiatorio | a goat standing alone before a crowd of shadowed silhouettes |
+| 17 · Derrida | La deconstrucción | a printed word unravelling into loose threads at its edges |
+| 18 · La antipolítica | Vivir en la verdad | a single candle burning in a dark window |
+| 19 · La controversia Heidegger | La controversia | a wooden lectern split in two, papers scattered |
+| 20 · De la modernidad a la posmodernidad | La posmodernidad | a hall of mirrors reflecting the same classical bust endlessly |

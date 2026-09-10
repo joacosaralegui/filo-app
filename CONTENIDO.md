@@ -14,14 +14,17 @@ Guía para producir el contenido de una clase de forma consistente.
    criterio de esta guía. Ojo: regenerar pisa el feed entero, así que hay que
    volver a intercalarlas.
 
-La referencia viva es `src/content/contemporanea/clase02.js` (la Clase 1 de la app).
+La referencia viva es `src/content/contemporanea/clase06.js` (la Clase 1 de la app).
 
 ## Numeración
 
 - `num` = número que ve el usuario en la app.
 - `transcript` = número del archivo en `../filosofia/yale-filosofia/transcripciones/`
   (para el curso `contemporanea`; cada curso tiene su propia carpeta de transcripciones).
-- Relación: **`transcript = num + 1`** (se omite la Clase 1 original, "Introducción al curso").
+- Relación: **`transcript = num + 5`** para `contemporanea` (se omiten la Clase 1
+  original, "Introducción al curso", y las cuatro siguientes —Ilustración,
+  Romanticismo, Hegel y Marx—, que se reescribieron en `moderna`, donde
+  corresponden por época). En `moderna`, `transcript = num`.
 
 ## El feed
 

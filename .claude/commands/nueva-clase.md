@@ -9,11 +9,11 @@ Si vino vacío, preguntale cuál antes de seguir.
 
 Seguí este proceso, respetando la guía `CONTENIDO.md` del repo:
 
-1. **Mapeo:** `transcript = num + 1`. Ubicá la transcripción en
+1. **Mapeo:** `transcript = num + 5`. Ubicá la transcripción en
    `/home/joaco/joaco/filosofia/yale-filosofia/transcripciones/` cuyo archivo
    empiece con ese número (con cero adelante si es < 10).
 2. **Leé `CONTENIDO.md` entera** y respetá el esquema de card, la dificultad de
-   los quizzes y el formato de glosario. Usá `src/content/contemporanea/clase02.js`
+   los quizzes y el formato de glosario. Usá `src/content/contemporanea/clase06.js`
    como referencia de estilo.
 3. **Leé la transcripción COMPLETA** antes de escribir nada.
 4. **Generá las cards de info con el script — no las escribas vos:**
@@ -22,7 +22,7 @@ Seguí este proceso, respetando la guía `CONTENIDO.md` del repo:
    node scripts/md-to-cards.mjs "<transcripción.md>" src/content/contemporanea/claseNN.js
    ```
 
-   NN = número de `transcript` con cero (`num + 1`; p. ej. la Clase 5 de la app →
+   NN = número de `transcript` con cero (`num + 5`; p. ej. la Clase 1 de la app →
    `clase06.js`). Cada párrafo del md es el `body` de una card, literal: **no los
    reescribas, no los resumas, no los partas ni los reordenes, y no agregues
    cards de info propias.** La transcripción curada es la fuente de verdad; si

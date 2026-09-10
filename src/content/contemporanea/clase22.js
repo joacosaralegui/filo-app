@@ -1,5 +1,5 @@
 export default {
-  num: 21,
+  num: 17,
   transcript: 22,
   title: "Posestructuralismo francés: Derrida y la deconstrucción",
   source: "https://www.youtube.com/watch?v=nCGW_H7s7Q4",

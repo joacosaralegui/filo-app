@@ -1,5 +1,5 @@
 export default {
-  num: 23,
+  num: 19,
   transcript: 24,
   title: "La controversia Heidegger",
   source: "https://www.youtube.com/watch?v=DlWcK5PesPc",

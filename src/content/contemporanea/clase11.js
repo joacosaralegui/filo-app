@@ -1,5 +1,5 @@
 export default {
-  num: 10,
+  num: 6,
   transcript: 11,
   title: "La fenomenología",
   source: "https://www.youtube.com/watch?v=8OCDFEn_hRE",

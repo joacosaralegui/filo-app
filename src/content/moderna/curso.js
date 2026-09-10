@@ -28,6 +28,11 @@ import clase13 from "./clase13.js";
 import clase14 from "./clase14.js";
 import clase15 from "./clase15.js";
 import clase16 from "./clase16.js";
+import clase17 from "./clase17.js";
+import clase18 from "./clase18.js";
+import clase19 from "./clase19.js";
+import clase20 from "./clase20.js";
+import clase21 from "./clase21.js";
 
 export const classes = [
   { num: 1,  transcript: 1,  title: "Las raíces de la filosofía moderna", era: "Renacimiento", content: clase01 },
@@ -46,6 +51,11 @@ export const classes = [
   { num: 14, transcript: 14, title: "Kant: el giro copernicano", era: "Idealismo trascendental", content: clase14 },
   { num: 15, transcript: 15, title: "Kant y la salida de la minoría de edad", era: "Ilustración", content: clase15 },
   { num: 16, transcript: 16, title: "Hamann y la metacrítica de la razón", era: "Crítica de la Ilustración", content: clase16 },
+  { num: 17, transcript: 17, title: "Fichte y la Doctrina de la Ciencia", era: "Idealismo alemán", content: clase17 },
+  { num: 18, transcript: 18, title: "Schelling: la naturaleza y el arte", era: "Idealismo alemán", content: clase18 },
+  { num: 19, transcript: 19, title: "El romanticismo de Jena", era: "Romanticismo", content: clase19 },
+  { num: 20, transcript: 20, title: "Hegel: dialéctica, Espíritu e historia", era: "Idealismo alemán", content: clase20 },
+  { num: 21, transcript: 21, title: "Marx: el último hegeliano", era: "Materialismo", content: clase21 },
 ];
 
 export default { classes, glossary: GLOSSARY };

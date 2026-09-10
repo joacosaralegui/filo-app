@@ -1,5 +1,5 @@
 export default {
-  num: 9,
+  num: 5,
   transcript: 10,
   title: "El modernismo y la vanguardia",
   source: "https://www.youtube.com/watch?v=QqoKiAquWRg",

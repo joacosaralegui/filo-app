@@ -1,5 +1,5 @@
 export default {
-  num: 20,
+  num: 16,
   transcript: 21,
   title: "Poder y arqueología: Michel Foucault",
   source: "https://www.youtube.com/watch?v=tyeGAGus-oY",

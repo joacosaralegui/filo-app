@@ -1,5 +1,5 @@
 export default {
-  num: 15,
+  num: 11,
   transcript: 16,
   title: "*El segundo sexo* (Simone de Beauvoir)",
   source: "https://www.youtube.com/watch?v=UZEo2yV9AqI",

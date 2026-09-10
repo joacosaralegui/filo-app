@@ -1,5 +1,5 @@
 export default {
-  num: 13,
+  num: 9,
   transcript: 14,
   title: "La Escuela de Fráncfort",
   source: "https://www.youtube.com/watch?v=ntxMMezF804",

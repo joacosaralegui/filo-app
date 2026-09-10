@@ -1,5 +1,5 @@
 export default {
-  num: 19,
+  num: 15,
   transcript: 20,
   title: "La violencia y lo sagrado: René Girard",
   source: "https://www.youtube.com/watch?v=PTz65ixvjjc",

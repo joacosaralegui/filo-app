@@ -1,5 +1,5 @@
 export default {
-  num: 12,
+  num: 8,
   transcript: 13,
   title: "El existencialismo francés",
   source: "https://www.youtube.com/watch?v=G9Ovu6Lxo28",
