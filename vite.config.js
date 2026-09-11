@@ -3,10 +3,10 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
-// base: '/' — la app ya no se sirve en la web (pensadores.ar es la landing
-// estática de landing/); esto sólo alimenta el build empaquetado con Capacitor,
-// que corre en su propio origen sin subpath.
-export default defineConfig(() => ({
-  base: '/',
+// La raíz de pensadores.ar la ocupa la landing estática de landing/, así que la
+// app Svelte se sirve en /app/. base: '/' sólo para el build empaquetado con
+// Capacitor, que corre en su propio origen sin subpath.
+export default defineConfig(({ mode }) => ({
+  base: mode === 'capacitor' ? '/' : '/app/',
   plugins: [tailwindcss(), svelte()],
 }))
