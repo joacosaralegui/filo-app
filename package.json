@@ -6,14 +6,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:capacitor": "vite build --mode capacitor",
     "preview": "vite preview",
     "check": "node scripts/check.js"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.1",
     "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "@tailwindcss/vite": "^4.3.3",
     "svelte": "^5.56.8",
     "tailwindcss": "^4.3.3",
     "vite": "^8.2.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.1",
+    "@capacitor/core": "^8.5.1"
   }
 }

@@ -2,6 +2,16 @@ node_modules
 dist
 .DS_Store
 
+# Proyecto Android nativo: lo genera el workflow de CI en cada build,
+# no hace falta versionarlo.
+/android/
+*.jks
+*.keystore
+*.jks.base64
+
+# Copia local del .aab/.apk descargado de los Releases de GitHub.
+/builds/
+
 # Fuentes de ilustración (arte/): pesan ~17 MB y el build usa las versiones
 # optimizadas de src/assets. Se quedan en local.
 /arte/
