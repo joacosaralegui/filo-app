@@ -224,20 +224,14 @@
   function onScroll() {
     const h = feedEl.clientHeight;
 
-    // Freno de la puerta: no dejar pasar de la primera card sin responder.
-    if (gate >= 0) {
-      const limit = (gate + PORTADA) * h;
-      if (feedEl.scrollTop > limit + 1) {
-        // Instantáneo y explícito: el rebote de la puerta nunca se anima,
-        // porque animarlo sería pelearle al impulso del dedo.
-        feedEl.scrollTo({ top: limit, behavior: "instant" });
-        nudgeGate();
-        return;
-      }
-    }
+    // La puerta no se frena acá: las cards de después ni se renderizan (ver
+    // el {#if} del feed), así que no hay adónde pasarse. Frenarla devolviendo
+    // el scroll peleaba con la inercia del dedo en el celular y hacía titilar
+    // la card siguiente contra la actual.
 
-    const max = feedEl.scrollHeight - h;
-    scrollPct = max > 0 ? (feedEl.scrollTop / max) * 100 : 0;
+    // Progreso por posición de card y no por scrollHeight: el alto del feed
+    // crece a medida que se desbloquean cards, y la barra saltaría.
+    scrollPct = Math.min(100, (feedEl.scrollTop / h / endIndex) * 100);
     const idx = Math.round(feedEl.scrollTop / h);
     if (idx !== currentCard) {
       currentCard = idx;
@@ -339,6 +333,9 @@
   </section>
 
   {#each lecture.feed as card, i}
+    <!-- Después de la primera card sin responder no se renderiza nada: el
+         feed termina en la puerta. -->
+    {#if gate < 0 || i <= gate}
     <section
       class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-[calc(env(safe-area-inset-bottom)+86px)] [scroll-snap-align:center] [scroll-snap-stop:always]"
     >
@@ -354,8 +351,10 @@
         <QuizCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
       {/if}
     </section>
+    {/if}
   {/each}
 
+  {#if gate < 0}
   <section
     class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-[calc(env(safe-area-inset-bottom)+86px)] [scroll-snap-align:center] [scroll-snap-stop:always]"
   >
@@ -432,6 +431,7 @@
       </div>
     </div>
   </section>
+  {/if}
 </div>
 
 {#if gateHint}
