@@ -5,6 +5,8 @@
   import ClassView from "./lib/ClassView.svelte";
   import Album from "./lib/Album.svelte";
   import Desafio from "./lib/Desafio.svelte";
+  import Glosario from "./lib/Glosario.svelte";
+  import TermView from "./lib/TermView.svelte";
   import BottomNav from "./lib/BottomNav.svelte";
   import GlossaryModal from "./lib/GlossaryModal.svelte";
   import { COURSES, findCourse } from "./content/courses.js";
@@ -15,12 +17,14 @@
     toInicio,
     toCatalog,
     toAlbum,
+    toGlosario,
+    toTerm,
     toDesafio,
     toCourse,
     toClass,
   } from "./lib/router.js";
 
-  let course = null; // curso cargado: manifiesto + { classes, glossary }
+  let course = null; // curso cargado: manifiesto + { classes }
   let loading = false;
   let token = 0; // descarta cargas que quedaron viejas al cambiar de ruta rápido
   let restarts = 0; // fuerza el remontaje de la clase al reiniciarla
@@ -66,19 +70,13 @@
   $: if (course && $route.num != null && !current) toCourse(course.id, true);
   $: if (current) setLastActivity(course.id, current);
 
-  // La pestaña encendida. El recorrido y el catálogo son pantallas distintas,
-  // así que cada una enciende la suya.
+  // La pestaña encendida. Un curso y sus clases cuelgan de Cursos.
   $: tab =
-    $route.view === "curso"
-      ? "recorrido"
-      : $route.view === "cursos"
-        ? "cursos"
-        : $route.view === "album"
-          ? "album"
-          : "inicio";
-
-  // El ítem "Recorrido" sin curso empezado no se apaga: manda a elegir uno.
-  const irAlRecorrido = (id) => (id ? toCourse(id, true) : toCatalog());
+    $route.view === "curso" || $route.view === "cursos"
+      ? "cursos"
+      : $route.view === "glosario" || $route.view === "album"
+        ? $route.view
+        : "inicio";
 </script>
 
 {#if $route.view === "album"}
@@ -88,6 +86,21 @@
     courses={COURSES}
     on:salir={() => toInicio()}
     on:clase={(e) => toClass(e.detail.courseId, e.detail.num)}
+  />
+{:else if $route.view === "glosario" && $route.slug}
+  <!-- "Atrás" vuelve a donde estabas (la lista, una clase, otro término); si
+       la página se abrió de entrada, no hay a dónde volver y va a la lista. -->
+  <TermView
+    slug={$route.slug}
+    on:back={() => (history.length > 1 ? history.back() : toGlosario())}
+    on:term={(e) => toTerm(e.detail.slug)}
+    on:missing={() => toGlosario(true)}
+  />
+{:else if $route.view === "glosario"}
+  <Glosario
+    courses={COURSES}
+    on:open={(e) => toClass(e.detail.courseId, e.detail.num)}
+    on:term={(e) => toTerm(e.detail.slug)}
   />
 {:else if $route.view === "cursos"}
   <Catalog courses={COURSES} on:open={(e) => toCourse(e.detail.id)} />
@@ -130,7 +143,7 @@
   <BottomNav
     active={tab}
     on:inicio={() => toInicio()}
-    on:recorrido={(e) => irAlRecorrido(e.detail.id)}
+    on:glosario={() => toGlosario()}
     on:cursos={() => toCatalog()}
     on:album={() => toAlbum()}
   />

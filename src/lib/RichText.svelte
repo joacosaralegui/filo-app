@@ -3,6 +3,11 @@
   // y las negritas del markdown (**así**) como <strong>.
   import { segment, openTerm } from "./glossary.js";
   export let text = "";
+  // Qué hace tocar un término: por defecto abre su hoja; la página de un
+  // término, en cambio, navega a la del otro.
+  export let onTerm = openTerm;
+  // Un término que no se linkea: en su propia página, él mismo.
+  export let exclude = null;
 
   // Las negritas se parten primero: así el glosario nunca ve un asterisco
   // pegado a una palabra y los tramos quedan listos para envolver en <strong>.
@@ -22,12 +27,12 @@
 
   // Un solo `used` para todos los tramos: cada término se linkea una vez por card.
   $: runs = (() => {
-    const used = new Set();
+    const used = new Set(exclude ? [exclude] : []);
     return splitBold(text || "").map((r) => ({ bold: r.bold, parts: segment(r.v, used) }));
   })();
 </script>
 
 {#each runs as r}{#each r.parts as p}{#if p.t === "term"}<button
       class="cursor-pointer border-0 bg-transparent p-0 font-bold text-accent-ink [font-family:inherit] [border-bottom:1px_dotted_color-mix(in_srgb,var(--accent-ink)_55%,transparent)] transition-colors duration-150 active:text-accent"
-      on:click|stopPropagation={() => openTerm(p.slug)}>{p.v}</button
+      on:click|stopPropagation={() => onTerm(p.slug)}>{p.v}</button
     >{:else if r.bold}<strong class="font-bold text-text">{p.v}</strong>{:else}{p.v}{/if}{/each}{/each}

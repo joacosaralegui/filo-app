@@ -192,9 +192,9 @@ sintetiza varias piezas, va después de que todas se explicaron.
 
 ## Glosario (auto-linkeo)
 
-Los términos se vuelven clicables solos. Para cada autor/concepto/obra/evento
-nuevo que aparezca en las cards, agregá una entrada en
-`src/content/<curso>/glossary.js`:
+Los términos se vuelven clicables solos. El glosario es uno solo para todos los
+cursos y además es la lista de la pestaña Glosario. Para cada autor/concepto/obra/evento
+nuevo que aparezca en las cards, agregá una entrada en `src/content/glossary.js`:
 
 ```js
 kant: {
@@ -206,15 +206,17 @@ kant: {
 }
 ```
 
-- No dupliques slugs ni alias ya existentes (el glosario es acumulativo entre clases).
+- No dupliques slugs ni alias ya existentes: el glosario es acumulativo entre clases y
+  entre cursos. Si el término ya está (quizás desde otro curso), no lo repitas: a lo sumo
+  sumale alias o mejorá su body. `npm run check` marca los alias repetidos.
 - `when`: autores = nacimiento–muerte; conceptos/obras/eventos = época o año de origen.
 - Conmplenta con contenido al estilo wikipedia para cubrir las bases del concepto versus repetir lo que se dice en la clase.
 
 ## Activar la clase
 
-El contenido vive por curso: `src/content/<curso>/` con sus `claseNN.js`, su
-`glossary.js` y un `curso.js` que exporta `{ classes, glossary }`. El registro de
-cursos es `src/content/courses.js`.
+El contenido vive por curso: `src/content/<curso>/` con sus `claseNN.js` y un
+`curso.js` que exporta `{ classes }`. El registro de cursos es
+`src/content/courses.js`; el glosario, `src/content/glossary.js`, es compartido.
 
 1. Generá el feed de info:
    `node scripts/md-to-cards.mjs "<transcripción.md>" src/content/<curso>/claseNN.js`

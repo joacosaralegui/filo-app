@@ -54,8 +54,9 @@ Seguí este proceso, respetando la guía `CONTENIDO.md` del repo:
    el material lo permita, más 1–2 `short` con los términos centrales. El `match`
    de repaso final va **antes** de la card de conclusión: la clase cierra con el
    texto de cierre, nunca con un ejercicio.
-6. **Alimentá el glosario** `src/content/contemporanea/glossary.js` con los autores/
-   conceptos/obras/eventos nuevos, con fechas. No dupliques slugs ni alias existentes.
+6. **Alimentá el glosario** `src/content/glossary.js` (único para todos los cursos) con
+   los autores/conceptos/obras/eventos nuevos, con fechas. No dupliques slugs ni alias
+   existentes: si el término ya está desde otro curso, no lo repitas.
 7. **Activá la clase** en `src/content/contemporanea/curso.js`: importá `claseNN.js` y
    asignálo al `content` de la entrada correspondiente.
 8. **Validá:** corré `npm --prefix /home/joaco/joaco/filo-app run check` y

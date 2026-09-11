@@ -1,6 +1,6 @@
 // Curso: Historia intelectual europea desde Nietzsche.
 //
-// Manifiesto de contenido: el índice de clases y el glosario del curso. El
+// Manifiesto de contenido: el índice de clases del curso. El
 // registro liviano (título, portada, tema) vive en ../courses.js y carga este
 // archivo bajo demanda.
 //
@@ -13,7 +13,6 @@
 // `content`: el feed de la clase si ya está disponible; null si está bloqueada.
 // Para habilitar una clase, importá su archivo de contenido y asignálo acá.
 
-import { GLOSSARY } from "./glossary.js";
 import clase01 from "./clase06.js"; // app Clase 1 = transcripción 6
 import clase02 from "./clase07.js"; // app Clase 2 = transcripción 7
 import clase03 from "./clase08.js"; // app Clase 3 = transcripción 8
@@ -58,4 +57,4 @@ export const classes = [
   { num: 20, transcript: 25, title: "De la modernidad a la posmodernidad", era: "Posmodernidad", content: clase20 },
 ];
 
-export default { classes, glossary: GLOSSARY };
+export default { classes };

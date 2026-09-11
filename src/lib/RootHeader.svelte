@@ -1,5 +1,5 @@
 <script>
-  // Header de las pantallas raíz (Inicio, Cursos, Álbum).
+  // Header de las pantallas raíz (Inicio, Cursos, Glosario, Álbum).
   //
   // Es la portada en arco de la home, ahora compartida: la lámina recortada en
   // domo, un disco ocre asomando por detrás y el título encima. Los motivos
@@ -24,12 +24,17 @@
   // `zoom` cuán cerca. Va por la propiedad `scale`, que es independiente de
   // `transform` — así no pelea con nada que anime el elemento.
   export let zoom = 1;
+  // Punto fijo del acercamiento (`transform-origin`). Por defecto el centro:
+  // `zoom` agranda lo que haya en el medio del arco. Para acercarse a un
+  // detalle que no está en el medio (el libro abierto de la lámina de Cursos,
+  // abajo a la derecha), se corre el origen hacia él.
+  export let origin = "50% 50%";
 </script>
 
 <header class="cover-wrap mb-8">
   <span class="cover-disc" aria-hidden="true"></span>
   <div class="cover" style="--wash: {wash}">
-    <img class="cover-img" style="object-position: {position}; scale: {zoom}" src={img} alt="" />
+    <img class="cover-img" style="object-position: {position}; scale: {zoom}; transform-origin: {origin}" src={img} alt="" />
     <div class="cover-text">
       <h1
         class="m-0 font-serif text-[clamp(30px,9.5vw,42px)] leading-none font-semibold tracking-[0.08em] text-text uppercase"

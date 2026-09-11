@@ -2,8 +2,8 @@
   // Barra de navegación inferior: cuatro destinos raíz.
   //
   //   Inicio     dónde quedaste, desafío, álbum
-  //   Cursos     el catálogo
-  //   Recorrido  el curso que estás haciendo; sin ninguno, lleva a Cursos
+  //   Cursos     el catálogo, y debajo cada curso y sus clases
+  //   Glosario   buscador de términos y clases
   //   Álbum      la colección
   //
   // No aparece dentro de una clase ni en el desafío: ahí el feed es inmersivo
@@ -15,16 +15,10 @@
   // color y no un cambio de tono—, y el label viaja en `aria-label` para que
   // el lector de pantalla siga teniendo el nombre.
   import { createEventDispatcher } from "svelte";
-  import { progress } from "./progress.js";
 
-  export let active = "inicio"; // "inicio" | "recorrido" | "cursos" | "album"
+  export let active = "inicio"; // "inicio" | "cursos" | "glosario" | "album"
 
   const dispatch = createEventDispatcher();
-
-  // El curso actual es el último que tocaste. Sin ninguno el ítem NO se apaga:
-  // lleva a Cursos, que es exactamente lo que hace falta para tener uno. Un
-  // tab deshabilitado es una pared que no explica nada.
-  $: cursoId = $progress.lastCourse || null;
 
   const items = [
     {
@@ -40,11 +34,9 @@
       ],
     },
     {
-      id: "recorrido",
-      label: "Recorrido",
-      // ruta con codo: de dónde saliste (el punto) hacia dónde vas (la punta)
-      paths: ["M5 16.4V9.5A4 4 0 0 1 9 5.5h7.4", "M14.3 3.3 16.8 5.5 14.3 7.7"],
-      dots: [[5, 18.7]],
+      id: "glosario",
+      label: "Glosario",
+      paths: ["M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13z", "M15.3 15.3 20 20"],
     },
     { id: "album", label: "Álbum", grid: true },
   ];
@@ -60,7 +52,7 @@
         class="flex flex-1 cursor-pointer items-center justify-center border-0 bg-transparent py-[13px] [font-family:inherit] {on
           ? 'text-accent'
           : 'text-text-soft/65'}"
-        on:click={() => dispatch(it.id, it.id === "recorrido" ? { id: cursoId } : undefined)}
+        on:click={() => dispatch(it.id)}
         aria-current={on ? "page" : undefined}
         aria-label={it.label}
       >

@@ -1,12 +1,12 @@
 // Registro de cursos.
 //
 // Cada entrada es un manifiesto LIVIANO: sólo lo que necesita la pantalla de
-// selección. El contenido (clases + glosario) se carga bajo demanda con
+// selección. El contenido (las clases) se carga bajo demanda con
 // `load()`, así el bundle inicial no arrastra los cursos que no se abren.
 //
-// Para sumar un curso: creá `src/content/<id>/` con sus `claseNN.js`, su
-// `glossary.js` y un `curso.js` que exporte `{ classes, glossary }`, y agregá
-// acá su entrada. No hay nada más que tocar.
+// Para sumar un curso: creá `src/content/<id>/` con sus `claseNN.js` y un
+// `curso.js` que exporte `{ classes }`, y agregá acá su entrada. El glosario es
+// uno solo para todos los cursos (`src/content/glossary.js`).
 //
 // Campos:
 //   id       : slug estable (además es la clave del progreso guardado)

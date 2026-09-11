@@ -1,6 +1,6 @@
 // Curso: Historia de las ideas en la modernidad.
 //
-// Manifiesto de contenido: el índice de clases y el glosario del curso. El
+// Manifiesto de contenido: el índice de clases del curso. El
 // registro liviano (título, portada, tema) vive en ../courses.js y carga este
 // archivo bajo demanda.
 //
@@ -11,7 +11,6 @@
 // `content`: el feed de la clase si ya está disponible; null si está bloqueada.
 // Para habilitar una clase, importá su archivo de contenido y asignálo acá.
 
-import { GLOSSARY } from "./glossary.js";
 import clase01 from "./clase01.js";
 import clase02 from "./clase02.js";
 import clase03 from "./clase03.js";
@@ -58,4 +57,4 @@ export const classes = [
   { num: 21, transcript: 21, title: "Marx: el último hegeliano", era: "Materialismo", content: clase21 },
 ];
 
-export default { classes, glossary: GLOSSARY };
+export default { classes };

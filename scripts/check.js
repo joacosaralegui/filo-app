@@ -1,9 +1,10 @@
 // Validación de contenido: corré `npm run check`.
 // Chequea las clases activas y el glosario, y sale con código 1 si hay errores.
 import { COURSES } from "../src/content/courses.js";
+import { GLOSSARY } from "../src/content/glossary.js";
 
-// El contenido vive por curso (src/content/<id>/curso.js): se cargan todos y se
-// validan juntos. Cada curso trae sus clases y su propio glosario.
+// Las clases viven por curso (src/content/<id>/curso.js): se cargan todas y se
+// validan juntas. El glosario es uno solo (src/content/glossary.js).
 const CONTENT = [];
 for (const meta of COURSES) CONTENT.push({ id: meta.id, ...(await meta.load()).default });
 const CLASSES = CONTENT.flatMap((c) => c.classes.map((k) => ({ ...k, courseId: c.id })));
@@ -124,25 +125,22 @@ for (const c of CLASSES) {
 }
 
 // ---- glosario ----
-// Por curso: dos cursos distintos pueden repetir un slug o un alias sin que sea
-// un problema, porque nunca están cargados a la vez.
-let terms = 0;
-for (const course of CONTENT) {
-  const seenAlias = new Map();
-  for (const [slug, e] of Object.entries(course.glossary)) {
-    terms += 1;
-    const tag = `${course.id} · glosario · ${slug}`;
-    if (!e.term) errors.push(`${tag}: sin term`);
-    if (!KINDS.has(e.kind)) errors.push(`${tag}: kind inválido (${e.kind})`);
-    if (!e.body) errors.push(`${tag}: sin body`);
-    if (!e.when) warnings.push(`${tag}: sin when (fechas)`);
-    const akas = e.aka && e.aka.length ? e.aka : [e.term];
-    for (const a of akas) {
-      const k = String(a).toLowerCase();
-      if (seenAlias.has(k) && seenAlias.get(k) !== slug)
-        warnings.push(`${tag}: alias "${a}" ya usado por "${seenAlias.get(k)}"`);
-      else seenAlias.set(k, slug);
-    }
+// Uno solo para toda la app. Un alias declarado por dos entradas rompe el
+// auto-linkeo en silencio (gana una y la otra nunca se linkea): es error.
+const terms = Object.keys(GLOSSARY).length;
+const seenAlias = new Map();
+for (const [slug, e] of Object.entries(GLOSSARY)) {
+  const tag = `glosario · ${slug}`;
+  if (!e.term) errors.push(`${tag}: sin term`);
+  if (!KINDS.has(e.kind)) errors.push(`${tag}: kind inválido (${e.kind})`);
+  if (!e.body) errors.push(`${tag}: sin body`);
+  if (!e.when) warnings.push(`${tag}: sin when (fechas)`);
+  const akas = e.aka && e.aka.length ? e.aka : [e.term];
+  for (const a of akas) {
+    const k = String(a).toLowerCase();
+    if (seenAlias.has(k) && seenAlias.get(k) !== slug)
+      errors.push(`${tag}: alias "${a}" ya usado por "${seenAlias.get(k)}"`);
+    else seenAlias.set(k, slug);
   }
 }
 
