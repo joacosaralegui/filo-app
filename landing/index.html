@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pensadores — Probá la beta</title>
+<meta name="description" content="Pensadores.ar es una app para explorar la historia de la filosofía, de a una tarjeta por vez. Buscamos 20 personas para probar la versión beta en Android." />
+<meta property="og:title" content="Pensadores — Probá la beta" />
+<meta property="og:description" content="Una app para explorar la historia de la filosofía. Buscamos 20 personas para probar la beta en Android." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://pensadores.ar/img/screen-correcto.webp" />
+<meta name="theme-color" content="#faf9ef" />
+<link rel="icon" type="image/png" href="img/logo.png" />
+<style>
+  :root {
+    --bg: #faf9ef;
+    --surface: #fffdf4;
+    --surface-2: #f6efcf;
+    --surface-3: #e2ceb0;
+    --line: #eae1c0;
+    --text: #44552a;
+    --text-soft: #47422f;
+    --accent: #606c38;
+    --on-accent: var(--bg);
+    --accent-2: #dda15e;
+    --accent-3: #bc6c25;
+    --good: #2292a4;
+    --good-ink: #17707e;
+    --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", ui-serif, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    padding: 28px 18px 60px;
+  }
+
+  main {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 34px;
+  }
+
+  header img {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    flex: none;
+  }
+
+  header .wordmark {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    color: var(--text);
+  }
+
+  header .beta-tag {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--accent-3);
+    background: color-mix(in srgb, var(--accent-2) 22%, transparent);
+    border-radius: 999px;
+    padding: 5px 11px;
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 34px;
+    line-height: 1.18;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    margin: 0 0 14px;
+    color: var(--text);
+  }
+
+  .lead {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text-soft);
+    margin: 0 0 32px;
+    max-width: 46ch;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 24px 22px;
+    margin-bottom: 20px;
+  }
+
+  .card .eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    opacity: 0.75;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .card h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    color: var(--text);
+  }
+
+  ul.facts {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  ul.facts li {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  ul.facts .ico {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    background: var(--surface-2);
+    flex: none;
+    font-size: 15px;
+  }
+
+  .cta {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--accent);
+    color: var(--on-accent);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 16px;
+    border-radius: 14px;
+    padding: 16px;
+    transition: transform 0.08s ease;
+  }
+
+  .cta:active { transform: scale(0.98); }
+
+  .fineprint {
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-soft);
+    opacity: 0.75;
+    margin: 12px 0 0;
+  }
+
+  .doom {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-soft);
+    background: var(--surface-3);
+    border-radius: 16px;
+    padding: 16px 18px;
+    margin: 0 0 40px;
+  }
+  .doom strong { color: var(--text); }
+
+  .shots h2 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    text-align: center;
+  }
+
+  .shots-row {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 4px 4px 12px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .shots-row::-webkit-scrollbar { display: none; }
+
+  .phone {
+    flex: none;
+    width: 165px;
+    scroll-snap-align: start;
+    border-radius: 22px;
+    border: 6px solid var(--surface);
+    box-shadow: 0 10px 28px -14px color-mix(in srgb, var(--text) 55%, transparent);
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .phone img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  footer {
+    margin-top: 44px;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--text-soft);
+    opacity: 0.7;
+  }
+
+  @media (min-width: 640px) {
+    .shots-row {
+      overflow: visible;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .phone { width: 190px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="img/logo.png" alt="" />
+    <span class="wordmark">PENSADORES</span>
+    <span class="beta-tag">Beta cerrada</span>
+  </header>
+
+  <h1>Una app para explorar la historia de la filosofía</h1>
+  <p class="lead">
+    De Descartes a Foucault, de a una tarjeta por vez: clases cortas, cromos
+    coleccionables y preguntas que se sienten más a juego que a estudio.
+  </p>
+
+  <p class="doom">
+    Pensada para <strong>reemplazar el scroll sin sentido</strong>: el mismo
+    formato de tarjetas y deslizar que ya conocés, pero cada una te deja algo.
+  </p>
+
+  <div class="card">
+    <span class="eyebrow">Buscamos testers</span>
+    <h2>Estamos buscando 20 personas para probar la versión beta</h2>
+    <ul class="facts">
+      <li><span class="ico">📱</span> Android</li>
+      <li><span class="ico">⏱️</span> 5–10 minutos para probarla</li>
+      <li><span class="ico">💬</span> Buscamos tu opinión sobre contenido, navegación y experiencia</li>
+    </ul>
+    <a class="cta" href="https://play.google.com/apps/internaltest/4701162273871307879" target="_blank" rel="noopener">
+      Probar Pensadores.ar →
+    </a>
+    <p class="fineprint">Es gratis y no necesitás conocimientos técnicos.</p>
+  </div>
+
+  <section class="shots">
+    <h2>Así se ve por dentro</h2>
+    <div class="shots-row">
+      <div class="phone"><img src="img/screen-home.webp" alt="Pantalla de inicio de Pensadores" loading="lazy" /></div>
+      <div class="phone"><img src="img/screen-quiz.webp" alt="Pregunta de una clase" loading="lazy" /></div>
+      <div class="phone"><img src="img/screen-correcto.webp" alt="Respuesta correcta con animación" loading="lazy" /></div>
+      <div class="phone"><img src="img/screen-album.webp" alt="Álbum de cromos coleccionables" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <footer>
+    Pensadores.ar · beta cerrada de Android
+  </footer>
+</main>
+</body>
+</html>
