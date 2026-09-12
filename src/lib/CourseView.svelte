@@ -101,7 +101,7 @@
           {#if cr}
             <span class="h-12 w-12 flex-none overflow-hidden rounded-xl bg-surface-2">
               <img
-                class="h-full w-full object-cover {crGot ? '' : 'opacity-45 grayscale-[0.9]'}"
+                class="h-full w-full object-cover {crGot ? 'opacity-65' : 'opacity-45 grayscale-[0.9]'}"
                 src={cr.img}
                 alt=""
               />

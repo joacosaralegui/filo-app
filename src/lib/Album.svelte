@@ -26,13 +26,13 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+100px)]"
 >
-  <RootHeader img={portada} title="Álbum" wash={0.35} position="50% 28%" zoom={2} />
+  <RootHeader img={portada} title="Cromos" wash={0.35} position="50% 28%" zoom={2} />
 
   <!-- Un curso, una tarjeta. Sirve para dos cosas: le da al álbum la misma
        caja blanca que Inicio y Cursos tienen debajo del arco, y hace que la
        división entre cursos se vea como estructura y no como un salto de aire.
-       La grilla es de cuatro y no de tres: con cromos más chicos cada tarjeta
-       es bastante más corta, y la segunda asoma sin tener que scrollear tanto. -->
+       La grilla es de dos columnas: con cuatro, en mobile los cromos y sus
+       nombres quedaban demasiado chicos para leerse bien. -->
   {#each secciones as seccion (seccion.titulo)}
     {@const tiene = seccion.cromos.filter((c) => ganados[c.slug]).length}
     <section class="mb-4 rounded-[20px] bg-surface p-4">
@@ -47,7 +47,7 @@
         </span>
       </header>
 
-      <div class="grid grid-cols-4 gap-x-2 gap-y-3.5">
+      <div class="grid grid-cols-2 gap-x-3 gap-y-4">
         {#each seccion.cromos as c (c.slug)}
           {@const got = !!ganados[c.slug]}
           <!-- Tocar un cromo lleva a su clase. En los bloqueados es lo que
@@ -62,7 +62,7 @@
                  estados es lo que hace que llenar el álbum se sienta. -->
             <div class="aspect-square w-full overflow-hidden rounded-[10px] bg-surface-2">
               <img
-                class="h-full w-full object-cover {got ? '' : 'opacity-45 grayscale-[0.9]'}"
+                class="h-full w-full object-cover {got ? 'opacity-65' : 'opacity-45 grayscale-[0.9]'}"
                 src={c.img}
                 alt=""
               />

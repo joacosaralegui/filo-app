@@ -200,7 +200,7 @@
       placeholder="Buscar autores, conceptos o clases"
       bind:value={q}
     />
-    <div class="flex gap-2 overflow-x-auto">
+    <div class="flex flex-wrap gap-2">
       {#each FILTROS as f (f.id)}
         <button
           class="flex-none cursor-pointer rounded-full border px-3 py-1.5 text-[13px] font-bold [font-family:inherit] {filtro ===

@@ -1,5 +1,5 @@
 <script>
-  // Header de las pantallas raíz (Inicio, Cursos, Glosario, Álbum).
+  // Header de las pantallas raíz (Inicio, Cursos, Glosario, Cromos).
   //
   // Es la portada en arco de la home, ahora compartida: la lámina recortada en
   // domo, un disco ocre asomando por detrás y el título encima. Los motivos

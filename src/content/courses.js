@@ -26,6 +26,19 @@
 
 export const COURSES = [
   {
+    id: "antigua",
+    title: "Filosofía antigua",
+    subtitle: "Del pensamiento griego al cristianismo temprano.",
+    blurb: "Platón, Aristóteles y otras grandes figuras de la filosofía occidental.",
+    portada: "montaigne",
+    source: {
+      label: "A History of Philosophy — Dr. Arthur Holmes, Wheaton College",
+      url: "https://biblicalelearning.org/history-of-philosophy-holmes/",
+    },
+    numOffset: 0,
+    load: () => import("./antigua/curso.js"),
+  },
+  {
     id: "contemporanea",
     title: "Filosofía contemporánea",
     subtitle: "De Nietzsche a hoy",

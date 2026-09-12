@@ -10,6 +10,26 @@
 // `tipo`  "autor" | "idea" — sólo para matizar la ficha del cromo
 
 export const CROMOS = [
+  // ---------- Filosofía antigua ----------
+  { slug: "arche", nombre: "Physis y arché", tipo: "idea", curso: "antigua", clase: 1 },
+  { slug: "homero", nombre: "Homero", tipo: "autor", curso: "antigua", clase: 2 },
+  { slug: "sofistas", nombre: "Los sofistas", tipo: "idea", curso: "antigua", clase: 3 },
+  { slug: "socrates", nombre: "Sócrates", tipo: "autor", curso: "antigua", clase: 4 },
+  { slug: "platon", nombre: "Platón", tipo: "autor", curso: "antigua", clase: 5 },
+  { slug: "caverna", nombre: "El mito de la caverna", tipo: "idea", curso: "antigua", clase: 6 },
+  { slug: "carro-alado", nombre: "El carro alado", tipo: "idea", curso: "antigua", clase: 7 },
+  { slug: "ciudad-justa", nombre: "La ciudad justa", tipo: "idea", curso: "antigua", clase: 8 },
+  { slug: "cosmos-ordenado", nombre: "El cosmos ordenado", tipo: "idea", curso: "antigua", clase: 9 },
+  { slug: "aristoteles", nombre: "Aristóteles", tipo: "autor", curso: "antigua", clase: 10 },
+  { slug: "aristoteles", nombre: "Aristóteles", tipo: "autor", curso: "antigua", clase: 11 },
+  { slug: "alma-forma", nombre: "El alma como forma", tipo: "idea", curso: "antigua", clase: 12 },
+  { slug: "aristoteles", nombre: "Aristóteles", tipo: "autor", curso: "antigua", clase: 13 },
+  { slug: "placer-bien-entendido", nombre: "El placer bien entendido", tipo: "idea", curso: "antigua", clase: 14 },
+  { slug: "estoicos", nombre: "Los estoicos", tipo: "idea", curso: "antigua", clase: 15 },
+  { slug: "suspension-del-juicio", nombre: "La suspensión del juicio", tipo: "idea", curso: "antigua", clase: 16 },
+  { slug: "el-uno", nombre: "El Uno", tipo: "idea", curso: "antigua", clase: 17 },
+  { slug: "padres-iglesia", nombre: "Los Padres de la Iglesia", tipo: "idea", curso: "antigua", clase: 18 },
+
   // ---------- Filosofía moderna ----------
   { slug: "montaigne", nombre: "Michel de Montaigne", tipo: "autor", curso: "moderna", clase: 1 },
   { slug: "nueva-ciencia", nombre: "La matematización de la naturaleza", tipo: "idea", curso: "moderna", clase: 2 },

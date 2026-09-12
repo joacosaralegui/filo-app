@@ -20,12 +20,40 @@ export const GLOSSARY = {
     when: "1903–1969",
     body: "Filósofo, musicólogo y teórico social alemán, nacido en una familia de altísima cultura burguesa. Su tesis doctoral fue sobre la fenomenología de Husserl, pero sus intereses abarcaban desde la música de Schoenberg hasta la sociología de la cultura de masas. Junto con Horkheimer escribió Dialéctica de la Ilustración, la obra más densa e influyente de la Escuela de Frankfurt. ¿Por qué es tan conocido? En buena parte por una frase que se volvió célebre: «escribir poesía después de Auschwitz es un acto de barbarie». Con ella Adorno condensaba una pregunta enorme: ¿puede la cultura seguir funcionando como si nada tras el genocidio? Más tarde matizaría esa sentencia, persuadido por la obra del poeta Paul Celan, que demostró que la poesía era posible e incluso necesaria después del horror.",
   },
+  anaxagoras: {
+    term: "Anaxágoras",
+    aka: ["Anaxágoras"],
+    kind: "autor",
+    when: "ca. 500–428 a.C.",
+    body: "Filósofo presocrático de Clazómenas, el primero en llevar la actividad filosófica a Atenas —fue maestro y amigo de Pericles—. Frente al problema de cómo explicar la diversidad cualitativa del mundo, propuso que existen infinitas «semillas» (spermata), una para cada tipo de sustancia —hueso, carne, oro—, de modo que «todo está en todo»: cada cosa contiene porciones de todas las demás, y lo que la define es cuál predomina. Para explicar por qué esa mezcla infinita no es un caos, introdujo el nous («mente» o «inteligencia»), un principio ordenador separado de la materia, puro y autónomo, que pone en movimiento y organiza las semillas. Es, junto con Empédocles, uno de los primeros en distinguir explícitamente entre la materia y la fuerza que la mueve, un paso decisivo hacia el vocabulario de causa material y causa eficiente que después sistematizará Aristóteles. Acusado de impiedad por sostener que el sol era una piedra incandescente y no un dios, tuvo que huir de Atenas. Platón le reprocharía después no haber sacado todo el partido posible a su propio descubrimiento: introduce el nous pero después lo usa poco, recurriendo otra vez a explicaciones puramente mecánicas.",
+  },
+  anaximandro: {
+    term: "Anaximandro",
+    aka: ["Anaximandro"],
+    kind: "autor",
+    when: "ca. 610–546 a.C.",
+    body: "Filósofo de Mileto, discípulo o socio de Tales y, junto con él y Anaxímenes, uno de los tres milesios con los que arranca convencionalmente la filosofía occidental. A diferencia de Tales, no elige un elemento observable como principio (arché) de todas las cosas, sino algo más abstracto: el ápeiron, «lo ilimitado» o «lo indefinido», una sustancia sin cualidades determinadas de la que surgen, por un proceso de separación de opuestos —caliente/frío, húmedo/seco—, todas las cosas particulares, y a la que vuelven cuando perecen, «pagando penitencia unas a otras por su injusticia», según la única frase suya que se conserva casi literal. Es también, junto con Tales, uno de los primeros en proponer explicaciones naturalistas para fenómenos como los terremotos o los eclipses, y se le atribuye el primer mapa del mundo conocido y una teoría rudimentaria de la evolución de los seres vivos a partir de criaturas acuáticas. Su apuesta por un principio abstracto e indeterminado, en lugar de un elemento concreto, lo convierte en el primer filósofo que piensa el origen del cosmos en términos genuinamente metafísicos y no solo materiales.",
+  },
+  anaximenes: {
+    term: "Anaxímenes",
+    aka: ["Anaxímenes"],
+    kind: "autor",
+    when: "ca. 586–526 a.C.",
+    body: "El tercero de los milesios, más joven que Tales y Anaximandro. Vuelve a un elemento concreto como principio de todas las cosas, pero no el agua sino el aire, y da un paso metodológico importante: en vez de limitarse a nombrar el elemento, propone un mecanismo explícito de transformación. El aire, dice, se vuelve fuego cuando se enrarece (se dilata) y viento, nube, agua, tierra y piedra en grados sucesivos de condensación. Es, en ese sentido, el primero en intentar dar cuenta de la diversidad del mundo mediante cambios cuantitativos —más o menos densidad— de una única sustancia cualitativa, un antecedente lejano de la física atomista posterior. Comparaba también el aire cósmico con el alma que sostiene el cuerpo humano, un paralelismo entre microcosmos y macrocosmos que va a repetirse a lo largo de toda la filosofía griega.",
+  },
   anna_freud: {
     term: "Anna Freud",
     aka: ["Anna Freud"],
     kind: "autor",
     when: "1895–1982",
     body: "Hija menor de Sigmund Freud y una de las figuras más importantes del psicoanálisis después de su padre. Anna Freud fue analizada por el propio Sigmund, algo que hoy se consideraría éticamente inaceptable, y dedicó su vida a desarrollar y defender la teoría psicoanalítica. Su contribución más original fue la sistematización de los mecanismos de defensa del yo, expuesta en El yo y los mecanismos de defensa (1936): la represión, la proyección, la negación, la sublimación y otros procesos por los que el yo se protege de la angustia. Anna Freud también fue pionera del psicoanálisis infantil, adaptando la técnica de su padre para trabajar con niños. Cuando los nazis anexionaron Austria en 1938, Anna fue detenida e interrogada por la Gestapo; la familia logró emigrar a Londres, donde Anna fundó la Hampstead War Nursery para niños afectados por los bombardeos y luego la Hampstead Clinic, uno de los centros más importantes de formación psicoanalítica del mundo. Cuidó a su padre hasta la muerte de Sigmund en 1939 y custodió su legado intelectual durante las décadas siguientes.",
+  },
+  antifonte: {
+    term: "Antifonte",
+    aka: ["Antifonte", "Antiphon"],
+    kind: "autor",
+    when: "s. V a.C.",
+    body: "Sofista ateniense —los especialistas discuten si es la misma persona que el orador y político oligárquico del mismo nombre—, conocido sobre todo por un tratado, Sobre la verdad, que sobrevive en fragmentos de papiro descubiertos recién a fines del siglo XIX. Sostiene que las leyes (nómos) son un acuerdo útil pero artificial: conviene respetarlas cuando hay testigos, porque violarlas trae castigo social, pero el interés propio, la physis, sigue operando por debajo incluso cuando nadie mira. Es uno de los primeros textos que formulan con crudeza la posible distancia entre lo que la ley exige y lo que la naturaleza empuja a hacer.",
   },
   arendt: {
     term: "Hannah Arendt",
@@ -118,6 +146,13 @@ export const GLOSSARY = {
     when: "1878–1965",
     body: "Filósofo nacido en Viena, formado en la cultura del jasidismo de Europa oriental. Por fuera del linaje directo de Husserl, llega desde otra tradición a una respuesta paralela sobre el problema del otro: publica en 1923 Yo y Tú, el libro que distingue la actitud Yo-Ello del encuentro Yo-Tú. Judío y sionista, deja Alemania en 1938 huyendo de la persecución nazi y se instala en Jerusalén, donde enseña en la Universidad Hebrea el resto de su vida.",
   },
+  calicles: {
+    term: "Calicles",
+    aka: ["Calicles"],
+    kind: "autor",
+    when: "personaje del Gorgias de Platón, fl. s. V a.C.",
+    body: "Personaje del diálogo Gorgias de Platón, del que no hay rastro fuera de esa obra, por lo que algunos estudiosos dudan de que haya existido realmente. Sostiene la versión más radical del argumento a favor de la physis frente al nómos: la ley, dice, es un invento de la mayoría débil para atarles las manos a los pocos que, por naturaleza, son más fuertes y merecen gobernar y tomar más. Lo que la convención humana llama «injusticia» —que el fuerte domine al débil— es, para Calicles, simplemente lo que la naturaleza muestra en cualquier otra especie animal. Platón lo usa como el interlocutor más peligroso de Sócrates, el que lleva el razonamiento sofista hasta sus últimas consecuencias políticas.",
+  },
   cantor: {
     term: "Georg Cantor",
     aka: ["Georg Cantor", "Cantor"],
@@ -153,6 +188,13 @@ export const GLOSSARY = {
     when: "1473–1543",
     body: "Astrónomo polaco que propone en Sobre las revoluciones de los orbes celestes (1543) el modelo heliocéntrico: la Tierra y los demás planetas giran alrededor del Sol, en lugar del modelo geocéntrico ptolemaico adoptado por la astronomía aristotélica medieval. Su propuesta, aunque conserva el prejuicio antiguo de las órbitas circulares, inaugura el proceso de matematización de la naturaleza que Kepler, Galileo y Newton llevarán a su forma madura.",
   },
+  cratilo: {
+    term: "Cratilo",
+    aka: ["Cratilo", "Cratylus"],
+    kind: "autor",
+    when: "s. V a.C.",
+    body: "Filósofo ateniense, discípulo de Heráclito y, según cuenta Aristóteles (Metafísica I 6), maestro del joven Platón antes de que este conociera a Sócrates —lo que explicaría el interés platónico, ya de adulto, por el problema del devenir—. Cratilo radicaliza la doctrina del maestro hasta un extremo que el propio Heráclito no sostiene: si todo cambia sin cesar, ni siquiera es posible nombrar las cosas con precisión, porque para cuando se termina de decir una palabra, aquello que nombraba ya cambió. Aristóteles cuenta que, coherente con su propia doctrina, Cratilo terminó por dejar de hablar del todo y limitarse a mover el dedo. Es a esta versión extrema —y no a Heráclito mismo— a la que pertenece la fórmula popular «no te bañas dos veces en el mismo río»: el fragmento auténtico de Heráclito (DK B12) es más moderado, y admite que el río, pese al cambio del agua, permanece el mismo. Platón dedica un diálogo entero, el Crátilo, a discutir con esta postura, en torno a si los nombres reflejan la naturaleza de las cosas o son pura convención.",
+  },
   dalembert: {
     term: "Jean le Rond d'Alembert",
     aka: ["d'Alembert", "Jean le Rond d'Alembert"],
@@ -166,6 +208,13 @@ export const GLOSSARY = {
     kind: "autor",
     when: "1919–1983",
     body: "Crítico literario belga-estadounidense, amigo íntimo de Jacques Derrida, que hizo de Yale un centro de la deconstrucción en Estados Unidos. ¿Cuál era su tesis? Que la literatura se deconstruye sola, que todo texto socava su propio significado. Tras su muerte se descubrió que de joven Paul de Man había escrito para diarios colaboracionistas nazis en Bélgica, lo que desató una crisis en torno a la deconstrucción y a la respuesta doliente de Derrida, acusado de proteger a su amigo.",
+  },
+  democrito: {
+    term: "Demócrito",
+    aka: ["Demócrito"],
+    kind: "autor",
+    when: "ca. 460–370 a.C.",
+    body: "Filósofo de Abdera, discípulo de Leucipo, con quien desarrolla el atomismo: la tesis de que toda la realidad física está compuesta por átomos (de átomos, «indivisible»), partículas eternas, indestructibles e infinitamente numerosas que se diferencian solo por su forma, tamaño y posición, moviéndose en un vacío igualmente real. La cualidad —color, sabor, temperatura— no existe «por naturaleza» sino «por convención»: es el efecto subjetivo que las combinaciones de átomos producen en quien percibe. Con eso da la primera formulación rigurosa de una distinción que va a ser central en toda la filosofía moderna, la de cualidades primarias (forma, tamaño, movimiento, reales en el objeto) y secundarias (color, sabor, dependientes del observador). Su cosmos es estrictamente mecanicista: los átomos chocan y se combinan al azar, sin ningún propósito ni inteligencia que los dirija, formando por pura necesidad física los mundos, los cuerpos y hasta el alma, hecha también de átomos, los más finos y redondos, los de fuego. En ética defendió la euthymia, la «buena disposición de ánimo», un ideal de serenidad y moderación que anticipa a los epicúreos. Fue un autor prolífico —se le atribuyen más de setenta títulos— del que casi nada sobrevivió completo; se lo conoce sobre todo por citas y resúmenes de autores posteriores, entre ellos Aristóteles, que lo discute con frecuencia y respeto pese a rechazar su mecanicismo.",
   },
   derrida: {
     term: "Jacques Derrida",
@@ -229,6 +278,20 @@ export const GLOSSARY = {
     kind: "autor",
     when: "1879–1955",
     body: "Físico alemán, autor de la teoría de la relatividad especial (1905) y general (1915), probablemente el científico más célebre del siglo XX. En 1922 se produjo un famoso encuentro entre Einstein y Henri Bergson en la Sociedad Francesa de Filosofía. La disputa giraba en torno a una pregunta fundamental: ¿qué es el tiempo? Para Einstein, el tiempo es lo que miden los relojes: una magnitud física, divisible en instantes, relativa al observador y a su velocidad. Bergson objetó que esa definición deja algo afuera: el tiempo tal como lo experimentamos, la «durée», que es flujo continuo, indivisible y cualitativo. ¿Puede un reloj captar la diferencia entre un minuto de aburrimiento y un minuto de alegría? Einstein respondió con sequedad que no existe un «tiempo de los filósofos». Para Bergson, sin embargo, reducir el tiempo a instantes medibles elimina la contingencia y el libre albedrío, porque en un universo de puras mediciones todo queda determinado de antemano. La polémica ilustra la tensión entre la ciencia y la experiencia vivida que atraviesa toda la filosofía del siglo XX.",
+  },
+  empedocles: {
+    term: "Empédocles",
+    aka: ["Empédocles"],
+    kind: "autor",
+    when: "ca. 494–434 a.C.",
+    body: "Filósofo, médico, orador y hasta reformador político de Agrigento, en Sicilia, rodeado de una biografía casi legendaria —se lo describía como taumaturgo, capaz de curar enfermedades y controlar el clima, y una tradición sostiene que murió arrojándose al cráter del Etna para hacer creer que había ascendido como un dios—. Filosóficamente propone una síntesis pluralista frente al monismo de los milesios y al monismo absoluto de los eleatas: la realidad está hecha de cuatro «raíces» —fuego, aire, agua y tierra—, eternas e inmutables, que no se transforman unas en otras sino que se combinan y separan en proporciones distintas para formar todas las cosas, del mismo modo en que un pintor combina un número limitado de colores. Lo que mueve ese proceso de combinación y separación son dos fuerzas cósmicas opuestas, Amor (Philia) y Odio (Neikos), que se alternan en un ciclo cósmico infinito: cuando domina el Amor todo tiende a la unidad total, una esfera perfecta sin partes distinguibles; cuando domina el Odio los elementos se separan por completo. El mundo tal como lo conocemos, con cosas diferenciadas y reconocibles, solo existe en las fases intermedias del ciclo: estas dos fuerzas —atracción y repulsión personificadas— son, en el fondo, un antecedente mitológico y poético de lo que después se pensará como fuerzas físicas.",
+  },
+  esquilo: {
+    term: "Esquilo",
+    aka: ["Esquilo", "Aeschylus"],
+    kind: "autor",
+    when: "ca. 525–456 a.C.",
+    body: "Dramaturgo ateniense, el más antiguo de los tres grandes trágicos griegos junto con Sófocles y Eurípides, y veterano de las guerras médicas: peleó en Maratón. De sus más de ochenta obras sólo sobreviven siete completas, entre ellas la única trilogía trágica griega que se conserva entera, la Orestíada (458 a. C.). Su teatro dramatiza el mismo problema que preocupa a los primeros filósofos —qué es el orden, y qué pasa cuando se rompe—, pero en el terreno de la acción humana: la hybris, el exceso que desafía los límites propios, desata una cadena de consecuencias que sólo se detiene cuando aparece una instancia capaz de juzgar en lugar de vengarse. Esquilo muere en Sicilia; según una leyenda tardía, un águila le dejó caer una tortuga en la cabeza, confundiendo su calvicie con una piedra.",
   },
   engels: {
     term: "Friedrich Engels",
@@ -314,6 +377,13 @@ export const GLOSSARY = {
     when: "1717–1786",
     body: "Pastor luterano principal de Hamburgo, defensor de la ortodoxia bíblica, que encabezó la controversia pública contra Lessing a raíz de la publicación de los fragmentos de Reimarus. Su enfrentamiento con Lessing es el episodio que lleva a Lessing a trasladar su crítica religiosa del ensayo teológico al teatro, con Natán el sabio.",
   },
+  gorgias: {
+    term: "Gorgias",
+    aka: ["Gorgias"],
+    kind: "autor",
+    when: "ca. 485–380 a.C.",
+    body: "Sofista de Leontini, en Sicilia, y el más virtuoso estilista de la retórica griega antigua: llega a Atenas en 427 a. C. como embajador y deslumbra a la ciudad con un estilo de prosa nuevo, lleno de figuras sonoras y paralelismos. En su Encomio de Helena defiende, como pieza de exhibición retórica, a la mujer más culpada de la literatura griega, atribuyendo su fuga con Paris al poder del logos, capaz de gobernar el alma como un fármaco gobierna el cuerpo. En el tratado Sobre el no-ser lleva ese mismo virtuosismo a un extremo casi paródico, argumentando que nada existe, que si existiera no podría conocerse, y que si pudiera conocerse no podría comunicarse: una demostración de que la retórica puede defender cualquier posición, no una tesis filosófica seria.",
+  },
   gramsci: {
     term: "Antonio Gramsci",
     aka: ["Antonio Gramsci", "Gramsci"],
@@ -356,12 +426,33 @@ export const GLOSSARY = {
     when: "1770–1831",
     body: "Filósofo idealista alemán, probablemente el pensador más ambicioso de la historia de la filosofía. Hegel se propuso construir un sistema que explicara absolutamente todo: la naturaleza, la historia, el arte, la religión, la política y el pensamiento mismo. ¿Cómo? Haciendo de la historia no un telón de fondo, sino el escenario donde la realidad se despliega y se comprende a sí misma. Para Hegel, la realidad no es algo fijo que está ahí afuera esperando ser descubierto; es un proceso, un movimiento. Y ese movimiento tiene una lógica: la dialéctica, que avanza a través de contradicciones que se superan unas a otras. En su obra más célebre, la Fenomenología del espíritu (1807), Hegel narra cómo la conciencia humana recorre distintos estadios de madurez hasta alcanzar lo que él llama el «Geist» (Espíritu): la vida social y cultural elevada a fundamento de todo sentido. Su frase más famosa lo resume: «lo verdadero es el todo». No hay verdades aisladas; cada cosa solo se comprende en relación con todas las demás. Esta idea de totalidad y de que la historia tiene una dirección resultó enormemente seductora y enormemente peligrosa: influyó en Marx, en el existencialismo y en buena parte del pensamiento político de los siglos XIX y XX.",
   },
+  heraclito: {
+    term: "Heráclito",
+    aka: ["Heráclito"],
+    kind: "autor",
+    when: "ca. 535–475 a.C.",
+    body: "Filósofo de Éfeso, de familia aristocrática, célebre en la Antigüedad por lo oscuro y sentencioso de su estilo —le valió el apodo de «el Oscuro»— y por su carácter altivo y solitario. Su tesis más citada, «todo fluye» (panta rhei), sostiene que el cambio no es un accidente de las cosas sino su condición más profunda. El fragmento auténtico sobre el río (DK B12) es, sin embargo, más moderado que la fórmula que se le atribuye popularmente: dice que «sobre quienes entran en los mismos ríos, fluyen aguas siempre distintas», es decir, que el río sigue siendo el mismo pese a que el agua cambie sin cesar; la versión radical —«no te bañas dos veces en el mismo río», donde ni el río ni quien entra en él permanecen— es en realidad de su discípulo Cratilo. Ese flujo constante, sin embargo, no es caos: está regido por el logos, una razón o proporción común a todas las cosas que la mayoría de la gente no logra percibir, viviendo «como si tuviera un entendimiento privado». Propone el fuego como elemento o imagen del principio de todas las cosas —siempre cambiante, nunca igual a sí mismo— y una concepción del mundo como tensión entre opuestos que se necesitan mutuamente para existir (el día supone la noche, la salud la enfermedad): «la guerra es padre de todas las cosas». Su influencia es enorme y dispar: Platón lo lee, sobre todo por boca de Cratilo, como el filósofo del devenir puro frente al ser inmutable de Parménides; Hegel lo reivindicó como un precursor de la dialéctica, y Nietzsche lo consideró el presocrático que más admiraba, por su afirmación del devenir y del conflicto como condiciones positivas de la existencia.",
+  },
   heidegger: {
     term: "Martin Heidegger",
     aka: ["Martin Heidegger", "Heidegger"],
     kind: "autor",
     when: "1889–1976",
     body: "Filósofo alemán, alumno y heredero elegido de Husserl. Heidegger es una de las figuras más influyentes y controversiales de la filosofía del siglo XX. En su obra mayor, Ser y tiempo (1927), invierte las prioridades de la filosofía moderna: antes que la epistemología (¿cómo conocemos?) está la ontología (¿qué significa ser?). Reemplaza al «sujeto» cartesiano por el «Dasein», el ente que está siempre ya en el mundo y que puede preguntarse por el sentido del ser. Conferencista hechizante, inventor de un lenguaje filosófico nuevo y casi intraducible, Heidegger es una figura enormemente compleja. Se afilió al Partido Nazi en 1933 y pronunció un discurso rectoral que exaltaba la «comunidad del pueblo». Ese compromiso con el nazismo, y la pregunta de qué significa para la lectura de su obra filosófica, ha generado un debate que no se ha cerrado.",
+  },
+  hesiodo: {
+    term: "Hesíodo",
+    aka: ["Hesíodo", "Hesiod"],
+    kind: "autor",
+    when: "ca. s. VIII–VII a.C.",
+    body: "Poeta griego de Beocia, activo hacia el 700 a. C., contemporáneo aproximado de Homero aunque de origen muy distinto: no canta las hazañas de reyes y héroes, sino la vida de un campesino. Sus dos obras principales son la Teogonía, un relato sistemático del origen de los dioses y del cosmos, y Los trabajos y los días, un poema didáctico dirigido a su hermano Perses, con quien mantenía un litigio por la herencia paterna. En esta segunda obra formula, antes que ningún filósofo, la idea de que el orden del cosmos es también un orden moral: Zeus vigila la justicia entre los hombres y castiga la injusticia colectiva de una ciudad con hambruna y desastres. Es, junto con Homero, la fuente literaria de la que parte toda la reflexión griega posterior sobre la díke.",
+  },
+  homero: {
+    term: "Homero",
+    aka: ["Homero", "Homer"],
+    kind: "autor",
+    when: "ca. s. VIII a.C.",
+    body: "Nombre con el que la tradición griega designa al autor —o a la tradición oral colectiva detrás— de la Ilíada y la Odisea, los dos poemas fundacionales de la literatura occidental, compuestos hacia el siglo VIII a. C. Si existió como persona individual, no se sabe casi nada de él; ya en la Antigüedad varias ciudades se disputaban el honor de ser su lugar de nacimiento. En su mundo, el orden cósmico se llama moira, «destino» o «parte asignada»: cada quien, incluidos los dioses, tiene una porción fija que no puede transgredir sin consecuencias. La justicia todavía no es un concepto explícito y unificado, eso llega recién con Hesíodo, pero ya aparece insinuada en el respeto —o la violación— de deberes sagrados como la hospitalidad entre anfitrión y huésped.",
   },
   herder: {
     term: "Johann Gottfried Herder",
@@ -685,6 +776,13 @@ export const GLOSSARY = {
     when: "1772–1801",
     body: "Seudónimo de Georg Philipp Friedrich von Hardenberg, poeta y pensador alemán, la voz más lírica del círculo de Jena. Ingeniero de minas de profesión y lector atento de Fichte, murió de tuberculosis a los veintiocho años dejando casi toda su obra inconclusa. La muerte de su prometida Sophie von Kühn, a los quince, marcó los Himnos a la noche (1800), donde la noche y la muerte aparecen como el ámbito de una unión que el día niega. En la novela inacabada Heinrich von Ofterdingen está la flor azul, imagen que se volvió el emblema del Romanticismo entero: el objeto de un anhelo que nunca se alcanza y que vale por el anhelo mismo. Suyo es también el programa de romantizar el mundo, que él definió como dar a lo cotidiano un sentido elevado, a lo conocido la dignidad de lo desconocido y a lo finito una apariencia de infinito: no huir de la realidad, sino devolverle el espesor que la Ilustración le había quitado.",
   },
+  parmenides: {
+    term: "Parménides",
+    aka: ["Parménides"],
+    kind: "autor",
+    when: "ca. 515–450 a.C.",
+    body: "Filósofo de Elea, en el sur de Italia, fundador de la escuela eleática y una de las figuras más influyentes de toda la filosofía griega, al punto de que Platón lo trata con un respeto reverencial poco común. Su único escrito conocido es un poema, Sobre la naturaleza, en el que una diosa le revela dos caminos: la vía de la Verdad y la vía de la Opinión. Por la vía de la Verdad, razona que «lo que es, es, y no puede no ser; lo que no es, no es, y es imposible que sea»: de ahí concluye que el ser tiene que ser uno, eterno, inmóvil, indivisible y homogéneo, porque cualquier cambio, pluralidad o movimiento implicaría que algo pasa del no-ser al ser, lo cual es lógicamente imposible de pensar. El mundo cambiante y múltiple que perciben los sentidos pertenece, entonces, a la vía de la Opinión: apariencia, no realidad. Este argumento —el primero de la filosofía occidental construido de manera explícitamente deductiva, apoyado solo en el principio de no contradicción— obliga a todos los filósofos posteriores a responderle: los pluralistas (Empédocles, Anaxágoras, los atomistas) van a aceptar que el ser no puede surgir del no-ser, pero van a salvar el cambio proponiendo varios «seres» elementales, eternos e inmutables, que solo se recombinan. Su discípulo Zenón de Elea defendió su doctrina con las célebres paradojas contra el movimiento y la pluralidad.",
+  },
   pascal: {
     term: "Blaise Pascal",
     aka: ["Blaise Pascal", "Pascal"],
@@ -698,6 +796,27 @@ export const GLOSSARY = {
     kind: "autor",
     when: "1907–1977",
     body: "Filósofo checo, uno de los últimos alumnos de Edmund Husserl y lector atento de Martin Heidegger. Tradujo la «Fenomenología del espíritu» de Hegel al checo. ¿Por qué importa políticamente? Durante la Normalización, Jan Patočka dio un seminario clandestino leyendo «Ser y tiempo»: la filosofía como forma de resistencia. Fue uno de los tres primeros portavoces de la Carta 77 y murió tras interrogatorios agotadores de la policía secreta en 1977. Lo llaman el «Sócrates» de la disidencia checa.",
+  },
+  pitagoras: {
+    term: "Pitágoras",
+    aka: ["Pitágoras"],
+    kind: "autor",
+    when: "ca. 570–495 a.C.",
+    body: "Filósofo y matemático de Samos, fundador en Crotona, en el sur de Italia, de una comunidad religiosa y filosófica a la vez, con reglas de vida estrictas (silencio, ascetismo, comunidad de bienes) y una doctrina central de la metempsícosis, la transmigración del alma entre distintos cuerpos, humanos y animales, que hace de la filosofía una vía de purificación. No dejó nada escrito, y separar lo que pensó él de lo que sus seguidores le atribuyeron después es casi imposible; la tradición le adjudica el célebre teorema geométrico que lleva su nombre, aunque ya era conocido, al menos en la práctica, por babilonios y egipcios. Su aporte filosófico más influyente es la tesis de que el número es el principio (arché) de todas las cosas: descubrió que los intervalos musicales armónicos corresponden a proporciones numéricas simples (una cuerda a la mitad de su longitud suena una octava más aguda), y extendió esa intuición a todo el cosmos, que concibió como un orden —kosmos significa precisamente «orden»— regido por relaciones matemáticas, una «armonía de las esferas». Esa convicción de que la realidad última es de naturaleza matemática y no material va a influir profundamente en Platón —para quien los pitagóricos son un antecedente directo de la teoría de las Formas— y, mucho después, en la revolución científica de Kepler y Galileo.",
+  },
+  platon: {
+    term: "Platón",
+    aka: ["Platón", "platónico", "platónica", "platónicos", "platónicas"],
+    kind: "autor",
+    when: "ca. 428–348 a.C.",
+    body: "Filósofo ateniense de familia aristocrática, discípulo de Sócrates y el autor más influyente de la filosofía occidental. La ejecución de su maestro en 399 a. C., cuando Platón tenía apenas veintiocho años, lo aparta de la política convencional y orienta el resto de su obra. Escribe casi exclusivamente en forma de diálogos, con Sócrates casi siempre como protagonista, y funda en Atenas, hacia el 387 a. C., la Academia, la primera institución de enseñanza superior de Occidente, donde forma entre otros a Aristóteles. Desarrolla una teoría del conocimiento que distingue la dóxa (opinión) de la epistéme (conocimiento genuino), una metafísica centrada en la existencia de las Formas —modelos eternos e inmutables de los que participan las cosas sensibles— y una filosofía política que busca fundar la justicia en el conocimiento del Bien antes que en la fuerza o la convención.",
+  },
+  protagoras: {
+    term: "Protágoras",
+    aka: ["Protágoras"],
+    kind: "autor",
+    when: "ca. 490–420 a.C.",
+    body: "El más respetado de los sofistas, natural de Abdera, contratado como maestro itinerante por varias ciudades griegas y amigo cercano de Pericles. Formula la tesis relativista que resume su filosofía: «el hombre es la medida de todas las cosas, de las que son en cuanto que son, y de las que no son en cuanto que no son» (DK B1). Extiende esa cautela a la religión, declarándose agnóstico sobre la existencia de los dioses (DK B4), lo que le habría costado, según la tradición, ser expulsado de Atenas y ver sus libros quemados en la plaza pública. En el diálogo que Platón le dedica, defiende con un mito por qué la virtud política puede enseñarse a cualquier ciudadano, un argumento a favor de la propia democracia ateniense.",
   },
   reich: {
     term: "Wilhelm Reich",
@@ -790,6 +909,13 @@ export const GLOSSARY = {
     when: "1893–1984",
     body: "Teórico literario ruso, figura central del formalismo ruso y autor de uno de los conceptos más influyentes de la teoría del arte del siglo XX: la «ostranénie» o extrañamiento. ¿Cuál es la idea? Que la percepción cotidiana se vuelve automática: dejamos de ver las cosas que nos rodean porque la costumbre las hace invisibles. El arte existe para romper ese automatismo, para volver extrañas las cosas familiares y obligarnos a verlas de nuevo como si fuera la primera vez. Shklovski lo formuló con una imagen memorable: el arte debe «hacer que la piedra se sienta pétrea». En su ensayo «El arte como procedimiento» (1917), Shklovski argumentó que lo que distingue al lenguaje literario del ordinario no es su contenido sino su forma: los procedimientos mediante los cuales el texto dificulta la percepción y la alarga, forzándonos a prestar atención. La alienación, que en Marx era una enfermedad social, se convierte aquí en algo ambivalente: es a la vez el mal que adormece la percepción y la cura que propone el arte al sacudirnos de ese adormecimiento.",
   },
+  socrates: {
+    term: "Sócrates",
+    aka: ["Sócrates", "socrático", "socrática", "socráticos", "socráticas"],
+    kind: "autor",
+    when: "469–399 a.C.",
+    body: "Filósofo ateniense que no escribió una sola línea; todo lo que se sabe de él llega filtrado por otros —sobre todo por su discípulo Platón—, en lo que se conoce como el «problema socrático». Hijo de un cantero, pasa buena parte de su vida discutiendo en la plaza pública de Atenas sobre la virtud, la justicia y la piedad, sin cobrar nunca por ello. El oráculo de Delfos declara que nadie es más sabio que él, algo que Sócrates interpreta como un enigma: su única ventaja sobre los demás es saber que no sabe, mientras que la mayoría cree saber sin saber. Desarrolla el elenchos, un método de preguntas y refutaciones que suele terminar en aporía, y sostiene que la virtud es conocimiento: nadie hace el mal a sabiendas, sólo por ignorancia de lo que en verdad conviene. En 399 a. C. es juzgado por impiedad y por corromper a la juventud, condenado a muerte, y ejecutado bebiendo cicuta después de rechazar la posibilidad de escapar.",
+  },
   spencer: {
     term: "Herbert Spencer",
     aka: ["Herbert Spencer", "Spencer"],
@@ -810,6 +936,13 @@ export const GLOSSARY = {
     kind: "autor",
     when: "1878–1953",
     body: "Dirigente soviético que ganó la lucha de poder tras la muerte de Lenin en 1924. Frente a la «revolución permanente» de León Trotsky, que insistía en que el socialismo solo podía triunfar si se extendía a otros países, Stalin proclamó el «socialismo en un solo país»: la Unión Soviética podía y debía construir el socialismo dentro de sus propias fronteras. Stalin fue un maestro de la política burocrática, y desde su puesto aparentemente modesto de Secretario General del Partido fue acumulando un poder absoluto. Bajo su mando creció un Estado totalitario de un tipo nunca antes visto: colectivización forzosa de la agricultura (que provocó hambrunas que mataron a millones), industrialización acelerada a cualquier costo humano, purgas masivas en las que fueron ejecutados o enviados al Gulag incluso los más leales camaradas de Lenin, y un culto a la personalidad que convertía al líder en figura casi divina. El estalinismo representa el caso extremo de lo que puede ocurrir cuando la perfectibilidad ilustrada se toma al pie de la letra: el intento de «reingeniar» a las personas desde el Estado, eliminando a quienes no encajan en el proyecto.",
+  },
+  tales: {
+    term: "Tales de Mileto",
+    aka: ["Tales de Mileto", "Tales"],
+    kind: "autor",
+    when: "ca. 624–546 a.C.",
+    body: "Filósofo de Mileto, en la costa de Asia Menor, considerado tradicionalmente el primer filósofo occidental y uno de los Siete Sabios de Grecia. Se le atribuye haber predicho un eclipse solar (585 a.C.) y, según Aristóteles, haber hecho fortuna acaparando por anticipado las prensas de aceituna de un año de cosecha excepcional, para demostrar que un filósofo puede enriquecerse si quiere, aunque prefiera dedicarse a otra cosa. Su aporte central, el primer gesto propiamente filosófico según la tradición, es haber preguntado cuál es el principio (arché) único del que están hechas todas las cosas, y haber respondido: el agua. La elección no es arbitraria: el agua se presenta en tres estados (sólido, líquido, vapor), es indispensable para la vida y —observó— parece estar en el origen de la humedad de toda la materia orgánica. Con esa pregunta y esa respuesta, Tales inaugura un tipo de explicación radicalmente nuevo frente a la mitología: busca una causa natural, única y observable, en lugar de recurrir a la voluntad de los dioses. No dejó ningún escrito propio; todo lo que se sabe de él llega por referencias de autores posteriores, empezando por Aristóteles, que lo cita como el fundador de la tradición que él mismo continúa.",
   },
   toland: {
     term: "John Toland",
@@ -860,6 +993,13 @@ export const GLOSSARY = {
     when: "1679–1754",
     body: "Filósofo alemán, profesor en Halle, que le da a la Aufklärung su primer lenguaje filosófico sistemático: un racionalismo heredero de Leibniz, organizado en definiciones encadenadas y expuesto, por primera vez, en alemán y no en latín. Expulsado de Prusia en 1723 por presión pietista, vuelve en 1740 llamado por Federico II.",
   },
+  zenon_de_elea: {
+    term: "Zenón de Elea",
+    aka: ["Zenón de Elea", "Zenón"],
+    kind: "autor",
+    when: "ca. 490–430 a.C.",
+    body: "Discípulo predilecto de Parménides, con quien viajó a Atenas —Platón narra ese encuentro, ya ancianos ambos, en el diálogo que lleva el nombre de Parménides—. Su método filosófico es completamente original para la época: en vez de argumentar directamente a favor del monismo de su maestro, construye una serie de paradojas que muestran que la posición contraria —creer en la pluralidad y en el movimiento— lleva a conclusiones absurdas o contradictorias, un procedimiento que Aristóteles reconoce como el primer uso sistemático de la reducción al absurdo. Las más célebres son las paradojas del movimiento: Aquiles y la tortuga (un corredor más rápido nunca alcanza a uno más lento si este tiene ventaja, porque siempre debe llegar primero a donde el otro ya estuvo) y la de la dicotomía (para recorrer cualquier distancia hay que recorrer antes la mitad, y antes la mitad de esa mitad, ad infinitum, de modo que el movimiento nunca podría siquiera comenzar). Con estas paradojas no pretendía negar la experiencia cotidiana del movimiento, sino mostrar que la razón, aplicada con rigor a la idea de un espacio y un tiempo infinitamente divisibles, produce contradicciones insalvables: la única salida, para él y Parménides, es desconfiar de lo que los sentidos parecen mostrar. Sus paradojas siguieron discutiéndose hasta la formalización moderna del cálculo infinitesimal y del concepto matemático de límite, que ofrecen una respuesta técnica —aunque no necesariamente filosófica— al problema que plantean.",
+  },
   zollner: {
     term: "Johann Friedrich Zöllner",
     aka: ["Johann Friedrich Zöllner", "Zöllner"],
@@ -874,6 +1014,13 @@ export const GLOSSARY = {
     kind: "concepto",
     when: "siglo XVII–XVIII",
     body: "Tipo de conocimiento universal, necesario e independiente de la experiencia, del que la matemática es el ejemplo paradigmático para el racionalismo. Se opone al conocimiento a posteriori, particular, contingente y dependiente de la experiencia, propio del conocimiento fáctico defendido por los empiristas.",
+  },
+  academia: {
+    term: "Academia",
+    aka: ["Academia", "la Academia"],
+    kind: "concepto",
+    when: "fundada por Platón, ca. 387 a.C.",
+    body: "Escuela filosófica fundada por Platón en Atenas hacia el 387 a. C., en un terreno dedicado al héroe Academo que le da su nombre: la primera institución de enseñanza superior de Occidente, con casi novecientos años de continuidad, hasta que el emperador Justiniano ordena cerrar las escuelas filosóficas paganas en 529 d. C. Por sus aulas pasa, entre muchos otros, Aristóteles, que estudia allí durante veinte años antes de fundar su propio Liceo. Mucho después de Platón, hacia el siglo III a. C., la Academia atraviesa un giro escéptico bajo la dirección de Arcesilao y luego de Carnéades —la llamada Academia media y nueva—, que llega a sostener que no puede afirmarse ningún conocimiento con certeza absoluta, una posición muy alejada de la del propio Platón.",
   },
   abandono: {
     term: "Abandono",
@@ -895,6 +1042,13 @@ export const GLOSSARY = {
     kind: "concepto",
     when: "Hegel; luego Marx",
     body: "Uno de los grandes problemas de la filosofía moderna, con raíces en Hegel y un desarrollo decisivo en Marx. En Hegel, la alienación es un estado de la conciencia: estar separado del todo sin saberlo, no comprender que la propia existencia individual solo tiene sentido dentro del Geist, de la vida social y cultural compartida. Toda la Fenomenología del espíritu puede leerse como el camino para superar esa alienación: la conciencia recorre etapas hasta reconocerse como parte del todo. Marx toma esta idea y la transforma radicalmente. Para él, la alienación no es un problema del espíritu, sino una condición material y concreta. Bajo el capitalismo, el trabajador está alienado en varios sentidos: alienado del producto de su trabajo (que no le pertenece), alienado del proceso de trabajo (que no controla), alienado de los otros trabajadores (con quienes compite) y, en última instancia, alienado de sí mismo, de lo que podría ser como ser humano pleno. El trabajador se convierte en un engranaje de una máquina que lo trasciende y cuyo sentido se le escapa.",
+  },
+  anamnesis: {
+    term: "Anamnesis",
+    aka: ["anamnesis", "anámnesis"],
+    kind: "concepto",
+    when: "Platón, Menón",
+    body: "Palabra griega que significa «recolección», con la que Platón resuelve, en el diálogo Menón, la paradoja de cómo es posible investigar algo que no se conoce en absoluto. Su respuesta es que el alma, inmortal, ya conoció todas las cosas en una existencia previa a esta vida, de modo que aprender no es incorporar información nueva desde afuera, sino recordar lo que el alma ya sabía. Lo demuestra haciendo que un esclavo sin instrucción matemática resuelva, guiado sólo por preguntas y sin que nadie le enseñe nada, un problema de geometría: para Platón, la prueba de que la respuesta ya estaba dentro de él.",
   },
   alteridad: {
     term: "Alteridad",
@@ -945,6 +1099,13 @@ export const GLOSSARY = {
     when: "Arendt, 1951",
     body: "La condición de quien queda sin Estado, sin ciudadanía, sin ningún país que lo reconozca como suyo. ¿Por qué importa tanto para Arendt? Porque tras la Primera Guerra Mundial, de golpe, millones de personas descubrieron que «hace falta un pasaporte para ser un ser humano». Arendt muestra algo perturbador: los famosos «derechos del hombre», proclamados como universales e inalienables, no se sostienen sin un Estado que los garantice. En la práctica, sólo hay derechos de ciudadanos: quien pierde la ciudadanía pierde todos los derechos. Los apátridas quedan en un limbo jurídico donde nadie responde por ellos. Esa carencia total de derechos, esa conversión de personas en seres sin lugar en el mundo, fue una precondición del exterminio: antes de matar a millones, el totalitarismo los dejó sin derechos.",
   },
+  apeiron: {
+    term: "Ápeiron",
+    aka: ["ápeiron", "apeiron"],
+    kind: "concepto",
+    when: "Anaximandro, s. VI a.C.",
+    body: "Término griego que significa «lo ilimitado», «lo indefinido» o «lo sin fronteras» (de peras, «límite», y el prefijo negativo a-). Anaximandro lo propone como principio (arché) de todas las cosas, en lugar de un elemento concreto como el agua de Tales: si el mundo contiene cualidades opuestas —húmedo y seco, caliente y frío—, ninguna de ellas puede ser más originaria que su contraria, así que lo verdaderamente primero tiene que carecer de cualidades determinadas y de límites, tanto espaciales (es infinito) como cualitativos (no es ni agua ni aire ni fuego). De ese fondo indefinido surgen, por un proceso de separación de opuestos, todas las cosas particulares, y a él vuelven cuando perecen. Es el primer concepto genuinamente abstracto de la filosofía occidental —no señala nada que pueda verse u observarse directamente— y anticipa, de lejos, la distinción posterior entre lo sensible y lo inteligible que va a organizar buena parte de la metafísica griega, de Parménides a Platón.",
+  },
   apercepcion: {
     term: "Apercepción",
     aka: ["apercepción"],
@@ -956,8 +1117,8 @@ export const GLOSSARY = {
     term: "Aporía",
     aka: ["aporía", "doble vínculo"],
     kind: "concepto",
-    when: "Derrida, s. XX",
-    body: "El momento en que el significado se niega a sí mismo: el lenguaje se socava y se llega a un impasse, atrapado entre sentidos contradictorios que no pueden resolverse. ¿Un ejemplo? El terror estalinista, que exigía vigilancia radical —el enemigo puede estar en cualquier parte, la realidad es radicalmente indeterminada— y a la vez proclamaba la llegada inevitable de la utopía —el futuro está determinado—. ¿Puede algo ser radicalmente indeterminado y determinado a la vez? Para Jacques Derrida, la aporía no es un error: es la condición del lenguaje.",
+    when: "concepto griego, ya en Sócrates; radicalizado por Derrida en el s. XX",
+    body: "En su sentido original, griego, es el callejón sin salida al que llega buena parte de los diálogos socráticos: el interlocutor, convencido al principio de saber qué es la valentía o la piedad, termina reconociendo que no puede sostener su propia definición. No es un fracaso del método, sino su resultado más honesto: muestra que lo que se creía saber, en realidad, no se sabía. Jacques Derrida retoma la palabra en el siglo XX y la radicaliza: para él, la aporía es el momento en que el significado se niega a sí mismo, el lenguaje se socava y se llega a un impasse entre sentidos contradictorios que no pueden resolverse. ¿Un ejemplo? El terror estalinista, que exigía vigilancia radical —el enemigo puede estar en cualquier parte, la realidad es radicalmente indeterminada— y a la vez proclamaba la llegada inevitable de la utopía, un futuro ya determinado. Para Derrida, la aporía no es un error: es la condición misma del lenguaje.",
   },
   "aristotelismo-escolastico": {
     term: "Aristotelismo escolástico",
@@ -972,6 +1133,20 @@ export const GLOSSARY = {
     kind: "concepto",
     when: "siglo XVIII",
     body: "Doctrina de Leibniz según la cual Dios ajustó de antemano, desde la creación, el desarrollo interno de cada mónada para que coincida con el de todas las demás, sin que interactúen entre sí. Explica también la relación entre alma y cuerpo, coordinados sin causación directa.",
+  },
+  arche: {
+    term: "Arché",
+    aka: ["arché", "arche"],
+    kind: "concepto",
+    when: "concepto griego, desde el s. VI a.C.",
+    body: "Palabra griega que significa a la vez «comienzo», «origen» y «principio» en el sentido de aquello que gobierna o de lo que se deriva todo lo demás (de ahí también «monarquía», el gobierno de uno solo). Aristóteles, en su historia de la filosofía anterior a él, usa el término para nombrar retrospectivamente lo que buscaban los primeros filósofos, los llamados presocráticos: la sustancia primera, permanente bajo todo cambio, de la que están hechas y a la que vuelven todas las cosas. Cada uno propuso una candidata distinta —el agua de Tales, el ápeiron de Anaximandro, el aire de Anaxímenes, el fuego de Heráclito, los átomos de Demócrito—, pero todos comparten la misma pregunta de fondo: qué hay debajo de la diversidad y el cambio que observamos. Esa pregunta por el arché es, para Aristóteles y para buena parte de la tradición posterior, el acta de nacimiento de la filosofía como disciplina distinta de la mitología: en lugar de narrar el origen del mundo como una genealogía de dioses, se busca una causa natural, única y en principio observable o pensable.",
+  },
+  arete: {
+    term: "Aretē",
+    aka: ["aretē", "arete", "areté"],
+    kind: "concepto",
+    when: "concepto griego, ya en Homero",
+    body: "Palabra griega que se traduce como «virtud» o «excelencia», aunque ninguna de las dos traducciones cubre del todo su sentido original: en Homero nombra la excelencia propia de cualquier función, la de un guerrero, un caballo o una herramienta, sin connotación moral especial. Con el paso del tiempo se concentra en la excelencia humana en sentido más pleno, y se vuelve el centro de la disputa entre sofistas y filósofos: los sofistas prometen enseñar la aretē política a cambio de una paga, mientras que Sócrates sostiene que nadie puede enseñarla mientras no se sepa siquiera qué es. Aristóteles, mucho después, la convierte en el concepto central de toda su ética, definiéndola como un término medio entre dos vicios opuestos.",
   },
   arte_transformacion: {
     term: "Arte como transformación",
@@ -1365,6 +1540,13 @@ export const GLOSSARY = {
     when: "Marx, s. XIX",
     body: "Fase de transición que Marx considera necesaria entre el derrocamiento del capitalismo y la llegada de la sociedad comunista. ¿Por qué una dictadura? Porque la burguesía no va a ceder voluntariamente sus propiedades, sus fábricas ni su poder: va a resistir, y el proletariado necesita un Estado fuerte para vencer esa resistencia. Marx pensaba esta etapa como temporal: una vez eliminada la propiedad privada de los medios de producción y abolidas las clases sociales, el Estado mismo se volvería innecesario y se «extinguiría». La meta final era una sociedad sin clases, sin fronteras nacionales y sin Estado, organizada según el principio «de cada cual según su capacidad, a cada cual según su necesidad». En la práctica histórica, sin embargo, la dictadura del proletariado se convirtió en algo muy distinto de lo que Marx imaginó: en la Unión Soviética y otros regímenes, la fase «transitoria» se volvió permanente y la dictadura dejó de ser del proletariado para convertirse en la dictadura de un partido sobre el proletariado.",
   },
+  dike: {
+    term: "Díke",
+    aka: ["díke", "dike", "Díke"],
+    kind: "concepto",
+    when: "Hesíodo, ca. 700 a.C.",
+    body: "Palabra griega que nombra tanto la justicia como su personificación divina: en Hesíodo, Díke es una diosa, hija de Zeus y Temis, que se sienta junto al trono de su padre y le informa de cada injusticia cometida entre los hombres. Cuando los jueces de una ciudad dictan sentencias torcidas, Zeus no castiga sólo al culpable, sino que envía hambruna, peste o esterilidad sobre la comunidad entera: la injusticia de unos pocos compromete el orden de todos. Esta díke es un orden que se recibe, garantizado por los dioses y ajeno a la voluntad humana, muy distinto del nómos que más tarde se van a dar las propias ciudades. Cuando Anaximandro, ya en el terreno de la filosofía natural, describe el ápeiron con el mismo vocabulario —«injusticia», «retribución»—, hereda directamente esta noción poética, aunque ya sin la intervención directa de un dios.",
+  },
   differance: {
     term: "Différance",
     aka: ["différance"],
@@ -1393,12 +1575,26 @@ export const GLOSSARY = {
     when: "Foucault, s. XX",
     body: "La palabra clave de Michel Foucault: una versión más densa y cargada del concepto de lenguaje. ¿Qué es un discurso? Cómo hablamos de las cosas, pero con consecuencias reales: hablar es hacer. La agencia se reubica en el discurso. Un enunciado significa por su red de relaciones con otros enunciados, y el discurso transmite y produce poder. Pero también lo expone y permite frustrarlo: donde hay discurso de poder, hay posibilidad de contradiscurso. El lenguaje no es inocente ni neutral.",
   },
+  doble_aspecto: {
+    term: "Doble aspecto",
+    aka: ["doble aspecto"],
+    kind: "concepto",
+    when: "Heráclito y Pitágoras, s. VI a.C.",
+    body: "Nombre con el que se agrupa la posición, compartida de forma independiente por Heráclito y Pitágoras a fines del siglo VI a.C., según la cual la naturaleza tiene simultáneamente dos caras que no se excluyen: por un lado está en permanente cambio; por otro, ese cambio no es caótico sino que obedece a un orden estable y predecible. Heráclito llama a ese orden logos y lo asocia al fuego, elemento siempre cambiante; Pitágoras lo encuentra en las proporciones matemáticas que gobiernan tanto la música como la geometría. La imagen que suele usarse para explicarlo es la de un platillo, que es cóncavo visto desde arriba y convexo visto desde abajo: dos aspectos igualmente reales del mismo objeto, según el punto de vista. Filosóficamente, esta posición es un punto intermedio entre el monismo cualitativo de los milesios, que buscaban un único elemento estable, y el monismo absoluto que después van a proponer los eleatas, que van a negar la realidad del cambio en sí mismo: acepta el cambio como real, pero insiste en que solo es inteligible porque, debajo de él, hay una regularidad que lo sostiene.",
+  },
   doble_transferencia: {
     term: "Doble transferencia",
     aka: ["doble transferencia"],
     kind: "concepto",
     when: "Girard, s. XX",
     body: "La mala atribución por la que la turba transfiere su propia violencia a la víctima y la vuelve causa de todo: del desorden previo y del orden que trae su muerte. ¿Cómo se produce? La víctima, elegida al azar o por rasgos marginales, adquiere una potencia mística y se transforma en lo Sagrado. Es el «pharmakos»: veneno y remedio a la vez. René Girard muestra que la religión nace de este malentendido fundacional: la comunidad cree que la víctima tenía un poder real.",
+  },
+  doxa: {
+    term: "Dóxa",
+    aka: ["dóxa", "doxa"],
+    kind: "concepto",
+    when: "concepto griego, desde el s. V a.C.",
+    body: "Palabra griega que se traduce como «opinión», «apariencia» o «creencia», y que la filosofía griega opone sistemáticamente a epistéme, el conocimiento propiamente dicho. Parménides es el primero en tematizarla con fuerza: en su poema, la diosa distingue la vía de la Verdad, a la que solo se llega por el razonamiento abstracto, de la vía de la Opinión, el mundo cambiante que muestran los sentidos y que los mortales toman erróneamente por real. Para Parménides, dóxa no es simplemente «error»: es el nombre de todo un dominio, el de la experiencia sensible y el habla ordinaria, tan inestable como su objeto. Platón hereda y profundiza la oposición: en la República compara el conocimiento con la visión clara de las Formas bajo el sol, y la dóxa con las sombras que ven los prisioneros de la caverna, un estado intermedio entre el ser y el no ser. La distinción dóxa/epistéme se vuelve, desde entonces, una de las columnas centrales de toda la epistemología occidental.",
   },
   dogmatismo: {
     term: "Dogmatismo",
@@ -1448,6 +1644,13 @@ export const GLOSSARY = {
     kind: "concepto",
     when: "Bergson, 1907",
     body: "El «impulso vital», concepto central de La evolución creadora (1907) de Henri Bergson. ¿Qué empuja la vida a evolucionar? Para los mecanicistas, la evolución se explica por causas eficientes, como una máquina que sigue un programa; para los finalistas, la vida avanza hacia un fin predeterminado, como una semilla que ya contiene en sí el árbol futuro. Bergson rechaza ambas explicaciones: ni la vida es una máquina ni avanza hacia una meta prefijada. Lo que la impulsa es el «élan vital», una fuerza creadora que no sigue un plano preplaneado sino que avanza por líneas divergentes, bifurcándose y ramificándose. La imagen que usa Bergson es la de un proyectil que estalla en el aire y dispersa fragmentos en todas direcciones, y cada fragmento, a su vez, vuelve a estallar. La evolución no es una línea recta hacia la perfección, sino una explosión de posibilidades. ¿Por qué importa filosóficamente? Porque si la vida es creación genuina, entonces el universo no está cerrado ni determinado: siempre puede aparecer algo radicalmente nuevo, algo que no estaba contenido en las condiciones previas.",
+  },
+  elenchos: {
+    term: "Elenchos",
+    aka: ["elenchos", "elenco socrático"],
+    kind: "concepto",
+    when: "Sócrates, s. V a.C.",
+    body: "Método de Sócrates para examinar las creencias de su interlocutor: le pregunta «¿qué es X?» —la valentía, la piedad, la virtud— y, a partir de la respuesta, va introduciendo nuevas preguntas hasta encontrarle una contradicción interna. El interlocutor, convencido al principio de saber la respuesta, termina reconociendo que no puede sostenerla. El resultado típico de este procedimiento en los diálogos más tempranos de Platón es la aporía, un callejón sin salida que Sócrates no vive como un fracaso, sino como el único punto de partida honesto para seguir buscando.",
   },
   ello_yo_superyo: {
     term: "Ello, yo y superyó",
@@ -1499,11 +1702,11 @@ export const GLOSSARY = {
     body: "«Desencantamiento del mundo». El sociólogo Max Weber acuñó este término para describir uno de los procesos centrales de la modernidad: la sustitución progresiva de las explicaciones mágicas, religiosas y sobrenaturales por explicaciones racionales y empíricas. ¿Qué quiere decir que el mundo se «desencanta»? Que los fenómenos naturales dejan de atribuirse a fuerzas misteriosas —milagros, espíritus, voluntad divina— y pasan a explicarse mediante leyes científicas y causas verificables. El rayo ya no es la ira de Zeus, sino una descarga eléctrica. La enfermedad ya no es un castigo divino, sino el efecto de un agente patógeno. Este proceso no fue vivido de la misma manera por todos. Los ilustrados lo celebraban como una liberación: por fin la humanidad se sacudía las cadenas de la superstición. Pero los románticos lo experimentaron como una pérdida profunda: un mundo sin misterio, sin magia, sin lo sagrado, les parecía un mundo empobrecido, frío y desalmado. La «Entzauberung» captura así una tensión que recorre toda la modernidad: ¿es el triunfo de la razón una conquista o un empobrecimiento?",
   },
   episteme: {
-    term: "Episteme",
-    aka: ["episteme"],
+    term: "Epistéme",
+    aka: ["epistéme", "episteme"],
     kind: "concepto",
-    when: "Foucault, 1966",
-    body: "El concepto central de Las palabras y las cosas. ¿Qué es una episteme para Michel Foucault? El conjunto de reglas, en gran medida inconscientes, que en un período histórico dado hace posible que ciertos enunciados cuenten como conocimiento verdadero y otros no: no es una teoría ni una escuela, sino el suelo compartido y anterior sobre el que las teorías de una época pueden formularse. Foucault describe tres epistemes sucesivas en Occidente: la renacentista, organizada por la semejanza; la clásica (siglos XVII-XVIII), por la representación y el orden; y la moderna, que emerge a fines del XVIII en torno a una figura nueva y paradójica, el «hombre», sujeto que conoce y a la vez objeto de las nuevas ciencias humanas. El paso de una episteme a otra no es progreso: es discontinuidad, una ruptura en lo que una época puede pensar y decir.",
+    when: "concepto griego, desde Platón; resignificado por Foucault en 1966",
+    body: "En Platón, epistéme es el conocimiento propiamente dicho, distinto de la dóxa, la mera opinión: mientras la dóxa puede acertar por casualidad, la epistéme está sostenida por un razonamiento que explica por qué algo es verdadero, y se ocupa del mundo inteligible y estable de las Formas, no del mundo sensible y cambiante. Michel Foucault retoma la palabra en el siglo XX con un sentido casi opuesto en su lógica: para él, una episteme no es un conocimiento verdadero y estable, sino el conjunto de reglas, en gran medida inconscientes, que en un período histórico dado hace posible que ciertos enunciados cuenten como conocimiento y otros no. No es una teoría ni una escuela, sino el suelo compartido y anterior sobre el que las teorías de una época pueden formularse. Foucault describe tres epistemes sucesivas en Occidente: la renacentista, organizada por la semejanza; la clásica, por la representación y el orden; y la moderna, en torno a la figura del «hombre». El paso de una a otra no es progreso: es discontinuidad.",
   },
   epoje: {
     term: "Bracketing (epojé)",
@@ -1820,6 +2023,13 @@ export const GLOSSARY = {
     when: "Dostoievski, 1864",
     body: "Protagonista y narrador de las Memorias del subsuelo (1864) de Dostoievski. Es un funcionario petersburgués amargado, encerrado en su propia conciencia, que se niega a aceptar que el mundo pueda reducirse a leyes racionales. Su rebeldía es radical: si alguien le demuestra que dos más dos son cuatro, el hombre del subsuelo se indigna, no porque la matemática sea falsa, sino porque convertir la vida en un cálculo le resulta opresivo. ¿Por qué habría de aceptar que la razón gobierne todos sus actos, si lo que siente le dice otra cosa? Prefiere el capricho, el sufrimiento elegido, incluso la autodestrucción, antes que someterse al «palacio de cristal» de una sociedad perfectamente racional. Con este personaje, Dostoievski anticipa temas que el existencialismo desarrollará décadas después: la libertad como carga, la conciencia como tormento, y la sospecha de que la razón ilustrada, llevada al extremo, aplasta lo más humano del ser humano.",
   },
+  hybris: {
+    term: "Hybris",
+    aka: ["hybris", "hibris"],
+    kind: "concepto",
+    when: "concepto griego, desde Homero",
+    body: "Exceso o transgresión de los límites propios —de la moira, la porción que a cada quien le toca—, típicamente por orgullo o ambición desmedida. En la tragedia griega es el motor de la acción: un personaje que se cree con derecho a más de lo que le corresponde, un rey que desafía a los dioses, un héroe que humilla a un rival vencido, desata la némesis, la retribución que restaura el equilibrio roto, casi siempre a un costo mucho mayor que la falta original. Heráclito traslada el concepto al terreno cívico y lo vuelve un problema de cualquier ciudadano, no sólo de reyes y héroes: hay que apagar la hybris antes que un incendio (DK B43). La palabra sobrevive intacta en español y otras lenguas modernas para nombrar la soberbia que precede a una caída.",
+  },
   humanismo: {
     term: "Humanismo renacentista",
     aka: ["humanismo", "humanismo renacentista", "humanismo italiano"],
@@ -2023,6 +2233,13 @@ export const GLOSSARY = {
     when: "Alemania, 1830s–1840s",
     body: "Grupo de filósofos, teólogos y periodistas alemanes de las décadas de 1830 y 1840, entre los que se cuentan Ludwig Feuerbach, Bruno Bauer, David Strauss y, en sus inicios, el propio Marx. Se los llama también «hegelianos de izquierda» porque adoptaron los métodos dialécticos de Hegel pero los volvieron contra las conclusiones conservadoras del maestro. Donde Hegel había terminado reconciliando la filosofía con el Estado prusiano y la religión cristiana, los jóvenes hegelianos usaron la dialéctica como arma crítica contra el Estado y la religión. Feuerbach, por ejemplo, argumentó que la religión es una proyección humana; Bauer cuestionó la historicidad de los Evangelios. Los jóvenes hegelianos ejemplifican algo que se repite en la historia intelectual: quien escribe un texto no tiene el monopolio de su interpretación. Los textos son provocaciones al pensamiento, y sus consecuencias pueden ir mucho más allá, e incluso en contra, de las intenciones del autor.",
   },
+  justicia_cosmica: {
+    term: "Justicia cósmica",
+    aka: ["justicia cósmica"],
+    kind: "concepto",
+    when: "poesía griega arcaica, desde el s. VIII a.C.",
+    body: "Idea, presente ya en los poetas y dramaturgos griegos antes que en los filósofos, de que el orden que se observa en la naturaleza no es solo físico sino también moral: que el cosmos, además de estar ordenado, es justo. Empieza a insinuarse entre la Odisea y la Ilíada, es explícita en Los trabajos y los días de Hesíodo —donde Zeus castiga la injusticia humana con hambrunas y desastres naturales—, y sigue presente en las tragedias de Esquilo y Sófocles, donde el destino de los personajes suele leerse como la ejecución de un orden moral más amplio que ellos mismos. Para el Dr. Arthur Holmes, esta convicción es una de las tres raíces de la filosofía griega, junto con el cruce cultural entre Oriente y Occidente y la curiosidad «precientífica» por los elementos físicos del cosmos: junto a la pregunta por el orden físico de las cosas —de qué están hechas, por qué cambian—, queda planteada desde el inicio una segunda pregunta, si ese orden incluye también un orden moral, que va a recorrer el resto de la filosofía griega, de Sócrates en adelante.",
+  },
   la_mirada: {
     term: "La mirada (le regard)",
     aka: ["la mirada", "le regard", "el infierno son los otros"],
@@ -2085,6 +2302,13 @@ export const GLOSSARY = {
     kind: "concepto",
     when: "siglo XVI",
     body: "Doctrina luterana según la cual cada creyente, y no la jerarquía eclesiástica, tiene la facultad y el deber de interpretar por sí mismo las Escrituras, guiado por su propia conciencia. Se opone a la solución católica, que confiaba la interpretación correcta de la Biblia a la tradición, los concilios y el Papa. Se considera una raíz de la nueva función que la filosofía moderna le asigna a la conciencia individual como juez de la verdad.",
+  },
+  linea_dividida: {
+    term: "Línea dividida",
+    aka: ["línea dividida", "analogía de la línea"],
+    kind: "concepto",
+    when: "Platón, República VI",
+    body: "Imagen con la que Platón organiza, en el libro VI de la República, toda la jerarquía del conocimiento en una sola línea dividida en cuatro segmentos, agrupados en dos mitades. La mitad inferior es la dóxa, la opinión, que se ocupa del mundo visible: incluye la eikasía, conjeturas a partir de sombras e imágenes, y la pístis, la creencia común en los objetos físicos mismos. La mitad superior es la epistéme, el conocimiento, que se ocupa del mundo inteligible: incluye la dianoia, el razonamiento matemático a partir de hipótesis, y la nóesis, la comprensión directa de las Formas sin apoyo en hipótesis previas. La imagen continúa, poco después, con la alegoría de la caverna, que dramatiza el mismo recorrido.",
   },
   litt_engagee: {
     term: "Literatura comprometida (engagée)",
@@ -2296,12 +2520,26 @@ export const GLOSSARY = {
     when: "desde s. XVIII",
     body: "Conjunto de cambios materiales, técnicos y sociales que acompañan a la modernidad: industrialización, urbanización, desarrollo del capitalismo, economía monetaria, avances en transporte y comunicaciones, burocratización del Estado. ¿En qué se diferencia de la modernidad? La modernidad es el período histórico; la modernización son los procesos concretos que lo caracterizan. Un ejemplo: la modernidad es la época que se abre con la Revolución Francesa; la modernización es el hecho de que en esa época las ciudades crecen, las fábricas reemplazan a los talleres artesanales, el ferrocarril conecta territorios, y el dinero se convierte en la medida universal del valor. También se distingue del modernismo, que es la respuesta estética —en arte, literatura y filosofía— a las transformaciones que la modernización produce. Estas tres distinciones (modernidad, modernización, modernismo) son útiles para no confundir el período, los cambios materiales y la sensibilidad cultural que generan.",
   },
+  moira: {
+    term: "Moira",
+    aka: ["moira", "fatum"],
+    kind: "concepto",
+    when: "concepto griego, ya en Homero, s. VIII a.C.",
+    body: "Palabra griega que significa «parte» o «porción asignada», y que se traduce habitualmente como «destino» o «hado». En Homero es el concepto de orden más antiguo: cada ser, incluidos los propios dioses del Olimpo, tiene una porción fija de vida, de suerte y de límites que no puede transgredir impunemente. No implica todavía una moral en sentido pleno, sino un cierto reparto cósmico, en el que cada cosa ocupa su lugar y salirse de él, por hybris o por accidente, desata consecuencias. Con el tiempo se representa a las Moiras como tres hermanas que hilan, miden y cortan el hilo de cada vida humana. La noción sobrevive, transformada, en la idea estoica posterior de un destino racional —el lógos cósmico— al que conviene resignarse de buen grado.",
+  },
   monada: {
     term: "Mónada",
     aka: ["mónada", "mónadas"],
     kind: "concepto",
     when: "siglo XVIII",
     body: "En la metafísica de Leibniz, sustancia simple, sin partes ni extensión, que constituye el elemento último de toda la realidad. Cada mónada representa el universo entero desde su propio punto de vista, con mayor o menor claridad, y no interactúa causalmente con las demás: «no tiene ventanas».",
+  },
+  monismo: {
+    term: "Monismo",
+    aka: ["monismo"],
+    kind: "concepto",
+    when: "concepto griego, desde el s. VI a.C.",
+    body: "Posición filosófica según la cual la realidad, en última instancia, es una sola cosa, frente al pluralismo, que sostiene que está hecha de varias. Entre los presocráticos la pregunta tiene dos caras distintas. La cualitativa pregunta de qué tipo de cosa está hecho el mundo: los milesios son monistas cualitativos porque buscan un único elemento —agua, ápeiron, aire— del que deriva todo lo demás, aunque acepten que existan muchas cosas individuales hechas de ese elemento. La cuantitativa pregunta si el universo es, en número, una sola cosa o muchas cosas distinguibles: es la posición que llevan al extremo los eleatas, Parménides y Zenón, para quienes no solo hay un único tipo de sustancia sino que, en sentido estricto, no hay más que un único ser, indivisible e inmóvil, y toda apariencia de pluralidad y cambio es ilusoria. Esta distinción entre monismo cualitativo y cuantitativo reaparece más adelante en Demócrito, que es monista cualitativo —todos los átomos son de la misma sustancia— pero pluralista cuantitativo —hay una cantidad infinita de ellos—.",
   },
   moral_esclavos: {
     term: "Moral de esclavos",
@@ -2358,6 +2596,20 @@ export const GLOSSARY = {
     kind: "concepto",
     when: "Nietzsche, s. XIX",
     body: "Para Nietzsche, el nihilismo es la consecuencia directa de la muerte de Dios: la situación en que los valores supremos pierden su valor y los principios que organizaban la realidad dejan de funcionar. ¿Qué pasa cuando se derrumba el fundamento sobre el que descansaban la moral, el sentido de la vida y la idea de verdad? Queda un vacío. Nietzsche distingue formas de nihilismo. El nihilismo pasivo es la resignación, el «para qué esforzarse si nada tiene sentido»: la actitud del que se hunde en la apatía o busca anestesiarse. El nihilismo activo, en cambio, asume la ausencia de fundamentos como punto de partida para crear valores nuevos. Lo más provocador de Nietzsche es su tesis de que el cristianismo mismo es una forma de nihilismo: al despreciar este mundo en favor de un mundo «verdadero» situado en el más allá, el cristianismo niega la vida tal como es. Y cuando ese mundo ideal se revela como ficción, no queda nada, porque se había enseñado a despreciar lo único que había. El nihilismo no se supera volviendo a creer en algún sustituto de Dios —la ciencia, el progreso, la nación—, porque la raíz del problema está justamente en la necesidad de un fundamento absoluto.",
+  },
+  nomos: {
+    term: "Nómos",
+    aka: ["nómos", "nomos"],
+    kind: "concepto",
+    when: "concepto griego, desde el s. VI a.C.",
+    body: "Palabra griega que significa «ley», «costumbre» o «convención», y que la filosofía antigua opone sistemáticamente a physis, la naturaleza. A diferencia de díke, un orden que se recibe de los dioses, el nómos es explícitamente un orden que las propias ciudades se dan a sí mismas: se escribe, se vota, se puede cambiar y —esto es lo que va a inquietar a los sofistas— varía de una ciudad a otra. Heráclito ya lo usa en sentido político: hay que combatir por el nómos como por la muralla de la ciudad (DK B44), y toda ley humana se nutre, según él, de una única ley divina (DK B114). El contraste nómos/physis se vuelve, con los sofistas, uno de los grandes ejes de la filosofía griega: si las costumbres varían de pueblo en pueblo, ¿son entonces mera convención, sin ninguna necesidad natural que las respalde?",
+  },
+  nous: {
+    term: "Nous",
+    aka: ["nous"],
+    kind: "concepto",
+    when: "Anaxágoras, s. V a.C.",
+    body: "Término griego que suele traducirse como «mente», «intelecto» o «inteligencia». Anaxágoras lo introduce como principio explicativo para resolver un problema que su propia física genera: si el mundo está hecho de una diversidad infinita de «semillas» distintas, una para cada tipo de sustancia, ¿qué explica que se organicen en un cosmos ordenado y no en un caos? Su respuesta es que existe un nous separado de la materia —puro, autónomo, no mezclado con ninguna de las semillas que ordena—, que pone en movimiento un torbellino inicial y dirige la separación y combinación de las semillas en una dirección determinada. Es, dentro de la filosofía presocrática, el primer intento explícito de introducir una inteligencia o un propósito como causa última del orden del cosmos, en contraste con las explicaciones puramente mecánicas —fuerzas ciegas, choques al azar— de Demócrito. Platón, en el Fedón, elogia a Anaxágoras por haber tenido la idea de un nous ordenador, pero le reprocha no haberla explotado: una vez planteado el principio, vuelve a explicar los fenómenos concretos de manera mecánica, sin apelar realmente a un propósito o a un bien que oriente cada cosa hacia su mejor estado posible, que es lo que Platón —y después Aristóteles, con su noción de causa final— va a exigirle a una explicación verdaderamente teleológica.",
   },
   ocasionalismo: {
     term: "Ocasionalismo",
@@ -2436,6 +2688,13 @@ export const GLOSSARY = {
     when: "griego; Girard y Derrida",
     body: "La palabra griega que nombra a la vez el veneno y el remedio, y también la víctima expiatoria de la ciudad. ¿Por qué una misma palabra para cosas opuestas? Porque para René Girard ahí está la clave de la doble transferencia: la víctima es causa del mal y de la cura a la vez. El «pharmakos» es expulsado para purificar la comunidad, y su ambigüedad revela la lógica sacrificial. Jacques Derrida retomará el término para pensar la indecidibilidad del sentido: todo concepto lleva en sí su contrario.",
   },
+  physis: {
+    term: "Physis",
+    aka: ["physis", "phýsis"],
+    kind: "concepto",
+    when: "concepto griego, desde el s. VI a.C.",
+    body: "Palabra griega —de phyein, «crecer» o «brotar»— con la que los primeros filósofos nombran aquello que hace que una cosa sea lo que es y se comporte como se comporta: no «naturaleza» en el sentido de paisaje, sino el principio interno de crecimiento y cambio propio de cada cosa, lo que explica que una semilla se convierta en árbol y no en piedra. Preguntar por la physis de todas las cosas —de qué están hechas, según qué principio cambian— es, para Aristóteles, el gesto fundacional de la filosofía presocrática, y por eso llama a estos pensadores physikoí, «filósofos de la naturaleza». Aristóteles dedica más tarde su tratado Física (physiké akróasis) a estudiarla, distinguiendo lo que existe «por physis» —con un principio de movimiento en sí mismo— de lo que existe «por arte» (téchne), fabricado desde afuera. La distinción entre physis y nómos, «ley» o «convención», que los sofistas van a explotar a fondo, depende también de esta noción: preguntar si la justicia es physis o nómos es preguntar si tiene la misma necesidad que el crecimiento de una planta, o si es apenas un acuerdo humano modificable.",
+  },
   philosophes: {
     term: "Philosophes",
     aka: ["philosophes"],
@@ -2463,6 +2722,13 @@ export const GLOSSARY = {
     kind: "concepto",
     when: "Arendt, 1958",
     body: "La condición, para Arendt, de que los seres humanos —y no un solo Hombre abstracto— habitan la tierra, y de que son a la vez iguales (todos pueden entenderse y actuar juntos) y distintos (nadie es idéntico a otro que haya vivido, viva o vaya a vivir). La política existe porque hay pluralidad: si hubiera un solo tipo de ser humano, la acción y el discurso serían innecesarios. El totalitarismo, al borrar la individualidad de sus víctimas y de sus perpetradores, ataca directamente esta condición.",
+  },
+  pluralismo: {
+    term: "Pluralismo",
+    aka: ["pluralismo"],
+    kind: "concepto",
+    when: "concepto griego, desde el s. V a.C.",
+    body: "Posición filosófica según la cual la realidad está hecha de varios elementos o sustancias básicas, frente al monismo, que sostiene que hay solo una. Entre los presocráticos, el pluralismo surge como respuesta al desafío que plantea Parménides: si el ser no puede surgir del no-ser —como él argumenta—, entonces parece imposible que las cosas cambien o que existan muchas cosas distintas. Empédocles, Anaxágoras y los atomistas (Leucipo y Demócrito) aceptan la premisa de Parménides —ningún elemento último se genera ni se destruye— pero la esquivan proponiendo que hay, desde siempre, varios elementos eternos e inmutables (los cuatro elementos de Empédocles, las infinitas semillas de Anaxágoras, los átomos de Demócrito) que se combinan y separan en el espacio, produciendo así la apariencia de generación y cambio sin que, en el fondo, nada nuevo llegue a ser ni nada viejo deje de ser del todo. Es, en ese sentido, un intento de salvar el cambio y la diversidad del mundo sensible sin violar la lógica eleática.",
   },
   plusvalia: {
     term: "Plusvalía",
@@ -2589,6 +2855,13 @@ export const GLOSSARY = {
     kind: "concepto",
     when: "criticado por Husserl, 1900",
     body: "La idea, que Husserl rechaza con vigor, de que todo se reduce a cómo funciona nuestra mente: que la lógica, la verdad y la evidencia no son más que leyes empíricas de la psique humana. Si el psicologismo tuviera razón, dos más dos no serían cuatro por una necesidad lógica, sino simplemente porque así está cableado nuestro cerebro. ¿Pero entonces podrían existir mentes para las cuales dos más dos fueran cinco? Husserl considera que eso es absurdo: la verdad lógica no puede depender de la constitución contingente de nuestra mente. El psicologismo es uno de los dos extremos que la fenomenología busca esquivar; el otro es el positivismo, que disuelve al sujeto en los hechos objetivos. La fenomenología aspira a un camino intermedio que respete tanto al sujeto como al objeto.",
+  },
+  raices: {
+    term: "Raíces (rhízomata)",
+    aka: ["raíces", "rhízomata", "rizomas"],
+    kind: "concepto",
+    when: "Empédocles, s. V a.C.",
+    body: "Término con el que Empédocles nombra los cuatro constituyentes últimos de la realidad —tierra, aire, fuego y agua—, eternos e inmutables, que no se transforman unos en otros sino que se combinan y separan en proporciones distintas para formar todas las cosas. La palabra que hoy se usa para esto, «elemento» (stoicheîon), es en realidad posterior: la acuñan Platón y, sobre todo, Aristóteles, que sistematiza la física de las cuatro raíces bajo ese nombre nuevo y la vuelve el vocabulario estándar de la física antigua y medieval, vigente hasta la revolución química del siglo XVIII. Con esta imagen —raíces que se combinan como un pintor mezcla un número limitado de colores— Empédocles ofrece la primera respuesta pluralista al desafío de Parménides: cómo explicar el cambio sin admitir que algo pueda surgir de la nada.",
   },
   racionalismo: {
     term: "Racionalismo",
@@ -2785,6 +3058,13 @@ export const GLOSSARY = {
     kind: "concepto",
     when: "1762",
     body: "En Rousseau, el poder de dictar la voluntad general, que reside siempre en el pueblo reunido y que, a diferencia de lo que sostienen Hobbes y Locke, no puede transferirse ni representarse: solo puede ejercerse directamente, porque es inalienable e indivisible. Esta concepción de la soberanía popular distingue a Rousseau de los demás teóricos modernos del contrato.",
+  },
+  sofistas: {
+    term: "Sofistas",
+    aka: ["sofistas", "sofista", "sofística"],
+    kind: "concepto",
+    when: "s. V a.C., Grecia",
+    body: "Nombre con el que se agrupa a un conjunto de maestros itinerantes —entre ellos Protágoras, Gorgias y Antifonte— que, a mediados del siglo V a. C., empiezan a cobrar por enseñar aretē, la excelencia necesaria para triunfar en la vida pública de una ciudad democrática: retórica, argumentación y, según algunos, la propia virtud política. Antes de ellos, nadie cobraba por enseñar sabiduría, y esa profesionalización les valió una fama ambigua que Platón, sobre todo, se encargó de fijar para la posteridad: en sus diálogos los pinta casi siempre como charlatanes indiferentes a la verdad, interesados sólo en persuadir. Fueron, sin embargo, los primeros en volver preguntas abiertas —y no datos heredados sin más— los propios fundamentos de la ley, la religión y la moral, entre ellos la distinción entre nómos y physis. La palabra «sofista» termina siendo, en español y otras lenguas modernas, sinónimo de argumentador tramposo, herencia directa de esa polémica antigua.",
   },
   solo_un_dios: {
     term: "«Sólo un dios puede salvarnos»",
@@ -3354,6 +3634,13 @@ export const GLOSSARY = {
     when: "Dostoievski, 1864",
     body: "Novela corta de Fiódor Dostoievski publicada en 1864, considerada una de las obras fundacionales del existencialismo. Está dividida en dos partes: la primera es un monólogo furioso y contradictorio del narrador, un funcionario petersburgués que se define como enfermo, rencoroso y nada atractivo; la segunda relata episodios humillantes de su juventud. El hombre del subsuelo rechaza el ideal ilustrado de una sociedad racional y predecible. ¿Qué pasaría si los seres humanos, en lugar de buscar su propio beneficio como dicen los utilitaristas, prefirieran el sufrimiento, el capricho o la autodestrucción, simplemente para demostrar que son libres? El narrador se rebela contra la idea de que dos más dos deban ser cuatro: no porque niegue la aritmética, sino porque le resulta intolerable que la vida se reduzca a un cálculo. Dostoievski escribió las Memorias del subsuelo como respuesta directa a la novela utópica ¿Qué hacer? de Chernishevski, que proponía una sociedad perfecta basada en la razón. El texto anticipa temas centrales del existencialismo: la libertad radical, la conciencia como tormento y la imposibilidad de reducir al ser humano a una fórmula.",
   },
+  menon: {
+    term: "Menón",
+    aka: ["Menón", "Meno"],
+    kind: "obra",
+    when: "Platón, ca. 385 a.C.",
+    body: "Diálogo de Platón, protagonizado por Sócrates y un joven aristócrata tesalio, Menón, discípulo del sofista Gorgias. Empieza preguntando si la virtud se puede enseñar, deriva en la paradoja de cómo es posible investigar algo que no se conoce en absoluto, y se resuelve, al menos provisionalmente, con la teoría de la anamnesis, demostrada en la célebre escena en la que un esclavo sin instrucción resuelve, guiado sólo por preguntas, un problema de geometría. Cierra distinguiendo la opinión verdadera, que acierta pero sin poder explicar por qué, del conocimiento genuino, que exige un razonamiento que la sostenga: una de las primeras formulaciones explícitas del problema epistemológico que Platón va a desarrollar después en la República.",
+  },
   metacritica: {
     term: "Metacrítica del purismo de la razón",
     aka: ["Metacrítica del purismo de la razón", "Metacrítica", "metacrítica"],
@@ -3409,6 +3696,13 @@ export const GLOSSARY = {
     kind: "obra",
     when: "1620",
     body: "Tratado metodológico de Francis Bacon, publicado en 1620, que critica los prejuicios o «ídolos» que impiden el conocimiento verdadero de la naturaleza y propone reemplazar la lógica deductiva de la escolástica por un método inductivo basado en la observación sistemática de los hechos.",
+  },
+  orestiada: {
+    term: "La Orestíada",
+    aka: ["La Orestíada", "Orestíada", "Agamenón", "Coéforas", "Euménides"],
+    kind: "obra",
+    when: "458 a.C.",
+    body: "Trilogía de Esquilo —Agamenón, Coéforas y Euménides—, la única que sobrevive completa del teatro griego antiguo. Cuenta el asesinato de Agamenón a manos de su esposa Clitemnestra, la venganza de su hijo Orestes, que la mata a ella, y la persecución de Orestes por las Erinias, diosas de la venganza de sangre. En la última obra, la diosa Atenea interrumpe el ciclo de muertes convocando el primer tribunal humano, el Areópago: un jurado de ciudadanos vota, el resultado queda empatado, y el voto de Atenea absuelve a Orestes. Las Erinias aceptan el veredicto y se transforman en Euménides, «las benévolas». La trilogía dramatiza, en clave mítica, el paso de la venganza privada de sangre a la justicia como institución política, del orden que se hace cumplir a mano propia al nómos que juzga un tribunal, y es una de las primeras narraciones del nacimiento de la ley en la cultura occidental.",
   },
   origenes_totalitarismo: {
     term: "Los orígenes del totalitarismo",
@@ -3521,6 +3815,13 @@ export const GLOSSARY = {
     kind: "obra",
     when: "1739",
     body: "Primera gran obra de David Hume, publicada en 1739. Expone su teoría de las impresiones y las ideas, su análisis de la asociación de ideas y su crítica a la noción de conexión necesaria, base de todo su empirismo posterior.",
+  },
+  trabajos_dias: {
+    term: "Los trabajos y los días",
+    aka: ["Los trabajos y los días", "Trabajos y días"],
+    kind: "obra",
+    when: "ca. 700 a.C.",
+    body: "Poema didáctico de Hesíodo, dirigido a su hermano Perses, con quien mantenía un litigio por la herencia paterna: Perses había sobornado a los jueces para quedarse con más de lo que le correspondía. A partir de ese conflicto concreto, Hesíodo desarrolla una reflexión general sobre el trabajo, la justicia y el orden del mundo. Presenta a Díke como hija de Zeus, que vigila la conducta de los jueces y de los hombres, y cuenta el mito de las cinco edades —oro, plata, bronce, héroes y hierro—, una historia de decadencia moral progresiva que culmina en la propia época del poeta, marcada por el esfuerzo y la injusticia. Es, junto con los poemas homéricos, una de las dos grandes fuentes literarias sobre las que la filosofía griega posterior va a construir su propio vocabulario de la justicia.",
   },
   zaratustra: {
     term: "Así habló Zaratustra",

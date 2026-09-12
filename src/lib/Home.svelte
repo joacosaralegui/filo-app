@@ -1,7 +1,7 @@
 <script>
   // Pestaña "Inicio". No es un menú de la barra de abajo: muestra ESTADO —
   // dónde quedaste, qué podés jugar y cómo va la colección. Los destinos que
-  // ya tienen pestaña propia (Cursos, Álbum) aparecen sólo cuando tienen algo
+  // ya tienen pestaña propia (Cursos, Cromos) aparecen sólo cuando tienen algo
   // que contar, y con su información a la vista.
   import { createEventDispatcher } from "svelte";
   import RootHeader from "./RootHeader.svelte";
@@ -137,7 +137,7 @@
     {/if}
   </button>
 
-  <!-- Álbum: la tira con los medallones, no un botón. Sin ningún cromo no
+  <!-- Cromos: la tira con los medallones, no un botón. Sin ningún cromo no
        aparece — una colección en cero desalienta y ensucia la pantalla. -->
   {#if album.length}
     <button
@@ -145,7 +145,7 @@
       on:click={() => dispatch("album")}
     >
       <div class="flex flex-col">
-        <span class="text-xs font-bold tracking-[1.4px] text-text-soft/75 uppercase">Álbum</span>
+        <span class="text-xs font-bold tracking-[1.4px] text-text-soft/75 uppercase">Cromos</span>
         <span class="font-serif text-[18px] font-semibold text-text">{album.length} de {TOTAL}</span>
       </div>
 

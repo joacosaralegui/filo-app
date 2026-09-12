@@ -1,10 +1,10 @@
 <script>
   // Barra de navegación inferior: cuatro destinos raíz.
   //
-  //   Inicio     dónde quedaste, desafío, álbum
+  //   Inicio     dónde quedaste, desafío, cromos
   //   Cursos     el catálogo, y debajo cada curso y sus clases
   //   Glosario   buscador de términos y clases
-  //   Álbum      la colección
+  //   Cromos     la colección
   //
   // No aparece dentro de una clase ni en el desafío: ahí el feed es inmersivo
   // (pantalla completa con scroll-snap) y una barra fija le comería alto y
@@ -38,7 +38,7 @@
       label: "Glosario",
       paths: ["M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13z", "M15.3 15.3 20 20"],
     },
-    { id: "album", label: "Álbum", grid: true },
+    { id: "album", label: "Cromos", grid: true },
   ];
 </script>
 
