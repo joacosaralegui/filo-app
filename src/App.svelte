@@ -3,7 +3,7 @@
   import Home from "./lib/Home.svelte";
   import CourseView from "./lib/CourseView.svelte";
   import ClassView from "./lib/ClassView.svelte";
-  import Album from "./lib/Album.svelte";
+  import Cromos from "./lib/Cromos.svelte";
   import Desafio from "./lib/Desafio.svelte";
   import Glosario from "./lib/Glosario.svelte";
   import TermView from "./lib/TermView.svelte";
@@ -16,7 +16,7 @@
     route,
     toInicio,
     toCatalog,
-    toAlbum,
+    toCromos,
     toGlosario,
     toTerm,
     toDesafio,
@@ -35,6 +35,8 @@
     if ($route.num != null) toClass($route.courseId, $route.num, true);
     else toCourse($route.courseId, true);
   }
+  // #/album era el nombre viejo de esta pestaña: mismo trato, a #/cromos.
+  $: if ($route.legacyAlbum) toCromos(true);
 
   // La ruta manda: el hash decide qué curso hay cargado y qué clase se ve.
   $: sync($route.view === "curso" ? $route.courseId : null);
@@ -74,13 +76,13 @@
   $: tab =
     $route.view === "curso" || $route.view === "cursos"
       ? "cursos"
-      : $route.view === "glosario" || $route.view === "album"
+      : $route.view === "glosario" || $route.view === "cromos"
         ? $route.view
         : "inicio";
 </script>
 
-{#if $route.view === "album"}
-  <Album on:open={(e) => toClass(e.detail.courseId, e.detail.num)} />
+{#if $route.view === "cromos"}
+  <Cromos on:open={(e) => toClass(e.detail.courseId, e.detail.num)} />
 {:else if $route.view === "desafio"}
   <Desafio
     courses={COURSES}
@@ -131,7 +133,7 @@
     on:resume={(e) => toClass(e.detail.id, e.detail.num)}
     on:cursos={() => toCatalog()}
     on:desafio={() => toDesafio()}
-    on:album={() => toAlbum()}
+    on:cromos={() => toCromos()}
   />
 {/if}
 
@@ -145,7 +147,7 @@
     on:inicio={() => toInicio()}
     on:glosario={() => toGlosario()}
     on:cursos={() => toCatalog()}
-    on:album={() => toAlbum()}
+    on:cromos={() => toCromos()}
   />
 {/if}
 

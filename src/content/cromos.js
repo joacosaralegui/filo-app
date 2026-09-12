@@ -1,4 +1,4 @@
-// Álbum de cromos: exactamente uno por clase.
+// Cromos: exactamente uno por clase.
 //
 // Cada clase ancla un cromo, así toda clase premia algo. Donde la clase gira
 // alrededor de un pensador, el cromo es su retrato; donde es un tema o una

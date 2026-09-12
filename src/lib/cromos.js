@@ -18,21 +18,21 @@ const porSlug = Object.fromEntries(
   ])
 );
 
-export const ALBUM = CROMOS.map((c) => ({ ...c, img: porSlug[c.slug] || null }));
+export const CROMOS_CON_IMG = CROMOS.map((c) => ({ ...c, img: porSlug[c.slug] || null }));
 
 // La imagen suelta de un cromo, por slug. La usan los cursos como portada
 // prestada hasta que tengan arte propio.
 export const imagenDe = (slug) => porSlug[slug] || null;
-export const TOTAL = ALBUM.length;
+export const TOTAL = CROMOS_CON_IMG.length;
 
 // El cromo que otorga una clase (o null si no otorga ninguno).
 export function cromoDeClase(cursoId, num) {
-  return ALBUM.find((c) => c.curso === cursoId && c.clase === num) || null;
+  return CROMOS_CON_IMG.find((c) => c.curso === cursoId && c.clase === num) || null;
 }
 
 // Los conseguidos, del más reciente al más viejo.
 export function conseguidos(ganados) {
-  return ALBUM.filter((c) => ganados[c.slug]).sort(
+  return CROMOS_CON_IMG.filter((c) => ganados[c.slug]).sort(
     (a, b) => ganados[b.slug] - ganados[a.slug]
   );
 }

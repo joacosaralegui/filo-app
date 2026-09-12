@@ -172,10 +172,10 @@ export function resetClass(num) {
   });
 }
 
-// --- álbum de cromos ---
-// Guarda { [slug]: timestamp } al tope del progreso, fuera de los cursos: el
-// álbum es uno solo para toda la app. Una vez ganado, no se pierde — rehacer
-// una clase peor no te saca el cromo.
+// --- colección de cromos ---
+// Guarda { [slug]: timestamp } al tope del progreso, fuera de los cursos: la
+// colección es una sola para toda la app. Una vez ganado, no se pierde —
+// rehacer una clase peor no te saca el cromo.
 // Devuelve true sólo si el cromo era nuevo: la ceremonia de revelación se
 // dispara con eso, así rehacer una clase no fabrica recompensas falsas.
 export function ganarCromo(slug) {

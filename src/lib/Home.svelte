@@ -16,7 +16,7 @@
   $: lastCourseMeta = last ? courses.find((c) => c.id === last.courseId) : null;
   $: hayProgreso = !!(last && lastCourseMeta);
 
-  $: album = conseguidos(cromosGanados($progress));
+  $: cromos = conseguidos(cromosGanados($progress));
   // El desafío de hoy: hecho o pendiente. Es lo único que cambia de estado en
   // la home día a día, así que se ve en el ícono, no en un texto.
   $: hoy = desafioDeHoy($progress);
@@ -139,19 +139,19 @@
 
   <!-- Cromos: la tira con los medallones, no un botón. Sin ningún cromo no
        aparece — una colección en cero desalienta y ensucia la pantalla. -->
-  {#if album.length}
+  {#if cromos.length}
     <button
       class="mt-3.5 flex w-full cursor-pointer items-center gap-3 rounded-2xl border-0 bg-surface px-5 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
-      on:click={() => dispatch("album")}
+      on:click={() => dispatch("cromos")}
     >
       <div class="flex flex-col">
         <span class="text-xs font-bold tracking-[1.4px] text-text-soft/75 uppercase">Cromos</span>
-        <span class="font-serif text-[18px] font-semibold text-text">{album.length} de {TOTAL}</span>
+        <span class="font-serif text-[18px] font-semibold text-text">{cromos.length} de {TOTAL}</span>
       </div>
 
       <div class="ml-auto flex">
         <!-- invertido: el más nuevo va último en el DOM, así queda encima -->
-        {#each album.slice(0, 4).reverse() as c (c.slug)}
+        {#each cromos.slice(0, 4).reverse() as c (c.slug)}
           <span class="mini">
             {#if c.img}
               <img class="h-full w-full object-cover" src={c.img} alt="" />

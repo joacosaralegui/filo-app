@@ -7,7 +7,7 @@
 //   #/cursos/<curso>/<num>  una clase
 //   #/glosario              buscador de términos y clases
 //   #/glosario/<slug>       la página de un término
-//   #/album                 álbum de cromos
+//   #/cromos                colección de cromos
 //   #/desafio               ronda de preguntas
 //
 // Va por hash (y no por History API) para que ande igual servido desde un
@@ -27,7 +27,10 @@ export function parseHash(hash) {
   const num = (s) => (s != null && /^\d+$/.test(s) ? Number(s) : null);
 
   if (!parts.length) return { view: "inicio", courseId: null, num: null };
-  if (parts[0] === "album") return { view: "album", courseId: null, num: null };
+  if (parts[0] === "cromos") return { view: "cromos", courseId: null, num: null };
+  // "album" era el nombre viejo de la pestaña: se resuelve igual y App.svelte
+  // lo normaliza a "#/cromos" sin dejar rastro en el historial.
+  if (parts[0] === "album") return { view: "cromos", courseId: null, num: null, legacyAlbum: true };
   if (parts[0] === "glosario")
     return { view: "glosario", courseId: null, num: null, slug: parts[1] ? decodeURIComponent(parts[1]) : null };
   if (parts[0] === "desafio") return { view: "desafio", courseId: null, num: null };
@@ -61,7 +64,7 @@ function go(path, replace = false) {
 // Las cuatro raíces son destinos de pestaña: por defecto reemplazan.
 export const toInicio = (replace = true) => go("#/", replace);
 export const toCatalog = (replace = true) => go("#/cursos", replace);
-export const toAlbum = (replace = true) => go("#/album", replace);
+export const toCromos = (replace = true) => go("#/cromos", replace);
 export const toGlosario = (replace = true) => go("#/glosario", replace);
 // Un término es un detalle del glosario: apila.
 export const toTerm = (slug, replace = false) => go(`#/glosario/${slug}`, replace);

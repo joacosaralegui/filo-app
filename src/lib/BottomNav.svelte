@@ -16,7 +16,7 @@
   // el lector de pantalla siga teniendo el nombre.
   import { createEventDispatcher } from "svelte";
 
-  export let active = "inicio"; // "inicio" | "cursos" | "glosario" | "album"
+  export let active = "inicio"; // "inicio" | "cursos" | "glosario" | "cromos"
 
   const dispatch = createEventDispatcher();
 
@@ -38,7 +38,7 @@
       label: "Glosario",
       paths: ["M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13z", "M15.3 15.3 20 20"],
     },
-    { id: "album", label: "Cromos", grid: true },
+    { id: "cromos", label: "Cromos", grid: true },
   ];
 </script>
 

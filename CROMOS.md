@@ -1,6 +1,6 @@
 # Cromos — guía de generación
 
-Álbum de cromos para el sistema de progresión: una carta por filósofo, en el
+Colección de cromos para el sistema de progresión: una carta por filósofo, en el
 mismo estilo que `arte/socrates.png` / `arte/logo.png`.
 
 ## Método

@@ -1,12 +1,12 @@
 <script>
-  // Álbum de cromos. Muestra los 40 casilleros desde el principio: ver lo que
-  // falta es el motor del álbum, así que los bloqueados se dibujan igual, en
+  // Cromos. Muestra los 40 casilleros desde el principio: ver lo que falta es
+  // el motor de la colección, así que los bloqueados se dibujan igual, en
   // plano y con el nombre a la vista.
   import { createEventDispatcher } from "svelte";
   import { progress, cromosGanados } from "./progress.js";
-  import { ALBUM } from "./cromos.js";
+  import { CROMOS_CON_IMG } from "./cromos.js";
   import { COURSES } from "../content/courses.js";
-  import portada from "../assets/album-portada.webp";
+  import portada from "../assets/cromos-portada.webp";
   import RootHeader from "./RootHeader.svelte";
 
   const dispatch = createEventDispatcher();
@@ -14,12 +14,12 @@
   $: ganados = cromosGanados($progress);
 
   // Agrupados por curso: dentro de cada sección el orden es el de las clases,
-  // así el álbum se lee como la línea de tiempo de los dos cursos. El orden es
+  // así la colección se lee como la línea de tiempo de los cursos. El orden es
   // FIJO (el de COURSES) y no depende de qué estés cursando: en una colección,
   // que cada cromo esté siempre en el mismo lugar es la mitad de la gracia.
   const secciones = COURSES.map((curso) => ({
     titulo: curso.title,
-    cromos: ALBUM.filter((c) => c.curso === curso.id),
+    cromos: CROMOS_CON_IMG.filter((c) => c.curso === curso.id),
   })).filter((s) => s.cromos.length);
 </script>
 
@@ -28,8 +28,8 @@
 >
   <RootHeader img={portada} title="Cromos" wash={0.35} position="50% 28%" zoom={2} />
 
-  <!-- Un curso, una tarjeta. Sirve para dos cosas: le da al álbum la misma
-       caja blanca que Inicio y Cursos tienen debajo del arco, y hace que la
+  <!-- Un curso, una tarjeta. Sirve para dos cosas: le da a la colección la
+       misma caja blanca que Inicio y Cursos tienen debajo del arco, y hace que la
        división entre cursos se vea como estructura y no como un salto de aire.
        La grilla es de dos columnas: con cuatro, en mobile los cromos y sus
        nombres quedaban demasiado chicos para leerse bien. -->
@@ -59,7 +59,7 @@
           >
             <!-- El cromo se ve siempre: apagado y desaturado mientras falta, a
                  todo color cuando lo ganaste. El contraste entre los dos
-                 estados es lo que hace que llenar el álbum se sienta. -->
+                 estados es lo que hace que llenar la colección se sienta. -->
             <div class="aspect-square w-full overflow-hidden rounded-[10px] bg-surface-2">
               <img
                 class="h-full w-full object-cover {got ? 'opacity-65' : 'opacity-45 grayscale-[0.9]'}"
