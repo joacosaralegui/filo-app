@@ -4,322 +4,447 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pensadores — Ideas que cambiaron el mundo</title>
-<meta name="description" content="Pensadores.ar es una app para explorar la historia de la filosofía, de Descartes a Foucault, de a una tarjeta por vez. Disponible en Android (beta) y en la web." />
+<meta name="description" content="Aprendé filosofía de forma fácil e interactiva: el recorrido de las ideas que forjaron occidente, de la Grecia antigua a nuestro presente. Gratis y sin anuncios." />
 <meta property="og:title" content="Pensadores — Ideas que cambiaron el mundo" />
-<meta property="og:description" content="Clases cortas, cromos coleccionables y preguntas que enganchan. Una app para explorar la historia de la filosofía." />
+<meta property="og:description" content="Clases interactivas, cromos coleccionables y desafíos diarios. El recorrido de las ideas que forjaron occidente." />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://pensadores.ar/img/screen-correcto.webp" />
+<meta property="og:image" content="https://pensadores.ar/img/01-inicio.webp" />
 <meta name="theme-color" content="#faf9ef" />
 <link rel="icon" type="image/png" href="img/logo.png" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 <style>
-  :root {
-    --bg: #faf9ef;
-    --surface: #fffdf4;
-    --surface-2: #f6efcf;
-    --surface-3: #e2ceb0;
-    --line: #eae1c0;
-    --text: #44552a;
-    --text-soft: #47422f;
-    --accent: #606c38;
-    --on-accent: var(--bg);
-    --accent-2: #dda15e;
-    --accent-3: #bc6c25;
-    --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", ui-serif, serif;
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes heroSlide {
+    0%, 16% { transform: translateX(0); }
+    20%, 36% { transform: translateX(-100%); }
+    40%, 56% { transform: translateX(-200%); }
+    60%, 76% { transform: translateX(-300%); }
+    80%, 96% { transform: translateX(-400%); }
+    100% { transform: translateX(-400%); }
   }
 
-  * { box-sizing: border-box; }
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* ---------- hero ---------- */
+  section.hero {
+    position: relative; overflow: hidden; min-height: 92vh; display: flex; align-items: center;
+    padding-top: 64px;
   }
-
-  body { display: flex; justify-content: center; }
-
-  main { width: 100%; max-width: 640px; padding: 0 20px 64px; }
-
-  /* ---------- header ---------- */
-  header.site {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 22px 0 8px;
+  section.hero .bg-wash {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    object-position: 50% 20%; opacity: 0.12; filter: saturate(0.6);
   }
-  header.site img { width: 38px; height: 38px; border-radius: 12px; flex: none; }
-  header.site .wordmark {
+  section.hero .disc-1 {
+    position: absolute; top: -120px; right: -80px; width: 400px; height: 400px;
+    border-radius: 50%; background: var(--accent-2); opacity: 0.18;
+  }
+  section.hero .disc-2 {
+    position: absolute; bottom: -60px; left: -60px; width: 280px; height: 280px;
+    border-radius: 50%; background: var(--accent); opacity: 0.08;
+  }
+  .hero-grid {
+    position: relative; padding: 56px 0 80px; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .hero-copy { max-width: 600px; animation: fadeUp 0.8s ease both; }
+  .hero-copy h1 {
+    font-family: var(--font-display); font-size: clamp(38px, 5vw, 64px); line-height: 1.08;
+    color: var(--text); margin: 0 0 22px; font-weight: 400;
+  }
+  .hero-copy p.lead {
+    font-size: 19px; line-height: 1.65; color: var(--text-soft); margin: 0 0 20px;
+    max-width: 46ch; font-family: var(--font-serif);
+  }
+  .hero-copy .free-note {
+    font-size: 13px; color: var(--text-soft); opacity: 0.6; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.2px; margin: 0 0 14px;
+  }
+  .cta-group { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .hero-copy .fineprint {
+    font-size: 13px; color: var(--text-soft); opacity: 0.55; margin: 14px 0 0;
+  }
+  .phone-frame {
+    display: flex; justify-content: center; animation: fadeUp 0.8s ease 0.15s both;
+  }
+  .phone-shell {
+    width: 280px; height: 560px; border-radius: 32px; overflow: hidden;
+    box-shadow: 0 24px 64px -16px rgba(68, 85, 42, 0.3); background: var(--surface);
+    position: relative; padding: 12px;
+  }
+  .phone-screen { width: 100%; height: 100%; border-radius: 22px; overflow: hidden; position: relative; }
+  .phone-track {
+    position: absolute; inset: 0; display: flex; flex-direction: row;
+    animation: heroSlide 20s ease-in-out infinite;
+  }
+  .phone-track img { width: 100%; height: 100%; object-fit: cover; flex: none; }
+
+  /* ---------- courses ---------- */
+  section.courses { padding: 100px 0 80px; }
+  .section-head { text-align: center; margin-bottom: 56px; }
+  .section-head h2 {
+    font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 40px); color: var(--text);
+    margin: 0 0 12px; font-weight: 400;
+  }
+  .section-head p {
+    font-size: 17px; color: var(--text-soft); margin: 0 auto; max-width: 54ch; line-height: 1.6;
     font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: 18px;
-    letter-spacing: 1.4px;
-    color: var(--text);
+  }
+  .course-list { display: flex; flex-wrap: wrap; gap: 20px; }
+  .course-card {
+    flex: 1; min-width: 260px; border-radius: 24px; overflow: hidden; position: relative;
+    padding: 48px 36px; display: flex; flex-direction: column; justify-content: flex-end;
+    min-height: 300px; border: 1px solid var(--line); background-color: var(--surface);
+    transition: transform 0.35s cubic-bezier(0.16, 0.8, 0.24, 1), box-shadow 0.35s ease, opacity 0.6s ease;
+  }
+  .course-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -18px rgba(68, 85, 42, 0.28);
+  }
+  .course-card::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.08;
+    background-image: url('img/libros-panteon.webp'); background-size: 300% auto; background-repeat: no-repeat;
+  }
+  .course-card > * { position: relative; }
+  .course-card:nth-child(1)::before { background-position: 0% center; }
+  .course-card:nth-child(2)::before { background-position: 50% center; }
+  .course-card:nth-child(3)::before { background-position: 100% center; }
+  .course-card .period {
+    font-size: 12px; font-weight: 600; color: var(--accent-2); letter-spacing: 0.5px;
+    text-transform: uppercase; margin-bottom: 14px; display: block;
+  }
+  .course-card h3 {
+    font-family: var(--font-display); font-size: 26px; color: var(--text); margin: 0 0 12px; font-weight: 400;
+  }
+  .course-card p {
+    font-family: var(--font-serif); font-size: 15px; line-height: 1.6; color: var(--text-soft); margin: 0 0 16px;
+  }
+  .course-card .count { font-size: 14px; color: var(--accent); font-weight: 600; }
+
+  /* ---------- screenshots ---------- */
+  section.screens { padding: 0 0 120px; }
+  .screens-panel {
+    position: relative; background: linear-gradient(135deg, var(--accent) 0%, var(--text) 100%);
+    border-radius: 32px; padding: 48px 32px; overflow: hidden;
+  }
+  .screens-panel .disc-1 {
+    position: absolute; top: -60px; right: -40px; width: 240px; height: 240px;
+    border-radius: 50%; background: var(--accent-2); opacity: 0.2;
+  }
+  .screens-panel .disc-2 {
+    position: absolute; bottom: -40px; left: -40px; width: 180px; height: 180px;
+    border-radius: 50%; background: var(--accent-3); opacity: 0.15;
+  }
+  .screens-row {
+    display: flex; justify-content: center; gap: 18px; position: relative;
+    overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory;
+  }
+  .screens-row::-webkit-scrollbar { display: none; }
+  .screens-row .shot {
+    flex: none; width: 180px; border-radius: 24px; overflow: hidden;
+    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.2); scroll-snap-align: center;
+    transition: transform 0.35s cubic-bezier(0.16, 0.8, 0.24, 1);
+  }
+  .screens-row .shot:hover { transform: translateY(-8px); }
+  .screens-row .shot img { display: block; width: 100%; height: auto; }
+
+  /* ---------- faq ---------- */
+  section.faq { max-width: 720px; margin: 0 auto; padding: 0 28px 120px; }
+  .faq-list {
+    display: flex; flex-direction: column; gap: 1px; background: var(--line);
+    border-radius: 20px; overflow: hidden;
+  }
+  .faq-list details { background: var(--surface); overflow: hidden; }
+  .faq-list summary {
+    padding: 24px 28px;
+    font-family: var(--font-display); font-size: 18px; color: var(--text); cursor: pointer;
+    list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    transition: color 0.25s ease;
+  }
+  .faq-list summary:hover { color: var(--accent); }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary .plus {
+    font-size: 22px; color: var(--accent-2); transition: transform 0.3s cubic-bezier(0.16, 0.8, 0.24, 1);
+    flex: none; line-height: 1;
+  }
+  .faq-list details.is-open summary .plus { transform: rotate(45deg); }
+  .faq-list .faq-body { padding: 14px 28px 24px; }
+  .faq-list .faq-body p {
+    font-size: 15px; color: var(--text-soft); line-height: 1.65; margin: 0;
+    font-family: var(--font-serif);
   }
 
-  /* ---------- arco (mismo tratamiento que RootHeader.svelte de la app) ---------- */
-  .cover-wrap { position: relative; margin: 18px 0 0; }
-  .cover-disc {
-    position: absolute; top: 12px; right: -10px;
-    width: 110px; height: 110px; border-radius: 50%;
-    background: color-mix(in srgb, var(--accent-2) 60%, transparent);
+  /* ---------- final cta ---------- */
+  section.final-cta { padding: 0 0 80px; }
+  .final-panel {
+    position: relative; background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+    border-radius: 32px; padding: 72px 48px; text-align: center; overflow: hidden;
   }
-  .cover {
-    position: relative;
-    background: var(--bg);
-    overflow: hidden;
-    height: 30vh;
-    min-height: 210px;
-    max-height: 320px;
-    border-radius: 100vw 100vw 24px 24px;
+  .final-panel .bg-wash {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    object-position: 50% 15%; opacity: 0.15; filter: saturate(0) contrast(1.1); mix-blend-mode: luminosity;
   }
-  .cover img {
-    display: block; width: 100%; height: 100%; object-fit: cover;
-    opacity: 0.65; /* mismo "wash" que RootHeader.svelte, para que el título se lea */
-  }
-  .cover-text {
+  .final-panel .tint {
     position: absolute; inset: 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding-top: 46px;
+    background: linear-gradient(135deg, rgba(68, 85, 42, 0.85) 0%, rgba(96, 108, 56, 0.75) 100%);
   }
-  .cover-text h1 {
-    margin: 0;
-    font-family: var(--font-serif);
-    font-size: clamp(30px, 8vw, 44px);
-    line-height: 1;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text);
+  .final-panel .content { position: relative; }
+  .final-panel h2 {
+    font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 40px); color: var(--on-accent);
+    margin: 0 0 14px; font-weight: 400;
+  }
+  .final-panel p {
+    font-size: 17px; color: rgba(250, 249, 239, 0.8); margin: 0 auto 36px; max-width: 46ch;
+    line-height: 1.6; font-family: var(--font-serif);
+  }
+  .final-panel .cta-group { justify-content: center; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-copy, .phone-frame, .phone-track { animation: none; }
   }
 
-  /* ---------- hero copy + CTA ---------- */
-  .hero-copy { text-align: center; margin: 30px auto 0; max-width: 46ch; }
-  .hero-copy h2 {
-    font-family: var(--font-serif);
-    font-size: 26px;
-    line-height: 1.3;
-    font-weight: 600;
-    margin: 0 0 12px;
-  }
-  .hero-copy p {
-    font-size: 15.5px;
-    line-height: 1.6;
-    color: var(--text-soft);
-    margin: 0;
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; padding: 40px 0 56px; text-align: center; gap: 40px; }
+    .hero-copy { max-width: none; margin: 0 auto; }
+    .hero-copy p.lead { margin-left: auto; margin-right: auto; }
+    .cta-group { justify-content: center; }
+    .phone-shell { width: 220px; height: 440px; }
   }
 
-  .cta-group { margin: 28px 0 6px; display: flex; flex-direction: column; gap: 12px; }
-
-  .cta {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 16px;
-    border-radius: 14px;
-    padding: 16px;
-    transition: transform 0.08s ease;
-  }
-  .cta:active { transform: scale(0.98); }
-
-  .cta-primary {
-    background: var(--accent);
-    color: var(--on-accent);
-    flex-direction: column;
-    gap: 3px;
-  }
-  .cta-primary .badge {
-    font-size: 10.5px;
-    font-weight: 800;
-    letter-spacing: 1.1px;
-    text-transform: uppercase;
-    color: color-mix(in srgb, var(--on-accent) 75%, transparent);
-  }
-
-  .cta-secondary {
-    background: transparent;
-    color: var(--text);
-    border: 1.5px solid var(--line);
-  }
-
-  .fineprint {
-    text-align: center;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--text-soft);
-    opacity: 0.75;
-    margin: 4px 0 0;
-  }
-
-  /* ---------- features ---------- */
-  .features {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin: 48px 0;
-  }
-  .feature {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 18px 14px;
-    text-align: center;
-  }
-  .feature .ico { font-size: 22px; display: block; margin-bottom: 10px; }
-  .feature h3 {
-    font-size: 13px;
-    font-weight: 800;
-    margin: 0 0 5px;
-    color: var(--text);
-  }
-  .feature p {
-    font-size: 12px;
-    line-height: 1.45;
-    color: var(--text-soft);
-    margin: 0;
-  }
-
-  /* ---------- gallery ---------- */
-  section.gallery { margin-bottom: 48px; }
-  .shots-row {
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    padding: 20px 4px 12px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-  .shots-row::-webkit-scrollbar { display: none; }
-  .phone {
-    flex: none;
-    width: 165px;
-    scroll-snap-align: start;
-    border-radius: 22px;
-    border: 6px solid var(--surface);
-    box-shadow: 0 10px 28px -14px color-mix(in srgb, var(--text) 55%, transparent);
-    overflow: hidden;
-    background: var(--surface);
-  }
-  .phone img { display: block; width: 100%; height: auto; }
-
-  @media (min-width: 640px) {
-    .shots-row { overflow: visible; flex-wrap: wrap; justify-content: center; }
-    .phone { width: 190px; }
-  }
-
-  /* ---------- CTA final ---------- */
-  section.closing {
-    background: var(--surface-3);
-    border-radius: 22px;
-    padding: 30px 24px;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  section.closing h2 {
-    font-family: var(--font-serif);
-    font-size: 21px;
-    margin: 0 0 8px;
-  }
-  section.closing p {
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--text-soft);
-    margin: 0 0 20px;
-  }
-  section.closing .cta-group { margin-top: 0; }
-
-  footer {
-    text-align: center;
-    font-size: 12.5px;
-    color: var(--text-soft);
-    opacity: 0.7;
+  @media (max-width: 600px) {
+    .wrap { padding: 0 20px; }
+    section.hero { min-height: 0; }
+    .hero-grid { padding: 32px 0 48px; }
+    section.courses { padding: 64px 0 56px; }
+    .section-head { margin-bottom: 40px; }
+    .course-card { min-width: 0; flex: 1 1 100%; padding: 36px 26px; min-height: 220px; }
+    section.screens { padding: 0 0 72px; }
+    .screens-panel { padding: 36px 16px; border-radius: 24px; }
+    .screens-row { justify-content: flex-start; padding-bottom: 8px; }
+    section.faq { padding: 0 20px 72px; }
+    .faq-list summary { font-size: 16.5px; }
+    section.final-cta { padding: 0 0 56px; }
+    .final-panel { padding: 48px 24px; border-radius: 24px; }
+    .cta-group .btn { width: 100%; }
+    .cta-group { flex-direction: column; align-items: stretch; }
   }
 </style>
 </head>
 <body>
-<main>
-  <header class="site">
-    <img src="img/logo.png" alt="" />
-    <span class="wordmark">PENSADORES</span>
-  </header>
 
-  <div class="cover-wrap">
-    <span class="cover-disc" aria-hidden="true"></span>
-    <div class="cover">
-      <img src="img/hero-socrates.webp" alt="" style="object-position: 50% 30%; scale: 1.35;" />
-      <div class="cover-text"><h1>Pensadores</h1></div>
+<!-- NAV -->
+<nav class="site">
+  <div class="wrap">
+    <div class="brand">
+      <img src="img/logo.png" alt="" />
+      <span>Pensadores</span>
     </div>
+    <a class="btn btn-nav" href="https://play.google.com/apps/internaltest/4701162273871307879" target="_blank" rel="noopener">Probar gratis →</a>
   </div>
+</nav>
 
-  <div class="hero-copy">
-    <h2>Ideas que cambiaron el mundo, a tu ritmo</h2>
-    <p>
-      La historia de la filosofía, de Descartes a Foucault, en clases cortas
-      y cromos coleccionables. Pensada para reemplazar el scroll sin sentido:
-      mismo formato de tarjetas y deslizar, pero cada una te deja algo.
-    </p>
-  </div>
-
-  <div class="cta-group">
-    <a class="cta cta-primary" href="https://play.google.com/apps/internaltest/4701162273871307879" target="_blank" rel="noopener">
-      <span>Probarla en Android →</span>
-      <span class="badge">Recomendada · para el celu</span>
-    </a>
-    <a class="cta cta-secondary" href="/app/">
-      Usarla en la web
-    </a>
-  </div>
-  <p class="fineprint">Android está en beta cerrada — el link te suma como tester. Es gratis.</p>
-
-  <div class="features">
-    <div class="feature">
-      <span class="ico">📖</span>
-      <h3>Clases cortas</h3>
-      <p>Una idea por tarjeta, terminás en minutos.</p>
-    </div>
-    <div class="feature">
-      <span class="ico">🃏</span>
-      <h3>Cromos coleccionables</h3>
-      <p>Cada clase completa suma una figurita al álbum.</p>
-    </div>
-    <div class="feature">
-      <span class="ico">⏳</span>
-      <h3>Para el tiempo muerto</h3>
-      <p>El mismo hábito del scroll, pero te deja algo.</p>
-    </div>
-  </div>
-
-  <section class="gallery">
-    <div class="cover-wrap">
-      <span class="cover-disc" aria-hidden="true"></span>
-      <div class="cover" style="height:22vh; min-height:150px;">
-        <img src="img/hero-cursos.webp" alt="" style="object-position: 50% 62%; scale: 1.4;" />
-        <div class="cover-text" style="padding-top:34px;"><h1 style="font-size:clamp(22px,6vw,32px);">Por dentro</h1></div>
+<!-- HERO -->
+<section class="hero">
+  <img class="bg-wash" src="img/hero-socrates.webp" alt="" />
+  <div class="disc-1"></div>
+  <div class="disc-2"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="free-note">Gratis y sin anuncios</p>
+        <h1>Aprendé filosofía de forma fácil e&nbsp;interactiva</h1>
+        <p class="lead">Conocé el recorrido de las ideas que forjaron occidente, desde la Grecia antigua a nuestro presente contemporáneo.</p>
+        <div class="cta-group">
+          <a class="btn btn-primary" href="https://play.google.com/apps/internaltest/4701162273871307879" target="_blank" rel="noopener">Probar en Android →</a>
+          <a class="btn btn-secondary" href="/app/">Usar en la web</a>
+        </div>
+        <p class="fineprint">Ayudanos a testear la app.</p>
+      </div>
+      <div class="phone-frame">
+        <div class="phone-shell">
+          <div class="phone-screen">
+            <div class="phone-track">
+              <img src="img/01-inicio.webp" alt="Inicio" />
+              <img src="img/02-lectura.webp" alt="Lectura" />
+              <img src="img/03-quiz.webp" alt="Quiz" />
+              <img src="img/04-recorrido.webp" alt="Recorrido" />
+              <img src="img/05-album.webp" alt="Álbum" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="shots-row">
-      <div class="phone"><img src="img/screen-home.webp" alt="Pantalla de inicio de Pensadores" loading="lazy" /></div>
-      <div class="phone"><img src="img/screen-quiz.webp" alt="Pregunta de una clase" loading="lazy" /></div>
-      <div class="phone"><img src="img/screen-correcto.webp" alt="Respuesta correcta con animación" loading="lazy" /></div>
-      <div class="phone"><img src="img/screen-album.webp" alt="Álbum de cromos coleccionables" loading="lazy" /></div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <section class="closing">
-    <h2>¿Le damos una vuelta?</h2>
-    <p>Elegí cómo probarla — en el celu es donde más rinde, pero la web también tiene todo.</p>
-    <div class="cta-group">
-      <a class="cta cta-primary" href="https://play.google.com/apps/internaltest/4701162273871307879" target="_blank" rel="noopener">
-        <span>Probarla en Android →</span>
-        <span class="badge">Recomendada · para el celu</span>
-      </a>
-      <a class="cta cta-secondary" href="/app/">
-        Usarla en la web
-      </a>
+<!-- COURSES -->
+<section class="courses">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>¿Qué vas a encontrar?</h2>
+      <p>Más de 50 clases, cromos coleccionables y desafíos diarios.</p>
     </div>
-  </section>
+    <div class="course-list">
+      <div class="course-card reveal-fade">
+        <span class="period">s. VI a.C. – s. V d.C.</span>
+        <h3>Filosofía antigua</h3>
+        <p>De los presocráticos a los Padres de la Iglesia. Las preguntas fundacionales sobre el ser, el conocimiento y la buena vida.</p>
+        <span class="count">18 clases</span>
+      </div>
+      <div class="course-card reveal-fade">
+        <span class="period">s. XVII – s. XIX</span>
+        <h3>Filosofía moderna</h3>
+        <p>De Descartes a Marx. La razón, la ciencia moderna, la Ilustración y el idealismo alemán.</p>
+        <span class="count">21 clases</span>
+      </div>
+      <div class="course-card reveal-fade">
+        <span class="period">s. XIX – presente</span>
+        <h3>Filosofía contemporánea</h3>
+        <p>De Nietzsche a la posmodernidad. El siglo XX pensado desde sus rupturas.</p>
+        <span class="count">20 clases</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer>Pensadores.ar</footer>
-</main>
+<!-- SCREENSHOTS -->
+<section class="screens">
+  <div class="wrap">
+    <div class="screens-panel reveal">
+      <div class="disc-1"></div>
+      <div class="disc-2"></div>
+      <div class="screens-row">
+        <div class="shot"><img src="img/01-inicio.webp" alt="Inicio" /></div>
+        <div class="shot"><img src="img/02-lectura.webp" alt="Lectura" /></div>
+        <div class="shot"><img src="img/03-quiz.webp" alt="Quiz" /></div>
+        <div class="shot"><img src="img/04-recorrido.webp" alt="Recorrido" /></div>
+        <div class="shot"><img src="img/05-album.webp" alt="Álbum" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="section-head reveal">
+    <h2>Preguntas frecuentes</h2>
+  </div>
+  <div class="faq-list">
+    <details class="reveal">
+      <summary>¿Es gratis?<span class="plus">+</span></summary>
+      <div class="faq-body"><p>Sí, completamente. No tiene publicidad ni compras dentro de la app. Estamos en beta abierta, así que todo el contenido está disponible.</p></div>
+    </details>
+    <details class="reveal">
+      <summary>¿Qué temas cubre?<span class="plus">+</span></summary>
+      <div class="faq-body"><p>Tres cursos que cubren toda la historia de la filosofía occidental. Antigua: de los presocráticos a Plotino, pasando por Sócrates, Platón, Aristóteles, los estoicos y los escépticos. Moderna: de Descartes a Marx, con Spinoza, Hume, Kant, Hegel y el romanticismo alemán. Contemporánea: de Nietzsche a la posmodernidad, con Freud, Heidegger, la Escuela de Frankfurt, Beauvoir, Foucault y Derrida.</p></div>
+    </details>
+    <details class="reveal">
+      <summary>¿Necesito saber filosofía?<span class="plus">+</span></summary>
+      <div class="faq-body"><p>Para nada. Cada curso arranca desde cero y está escrito para que se entienda sin conocimientos previos. Está pensada para curiosos, no solo para especialistas.</p></div>
+    </details>
+    <details class="reveal">
+      <summary>¿Está en iOS?<span class="plus">+</span></summary>
+      <div class="faq-body"><p>Todavía no, pero podés usarla desde el navegador en cualquier dispositivo. La versión web tiene exactamente el mismo contenido y funcionalidad que la app.</p></div>
+    </details>
+    <details class="reveal">
+      <summary>¿Qué son los cromos?<span class="plus">+</span></summary>
+      <div class="faq-body"><p>Son figuritas coleccionables que ganás al completar cada clase. Cada filósofo o concepto tiene su cromo con una ilustración original. Se van sumando a tu álbum personal, que es una forma visual de ver todo lo que aprendiste.</p></div>
+    </details>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="final-panel reveal">
+      <img class="bg-wash" src="img/hero-socrates.webp" alt="" />
+      <div class="tint"></div>
+      <div class="content">
+        <h2>Buscamos testers</h2>
+        <p>Estamos buscando testers para la versión mobile. Ayudanos entrando a este link y descargando la versión de prueba de la aplicación.</p>
+        <div class="cta-group">
+          <a class="btn btn-primary-light" href="https://play.google.com/apps/internaltest/4701162273871307879" target="_blank" rel="noopener">Probar en Android →</a>
+          <a class="btn btn-outline-light" href="/app/">Usar en la web</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="inner">
+    <p>Pensadores.ar · <a href="/privacidad.html">Política de privacidad</a></p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // FAQ: acordeón animado con Web Animations API en vez del salto nativo de
+  // <details>. Si el usuario prefiere menos movimiento, se deja el
+  // comportamiento nativo (instantáneo) sin animar.
+  if (!reduceMotion && window.Element && Element.prototype.animate) {
+    document.querySelectorAll('.faq-list details').forEach(function (details) {
+      var summary = details.querySelector('summary');
+      var body = details.querySelector('.faq-body');
+      var animation = null;
+      var isClosing = false;
+      var isExpanding = false;
+
+      function onFinish(open) {
+        details.open = open;
+        animation = null;
+        isClosing = false;
+        isExpanding = false;
+        details.style.height = '';
+        details.style.overflow = '';
+      }
+
+      function shrink() {
+        isClosing = true;
+        details.classList.remove('is-open');
+        var startHeight = details.offsetHeight + 'px';
+        var endHeight = summary.offsetHeight + 'px';
+        if (animation) animation.cancel();
+        animation = details.animate({ height: [startHeight, endHeight] }, { duration: 280, easing: 'ease-out' });
+        animation.onfinish = function () { onFinish(false); };
+        animation.oncancel = function () { isClosing = false; };
+      }
+
+      function expand() {
+        isExpanding = true;
+        var startHeight = details.offsetHeight + 'px';
+        var endHeight = summary.offsetHeight + body.offsetHeight + 'px';
+        if (animation) animation.cancel();
+        animation = details.animate({ height: [startHeight, endHeight] }, { duration: 280, easing: 'ease-out' });
+        animation.onfinish = function () { onFinish(true); };
+        animation.oncancel = function () { isExpanding = false; };
+      }
+
+      function open() {
+        details.style.height = details.offsetHeight + 'px';
+        details.open = true;
+        details.classList.add('is-open');
+        requestAnimationFrame(expand);
+      }
+
+      summary.addEventListener('click', function (e) {
+        e.preventDefault();
+        details.style.overflow = 'hidden';
+        if (isClosing || !details.open) {
+          open();
+        } else if (isExpanding || details.open) {
+          shrink();
+        }
+      });
+    });
+  }
+})();
+</script>
 </body>
 </html>
