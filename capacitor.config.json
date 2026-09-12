@@ -1,5 +1,10 @@
 {
   "appId": "com.joacosaralegui.pensadores",
   "appName": "Pensadores",
-  "webDir": "dist"
+  "webDir": "dist",
+  "plugins": {
+    "SystemBars": {
+      "style": "light"
+    }
+  }
 }
