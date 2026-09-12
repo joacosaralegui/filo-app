@@ -1,0 +1,143 @@
+export default {
+  num: 7,
+  transcript: null,
+  title: "Platón: el alma inmortal",
+  source: "",
+  feed: [
+    {
+      type: "info",
+      title: "El día de la muerte de Sócrates",
+      body: "El Fedón retoma la escena final de la Clase 4: transcurre en la celda de Sócrates el mismo día de su ejecución. Rodeado de discípulos afligidos, Sócrates se muestra sereno, y dedica sus últimas horas a convencerlos, con cuatro argumentos distintos, de que el alma no muere con el cuerpo.",
+    },
+    {
+      type: "info",
+      title: "El argumento cíclico",
+      body: "El primer argumento parte de una observación sobre los opuestos: todo lo que llega a existir surge de su contrario. Lo más grande viene de lo más chico, lo despierto de lo dormido. Si es así, la vida tiene que surgir de la muerte tanto como la muerte surge de la vida, en un ciclo continuo, y las almas de los muertos tienen que existir en algún lado, listas para volver a la vida.",
+    },
+    {
+      type: "quiz",
+      question: "¿En qué se apoya el argumento cíclico del Fedón para sostener que la vida surge de la muerte?",
+      options: [
+        "en que todo lo que llega a existir surge de su contrario",
+        "en un cálculo matemático sobre cuánto dura cada vida",
+        "en un testimonio directo de personas que habían muerto antes",
+        "en la observación de las estaciones del año y las cosechas",
+      ],
+      answer: 0,
+      explain: "Lo despierto viene de lo dormido, lo grande de lo chico: si todo opuesto surge de su contrario, la vida tiene que surgir de la muerte tanto como la muerte de la vida, en un ciclo que exige que las almas sigan existiendo.",
+    },
+    {
+      type: "info",
+      title: "El argumento de la reminiscencia",
+      body: "El segundo argumento retoma la anamnesis de la Clase 5. Si aprender es en realidad recordar un conocimiento que el alma ya tenía, entonces el alma existía antes de este cuerpo, guardando ese saber. Y si existía antes de nacer, no hay ninguna razón para pensar que deje de existir al morir.",
+    },
+    {
+      type: "info",
+      title: "El argumento de la afinidad",
+      body: "El tercer argumento compara al alma con dos tipos de cosas: las visibles, compuestas y cambiantes, como el cuerpo, y las invisibles, simples e inmutables, como las Formas. El alma, capaz de razonar sobre las Formas y de dirigir al cuerpo, se parece mucho más a estas últimas. Y lo que se parece a lo indestructible, sugiere Platón, tiene más chances de ser indestructible también.",
+    },
+    {
+      type: "quiz",
+      question: "¿En qué se basa el argumento de la afinidad para sostener que el alma es inmortal?",
+      options: [
+        "en que el alma se parece más a lo invisible e inmutable que al cuerpo",
+        "en que el alma pesa menos que el cuerpo y por eso no puede morir",
+        "en que todas las almas fueron creadas al mismo tiempo por Zeus",
+        "en que el cuerpo humano nunca cambia a lo largo de la vida",
+      ],
+      answer: 0,
+      explain: "El alma razona sobre las Formas, invisibles e inmutables, y dirige al cuerpo, visible y cambiante: se parece mucho más a lo primero. Y lo que se parece a lo indestructible, sugiere Platón, tiene más chances de serlo también.",
+    },
+    {
+      type: "info",
+      title: "El argumento final",
+      body: "El cuarto argumento es el más elaborado. El alma es, por definición, aquello que trae vida a un cuerpo, y así como el fuego no puede admitir el frío sin dejar de ser fuego, el alma no puede admitir la muerte, su propio opuesto, sin dejar de ser alma. Por eso, cuando el cuerpo muere, lo que hace el alma no es morir con él, sino simplemente retirarse.",
+    },
+    {
+      type: "quiz",
+      question: "¿Por qué, según el argumento final del Fedón, el alma no puede morir?",
+      options: [
+        "porque, como el fuego frente al frío, no admite su propio opuesto",
+        "porque los dioses le prohíben expresamente morir a cualquier alma",
+        "porque el alma no tiene ningún tipo de relación con el cuerpo",
+        "porque nadie ha visto jamás morir a una persona en Atenas",
+      ],
+      answer: 0,
+      explain: "El alma es lo que trae vida; la muerte es lo opuesto a la vida. Así como el fuego no puede admitir el frío sin dejar de ser fuego, el alma no puede admitir la muerte sin dejar de ser alma: por eso se retira, no muere.",
+    },
+    {
+      type: "info",
+      title: "El alma tiene partes: la República",
+      body: "En la República, sin embargo, Platón describe un alma más compleja que la simple unidad de la que habla el Fedón. La divide en tres partes: la razón (logistikón), que busca la verdad; el ánimo (thymoeidés), que busca el honor y se indigna ante la injusticia; y el apetito (epithymetikón), que busca comida, bebida y placer.",
+    },
+    {
+      type: "quiz",
+      question: "En la psicología tripartita de la República, ¿qué función cumple el ánimo (thymoeidés)?",
+      options: [
+        "busca el honor y se indigna ante la injusticia",
+        "busca únicamente comida, bebida y placer físico",
+        "razona en abstracto sobre las Formas eternas",
+        "gobierna siempre sobre las otras dos partes del alma",
+      ],
+      answer: 0,
+      explain: "La razón busca la verdad y el apetito busca placer físico; el ánimo ocupa un lugar intermedio, ligado al honor y a la indignación frente a lo injusto, y suele aliarse con la razón contra el apetito.",
+    },
+    {
+      type: "short",
+      question: "¿Cómo llama Platón, en griego, a la parte del alma que busca el honor y se indigna ante la injusticia?",
+      answers: ["thymos", "animo", "thymoeides"],
+      explain: "El thymos ocupa un lugar intermedio entre la razón, que busca la verdad, y el apetito, que busca placer: suele aliarse con la razón para frenar los excesos del apetito.",
+    },
+    {
+      type: "info",
+      title: "El carro alado: el mito del Fedro",
+      body: "En el Fedro, Platón vuelve a representar esa misma estructura con una imagen: el alma es un carro tirado por dos caballos alados y guiado por un auriga. Uno de los caballos es noble y obedece de buena gana a las riendas de la razón; el otro es indómito y tira hacia abajo, hacia los placeres del cuerpo.",
+    },
+    {
+      type: "info",
+      continues: true,
+      title: "El carro alado: el mito del Fedro",
+      body: "Antes de caer a un cuerpo, cuenta el mito, el alma volaba junto a los dioses contemplando las Formas directamente, y en esa contemplación se nutrían sus alas. Al caer a la tierra pierde las alas y las va recuperando de a poco, con esfuerzo, cada vez que algo bello en este mundo le recuerda esa visión perdida.",
+    },
+    {
+      type: "quiz",
+      question: "En el mito del carro alado, ¿qué representa el caballo indómito que tira hacia abajo?",
+      options: [
+        "el apetito, que tira del alma hacia los placeres del cuerpo",
+        "la razón, que guía al alma hacia el conocimiento de las Formas",
+        "el auriga, que conduce el carro entero con las riendas",
+        "el ánimo, siempre aliado incondicional de la razón",
+      ],
+      answer: 0,
+      explain: "El caballo noble obedece a las riendas de la razón; el indómito tira hacia abajo, hacia los placeres del cuerpo. Es la misma tripartición de la República, ahora puesta en imagen de carro y caballos.",
+    },
+    {
+      type: "classify",
+      question: "¿Cada rasgo corresponde al caballo noble o al caballo indómito del Fedro?",
+      groups: ["Caballo noble", "Caballo indómito"],
+      items: [
+        { text: "Obedece de buena gana las riendas de la razón", group: 0 },
+        { text: "Tira hacia abajo, hacia los placeres del cuerpo", group: 1 },
+        { text: "Se indigna ante la injusticia, junto con la razón", group: 0 },
+        { text: "Busca comida, bebida y placer sin medida", group: 1 },
+      ],
+      explain: "El caballo noble representa al ánimo aliado con la razón; el indómito, al apetito que arrastra hacia el cuerpo. El auriga, la razón misma, tiene que sostener las riendas de ambos para que el carro avance derecho.",
+    },
+    {
+      type: "match",
+      question: "Uní cada argumento o imagen con lo que sostiene",
+      pairs: [
+        { left: "Argumento cíclico", right: "Los opuestos surgen unos de otros: la vida, de la muerte" },
+        { left: "Argumento de la afinidad", right: "El alma se parece más a lo invisible que al cuerpo" },
+        { left: "Argumento final", right: "El alma no puede admitir la muerte sin dejar de ser alma" },
+        { left: "El carro alado", right: "Dos caballos y un auriga: razón, ánimo y apetito" },
+      ],
+      explain: "Los tres primeros defienden la inmortalidad del alma con argumentos lógicos distintos; el cuarto no defiende su inmortalidad, sino que describe su estructura interna una vez que ya se acepta que existe.",
+    },
+    {
+      type: "info",
+      title: "Justicia en el alma",
+      body: "El motivo por el que Platón necesita esta psicología compleja se aclara en la próxima clase: si la ciudad justa depende de que cada clase social cumpla su función propia, la persona justa es la que logra que la razón gobierne sobre el ánimo y el apetito, en vez de dejarse arrastrar por ellos.",
+    },
+  ],
+};

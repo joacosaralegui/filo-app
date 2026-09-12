@@ -59,6 +59,19 @@ import clase02 from "./clase02.js";
 import clase03 from "./clase03.js";
 import clase04 from "./clase04.js";
 import clase05 from "./clase05.js";
+import clase06 from "./clase06.js";
+import clase07 from "./clase07.js";
+import clase08 from "./clase08.js";
+import clase09 from "./clase09.js";
+import clase10 from "./clase10.js";
+import clase11 from "./clase11.js";
+import clase12 from "./clase12.js";
+import clase13 from "./clase13.js";
+import clase14 from "./clase14.js";
+import clase15 from "./clase15.js";
+import clase16 from "./clase16.js";
+import clase17 from "./clase17.js";
+import clase18 from "./clase18.js";
 
 export const classes = [
   { num: 1, transcript: 1, title: "Los presocráticos: physis y arché", era: "Presocráticos", content: clase01 },
@@ -66,19 +79,19 @@ export const classes = [
   { num: 3, transcript: 3, title: "Los sofistas: nómos, phýsis y el poder de la palabra", era: "El giro humano", content: clase03 },
   { num: 4, transcript: null, title: "Sócrates: la pregunta que no se deja responder", era: "El giro humano", content: clase04 },
   { num: 5, transcript: null, title: "Platón: opinión y conocimiento", era: "Platón", content: clase05 }, // ref: Holmes 4
-  { num: 6, transcript: null, title: "Platón: el mundo de las Formas", era: "Platón", content: null }, // ref: Holmes 5
-  { num: 7, transcript: null, title: "Platón: el alma inmortal", era: "Platón", content: null }, // ref: Holmes 7
-  { num: 8, transcript: null, title: "Platón: justicia y la ciudad ideal", era: "Platón", content: null }, // ref: Holmes 8
-  { num: 9, transcript: null, title: "Platón: Dios, cosmos y balance final", era: "Platón", content: null }, // ref: Holmes 6 + 9
-  { num: 10, transcript: null, title: "Aristóteles: sustancia, causa y las cuatro preguntas", era: "Aristóteles", content: null }, // ref: Holmes 10 + 11
-  { num: 11, transcript: null, title: "Aristóteles: el Motor Inmóvil", era: "Aristóteles", content: null }, // ref: Holmes 12
-  { num: 12, transcript: null, title: "Aristóteles: el alma como forma del cuerpo", era: "Aristóteles", content: null }, // ref: Holmes 13
-  { num: 13, transcript: null, title: "Aristóteles: la vida buena y el término medio", era: "Aristóteles", content: null }, // ref: Holmes 14
-  { num: 14, transcript: null, title: "Epicuro: el placer bien entendido", era: "Helenismo", content: null }, // ref: Holmes 15
-  { num: 15, transcript: null, title: "Los estoicos: vivir conforme a la razón del cosmos", era: "Helenismo", content: null }, // ref: Holmes 16
-  { num: 16, transcript: null, title: "Los escépticos: la suspensión del juicio", era: "Helenismo", content: null }, // ref: Holmes 17
-  { num: 17, transcript: null, title: "Plotino y el neoplatonismo: el Uno", era: "Cierre: hacia el cristianismo", content: null }, // ref: Holmes 18
-  { num: 18, transcript: null, title: "El logos griego y los Padres de la Iglesia", era: "Cierre: hacia el cristianismo", content: null }, // ref: Holmes 19
+  { num: 6, transcript: null, title: "Platón: el mundo de las Formas", era: "Platón", content: clase06 }, // ref: Holmes 5
+  { num: 7, transcript: null, title: "Platón: el alma inmortal", era: "Platón", content: clase07 }, // ref: Holmes 7
+  { num: 8, transcript: null, title: "Platón: justicia y la ciudad ideal", era: "Platón", content: clase08 }, // ref: Holmes 8
+  { num: 9, transcript: null, title: "Platón: Dios, cosmos y balance final", era: "Platón", content: clase09 }, // ref: Holmes 6 + 9
+  { num: 10, transcript: null, title: "Aristóteles: sustancia, causa y las cuatro preguntas", era: "Aristóteles", content: clase10 }, // ref: Holmes 10 + 11
+  { num: 11, transcript: null, title: "Aristóteles: el Motor Inmóvil", era: "Aristóteles", content: clase11 }, // ref: Holmes 12
+  { num: 12, transcript: null, title: "Aristóteles: el alma como forma del cuerpo", era: "Aristóteles", content: clase12 }, // ref: Holmes 13
+  { num: 13, transcript: null, title: "Aristóteles: la vida buena y el término medio", era: "Aristóteles", content: clase13 }, // ref: Holmes 14
+  { num: 14, transcript: null, title: "Epicuro: el placer bien entendido", era: "Helenismo", content: clase14 }, // ref: Holmes 15
+  { num: 15, transcript: null, title: "Los estoicos: vivir conforme a la razón del cosmos", era: "Helenismo", content: clase15 }, // ref: Holmes 16
+  { num: 16, transcript: null, title: "Los escépticos: la suspensión del juicio", era: "Helenismo", content: clase16 }, // ref: Holmes 17
+  { num: 17, transcript: null, title: "Plotino y el neoplatonismo: el Uno", era: "Cierre: hacia el cristianismo", content: clase17 }, // ref: Holmes 18
+  { num: 18, transcript: null, title: "El logos griego y los Padres de la Iglesia", era: "Cierre: hacia el cristianismo", content: clase18 }, // ref: Holmes 19
 ];
 
 export default { classes };

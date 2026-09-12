@@ -1,0 +1,121 @@
+export default {
+  num: 11,
+  transcript: null,
+  title: "Aristóteles: el Motor Inmóvil",
+  source: "",
+  feed: [
+    {
+      type: "info",
+      title: "Un cosmos con movimiento eterno",
+      body: "Aristóteles sostiene que el cosmos no tuvo comienzo: el movimiento circular de los cielos existió siempre y va a seguir existiendo siempre. Pero todo lo que se mueve necesita algo que lo mueva, y ese algo, a su vez, necesita otro motor anterior. Una cadena infinita de motores movidos no explica nada: tiene que haber, en algún punto, un primer motor que mueva sin ser movido por nada más.",
+    },
+    {
+      type: "quiz",
+      question: "¿Por qué rechaza Aristóteles una cadena infinita de motores, cada uno movido por el anterior?",
+      options: [
+        "porque nunca se llegaría así a una explicación última del movimiento",
+        "porque Zeus prohibió expresamente ese tipo de cadenas causales",
+        "porque el movimiento circular de los cielos no existe en realidad",
+        "porque contradice directamente el atomismo de Demócrito",
+      ],
+      answer: 0,
+      explain: "Una cadena sin fin de motores movidos por otros motores nunca llega a un punto de apoyo: en algún lugar tiene que haber algo que mueva sin necesitar, a su vez, que otra cosa lo mueva a él.",
+    },
+    {
+      type: "info",
+      title: "Acto puro, sin materia",
+      body: "Ese motor primero no puede tener materia, porque la materia siempre implica la posibilidad de ser de otro modo, es decir, potencia. El **Motor Inmóvil** tiene que ser, entonces, pura actividad (energeia), sin ninguna capacidad sin cumplir. No puede cambiar, porque no le falta nada por actualizar, y por eso mismo es eterno.",
+    },
+    {
+      type: "quiz",
+      question: "¿Por qué el Motor Inmóvil no puede tener materia?",
+      options: [
+        "porque la materia implica potencia, y él es pura actividad sin cambio",
+        "porque la materia sólo existe en el mundo sublunar, no en el cielo",
+        "porque Aristóteles niega directamente que la materia exista",
+        "porque la materia es, para Aristóteles, un invento de Demócrito",
+      ],
+      answer: 0,
+      explain: "La materia es siempre la posibilidad de ser de otro modo, es decir, potencia. Un motor eterno y sin cambio no puede tener nada sin actualizar, así que tiene que carecer por completo de materia.",
+    },
+    {
+      type: "short",
+      question: "¿Cómo llama Aristóteles al estado de aquello que no tiene ninguna capacidad sin cumplir, ninguna potencia pendiente?",
+      answers: ["acto puro", "puro acto"],
+      explain: "El Motor Inmóvil es acto puro: no le falta nada por actualizar, y por eso no puede cambiar ni dejar de existir. Toda materia, en cambio, conlleva siempre algún grado de potencia sin cumplir.",
+    },
+    {
+      type: "info",
+      title: "Mueve como se mueve lo que se desea",
+      body: "Pero si el Motor Inmóvil no cambia nunca, ¿cómo puede mover algo? Aristóteles responde con una idea original: no mueve empujando, como una causa eficiente, sino como el objeto amado mueve al que ama, es decir, como causa final. El cielo primero gira eternamente porque desea imitar, lo mejor que puede, la perfección inmóvil del motor.",
+    },
+    {
+      type: "info",
+      continues: true,
+      title: "Mueve como se mueve lo que se desea",
+      body: "La rotación circular, sin principio ni fin, es la manera más parecida al reposo eterno que puede alcanzar algo que, a diferencia del Motor Inmóvil, sigue estando en movimiento. No hay contacto ni empuje entre ambos: sólo la atracción de una perfección que el resto del cosmos busca imitar sin lograrlo del todo.",
+    },
+    {
+      type: "quiz",
+      question: "¿Cómo mueve el Motor Inmóvil al resto del cosmos, según Aristóteles?",
+      options: [
+        "como un objeto deseado mueve a quien lo desea, sin empujar nada",
+        "empujando directamente a cada esfera celeste con su propia fuerza",
+        "por medio de mensajeros divinos que transmiten sus órdenes",
+        "no mueve nada en absoluto: el cosmos se mueve solo, por azar",
+      ],
+      answer: 0,
+      explain: "No actúa como causa eficiente, empujando: mueve como causa final, del mismo modo en que un objeto amado mueve al que ama. El cielo gira eternamente porque desea imitar, sin lograrlo del todo, esa perfección inmóvil.",
+    },
+    {
+      type: "info",
+      title: "Un pensamiento que se piensa a sí mismo",
+      body: "Si el Motor Inmóvil es la sustancia más perfecta, su actividad tiene que ser también la más perfecta posible, y para Aristóteles eso es el pensamiento. Pero pensar en algo imperfecto, el mundo cambiante por ejemplo, sería en cierto sentido degradarse. Por eso sólo puede pensar en el objeto más perfecto que existe: él mismo. Es pensamiento que se piensa a sí mismo, eternamente.",
+    },
+    {
+      type: "quiz",
+      question: "¿Por qué el Motor Inmóvil sólo puede pensar en sí mismo, y no en el mundo cambiante?",
+      options: [
+        "porque pensar en algo imperfecto sería, para él, degradarse",
+        "porque no tiene ningún tipo de capacidad de pensamiento",
+        "porque el mundo cambiante, en realidad, no existe todavía",
+        "porque Platón se lo prohibió en el diálogo Parménides",
+      ],
+      answer: 0,
+      explain: "Su actividad tiene que ser la más perfecta posible, y pensar en algo imperfecto sería degradarla. El único objeto a la altura de esa perfección es él mismo: por eso es pensamiento que eternamente se piensa a sí mismo.",
+    },
+    {
+      type: "info",
+      title: "Ni Demiurgo ni Dios personal",
+      body: "El Motor Inmóvil no se parece demasiado ni al Demiurgo de Platón ni al Dios del Génesis. No fabrica nada, no elige nada, no sabe siquiera que el mundo existe: absorto en contemplarse a sí mismo, ni actúa sobre el cosmos ni se preocupa por él. Todo lo que hace es, sencillamente, existir en la perfección más completa posible, y que el resto del cosmos aspire a imitarlo.",
+    },
+    {
+      type: "classify",
+      question: "¿Cada rasgo corresponde al Demiurgo de Platón o al Motor Inmóvil de Aristóteles?",
+      groups: ["Demiurgo", "Motor Inmóvil"],
+      items: [
+        { text: "Ordena la materia con un propósito y un plan", group: 0 },
+        { text: "No actúa sobre el mundo ni sabe que existe", group: 1 },
+        { text: "Mueve el cosmos como objeto de deseo, no por acción directa", group: 1 },
+        { text: "Mira las Formas como modelo externo para crear", group: 0 },
+      ],
+      explain: "El Demiurgo es un artesano que actúa deliberadamente sobre una materia preexistente; el Motor Inmóvil ni actúa ni sabe que el cosmos existe, y sólo lo mueve como causa final, por pura atracción hacia su perfección.",
+    },
+    {
+      type: "match",
+      question: "Uní cada término con lo que describe",
+      pairs: [
+        { left: "Motor Inmóvil", right: "El primer motor, que mueve sin ser movido" },
+        { left: "Acto puro", right: "Sin materia ni potencia, por eso no cambia nunca" },
+        { left: "Causa final, no eficiente", right: "Mueve como se mueve lo que se desea, no empujando" },
+        { left: "Pensamiento que se piensa a sí mismo", right: "Su única actividad posible, eternamente" },
+      ],
+      explain: "Los cuatro conceptos describen una misma entidad desde ángulos distintos: qué es, por qué no cambia, cómo mueve al resto del cosmos y en qué consiste su única actividad.",
+    },
+    {
+      type: "info",
+      title: "Lo que falta: el alma",
+      body: "Esta misma pareja de conceptos, potencia y acto, todavía tiene mucho trabajo por delante en el sistema de Aristóteles. La próxima clase la usamos para entender qué es, para él, el alma: ni una sustancia aparte, como pensaba Platón, ni un motor que empuja al cuerpo desde adentro, sino algo mucho más sutil.",
+    },
+  ],
+};

@@ -73,7 +73,7 @@ export default {
       options: [
         "el momento en que el interlocutor no puede sostener su propia definición",
         "la respuesta final y correcta a la pregunta que se estaba discutiendo",
-        "un tipo de discurso retórico que enseñaban los sofistas por dinero",
+        "una técnica retórica que enseñaban los sofistas por dinero",
         "el castigo legal que recibía quien perdía un debate público en Atenas",
       ],
       answer: 0,
