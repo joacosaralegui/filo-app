@@ -45,6 +45,15 @@ jobs:
       - name: Generate icons and splash screen
         run: if [ -d "./resources" ]; then npm install @capacitor/assets --save-dev && npx capacitor-assets generate --android; fi
 
+      - name: Set version code
+        # android/ se regenera desde cero en cada corrida (está gitignored), así
+        # que el versionCode del template (siempre 1) nunca sirve para subir a
+        # Play Console: rechaza versionCode repetidos. run_number crece en cada
+        # corrida de este workflow, así que alcanza como versionCode único.
+        run: |
+          sed -i "s/versionCode 1/versionCode ${{ github.run_number }}/" android/app/build.gradle
+          sed -i "s/versionName \"1.0\"/versionName \"1.0.${{ github.run_number }}\"/" android/app/build.gradle
+
       - name: Build app bundle
         run: cd android && ./gradlew bundle && ./gradlew assembleDebug
 
