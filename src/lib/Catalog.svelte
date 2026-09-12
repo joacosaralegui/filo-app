@@ -21,7 +21,7 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
-  <RootHeader img={portada} title="Cursos" wash={0.35} position="50% 62%" zoom={2} />
+  <RootHeader img={portada} title="Cursos" wash={0.25} position="50% 62%" zoom={2} />
 
   <div class="flex flex-col gap-[18px]">
     {#each courses as c (c.id)}
@@ -32,7 +32,7 @@
       >
         {#if c.portada}
           <span class="h-[84px] w-[84px] flex-none overflow-hidden rounded-xl bg-surface-2">
-            <img class="h-full w-full object-cover" src={imagenDe(c.portada)} alt="" />
+            <img class="h-full w-full object-cover opacity-95" src={imagenDe(c.portada)} alt="" />
           </span>
         {/if}
         <div class="flex min-w-0 flex-1 flex-col">
@@ -41,10 +41,18 @@
               class="mt-1 font-serif text-[15px] leading-[1.25] font-medium text-accent italic"
               >{c.subtitle}</span
             >{/if}
-          {#if num != null}
-            <span class="mt-2 text-[11px] font-bold tracking-[0.6px] text-accent-3 uppercase"
-              >Vas por la clase {num}</span
+          {#if num != null && c.total}
+            {@const pct = Math.min(100, Math.round((num / c.total) * 100))}
+            <div
+              class="mt-2.5 mr-3 h-[6px] w-full overflow-hidden rounded-full bg-accent-3/20"
+              role="progressbar"
+              aria-valuenow={pct}
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Vas por la clase {num} de {c.total}"
             >
+              <div class="h-full rounded-full bg-accent-3" style="width: {pct}%"></div>
+            </div>
           {/if}
         </div>
         <span class="self-center text-2xl font-semibold text-accent opacity-80">›</span>

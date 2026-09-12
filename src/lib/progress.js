@@ -244,13 +244,16 @@ export function desafioDeHoy(p) {
   return dia && dia.fecha === hoyISO() ? dia : null;
 }
 
-export function saveDesafio(aciertos, total) {
+// `clase` es { courseId, num, title }: de dónde salieron las preguntas de
+// hoy, para poder ofrecer "ir a repasar" desde la tarjeta de cierre aunque
+// vuelvas más tarde el mismo día y el desafío ya esté hecho.
+export function saveDesafio(aciertos, total, clase) {
   if (!total) return;
   progress.update((p) => {
     // Por las dudas: si ya había uno de hoy, gana el primero. El desafío se
     // juega una vez.
     if (p.desafio?.dia?.fecha === hoyISO()) return p;
-    return { ...p, desafio: { dia: { fecha: hoyISO(), aciertos, total } } };
+    return { ...p, desafio: { dia: { fecha: hoyISO(), aciertos, total, clase } } };
   });
 }
 

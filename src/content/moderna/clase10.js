@@ -145,6 +145,18 @@ export default {
       body: "**John Toland** (1670–1722) lleva la tesis a su forma más provocadora en El cristianismo no misterioso (1696): sostiene que ninguna doctrina cristiana genuina puede ser contraria a la razón ni superior a ella, y que los llamados «misterios» de la fe son acumulaciones históricas, no verdades reveladas irreductibles. El libro le cuesta persecución y hasta la quema pública en Irlanda.",
     },
     {
+      type: "quiz",
+      question: "En El cristianismo no misterioso, Toland sostiene que…",
+      options: [
+        "ninguna doctrina cristiana genuina contradice la razón",
+        "los misterios de la fe deben aceptarse sin razonar",
+        "el cristianismo debe fundarse sólo en la revelación",
+        "la razón humana no puede juzgar ningún dogma",
+      ],
+      answer: 0,
+      explain: "Toland niega que los «misterios» cristianos sean verdades reveladas irreductibles: los trata como acumulaciones históricas, y sostiene que ninguna doctrina cristiana genuina puede ser contraria a la razón ni superior a ella.",
+    },
+    {
       type: "info",
       continues: true,
       title: "El deísmo",

@@ -10,21 +10,21 @@ export default {
       body: "Pirrón de Elis (ca. 360-270 a. C.) acompaña a Alejandro Magno en su expedición a la India, donde entra en contacto con ascetas y filósofos locales que lo impresionan profundamente. De vuelta en Grecia, sostiene que las cosas son, en el fondo, indiferentes, inestables e indeterminadas: no hay manera de saber cómo son realmente, más allá de cómo nos aparecen.",
     },
     {
+      type: "info",
+      title: "De la akatalepsia a la ataraxia",
+      body: "Si nada puede aprehenderse con certeza —**akatalepsia**—, la respuesta razonable no es afirmar ni negar nada, sino suspender el juicio, la epojé. Y lo sorprendente es que esa suspensión, lejos de generar inquietud, trae consigo la misma serenidad que buscan estoicos y epicúreos: la ataraxia. Pirrón no escribió una sola línea; se lo conoce por su discípulo Timón de Fliunte, y siglos después por Enesidemo y Sexto Empírico, que sistematizan sus argumentos.",
+    },
+    {
       type: "quiz",
       question: "¿Qué sostiene Pirrón sobre cómo son «realmente» las cosas, más allá de cómo nos aparecen?",
       options: [
-        "que no hay manera de saberlo: las cosas son indeterminadas para nosotros",
+        "que no hay manera de saberlo: son indeterminadas para nosotros",
         "que son exactamente como los sentidos las muestran, sin ninguna duda",
         "que sólo los filósofos griegos pueden conocerlas con certeza",
         "que son siempre distintas de como aparecen, sin ninguna excepción",
       ],
       answer: 0,
       explain: "Para Pirrón las cosas son indiferentes, inestables e indeterminadas: no hay ningún criterio disponible para decidir cómo son «en realidad», más allá de la manera en que se nos presentan en cada caso.",
-    },
-    {
-      type: "info",
-      title: "De la akatalepsia a la ataraxia",
-      body: "Si nada puede aprehenderse con certeza —**akatalepsia**—, la respuesta razonable no es afirmar ni negar nada, sino suspender el juicio, la epojé. Y lo sorprendente es que esa suspensión, lejos de generar inquietud, trae consigo la misma serenidad que buscan estoicos y epicúreos: la ataraxia. Pirrón no escribió una sola línea; se lo conoce por su discípulo Timón de Fliunte, y siglos después por Enesidemo y Sexto Empírico, que sistematizan sus argumentos.",
     },
     {
       type: "quiz",
@@ -44,10 +44,15 @@ export default {
       body: "Enesidemo reúne diez «modos» o argumentos estándar para llegar a la suspensión del juicio. Uno de los más simples dice que animales distintos perciben el mismo objeto de maneras incompatibles entre sí. Lo que a un ojo humano le resulta agradable puede repugnarle a otro animal, y no hay ningún criterio neutral para decidir cuál de las dos percepciones capta cómo es la cosa «en realidad».",
     },
     {
+      type: "info",
+      title: "Otra Academia: Arcesilao y Carnéades",
+      body: "Casi al mismo tiempo, y de manera independiente, la propia Academia de Platón da un giro escéptico bajo la dirección de Arcesilao y, después, de Carnéades. Argumentan sobre todo contra los estoicos: niegan que exista un criterio infalible para distinguir una impresión verdadera de una falsa, y concluyen que no puede afirmarse ningún conocimiento con certeza absoluta.",
+    },
+    {
       type: "quiz",
       question: "¿Qué muestra el modo escéptico sobre la percepción animal, según Enesidemo?",
       options: [
-        "que no hay un criterio neutral para decidir cuál percepción es la correcta",
+        "que no hay un criterio neutral para decidir cuál percepción es correcta",
         "que sólo los seres humanos tienen percepciones confiables",
         "que los animales perciben siempre exactamente lo mismo que las personas",
         "que las percepciones de los animales son todas, sin excepción, falsas",
@@ -56,15 +61,10 @@ export default {
       explain: "Si un mismo objeto le resulta agradable a un animal y repugnante a otro, y no hay ningún punto de vista neutral desde el cual arbitrar, no queda ninguna base sólida para afirmar cómo es esa cosa «en realidad».",
     },
     {
-      type: "info",
-      title: "Otra Academia: Arcesilao y Carnéades",
-      body: "Casi al mismo tiempo, y de manera independiente, la propia Academia de Platón da un giro escéptico bajo la dirección de Arcesilao y, después, de Carnéades. Argumentan sobre todo contra los estoicos: niegan que exista un criterio infalible para distinguir una impresión verdadera de una falsa, y concluyen que no puede afirmarse ningún conocimiento con certeza absoluta.",
-    },
-    {
       type: "quiz",
       question: "¿Contra qué escuela argumentan principalmente Arcesilao y Carnéades desde la Academia?",
       options: [
-        "contra los estoicos, negando que exista un criterio infalible de verdad",
+        "contra los estoicos, negando que exista un criterio infalible",
         "contra los epicúreos, negando la existencia de los átomos",
         "contra los pitagóricos, negando el valor de las matemáticas",
         "contra Aristóteles, negando la existencia de las cuatro causas",
@@ -95,18 +95,6 @@ export default {
       body: "Si hay que suspender el juicio sobre todo, ¿cómo se puede actuar en la vida diaria? Carnéades propone un criterio práctico, el **pithanon** o «lo persuasivo»: sin afirmar que una impresión sea verdadera, se puede actuar guiado por la que resulte más plausible, sobre todo si esa plausibilidad resiste el examen y no entra en conflicto con otras impresiones.",
     },
     {
-      type: "quiz",
-      question: "¿Para qué sirve el pithanon que propone Carnéades?",
-      options: [
-        "para poder actuar sin necesidad de afirmar una certeza absoluta",
-        "para demostrar con total rigor lo que antes sólo parecía plausible",
-        "para reemplazar por completo a la suspensión del juicio pirrónica",
-        "para justificar que los estoicos tenían razón desde un principio",
-      ],
-      answer: 0,
-      explain: "Sin afirmar que una impresión sea verdadera, el pithanon permite actuar guiado por la más plausible, sobre todo si resiste el examen: una guía suficiente para la vida diaria, aunque no alcance el estatus de conocimiento cierto.",
-    },
-    {
       type: "classify",
       question: "¿Cada rasgo corresponde al escepticismo académico o al pirrónico?",
       groups: ["Escepticismo académico", "Escepticismo pirrónico"],
@@ -129,12 +117,6 @@ export default {
         { left: "Pithanon", right: "Lo persuasivo: una guía para actuar sin afirmar certeza alguna" },
       ],
       explain: "Los cuatro términos arman el mismo argumento en distintas etapas: no se puede conocer nada con certeza, por eso hay que suspender el juicio, éstos son los argumentos que lo justifican, y así se puede seguir actuando de todos modos.",
-    },
-    {
-      type: "short",
-      question: "¿Cómo llaman los escépticos pirrónicos a la suspensión del juicio ante cualquier afirmación que no pueda decidirse con certeza?",
-      answers: ["epoje", "epojé"],
-      explain: "No afirmar ni negar, sino suspender el juicio. Para Pirrón, esa suspensión trae consigo, paradójicamente, la misma serenidad, la ataraxia, que buscan estoicos y epicúreos por caminos completamente distintos.",
     },
     {
       type: "info",

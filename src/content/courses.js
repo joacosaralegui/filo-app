@@ -22,28 +22,19 @@
 //   numOffset: desfasaje entre el `transcript` del md y el `num` de la app
 //              (default -1; `contemporanea` usa -5 porque arranca en Nietzsche
 //              y `moderna` 0 porque sus md ya están numerados como la app)
+//   total    : cantidad de clases del curso. Alimenta la barra de progreso de
+//              la pantalla de selección sin tener que cargar `load()` ahí
+//              (`npm run check` avisa si se desincroniza de `classes.length`)
 //   load     : () => import("./<id>/curso.js")
 
 export const COURSES = [
   {
-    id: "antigua",
-    title: "Filosofía antigua",
-    subtitle: "Del pensamiento griego al cristianismo temprano.",
-    blurb: "Platón, Aristóteles y otras grandes figuras de la filosofía occidental.",
-    portada: "montaigne",
-    source: {
-      label: "A History of Philosophy — Dr. Arthur Holmes, Wheaton College",
-      url: "https://biblicalelearning.org/history-of-philosophy-holmes/",
-    },
-    numOffset: 0,
-    load: () => import("./antigua/curso.js"),
-  },
-  {
     id: "contemporanea",
     title: "Filosofía contemporánea",
-    subtitle: "De Nietzsche a hoy",
-    blurb: "De la muerte de Dios a la posmodernidad.",
-    portada: "herencia",
+    subtitle: "Nietzsche, Sartre, Foucault y la crisis del sujeto moderno.",
+    blurb: "De la muerte de Dios al fin de las certezas: vitalismo, existencialismo, estructuralismo y posmodernidad.",
+    portada: "posmodernidad",
+    total: 20,
     source: {
       label: "European Intellectual History since Nietzsche",
       url: "https://www.youtube.com/playlist?list=PLh9mgdi4rNezUjm7niGdUWjnL0lHSDh0U",
@@ -54,15 +45,30 @@ export const COURSES = [
   {
     id: "moderna",
     title: "Filosofía moderna",
-    subtitle: "Del siglo XVII a Marx",
-    blurb: "De la Reforma al final del idealismo alemán.",
+    subtitle: "Descartes, Kant, Hegel y el nacimiento de la razón moderna.",
+    blurb: "Del Renacimiento al idealismo alemán: racionalismo, empirismo, Ilustración y revolución.",
     portada: "nueva-ciencia",
+    total: 21,
     source: {
       label: "Historia de las ideas en la modernidad — Maestría en Filosofía, UNQ",
       url: "",
     },
     numOffset: 0,
     load: () => import("./moderna/curso.js"),
+  },
+  {
+    id: "antigua",
+    title: "Filosofía antigua",
+    subtitle: "Sócrates, Platón, Aristóteles y el origen de la filosofía.",
+    blurb: "De los presocráticos a los Padres de la Iglesia: physis, virtud, alma y las escuelas helenísticas.",
+    portada: "partenon",
+    total: 18,
+    source: {
+      label: "A History of Philosophy — Dr. Arthur Holmes, Wheaton College",
+      url: "https://biblicalelearning.org/history-of-philosophy-holmes/",
+    },
+    numOffset: 0,
+    load: () => import("./antigua/curso.js"),
   },
 ];
 

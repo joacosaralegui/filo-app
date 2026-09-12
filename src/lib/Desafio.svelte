@@ -1,15 +1,19 @@
 <script>
-  // Desafío diario: siete preguntas sueltas, sin contenido de por medio. Es la
-  // variante de juego de la app — no enseña, te toma.
+  // Desafío diario: todas las preguntas de UNA clase, en el orden en que
+  // aparecen ahí — no un mix de temas sueltos. Es la variante de juego de la
+  // app — no enseña, te toma.
   //
-  // Es EL MISMO para todo el día: las preguntas se sortean con una semilla
-  // hecha de la fecha, así que salen las mismas cada vez que entrás y no hay
-  // forma de rerollear hasta mañana. Tampoco se puede repetir: una vez que lo
+  // Es EL MISMO para todo el día: la clase se sortea con una semilla hecha de
+  // la fecha, así que sale la misma cada vez que entrás y no hay forma de
+  // rerollear hasta mañana. Tampoco se puede repetir: una vez que lo
   // contestaste, el número del día es ese. Sale de los cursos que ya empezaste
   // (si no empezaste ninguno, de todos) y NO toca el progreso de las clases ni
   // reparte cromos: acertar acá no completa nada.
   import { createEventDispatcher, onMount, tick } from "svelte";
   import QuizCard from "./QuizCard.svelte";
+  import MatchCard from "./MatchCard.svelte";
+  import ClassifyCard from "./ClassifyCard.svelte";
+  import ExplainSheet from "./ExplainSheet.svelte";
   import Burst from "./Burst.svelte";
   import { loadContent } from "./courses.js";
   import { progress, cursosEmpezados, saveDesafio, desafioDeHoy, hoyISO } from "./progress.js";
@@ -17,15 +21,22 @@
   export let courses = [];
   const dispatch = createEventDispatcher();
 
-  const RONDA = 7;
+  // Tipos que entran al desafío: se deja afuera "short" (la de término
+  // puntual) porque pide escribir, no elegir, y no encaja en el ritmo de la
+  // ronda.
+  const TIPOS = new Set(["quiz", "match", "classify"]);
+
+  const RONDA_MAX = 7; // tope de preguntas por ronda, para que una clase larga no se haga eterna
 
   let cargando = true;
   let ronda = []; // [{ card, courseId, num, title }]
+  let clase = null; // { courseId, num, title } de donde salió la ronda de hoy
   let i = 0;
   let resultados = []; // true/false por pregunta contestada
   let respondida = false;
   let terminada = false;
   let flash = null; // "ok" | "no": el sello que aparece al contestar
+  let sheet = null; // { texto } de la hoja "¿Por qué?", sólo tras un error
   let burstId = 0; // acierto suelto
   let finaleId = 0; // los siete de siete
   let timer;
@@ -67,20 +78,30 @@
     cargando = true;
     const empezados = cursosEmpezados($progress);
     const metas = courses.filter((c) => !empezados.length || empezados.includes(c.id));
-    const pool = [];
+    const elegibles = []; // clases con al menos una card de los tipos que entran
     for (const meta of metas) {
       const { classes } = await loadContent(meta);
       for (const cls of classes) {
         if (!cls.content) continue;
-        for (const card of cls.content.feed) {
-          if (card.type === "quiz")
-            pool.push({ card, courseId: meta.id, num: cls.num, title: cls.title });
-        }
+        const cards = cls.content.feed.filter((c) => TIPOS.has(c.type));
+        if (cards.length) elegibles.push({ courseId: meta.id, num: cls.num, title: cls.title, cards });
       }
     }
-    // El pool se recorre siempre en el mismo orden (cursos, clases, cards), así
-    // que con la misma semilla salen las mismas siete.
-    ronda = shuffle(pool, rng(semilla(hoyISO()))).slice(0, RONDA);
+    // La lista se recorre siempre en el mismo orden (cursos, clases), así que
+    // con la misma semilla sale siempre la misma clase el mismo día. Adentro
+    // las cards NO se barajan: van en su orden original, de eso se trata.
+    const elegida = shuffle(elegibles, rng(semilla(hoyISO())))[0] || null;
+    let cartas = elegida ? elegida.cards : [];
+    if (cartas.length > RONDA_MAX) {
+      // Clases largas se recortan a un máximo, para que la ronda no se haga
+      // eterna: se sortea CUÁLES quedan (semillado, distinto sorteo del de
+      // arriba) pero se preserva su orden original — sigue siendo secuencial.
+      const azar = rng(semilla(hoyISO() + elegida.courseId + elegida.num));
+      const quedan = new Set(shuffle([...cartas.keys()], azar).slice(0, RONDA_MAX));
+      cartas = cartas.filter((_, idx) => quedan.has(idx));
+    }
+    clase = elegida ? { courseId: elegida.courseId, num: elegida.num, title: elegida.title } : null;
+    ronda = cartas.map((card) => ({ card, courseId: clase.courseId, num: clase.num, title: clase.title }));
     cargando = false;
   }
 
@@ -92,6 +113,7 @@
     if (hecho) {
       resultados = new Array(hecho.total).fill(false).fill(true, 0, hecho.aciertos);
       ronda = new Array(hecho.total);
+      clase = hecho.clase ?? null;
       cargando = false;
       terminada = true;
     } else {
@@ -99,6 +121,22 @@
     }
     return () => clearTimeout(timer);
   });
+
+  async function avanzar() {
+    if (i + 1 >= ronda.length) {
+      terminada = true;
+      saveDesafio(aciertos, ronda.length, clase);
+      // La celebración del pleno espera a que la pantalla de cierre esté
+      // pintada: si no, las partículas salen de una pantalla que ya se fue.
+      if (aciertos === ronda.length) {
+        await tick();
+        finaleId += 1;
+      }
+    } else {
+      i += 1;
+      respondida = false;
+    }
+  }
 
   async function responder(e) {
     if (respondida) return;
@@ -112,21 +150,22 @@
     if (bien) burstId += 1;
     setTimeout(() => (flash = null), 700);
 
-    timer = setTimeout(async () => {
-      if (i + 1 >= ronda.length) {
-        terminada = true;
-        saveDesafio(aciertos, ronda.length);
-        // La celebración del pleno espera a que la pantalla de cierre esté
-        // pintada: si no, las partículas salen de una pantalla que ya se fue.
-        if (aciertos === ronda.length) {
-          await tick();
-          finaleId += 1;
-        }
-      } else {
-        i += 1;
-        respondida = false;
-      }
-    }, 2200);
+    // Si te equivocaste y la pregunta trae por qué, la ronda espera: se lee
+    // el porqué antes de seguir, igual que en las clases. Si acertaste (o no
+    // hay explicación), la ronda sigue sola a su ritmo de siempre.
+    const explicacion = !bien && actual.card.explain;
+    if (explicacion) {
+      setTimeout(() => {
+        sheet = { texto: actual.card.explain };
+      }, 700);
+    } else {
+      timer = setTimeout(avanzar, 2200);
+    }
+  }
+
+  function cerrarSheet() {
+    sheet = null;
+    avanzar();
   }
 
   // Ir a la clase corta la ronda: es una salida, no una pausa.
@@ -139,12 +178,13 @@
   $: pleno = terminada && ronda.length > 0 && aciertos === ronda.length;
 
   // El cierre habla distinto según cómo te fue: el mismo número con otro tono.
+  // Neutro a propósito, sin modismos locales — la app la puede leer cualquiera.
   $: cierre = pleno
-    ? "Pleno"
+    ? "Perfecto"
     : aciertos / (ronda.length || 1) >= 0.7
-      ? "Bien ahí"
+      ? "Muy bien"
       : aciertos / (ronda.length || 1) >= 0.4
-        ? "Zafaste"
+        ? "Bien"
         : "A repasar";
 </script>
 
@@ -172,8 +212,8 @@
 
     <!-- Un casillero por pregunta, no una barra continua: además de cuánto
          falta, dice cómo te fue en cada una. El tablero ES el marcador. -->
-    <div class="flex flex-1 gap-1.5" role="img" aria-label="{aciertos} de {ronda.length || RONDA}">
-      {#each Array(ronda.length || RONDA) as _, k}
+    <div class="flex flex-1 gap-1.5" role="img" aria-label="{aciertos} de {ronda.length || RONDA_MAX}">
+      {#each Array(ronda.length || RONDA_MAX) as _, k}
         <span
           class="casillero h-[7px] flex-1 rounded-full {resultados[k] === true
             ? 'bg-good'
@@ -210,17 +250,53 @@
       >
         {aciertos}/{ronda.length}
       </p>
+
+      <!-- De dónde salieron las preguntas: por si te fue flojo y querés ir
+           derecho a repasar esa clase. -->
+      {#if clase}
+        <button
+          class="mt-3 flex max-w-full cursor-pointer items-center gap-1.5 rounded-full border-0 bg-surface/70 px-3.5 py-2 text-left [font-family:inherit] transition-transform active:scale-[0.97]"
+          on:click={() => irALaClase(clase)}
+        >
+          <span class="truncate text-[11.5px] font-semibold text-text-soft/80"
+            >Repasar Clase {clase.num} · {clase.title}</span
+          >
+          <svg
+            class="flex-none text-text-soft/60"
+            viewBox="0 0 24 24"
+            width="12"
+            height="12"
+            aria-hidden="true"
+            ><path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5l7 7-7 7"
+            /></svg
+          >
+        </button>
+      {/if}
+
       <button
-        class="mt-8 w-full cursor-pointer rounded-2xl border-0 bg-accent px-6 py-[15px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
+        class="mt-6 w-full cursor-pointer rounded-2xl border-0 bg-accent px-6 py-[15px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
         on:click={() => dispatch("salir")}>Volver al inicio</button
       >
+      <p class="mt-3 text-[12.5px] text-text-soft/70">Volvé mañana para un nuevo desafío.</p>
     </div>
   {:else if actual}
     <div class="flex flex-1 flex-col justify-center py-6">
       <!-- La key remonta la card en cada pregunta: así rebaraja las opciones y
            arranca sin respuesta previa. -->
       {#key i}
-        <QuizCard card={actual.card} on:answer={responder} />
+        {#if actual.card.type === "match"}
+          <MatchCard card={actual.card} on:answer={responder} />
+        {:else if actual.card.type === "classify"}
+          <ClassifyCard card={actual.card} on:answer={responder} />
+        {:else}
+          <QuizCard card={actual.card} on:answer={responder} />
+        {/if}
       {/key}
     </div>
 
@@ -292,6 +368,8 @@
     </div>
   {/key}
 {/if}
+
+<ExplainSheet data={sheet} on:close={cerrarSheet} />
 
 <Burst trigger={burstId} count={18} />
 <Burst trigger={finaleId} count={80} power={1.7} />

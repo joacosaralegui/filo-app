@@ -16,6 +16,18 @@ export default {
       body: "Tres de esas tendencias —la Reforma luterana, el humanismo renacentista y el escepticismo renacentista— son muy distintas entre sí, y en buena medida opuestas. Comparten, sin embargo, un mismo adversario: el **aristotelismo escolástico**, el sistema doctrinal que las universidades medievales enseñaban desde su fundación.",
     },
     {
+      type: "quiz",
+      question: "Reforma, humanismo y escepticismo renacentista, pese a sus diferencias, comparten…",
+      options: [
+        "un mismo rechazo al aristotelismo escolástico",
+        "la misma fecha exacta de nacimiento, 1637",
+        "un programa político unificado y explícito",
+        "el mismo texto fundacional, el Discurso del método",
+      ],
+      answer: 0,
+      explain: "Son tendencias muy distintas entre sí, a veces opuestas, pero las tres se definen contra el mismo adversario: el sistema doctrinal que las universidades medievales enseñaban desde su fundación.",
+    },
+    {
       type: "info",
       title: "El libre examen y el sacerdocio universal",
       body: "El cristianismo es una religión revelada: cuenta con un texto sagrado cuyo contenido, para el creyente, es necesariamente verdadero porque su autor es Dios. Pero un texto admite interpretaciones distintas, y de la interpretación correcta depende nada menos que la salvación del alma.",
@@ -37,6 +49,18 @@ export default {
       continues: true,
       title: "El libre examen y el sacerdocio universal",
       body: "A esto se suma la doctrina del **sacerdocio universal**. En el catolicismo el sacerdocio es una profesión reservada a un estamento que monopoliza la administración de lo sagrado. Al rechazar la mediación eclesiástica, la Reforma convierte esa tarea en asunto de cada cristiano, que pasa a tener una relación directa con Dios, sin intermediarios.",
+    },
+    {
+      type: "quiz",
+      question: "La doctrina del sacerdocio universal sostiene que…",
+      options: [
+        "cada cristiano se relaciona con Dios sin mediación",
+        "sólo el clero puede administrar lo sagrado",
+        "el Papa sigue siendo el juez de toda disputa",
+        "la salvación depende de pertenecer a un gremio",
+      ],
+      answer: 0,
+      explain: "Al rechazar la mediación eclesiástica, la Reforma convierte la administración de lo sagrado en tarea de cada cristiano, no de un estamento profesional reservado.",
     },
     {
       type: "info",
@@ -78,6 +102,18 @@ export default {
       continues: true,
       title: "El derecho natural tras las guerras de religión",
       body: "La Reforma desconoce esa autoridad moral internacional del Vaticano, y con ella desaparece el fundamento común sobre el que se apoyaba el derecho internacional vigente. Queda así abierto un problema nuevo y típicamente moderno: ¿en qué puede fundarse ahora el derecho entre las naciones?",
+    },
+    {
+      type: "quiz",
+      question: "Tras la Reforma, ¿qué problema típicamente moderno queda planteado?",
+      options: [
+        "en qué fundar el derecho entre naciones sin el Papa",
+        "cómo traducir la Biblia al latín clásico",
+        "qué príncipe debía heredar el trono de España",
+        "cómo reconciliar a Lutero con el papado",
+      ],
+      answer: 0,
+      explain: "Con la Reforma desaparece la autoridad arbitral del Papa entre los príncipes, y con ella el fundamento común del derecho internacional vigente hasta entonces.",
     },
     {
       type: "info",

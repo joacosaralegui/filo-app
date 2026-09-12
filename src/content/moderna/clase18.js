@@ -294,17 +294,17 @@ export default {
       body: "El último acto tiene valor de escena. En 1841, con sesenta y seis años y después de dos décadas de silencio editorial, Schelling es llamado a Berlín por Federico Guillermo IV para ocupar la cátedra de Hegel, muerto diez años antes, con el encargo explícito de combatir su influencia.",
     },
     {
+      type: "info",
+      continues: true,
+      title: "Berlín, 1841",
+      body: "Presenta ahí su **filosofía positiva**. Toda la filosofía anterior, la suya incluida, había sido negativa: dice qué son las cosas, su esencia, y eso puede hacerse a priori. Pero que algo exista no se deduce de ningún concepto. El hecho bruto de que haya mundo y no nada es anterior a la razón y la razón no puede alcanzarlo.",
+    },
+    {
       type: "quiz",
       question: "¿Qué separa la filosofía positiva de la negativa en el último Schelling?",
       options: ["Que una afirma a Dios y la otra lo niega", "Que la negativa dice qué son las cosas y no que existan", "Que la positiva se apoya en las ciencias empíricas", "Que la negativa procede por análisis y la otra por síntesis"],
       answer: 1,
       explain: "Toda la filosofía anterior, la suya incluida, decía la esencia de las cosas, y eso puede hacerse a priori. Pero que algo exista no se deduce de ningún concepto: el hecho bruto de que haya mundo y no nada es anterior a la razón.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Berlín, 1841",
-      body: "Presenta ahí su **filosofía positiva**. Toda la filosofía anterior, la suya incluida, había sido negativa: dice qué son las cosas, su esencia, y eso puede hacerse a priori. Pero que algo exista no se deduce de ningún concepto. El hecho bruto de que haya mundo y no nada es anterior a la razón y la razón no puede alcanzarlo.",
     },
     {
       type: "match",

@@ -16,6 +16,18 @@ export default {
       body: "Aunque Dios fue objeto de la filosofía desde la Antigüedad, la filosofía moderna le asigna una función nueva, que para algunos autores del período pasa a ser casi exclusiva: garantizar el conocimiento racional. Se estudia esa función en textos de **René Descartes** (1596–1650), sobre todo en sus Meditaciones metafísicas (1641).",
     },
     {
+      type: "quiz",
+      question: "La filosofía moderna, a diferencia de la antigua, le asigna a Dios sobre todo la función de…",
+      options: [
+        "garantizar el conocimiento racional",
+        "explicar el movimiento de los astros",
+        "fundar la autoridad de la Iglesia",
+        "reemplazar a la razón humana",
+      ],
+      answer: 0,
+      explain: "Dios fue objeto de la filosofía desde la Antigüedad, pero la modernidad le asigna una tarea nueva: garantizar que el conocimiento racional, incluida la matemática, sea válido.",
+    },
+    {
       type: "info",
       title: "El problema: por qué la razón necesita una garantía",
       body: "Los físicos del siglo XVII, partidarios de aplicar la geometría a la física, se presentaban como platónicos modernos: Galileo sostenía que para leer el libro de la naturaleza hacía falta conocer el idioma geométrico en que está escrito, y Descartes se negaba a aceptar en física principios que no fueran aceptados en matemática.",
@@ -179,6 +191,18 @@ export default {
       continues: true,
       title: "Los cuatro argumentos de la duda",
       body: "Cuanto menos poderoso sea el origen de mi ser —el destino, el azar, una cadena de causas naturales—, \"tanto más probable será que yo sea tan imperfecto que me engañe siempre\" (Meditaciones, I, §9). Ni siquiera un origen puramente natural o azaroso garantiza, por sí solo, que la razón funcione bien.",
+    },
+    {
+      type: "quiz",
+      question: "Según Descartes, negar la existencia de un Dios engañador…",
+      options: [
+        "no resuelve el problema, que sigue en pie sin él",
+        "elimina por completo la duda hiperbólica",
+        "prueba que la razón nunca se equivoca",
+        "demuestra el origen natural del pensamiento",
+      ],
+      answer: 0,
+      explain: "Negar a un Dios engañador no salva a la razón: incluso un origen natural o azaroso, menos poderoso que un dios, podría dejarnos igual de expuestos al error, advierte Descartes.",
     },
     {
       type: "info",

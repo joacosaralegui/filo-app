@@ -10,6 +10,11 @@ export default {
       body: "Aristóteles nace en 384 a. C. en Estagira, al norte de Grecia, hijo de un médico de la corte macedonia. A los diecisiete años entra en la Academia de Platón, donde permanece veinte años, hasta la muerte de su maestro. Es después tutor del joven Alejandro Magno, y en 335 a. C. funda en Atenas su propia escuela, el **Liceo**, cuyos miembros discuten a menudo caminando por sus jardines, por lo que se los llama «peripatéticos».",
     },
     {
+      type: "info",
+      title: "El primer desacuerdo: ¿dónde están las Formas?",
+      body: "Aristóteles acepta buena parte del programa de su maestro —que el mundo tiene una estructura racional y que la ciencia busca lo universal, no lo particular— pero rechaza su pieza central. Para él no existen Formas separadas, en un mundo aparte del sensible: lo universal, «el hombre» o «la justicia», existe únicamente encarnado en los hombres y las acciones justas concretas, nunca por separado.",
+    },
+    {
       type: "quiz",
       question: "¿Cuánto tiempo pasa Aristóteles como alumno en la Academia de Platón?",
       options: [
@@ -20,11 +25,6 @@ export default {
       ],
       answer: 0,
       explain: "Entra a los diecisiete años y permanece veinte, hasta la muerte de Platón. Es después tutor de Alejandro Magno, y en 335 a. C. funda su propia escuela en Atenas, el Liceo.",
-    },
-    {
-      type: "info",
-      title: "El primer desacuerdo: ¿dónde están las Formas?",
-      body: "Aristóteles acepta buena parte del programa de su maestro —que el mundo tiene una estructura racional y que la ciencia busca lo universal, no lo particular— pero rechaza su pieza central. Para él no existen Formas separadas, en un mundo aparte del sensible: lo universal, «el hombre» o «la justicia», existe únicamente encarnado en los hombres y las acciones justas concretas, nunca por separado.",
     },
     {
       type: "quiz",
@@ -56,6 +56,12 @@ export default {
       explain: "Lo que existe en sentido pleno y primario es siempre algo concreto y particular, este caballo o este hombre. Las cualidades, cantidades y relaciones sólo existen como propiedades de una sustancia, nunca separadas de ella.",
     },
     {
+      type: "short",
+      question: "¿Cómo llama Aristóteles, en griego, a lo que existe en sentido pleno: este caballo o este hombre particular?",
+      answers: ["ousia", "sustancia"],
+      explain: "La ousía es la sustancia primera: un individuo concreto, nunca un concepto general ni una Forma separada. Todo lo demás —cualidades, cantidades, relaciones— existe sólo como propiedad de una sustancia.",
+    },
+    {
       type: "info",
       title: "Las cuatro causas",
       body: "Para explicar por completo cualquier cosa, sostiene Aristóteles, hay que poder responder cuatro preguntas distintas. ¿De qué está hecha? Es la causa material, el bronce de una estatua. ¿Qué forma tiene, qué la hace ser lo que es? Es la causa formal, la figura que el escultor tenía en mente.",
@@ -84,18 +90,6 @@ export default {
       body: "Para explicar el cambio sin caer en las paradojas de Parménides, Aristóteles distingue entre lo que algo es en **potencia** y lo que es en **acto**. Una bellota es, en potencia, un roble: todavía no lo es, pero tiene la capacidad interna de llegar a serlo. El roble adulto es esa misma capacidad ya cumplida, en acto.",
     },
     {
-      type: "quiz",
-      question: "En la distinción de Aristóteles, ¿qué es una bellota respecto de un roble?",
-      options: [
-        "un roble en potencia, capaz de llegar a serlo",
-        "un roble ya en acto, exactamente igual que el adulto",
-        "algo completamente ajeno a lo que después será un roble",
-        "una sustancia sin ninguna relación causal con el roble",
-      ],
-      answer: 0,
-      explain: "La bellota todavía no es un roble, pero tiene la capacidad interna de llegar a serlo: es un roble en potencia. El roble adulto es esa misma capacidad ya cumplida, un roble en acto.",
-    },
-    {
       type: "classify",
       question: "¿Cada afirmación es de Platón o de Aristóteles?",
       groups: ["Platón", "Aristóteles"],
@@ -104,9 +98,9 @@ export default {
         { text: "Lo universal existe sólo encarnado en las cosas concretas", group: 1 },
         { text: "La sustancia primera es este caballo o este hombre particular", group: 1 },
         { text: "El conocimiento verdadero es de las Formas, no de lo sensible", group: 0 },
-        { text: "Hay que observar los casos concretos para llegar a lo universal", group: 1 },
+        { text: "Una bellota es, en potencia, lo que el roble ya es en acto", group: 1 },
       ],
-      explain: "El desacuerdo de fondo es siempre el mismo: para Platón, lo universal es más real y vive separado; para Aristóteles, lo universal existe sólo encarnado en las cosas concretas, y se llega a él observándolas.",
+      explain: "El desacuerdo de fondo es siempre el mismo: para Platón, lo universal es más real y vive separado; para Aristóteles, lo universal existe sólo encarnado en las cosas concretas, ya sea en la sustancia individual o en su despliegue de la potencia al acto.",
     },
     {
       type: "match",
@@ -118,12 +112,6 @@ export default {
         { left: "Causa final", right: "El homenaje que busca honrar" },
       ],
       explain: "Las cuatro causas juntas, y no una sola, dan la explicación completa de la estatua: de qué está hecha, qué forma tiene, quién la hizo y para qué existe.",
-    },
-    {
-      type: "short",
-      question: "¿Cómo llama Aristóteles, en griego, a lo que existe en sentido pleno: este caballo o este hombre particular?",
-      answers: ["ousia", "sustancia"],
-      explain: "La ousía es la sustancia primera: un individuo concreto, nunca un concepto general ni una Forma separada. Todo lo demás —cualidades, cantidades, relaciones— existe sólo como propiedad de una sustancia.",
     },
     {
       type: "info",

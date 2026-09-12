@@ -89,6 +89,18 @@ export default {
       body: "Queda una cuarta casilla, y ahí está todo el problema. ¿Hay **juicios sintéticos a priori**, es decir, juicios que agreguen información nueva sobre el mundo y que sin embargo valgan necesariamente, sin depender de la experiencia?",
     },
     {
+      type: "quiz",
+      question: "De las cuatro casillas que resultan de cruzar las dos distinciones, ¿cuál es problemática?",
+      options: [
+        "los juicios sintéticos a priori",
+        "los juicios analíticos a priori",
+        "los juicios sintéticos a posteriori",
+        "los juicios analíticos a posteriori",
+      ],
+      answer: 0,
+      explain: "Los analíticos a priori son verdades de definición y los sintéticos a posteriori son enunciados empíricos: ambos casos son claros. Los analíticos a posteriori ni siquiera existen. Sólo queda la pregunta de si hay juicios sintéticos a priori, que agreguen información y valgan necesariamente.",
+    },
+    {
       type: "info",
       continues: true,
       title: "Los juicios sintéticos a priori",

@@ -33,6 +33,11 @@ export default {
       body: "Para los estoicos, el cosmos entero es un ser vivo, racional y providente, atravesado por el logos, la misma palabra de Heráclito en la Clase 1, ahora llevada a sus últimas consecuencias. Lo llaman también pneuma, un aliento o soplo divino que impregna toda la materia y le da cohesión, tensión y orden. Nada ocurre por azar: todo sucede según una cadena causal necesaria, el destino (**heimarmene**).",
     },
     {
+      type: "info",
+      title: "El destino y la libertad",
+      body: "Si todo está determinado, ¿qué lugar queda para la libertad? Los estoicos responden que la necesidad no elimina la diferencia entre actuar de buena gana o a la fuerza. Igual que un cilindro, empujado, rueda según su propia forma, cada persona reacciona a los acontecimientos según su propio carácter: el destino empuja a todos por igual, pero cómo se responde a ese empujón sigue siendo, en un sentido importante, cosa de cada quien.",
+    },
+    {
       type: "quiz",
       question: "Para los estoicos, ¿qué es el pneuma?",
       options: [
@@ -43,11 +48,6 @@ export default {
       ],
       answer: 0,
       explain: "El pneuma es el aliento divino que atraviesa toda la materia y le da cohesión y orden, muy distinto de los átomos ciegos de Demócrito: para los estoicos, el cosmos entero es racional de punta a punta.",
-    },
-    {
-      type: "info",
-      title: "El destino y la libertad",
-      body: "Si todo está determinado, ¿qué lugar queda para la libertad? Los estoicos responden que la necesidad no elimina la diferencia entre actuar de buena gana o a la fuerza. Igual que un cilindro, empujado, rueda según su propia forma, cada persona reacciona a los acontecimientos según su propio carácter: el destino empuja a todos por igual, pero cómo se responde a ese empujón sigue siendo, en un sentido importante, cosa de cada quien.",
     },
     {
       type: "quiz",
@@ -67,6 +67,12 @@ export default {
       body: "La ética estoica se resume en una fórmula: vivir conforme a la naturaleza, es decir, conforme a la razón, porque la razón es precisamente lo que distingue a la naturaleza humana del resto de los seres vivos. Es el mismo argumento de la función que usaba Aristóteles en la Clase 13, ahora puesto al servicio de una ética distinta. La virtud es el único bien verdadero; todo lo demás —salud, riqueza, reputación— son «indiferentes».",
     },
     {
+      type: "info",
+      continues: true,
+      title: "Vivir conforme a la naturaleza",
+      body: "Esos indiferentes no son todos iguales: la salud y la riqueza son «preferibles», y conviene elegirlas en igualdad de condiciones, pero ni la salud, ni la riqueza, ni ninguna otra cosa externa le aportan nada a la felicidad de quien las tiene. Sólo la virtud, que depende enteramente de uno mismo, puede hacer buena o mala a una vida.",
+    },
+    {
       type: "quiz",
       question: "¿Qué significa, para los estoicos, «vivir conforme a la naturaleza»?",
       options: [
@@ -77,12 +83,6 @@ export default {
       ],
       answer: 0,
       explain: "La naturaleza humana se distingue del resto de los seres vivos por la razón: vivir conforme a la naturaleza es, entonces, vivir guiado por la razón, el mismo argumento de la función que usaba Aristóteles.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Vivir conforme a la naturaleza",
-      body: "Esos indiferentes no son todos iguales: la salud y la riqueza son «preferibles», y conviene elegirlas en igualdad de condiciones, pero ni la salud, ni la riqueza, ni ninguna otra cosa externa le aportan nada a la felicidad de quien las tiene. Sólo la virtud, que depende enteramente de uno mismo, puede hacer buena o mala a una vida.",
     },
     {
       type: "quiz",
@@ -140,12 +140,6 @@ export default {
         { left: "Kosmopolitai", right: "Ciudadanos del mundo, unidos por la misma razón compartida" },
       ],
       explain: "Los cuatro términos describen un mismo sistema: un cosmos racional (logos), regido por una necesidad (heimarmene), frente al cual el sabio corrige sus juicios (apatheia) y reconoce una humanidad compartida (kosmopolitai).",
-    },
-    {
-      type: "short",
-      question: "¿Cómo llaman los estoicos al estado del sabio que ya no sufre pasiones perturbadoras, por haber corregido sus juicios erróneos?",
-      answers: ["apatheia"],
-      explain: "No es ausencia total de sentimiento: el sabio conserva «buenos sentimientos» genuinos, como la alegría serena. La apatheia es, específicamente, la ausencia de las pasiones que nacen de juicios equivocados sobre lo indiferente.",
     },
     {
       type: "info",

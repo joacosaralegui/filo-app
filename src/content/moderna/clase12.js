@@ -261,6 +261,18 @@ export default {
       body: "Mendelssohn insiste, además, en que la Ilustración no es sólo asunto del individuo aislado: habla de una ilustración «del hombre» —como ser racional en general— y de una ilustración «del ciudadano»— referida al rol social de cada quien—, y advierte que ambas pueden entrar en tensión: lo que ilustra a alguien como persona no siempre conviene difundirlo sin matices en su función pública, si puede desestabilizar el orden social sin nada que lo reemplace.",
     },
     {
+      type: "quiz",
+      question: "Para Mendelssohn, la ilustración «del hombre» y la del «ciudadano»…",
+      options: [
+        "pueden entrar en tensión entre sí",
+        "son exactamente la misma cosa",
+        "sólo le importan al gobernante",
+        "eliminan cualquier conflicto social",
+      ],
+      answer: 0,
+      explain: "Mendelssohn distingue la ilustración del ser racional en general (el hombre) de la ligada al rol social de cada quien (el ciudadano), y advierte que lo que ilustra a alguien como persona no siempre conviene difundirlo sin matices en su función pública.",
+    },
+    {
       type: "info",
       continues: true,
       title: "La respuesta de Mendelssohn",

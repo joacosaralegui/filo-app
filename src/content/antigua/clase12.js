@@ -28,6 +28,12 @@ export default {
       explain: "A diferencia de Platón, para quien el alma es una sustancia aparte, Aristóteles la define como la forma de un cuerpo vivo: no algo encerrado dentro del cuerpo, sino aquello que organiza esa materia y la hace estar viva.",
     },
     {
+      type: "short",
+      question: "¿Cómo se llama la doctrina de que toda sustancia natural es, inseparablemente, forma y materia?",
+      answers: ["hilemorfismo"],
+      explain: "De hyle (materia) y morphé (forma): el alma es la forma de un cuerpo vivo, y ninguna de las dos puede existir realmente sin la otra en un ser vivo concreto.",
+    },
+    {
       type: "info",
       title: "La analogía del ojo",
       body: "Aristóteles compara la relación entre alma y cuerpo con la relación entre la vista y el ojo: si el ojo fuera un animal completo, la vista sería su alma, y un ojo ciego sería, en un sentido importante, ya no un ojo de verdad, sino sólo su materia. De la misma manera, un cuerpo sin alma no es un cuerpo vivo con algo menos: es un cadáver, materia que perdió la forma que la organizaba.",
@@ -96,18 +102,6 @@ export default {
       body: "Ni el propio Aristóteles desarrolla mucho más esta idea, y comentaristas posteriores —árabes, judíos y cristianos— van a discutir durante siglos qué quiso decir exactamente. Es, para un sistema tan cuidadoso como el suyo, una grieta notable: casi la única puerta que deja abierta a algo parecido a la inmortalidad personal que Platón defendía.",
     },
     {
-      type: "quiz",
-      question: "¿Por qué es tan discutido el pasaje sobre el intelecto agente en Aristóteles?",
-      options: [
-        "porque lo describe como separable e inmortal, sin explicarlo del todo",
-        "porque niega por completo la existencia de cualquier tipo de intelecto",
-        "porque lo identifica sin dudas con el Motor Inmóvil mismo",
-        "porque afirma que sólo los filósofos griegos lo poseen",
-      ],
-      answer: 0,
-      explain: "Aristóteles lo describe como separable, no mezclado con el cuerpo e inmortal, pero no desarrolla la idea. Comentaristas árabes, judíos y cristianos posteriores van a discutir durante siglos qué quiso decir exactamente.",
-    },
-    {
       type: "classify",
       question: "¿Cada afirmación sobre el alma es de Platón o de Aristóteles?",
       groups: ["Platón", "Aristóteles"],
@@ -129,13 +123,7 @@ export default {
         { left: "Alma racional", right: "Razonar y comprender, exclusiva de las personas" },
         { left: "Intelecto agente", right: "El cabo suelto: ¿separable e inmortal, o parte de la forma?" },
       ],
-      explain: "Los tres niveles forman una jerarquía acumulativa; el intelecto agente es la excepción que no termina de encajar del todo en ese esquema tan cuidadosamente construido.",
-    },
-    {
-      type: "short",
-      question: "¿Cómo se llama la doctrina de que toda sustancia natural es, inseparablemente, forma y materia?",
-      answers: ["hilemorfismo"],
-      explain: "De hyle (materia) y morphé (forma): el alma es la forma de un cuerpo vivo, y ninguna de las dos puede existir realmente sin la otra en un ser vivo concreto.",
+      explain: "Los tres niveles forman una jerarquía acumulativa; el intelecto agente es la excepción que no termina de encajar del todo en ese esquema tan cuidadosamente construido, y sigue discutido por comentaristas posteriores.",
     },
     {
       type: "info",

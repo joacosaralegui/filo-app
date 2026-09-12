@@ -100,18 +100,6 @@ export default {
       body: "Antes de caer a un cuerpo, cuenta el mito, el alma volaba junto a los dioses contemplando las Formas directamente, y en esa contemplación se nutrían sus alas. Al caer a la tierra pierde las alas y las va recuperando de a poco, con esfuerzo, cada vez que algo bello en este mundo le recuerda esa visión perdida.",
     },
     {
-      type: "quiz",
-      question: "En el mito del carro alado, ¿qué representa el caballo indómito que tira hacia abajo?",
-      options: [
-        "el apetito, que tira del alma hacia los placeres del cuerpo",
-        "la razón, que guía al alma hacia el conocimiento de las Formas",
-        "el auriga, que conduce el carro entero con las riendas",
-        "el ánimo, siempre aliado incondicional de la razón",
-      ],
-      answer: 0,
-      explain: "El caballo noble obedece a las riendas de la razón; el indómito tira hacia abajo, hacia los placeres del cuerpo. Es la misma tripartición de la República, ahora puesta en imagen de carro y caballos.",
-    },
-    {
       type: "classify",
       question: "¿Cada rasgo corresponde al caballo noble o al caballo indómito del Fedro?",
       groups: ["Caballo noble", "Caballo indómito"],

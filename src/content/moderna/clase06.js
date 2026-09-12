@@ -45,6 +45,18 @@ export default {
       body: "En ese estado no hay propiedad segura, ni industria, ni cultivo, porque nadie puede confiar en gozar del fruto de su trabajo. La vida, en la fórmula célebre del Leviatán, es solitaria, pobre, tosca, embrutecida y breve: no por maldad de nadie en particular, sino por la estructura misma de la situación.",
     },
     {
+      type: "quiz",
+      question: "Para Hobbes, en el estado de naturaleza no hay industria ni cultivo porque…",
+      options: [
+        "nadie puede confiar en gozar el fruto de su trabajo",
+        "los seres humanos son naturalmente perezosos",
+        "faltan los recursos naturales necesarios",
+        "la tierra pertenece a un soberano absoluto",
+      ],
+      answer: 0,
+      explain: "Sin garantía de conservar lo producido no vale la pena esforzarse: la vida resulta solitaria, pobre, tosca, embrutecida y breve, no por maldad de nadie sino por la estructura misma de la situación.",
+    },
+    {
       type: "info",
       continues: true,
       title: "Hobbes: el contrato como salida del miedo",
@@ -120,6 +132,18 @@ export default {
       continues: true,
       title: "Locke: el contrato como protección de derechos previos",
       body: "Locke explica la propiedad mediante la mezcla del trabajo propio con los recursos que ofrece la naturaleza, originalmente comunes: quien cultiva una tierra o recoge un fruto incorpora su trabajo a esa cosa y la hace suya, sin necesidad de un acuerdo previo de los demás. La única condición natural es dejar \"lo bastante y tan bueno\" para los demás.",
+    },
+    {
+      type: "quiz",
+      question: "Para Locke, alguien se vuelve propietario de una tierra cuando…",
+      options: [
+        "mezcla su trabajo con ella",
+        "el soberano se la asigna",
+        "la comunidad vota para dársela",
+        "la ocupa primero, sin trabajarla",
+      ],
+      answer: 0,
+      explain: "Quien cultiva una tierra o recoge un fruto incorpora su trabajo a esa cosa y la hace suya, sin acuerdo previo de los demás, mientras deje \"lo bastante y tan bueno\" para el resto.",
     },
     {
       type: "info",
@@ -222,6 +246,18 @@ export default {
       continues: true,
       title: "El contrato social y la voluntad general",
       body: "La fórmula rousseauniana consiste en que cada asociado se entregue por entero a la comunidad, y no a otro individuo particular: al no depender de nadie en especial, no pierde su libertad, sino que la recupera transformada en libertad civil, garantizada ahora por la fuerza de todo el cuerpo político.",
+    },
+    {
+      type: "quiz",
+      question: "En la fórmula de Rousseau, cada asociado se entrega…",
+      options: [
+        "por entero a la comunidad, no a otro individuo",
+        "a un soberano ajeno al pacto que lo protege",
+        "sólo parcialmente, conservando su libertad natural",
+        "a un representante que actúa en su nombre",
+      ],
+      answer: 0,
+      explain: "Al no depender de nadie en particular, el asociado no pierde su libertad: la recupera transformada en libertad civil, garantizada por la fuerza de todo el cuerpo político.",
     },
     {
       type: "info",

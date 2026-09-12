@@ -200,6 +200,18 @@ export default {
       body: "Dentro de este modelo se supone que hay un saber objetivo sobre el orden natural que revela al mismo tiempo la clave del orden político correcto, y que quien posee ese saber está en condiciones de gobernar la polis: sólo el sabio conoce en qué consiste la justicia, y por eso sólo a él le corresponde establecer el orden estable de la comunidad.",
     },
     {
+      type: "quiz",
+      question: "En el modelo clásico, el saber sobre el orden natural funciona como…",
+      options: [
+        "título que autoriza a gobernar",
+        "un obstáculo para la vida política",
+        "un pacto entre individuos libres",
+        "un derecho que otorga el Estado",
+      ],
+      answer: 0,
+      explain: "Quien mejor conoce el orden natural está autorizado a gobernar: el saber es título de legitimidad política, cuya figura paradigmática es el rey-filósofo de la República de Platón.",
+    },
+    {
       type: "info",
       continues: true,
       title: "Del entendimiento a la voluntad",

@@ -51,6 +51,18 @@ export default {
       body: "El resultado son las **Cartas filosóficas** (1734), también llamadas Cartas inglesas: veinticinco cartas que presentan al público francés la ciencia de Newton, la filosofía de Locke, la tolerancia religiosa inglesa y las costumbres políticas de un país que, a ojos de Voltaire, resolvió mejor que Francia el problema de convivir con la diferencia. El libro es prohibido y quemado apenas se publica: es demasiado evidente el contraste que traza con el absolutismo francés.",
     },
     {
+      type: "quiz",
+      question: "Las Cartas filosóficas de Voltaire presentan a Francia…",
+      options: [
+        "la ciencia y la tolerancia inglesas",
+        "una defensa del absolutismo monárquico francés",
+        "una crítica exclusiva a la física de Newton",
+        "un rechazo total a cualquier reforma política",
+      ],
+      answer: 0,
+      explain: "Las Cartas filosóficas (1734) presentan al público francés la ciencia de Newton, la filosofía de Locke y la tolerancia religiosa inglesa; el libro es prohibido y quemado apenas se publica por el contraste que traza con el absolutismo francés.",
+    },
+    {
       type: "info",
       continues: true,
       title: "Voltaire: de Londres a Ferney",

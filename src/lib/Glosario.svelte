@@ -114,6 +114,13 @@
   let scrubbing = false;
   let current = null;
 
+  // El índice no aparece de entrada: al lado del buscador y los chips
+  // sobra, y compite con la lámina. Recién se muestra cuando esa lámina ya
+  // se scrolleó fuera de vista.
+  let coverH = 0;
+  let scrollY = 0;
+  $: showRail = scrollY > coverH;
+
   function jumpAt(y) {
     const r = rail.getBoundingClientRect();
     const i = Math.min(letters.length - 1, Math.max(0, Math.floor(((y - r.top) / r.height) * letters.length)));
@@ -180,15 +187,17 @@
   <p class="mt-5 mb-1 text-xs font-bold tracking-[1.6px] text-text-soft/70 uppercase">{label}</p>
 {/snippet}
 
-<svelte:window on:scroll={placeRail} on:resize={placeRail} />
+<svelte:window on:scroll={placeRail} on:resize={placeRail} bind:scrollY />
 
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
   <!-- La lámina de Cursos, acercada al libro abierto de abajo a la derecha. -->
-  <RootHeader img={portada} title="Glosario" wash={0.35} position="50% 100%" origin="100% 60%" zoom={2} />
+  <div bind:clientHeight={coverH}>
+    <RootHeader img={portada} title="Glosario" wash={0.25} position="50% 100%" origin="100% 60%" zoom={2} />
+  </div>
 
-  <!-- Buscador y chips fijos arriba: se puede cambiar de filtro en la M sin volver al principio. -->
+  <!-- Buscador y selector fijos arriba: se puede cambiar de filtro en la M sin volver al principio. -->
   <div
     class="sticky top-0 z-20 -mx-[22px] bg-bg/95 px-[22px] pt-[calc(env(safe-area-inset-top)+10px)] pb-3 backdrop-blur-[6px]"
     bind:this={stickyEl}
@@ -200,17 +209,34 @@
       placeholder="Buscar autores, conceptos o clases"
       bind:value={q}
     />
-    <div class="flex flex-wrap gap-2">
-      {#each FILTROS as f (f.id)}
-        <button
-          class="flex-none cursor-pointer rounded-full border px-3 py-1.5 text-[13px] font-bold [font-family:inherit] {filtro ===
-          f.id
-            ? 'border-accent bg-accent text-on-accent'
-            : 'border-line bg-transparent text-text-soft'}"
-          aria-pressed={filtro === f.id}
-          on:click={() => elegir(f.id)}>{f.label}</button
-        >
-      {/each}
+    <!-- Select nativo en vez de chips: con cinco no entraban en una fila sin
+         scrollear feo, y un desplegable deja clarísimo que es UN filtro a la
+         vez. -->
+    <div class="relative">
+      <select
+        class="w-full cursor-pointer appearance-none rounded-[13px] border border-line bg-surface px-4 py-3 text-base font-semibold text-text [font-family:inherit] outline-none focus:border-accent"
+        value={filtro}
+        on:change={(e) => elegir(e.currentTarget.value)}
+      >
+        {#each FILTROS as f (f.id)}
+          <option value={f.id}>{f.label}</option>
+        {/each}
+      </select>
+      <svg
+        class="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-text-soft"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        ><path
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 9l6 6 6-6"
+        /></svg
+      >
     </div>
   </div>
 
@@ -269,14 +295,20 @@
     </div>
 
     <!-- El índice va fijo, alineado al borde derecho de la columna (no de la
-         ventana), entre el buscador y la barra de abajo. -->
+         ventana), entre el buscador y la barra de abajo. No aparece de
+         entrada: recién se desvanece adentro cuando la lámina ya se
+         scrolleó fuera de vista (showRail). -->
     <div
-      class="pointer-events-none fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+80px)] z-30 mx-auto flex max-w-[480px] items-center justify-end pr-1.5"
+      class="pointer-events-none fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+80px)] z-30 mx-auto flex max-w-[480px] items-center justify-end pr-1.5 transition-opacity duration-200 {showRail
+        ? 'opacity-100'
+        : 'opacity-0'}"
       style="top: {railTop}px"
     >
       <div
         bind:this={rail}
-        class="pointer-events-auto flex touch-none flex-col items-center px-1.5 select-none"
+        class="flex touch-none flex-col items-center px-1.5 select-none {showRail
+          ? 'pointer-events-auto'
+          : 'pointer-events-none'}"
         on:pointerdown={down}
         on:pointermove={move}
         on:pointerup={up}

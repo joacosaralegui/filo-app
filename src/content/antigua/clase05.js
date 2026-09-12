@@ -120,18 +120,6 @@ export default {
       body: "Dentro de la epistéme, el tercer segmento es la dianoia, el razonamiento matemático, que trabaja con objetos abstractos —números, figuras geométricas— a partir de hipótesis que no se cuestionan. El cuarto y último es la nóesis, la comprensión más alta, que llega hasta las Formas mismas sin apoyarse en ninguna hipótesis previa: el tema exacto de la próxima clase.",
     },
     {
-      type: "quiz",
-      question: "¿Qué separa, en la línea dividida de Platón, a la dóxa de la epistéme?",
-      options: [
-        "la dóxa se ocupa del mundo visible; la epistéme, del mundo inteligible",
-        "la dóxa es exclusiva de los esclavos; la epistéme, de los ciudadanos libres",
-        "la dóxa se aprende en la Academia; la epistéme, fuera de ella",
-        "la dóxa es siempre falsa; la epistéme es siempre una opinión acertada",
-      ],
-      answer: 0,
-      explain: "Los dos segmentos inferiores de la línea (eikasía, pístis) tratan sobre el mundo sensible y cambiante; los dos superiores (dianoia, nóesis) tratan sobre un mundo inteligible que no cambia: números, figuras y, en la cima, las Formas.",
-    },
-    {
       type: "classify",
       question: "¿Cada nivel corresponde a la dóxa o a la epistéme?",
       groups: ["Dóxa", "Epistéme"],

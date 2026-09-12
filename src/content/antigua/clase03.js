@@ -109,18 +109,6 @@ export default {
       body: "Calicles, un personaje del diálogo Gorgias de Platón, lleva la idea todavía más lejos. Para él, el nómos es un invento de los débiles y de la mayoría, diseñado precisamente para atarle las manos a los pocos que, por naturaleza, son más fuertes y merecen más. La physis muestra en cualquier otra especie que el más fuerte domina al más débil; sólo la convención humana llama a eso «injusticia».",
     },
     {
-      type: "quiz",
-      question: "Para Calicles, ¿qué relación hay entre el nómos y la physis?",
-      options: [
-        "el nómos es un invento de los débiles para frenar a los fuertes",
-        "el nómos expresa fielmente lo que la physis dicta en cada caso",
-        "la physis no existe; sólo hay convenciones humanas variables",
-        "el nómos y la physis siempre coinciden en todas las ciudades",
-      ],
-      answer: 0,
-      explain: "Calicles invierte el argumento habitual: la physis muestra que el más fuerte domina, y llama «justicia» a eso. El nómos, para él, es sólo el modo en que la mayoría débil consigue atarle las manos a los pocos fuertes.",
-    },
-    {
       type: "classify",
       question: "¿Cada afirmación pone el peso en el nómos o en la phýsis?",
       groups: ["Nómos", "Phýsis"],

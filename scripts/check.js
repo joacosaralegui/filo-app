@@ -13,6 +13,15 @@ const errors = [];
 const warnings = [];
 const KINDS = new Set(["autor", "concepto", "obra", "evento"]);
 
+// ---- cursos ----
+for (const meta of CONTENT) {
+  const declared = COURSES.find((c) => c.id === meta.id)?.total;
+  if (declared != null && declared !== meta.classes.length)
+    warnings.push(
+      `${meta.id}: total declarado (${declared}) != classes.length (${meta.classes.length})`,
+    );
+}
+
 // ---- clases ----
 for (const c of CLASSES) {
   const tag = `${c.courseId} · Clase ${c.num}`;

@@ -16,6 +16,18 @@ export default {
       body: "Frente a la física aristotélica que aún se enseñaba en las universidades, los nuevos físicos —partidarios de aplicar la geometría a la física— se presentan a sí mismos como **platónicos**. Comparten así, con las raíces examinadas en la clase anterior, el rechazo del **aristotelismo escolástico**, aunque desde el terreno de la ciencia natural y no de la religión o la moral.",
     },
     {
+      type: "quiz",
+      question: "Los nuevos físicos del siglo XVII se llaman a sí mismos \"platónicos\" porque…",
+      options: [
+        "aplican la geometría al estudio de la naturaleza",
+        "defienden la teoría platónica de las ideas eternas",
+        "rechazan cualquier uso de las matemáticas",
+        "continúan sin cambios la física aristotélica",
+      ],
+      answer: 0,
+      explain: "No se llaman platónicos por la teoría de las ideas, sino porque —como Platón— sostienen que la geometría debe aplicarse a la física, frente al aristotelismo escolástico que las mantenía separadas.",
+    },
+    {
       type: "info",
       title: "La física aristotélica y la separación de los saberes",
       body: "Para entender la novedad del siglo XVII conviene partir de cómo Aristóteles concebía la relación entre física y geometría. Su física describe la naturaleza como un cosmos cualitativamente diferenciado y jerárquicamente ordenado, donde los cuerpos se mueven naturalmente hacia sus lugares propios: el fuego hacia el cielo, los cuerpos pesados hacia la tierra.",
@@ -165,6 +177,18 @@ export default {
       continues: true,
       title: "Dos platonismos: Descartes contra Galileo",
       body: "La existencia de ese Dios se infiere, a su vez, de la noción de Dios presente en el cogito indudable, que se estudiará en la próxima clase. Aplicar el método geométrico a la física significa, para Descartes, deducir la física entera a partir de la metafísica: primero se funda la existencia de Dios, después las leyes generales del movimiento, y solo al final los fenómenos particulares.",
+    },
+    {
+      type: "quiz",
+      question: "Para Descartes, las tres leyes del movimiento se deducen en última instancia de…",
+      options: [
+        "los atributos de Dios, deducidos del cogito",
+        "la observación experimental de los cuerpos",
+        "la física aristotélica de los lugares naturales",
+        "las órbitas elípticas descubiertas por Kepler",
+      ],
+      answer: 0,
+      explain: "Descartes deduce las leyes del movimiento de los atributos de Dios, y la existencia de Dios, a su vez, de la noción de Dios presente en el cogito: la física entera depende así de la metafísica.",
     },
     {
       type: "info",

@@ -163,6 +163,18 @@ export default {
       body: "Y el lenguaje no es puro en ninguno de los sentidos que Kant necesita. Es sensible, porque las palabras son sonidos y signos materiales. Es histórico, porque cada lengua es el producto de generaciones. Y es recibido, porque nadie inventa el idioma en el que piensa: lo aprende de otros antes de poder examinar nada.",
     },
     {
+      type: "quiz",
+      question: "La tercera purificación que Hamann considera imposible es separar la razón…",
+      options: [
+        "del lenguaje en el que necesariamente piensa",
+        "de la tradición y de la autoridad religiosa",
+        "de la experiencia sensible inmediata",
+        "de las matemáticas y la geometría",
+      ],
+      answer: 0,
+      explain: "Las dos primeras purificaciones —separar la razón de la tradición y de la experiencia— ya se hicieron, según Hamann. La tercera, separarla del lenguaje, es imposible: no hay pensamiento sin palabras, y ninguna lengua es pura.",
+    },
+    {
       type: "info",
       continues: true,
       title: "El lenguaje como condición de la razón",

@@ -33,6 +33,11 @@ export default {
       body: "En la cima de todo lo que existe, Plotino ubica al **Uno**, que retoma directamente a la Forma del Bien de la República, de la Clase 6: algo «más allá del ser» mismo, tan simple que ni siquiera se lo puede pensar como una cosa entre otras. Cualquier predicado que se le aplique —bueno, sabio, existente— ya introduce una distinción que el Uno, por definición, no admite.",
     },
     {
+      type: "info",
+      title: "Del Uno al Alma: la emanación",
+      body: "De ese Uno «brotan», en sucesión necesaria, dos niveles más de realidad. Primero el Nous o Intelecto, donde habitan las Formas platónicas ya como una multiplicidad organizada; después el Alma, que hace de puente entre lo inteligible y lo sensible, y que genera y anima el cosmos físico que conocemos. A este proceso Plotino lo llama **emanación**.",
+    },
+    {
       type: "quiz",
       question: "¿Por qué el Uno de Plotino está «más allá del ser», y no es simplemente el ser más perfecto?",
       options: [
@@ -43,11 +48,6 @@ export default {
       ],
       answer: 0,
       explain: "El Uno retoma a la Forma del Bien de Platón, «más allá del ser»: llamarlo «bueno» o «existente» ya lo distinguiría de otra cosa, y el Uno, por definición, es demasiado simple para admitir ninguna distinción interna.",
-    },
-    {
-      type: "info",
-      title: "Del Uno al Alma: la emanación",
-      body: "De ese Uno «brotan», en sucesión necesaria, dos niveles más de realidad. Primero el Nous o Intelecto, donde habitan las Formas platónicas ya como una multiplicidad organizada; después el Alma, que hace de puente entre lo inteligible y lo sensible, y que genera y anima el cosmos físico que conocemos. A este proceso Plotino lo llama **emanación**.",
     },
     {
       type: "quiz",
@@ -102,18 +102,6 @@ export default {
       body: "Como el Uno está más allá de cualquier categoría, no hay ningún lenguaje positivo capaz de describirlo sin traicionarlo: llamarlo «bueno» o «existente» ya lo rebaja a la condición de una cosa entre otras. La única vía que le queda a la filosofía es la **vía negativa**: decir lo que el Uno no es, y dejar que, por descarte, se insinúe algo de lo que sí es, sin nombrarlo del todo.",
     },
     {
-      type: "quiz",
-      question: "¿En qué consiste la «vía negativa» para hablar del Uno?",
-      options: [
-        "en decir lo que el Uno no es, para no rebajarlo a una cosa más",
-        "en negar directamente que el Uno exista de alguna manera",
-        "en describir al Uno con la mayor cantidad posible de atributos positivos",
-        "en reemplazar al Uno por completo por el Nous en toda descripción",
-      ],
-      answer: 0,
-      explain: "Cualquier predicado positivo —bueno, existente, sabio— introduciría una distinción que el Uno no admite. Por eso sólo queda decir lo que no es, dejando que algo de su naturaleza se insinúe por descarte.",
-    },
-    {
       type: "match",
       question: "Uní cada término con lo que describe",
       pairs: [
@@ -123,12 +111,6 @@ export default {
         { left: "Vía negativa", right: "Decir lo que el Uno no es, ya que nombrarlo lo rebajaría" },
       ],
       explain: "Las cuatro piezas arman un solo sistema: una fuente inefable, un proceso necesario que produce el resto de la realidad, dos niveles intermedios, y un método para hablar de lo que en rigor no se puede nombrar.",
-    },
-    {
-      type: "short",
-      question: "¿Cómo se llama, en Plotino, el proceso por el cual todo surge necesariamente del Uno, sin que éste decida ni pierda nada?",
-      answers: ["emanacion", "emanación"],
-      explain: "Como el sol irradia luz sin disminuir, o el fuego irradia calor sin apagarse, el Uno produce el resto de la realidad —Nous, Alma, cosmos físico— por puro desbordamiento necesario, no por elección.",
     },
     {
       type: "info",

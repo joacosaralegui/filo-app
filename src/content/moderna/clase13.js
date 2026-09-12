@@ -57,6 +57,18 @@ export default {
       body: "El personaje de Natán está inspirado, según reconoce el propio Lessing, en su amigo Mendelssohn, con quien había compartido años antes una intensa colaboración filosófica en Berlín. Escribir a un judío como el protagonista más sabio y virtuoso del drama es, en sí mismo, una respuesta práctica al antisemitismo de su época, y un homenaje directo a la persona que mejor encarna, para Lessing, el ideal ilustrado de tolerancia.",
     },
     {
+      type: "quiz",
+      question: "El personaje de Natán está inspirado en…",
+      options: [
+        "su amigo Mendelssohn",
+        "el pastor Goeze",
+        "el teólogo Reimarus",
+        "el sultán Saladino",
+      ],
+      answer: 0,
+      explain: "El propio Lessing reconoce haberse inspirado en su amigo Mendelssohn: convertir a un judío en el protagonista más sabio y virtuoso del drama es, en sí mismo, una respuesta práctica al antisemitismo de su época.",
+    },
+    {
       type: "info",
       continues: true,
       title: "Natán el sabio y la tolerancia dramatizada",
@@ -175,6 +187,18 @@ export default {
       continues: true,
       title: "La revelación como pedagogía",
       body: "Lessing compara ese proceso con las etapas del aprendizaje escolar: al niño no se le enseña álgebra antes de que sepa contar, ni se le exige que entienda por qué una regla es cierta antes de que pueda simplemente aplicarla con confianza en el maestro. De la misma manera, a la humanidad «infantil» del Antiguo Testamento no podía exigírsele todavía una moral fundada en razones propias: necesitaba mandamientos concretos, respaldados por autoridad y por consecuencias tangibles.",
+    },
+    {
+      type: "quiz",
+      question: "La comparación de Lessing con el aprendizaje escolar explica por qué…",
+      options: [
+        "el Antiguo Testamento no exigía una moral racional",
+        "el álgebra debe enseñarse antes que a contar",
+        "los niños no necesitan ningún maestro",
+        "toda regla debe entenderse antes de aplicarse",
+      ],
+      answer: 0,
+      explain: "Así como no se enseña álgebra antes de que el niño sepa contar, a la humanidad «infantil» del Antiguo Testamento no podía exigírsele una moral fundada en razones propias: necesitaba mandamientos concretos, respaldados por autoridad y consecuencias tangibles.",
     },
     {
       type: "info",

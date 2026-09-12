@@ -85,18 +85,6 @@ export default {
       body: "¿Cómo participan exactamente muchas cosas bellas de una sola Forma de la Belleza? En el diálogo Parménides, Platón hace que un Parménides ya anciano le señale a un Sócrates joven un problema serio, conocido después como el argumento del **Tercer Hombre**: si dos hombres son hombres porque se parecen a la Forma del Hombre, esa semejanza misma tendría que explicarse por una nueva Forma que englobe a los dos primeros y a la Forma original, y así hasta el infinito.",
     },
     {
-      type: "quiz",
-      question: "¿Qué problema plantea el argumento del Tercer Hombre contra la teoría de las Formas?",
-      options: [
-        "una regresión infinita de Formas para explicar cada semejanza",
-        "que no existe ningún hombre real fuera de Atenas y Esparta",
-        "que las Formas cambian de nombre según la ciudad que se visite",
-        "que Sócrates no puede participar de la Forma del Hombre",
-      ],
-      answer: 0,
-      explain: "Si dos cosas se parecen a una Forma por compartir un rasgo con ella, esa nueva semejanza exige otra Forma que la explique, y así sucesivamente sin final: una regresión infinita que la teoría original no había previsto.",
-    },
-    {
       type: "classify",
       question: "¿Cada rasgo corresponde al mundo sensible o al mundo de las Formas?",
       groups: ["Mundo sensible", "Mundo de las Formas"],

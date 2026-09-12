@@ -92,6 +92,18 @@ export default {
       body: "Contra el innatismo, Locke sostiene que la mente humana es, antes de cualquier experiencia, semejante a una **tabla rasa**: un papel en blanco sobre el cual los datos sensoriales pueden ir «imprimiéndose». Ninguna idea, ni siquiera las matemáticas o la de Dios, está presente en la mente al nacer; todas se forman a partir de lo recibido por los sentidos y de la reflexión posterior sobre esos materiales.",
     },
     {
+      type: "quiz",
+      question: "La tabla rasa de Locke afirma que…",
+      options: [
+        "ninguna idea está en la mente al nacer",
+        "los sentidos no pueden engañarnos nunca",
+        "las matemáticas se aprenden por costumbre",
+        "la reflexión no produce ideas nuevas",
+      ],
+      answer: 0,
+      explain: "La mente es, antes de toda experiencia, un papel en blanco sobre el que los datos sensoriales se imprimen. Ninguna idea, ni la de Dios ni las matemáticas, está presente al nacer: todas se forman a partir de lo recibido por los sentidos y de la reflexión posterior sobre esos materiales.",
+    },
+    {
       type: "info",
       continues: true,
       title: "Locke contra las ideas innatas",
@@ -114,18 +126,6 @@ export default {
       continues: true,
       title: "Locke contra las ideas innatas",
       body: "Con esta arquitectura, Locke cree haber desactivado el problema que el racionalismo resolvía apelando a lo innato: cómo es posible que tengamos ideas generales y abstractas —como la de triángulo en general, sin ángulos ni lados determinados— si todo lo que percibimos son siempre casos particulares y concretos. Su respuesta es que esas ideas generales resultan de un proceso activo de abstracción que la mente realiza sobre las ideas particulares recibidas, no de un contenido ya presente de antemano en el entendimiento.",
-    },
-    {
-      type: "quiz",
-      question: "La tabla rasa de Locke afirma que…",
-      options: [
-        "ninguna idea está en la mente al nacer",
-        "los sentidos no pueden engañarnos nunca",
-        "las matemáticas se aprenden por costumbre",
-        "la reflexión no produce ideas nuevas",
-      ],
-      answer: 0,
-      explain: "La mente es, antes de toda experiencia, un papel en blanco sobre el que los datos sensoriales se imprimen. Ninguna idea, ni la de Dios ni las matemáticas, está presente al nacer: todas se forman a partir de lo recibido por los sentidos y de la reflexión posterior sobre esos materiales.",
     },
     {
       type: "classify",
@@ -188,42 +188,6 @@ export default {
       body: "En los Principios del conocimiento humano (1710), Berkeley formula el principio que resume su filosofía: **esse est percipi**, ser es ser percibido. Para los objetos que no piensan —una mesa, una piedra, un color— existir no significa nada más que ser percibidos por una mente, sea la de un ser humano o la de Dios. No hay un «sustrato material» oculto detrás de las cualidades que percibimos, porque nunca tenemos experiencia de tal sustrato: sólo percibimos ideas, nunca la materia que supuestamente las causaría.",
     },
     {
-      type: "info",
-      continues: true,
-      title: "Berkeley: la consecuencia radical del empirismo",
-      body: "De ahí que Berkeley defienda el **inmaterialismo**: la tesis de que no existe una sustancia material distinta de las mentes y sus percepciones. Negar la materia no significa, para Berkeley, negar la existencia de las cosas que vemos y tocamos —la mesa sigue estando ahí—, sino negar que detrás de esas cosas percibidas haya, además, una sustancia inerte e imperceptible que la física y la metafísica postulan sin ninguna evidencia empírica que las respalde.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Berkeley: la consecuencia radical del empirismo",
-      body: "Una objeción obvia al inmaterialismo es que las cosas parecen seguir existiendo cuando nadie las percibe: la mesa de una habitación vacía no desaparece cuando cerramos la puerta. Berkeley responde que las cosas no dejan de existir porque las percibe, en todo momento, la mente infinita de Dios: la continuidad y el orden regular del mundo sensible dependen, en última instancia, de esa percepción divina permanente, que además explica por qué las percepciones humanas resultan tan ordenadas y previsibles.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Berkeley: la consecuencia radical del empirismo",
-      body: "Berkeley no niega, por lo demás, que haya una diferencia entre percibir algo e imaginarlo: las ideas que llamamos «reales» —las que forman lo que llamamos el mundo físico— son más vivaces, más ordenadas y más independientes de nuestra voluntad que las que producimos libremente con la imaginación. Esa regularidad, para Berkeley, es obra de Dios, que las produce directamente en nuestra mente siguiendo leyes constantes, a las que la ciencia natural puede legítimamente describir sin necesidad de postular una materia detrás de ellas.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Berkeley: la consecuencia radical del empirismo",
-      body: "Berkeley presenta el inmaterialismo no como una excentricidad, sino como la aplicación más consecuente del principio empirista según el cual todo conocimiento deriva de la experiencia: si nunca experimentamos la materia en sí misma, sino sólo ideas, entonces postular una materia detrás de las ideas es exactamente el tipo de especulación vacía que el empirismo había denunciado en la metafísica racionalista. Locke se detiene a mitad de camino; Berkeley completa el movimiento.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Berkeley: la consecuencia radical del empirismo",
-      body: "Berkeley insiste en que su tesis no es escéptica, sino que busca defender el sentido común contra las ficciones de los filósofos: quien niega la materia no niega ninguna de las cosas que efectivamente experimentamos, sólo niega una entidad abstracta, imperceptible por definición, que ni el sentido común ni la ciencia necesitan para explicar nada. Lo único que se pierde, según Berkeley, es un supuesto metafísico sin ningún respaldo empírico.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Berkeley: la consecuencia radical del empirismo",
-      body: "El motivo de fondo de Berkeley es también religioso: le preocupa que el materialismo mecanicista del siglo XVII, al describir la naturaleza como una máquina autosuficiente regida por leyes ciegas, abra la puerta al ateísmo y al escepticismo respecto de la providencia divina. Al eliminar la materia y hacer depender el orden del mundo sensible directamente de la percepción de Dios, Berkeley cree devolverle a la divinidad un papel activo y permanente en la explicación de la naturaleza, papel que el mecanicismo tendía a volver superfluo.",
-    },
-    {
       type: "quiz",
       question: "«Esse est percipi» significa que…",
       options: [
@@ -234,6 +198,18 @@ export default {
       ],
       answer: 0,
       explain: "Vale para los objetos que no piensan: una mesa, una piedra, un color. No hay un sustrato material oculto detrás de las cualidades percibidas, porque de ese sustrato nunca tenemos experiencia. Berkeley no niega la mesa: niega la materia que se postula detrás de ella.",
+    },
+    {
+      type: "info",
+      continues: true,
+      title: "Berkeley: la consecuencia radical del empirismo",
+      body: "De ahí que Berkeley defienda el **inmaterialismo**: la tesis de que no existe una sustancia material distinta de las mentes y sus percepciones. Negar la materia no significa, para Berkeley, negar la existencia de las cosas que vemos y tocamos —la mesa sigue estando ahí—, sino negar que detrás de esas cosas percibidas haya, además, una sustancia inerte e imperceptible que la física y la metafísica postulan sin ninguna evidencia empírica que las respalde.",
+    },
+    {
+      type: "info",
+      continues: true,
+      title: "Berkeley: la consecuencia radical del empirismo",
+      body: "Una objeción obvia al inmaterialismo es que las cosas parecen seguir existiendo cuando nadie las percibe: la mesa de una habitación vacía no desaparece cuando cerramos la puerta. Berkeley responde que las cosas no dejan de existir porque las percibe, en todo momento, la mente infinita de Dios: la continuidad y el orden regular del mundo sensible dependen, en última instancia, de esa percepción divina permanente, que además explica por qué las percepciones humanas resultan tan ordenadas y previsibles.",
     },
     {
       type: "quiz",
@@ -248,6 +224,18 @@ export default {
       explain: "La percepción divina permanente explica para Berkeley tanto la continuidad de las cosas como el orden regular del mundo sensible, es decir, por qué nuestras percepciones resultan tan previsibles. El motivo de fondo es religioso: le preocupa que el mecanicismo vuelva superflua a la providencia.",
     },
     {
+      type: "info",
+      continues: true,
+      title: "Berkeley: la consecuencia radical del empirismo",
+      body: "Berkeley no niega, por lo demás, que haya una diferencia entre percibir algo e imaginarlo: las ideas que llamamos «reales» —las que forman lo que llamamos el mundo físico— son más vivaces, más ordenadas y más independientes de nuestra voluntad que las que producimos libremente con la imaginación. Esa regularidad, para Berkeley, es obra de Dios, que las produce directamente en nuestra mente siguiendo leyes constantes, a las que la ciencia natural puede legítimamente describir sin necesidad de postular una materia detrás de ellas.",
+    },
+    {
+      type: "info",
+      continues: true,
+      title: "Berkeley: la consecuencia radical del empirismo",
+      body: "Berkeley presenta el inmaterialismo no como una excentricidad, sino como la aplicación más consecuente del principio empirista según el cual todo conocimiento deriva de la experiencia: si nunca experimentamos la materia en sí misma, sino sólo ideas, entonces postular una materia detrás de las ideas es exactamente el tipo de especulación vacía que el empirismo había denunciado en la metafísica racionalista. Locke se detiene a mitad de camino; Berkeley completa el movimiento.",
+    },
+    {
       type: "quiz",
       question: "Berkeley presenta el inmaterialismo como…",
       options: [
@@ -258,6 +246,18 @@ export default {
       ],
       answer: 0,
       explain: "Si nunca experimentamos la materia en sí misma sino sólo ideas, postular una materia detrás de las ideas es exactamente la especulación vacía que el empirismo denunciaba en la metafísica. Y Berkeley insiste en que su tesis defiende el sentido común: no niega ninguna cosa experimentada, sólo una entidad imperceptible por definición.",
+    },
+    {
+      type: "info",
+      continues: true,
+      title: "Berkeley: la consecuencia radical del empirismo",
+      body: "Berkeley insiste en que su tesis no es escéptica, sino que busca defender el sentido común contra las ficciones de los filósofos: quien niega la materia no niega ninguna de las cosas que efectivamente experimentamos, sólo niega una entidad abstracta, imperceptible por definición, que ni el sentido común ni la ciencia necesitan para explicar nada. Lo único que se pierde, según Berkeley, es un supuesto metafísico sin ningún respaldo empírico.",
+    },
+    {
+      type: "info",
+      continues: true,
+      title: "Berkeley: la consecuencia radical del empirismo",
+      body: "El motivo de fondo de Berkeley es también religioso: le preocupa que el materialismo mecanicista del siglo XVII, al describir la naturaleza como una máquina autosuficiente regida por leyes ciegas, abra la puerta al ateísmo y al escepticismo respecto de la providencia divina. Al eliminar la materia y hacer depender el orden del mundo sensible directamente de la percepción de Dios, Berkeley cree devolverle a la divinidad un papel activo y permanente en la explicación de la naturaleza, papel que el mecanicismo tendía a volver superfluo.",
     },
     {
       type: "info",

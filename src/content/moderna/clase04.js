@@ -57,6 +57,12 @@ export default {
       body: "Por eso Pascal distingue dos modos de comprensión. El **espíritu geométrico** sirve para conocer relaciones cuantitativas necesarias, pero es incapaz de aprehender el sentido de la existencia individual, la que cada uno vive en primera persona. Esa dimensión requiere del **espíritu de sutileza**, un modo de comprensión distinto, no reductible al cálculo.",
     },
     {
+      type: "short",
+      question: "¿Cómo llama Pascal al modo de comprensión, distinto del cálculo, que capta el sentido de la existencia individual?",
+      answers: ["espíritu de sutileza", "espiritu de sutileza"],
+      explain: "Frente al espíritu geométrico, que conoce relaciones cuantitativas, Pascal reserva el espíritu de sutileza para captar de un solo golpe realidades que no se dejan calcular, como el sentido de la propia existencia.",
+    },
+    {
       type: "info",
       continues: true,
       title: "El espíritu de sutileza de Pascal",
@@ -91,12 +97,6 @@ export default {
       ],
       answer: 0,
       explain: "El espíritu geométrico conoce relaciones cuantitativas necesarias, pero no alcanza el sentido de la existencia individual, que cada uno vive en primera persona; para eso Pascal reserva el espíritu de sutileza.",
-    },
-    {
-      type: "short",
-      question: "¿Cómo llama Pascal al modo de comprensión, distinto del cálculo, que capta el sentido de la existencia individual?",
-      answers: ["espíritu de sutileza", "espiritu de sutileza"],
-      explain: "Frente al espíritu geométrico, que conoce relaciones cuantitativas, Pascal reserva el espíritu de sutileza para captar de un solo golpe realidades que no se dejan calcular, como el sentido de la propia existencia.",
     },
     {
       type: "info",

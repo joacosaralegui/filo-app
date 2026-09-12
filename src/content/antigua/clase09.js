@@ -10,18 +10,6 @@ export default {
       body: "En el Timeo, uno de sus últimos diálogos, Platón cuenta cómo se formó el cosmos físico. Un artesano divino, el **Demiurgo**, toma una materia preexistente, caótica y en movimiento desordenado —la llama chóra, «receptáculo»—, y la ordena mirando como modelo a las Formas eternas, para producir un mundo «lo mejor posible».",
     },
     {
-      type: "quiz",
-      question: "¿Qué hace exactamente el Demiurgo del Timeo para formar el cosmos?",
-      options: [
-        "ordena una materia preexistente mirando a las Formas como modelo",
-        "crea la materia entera de la nada, sin ningún modelo previo",
-        "destruye las Formas eternas para reemplazarlas por la materia",
-        "delega la tarea de ordenar el cosmos en Zeus y los demás dioses",
-      ],
-      answer: 0,
-      explain: "El Demiurgo no crea de la nada: toma una materia caótica que ya existía y la ordena mirando a las Formas eternas como modelo, para producir un cosmos «lo mejor posible».",
-    },
-    {
       type: "info",
       continues: true,
       title: "El Demiurgo: un artesano, no un creador",

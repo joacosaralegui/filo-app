@@ -310,7 +310,7 @@
         <!-- El cromo en juego, apagado hasta que lo ganes. -->
         <div class="mb-7 h-[132px] w-[132px] overflow-hidden rounded-2xl bg-surface-2">
           <img
-            class="h-full w-full object-cover {ganado ? 'opacity-65' : 'opacity-45 grayscale-[0.9]'}"
+            class="h-full w-full object-cover {ganado ? 'opacity-75' : 'opacity-45 grayscale-[0.9]'}"
             src={cromo.img}
             alt=""
           />

@@ -39,6 +39,12 @@ export default {
       body: "Tales de Mileto, a quien la tradición —empezando por Aristóteles— considera el primer filósofo, sostiene que la physis de todas las cosas es el agua. No es un capricho: el agua se presenta en tres estados, sólido, líquido y vapor, y es indispensable para toda forma de vida. Se le atribuye además haber predicho un eclipse solar (585 a. C.); no se conserva ningún escrito suyo, y todo lo que sabemos de él llega por autores posteriores.",
     },
     {
+      type: "info",
+      continues: true,
+      title: "Los milesios: la pregunta por la physis",
+      body: "Anaximandro, discípulo o socio de Tales, da un paso más abstracto: si el mundo tiene cualidades opuestas —húmedo y seco, caliente y frío—, ninguna puede ser más básica que su contraria. Propone entonces como principio algo sin cualidades determinadas, el **ápeiron**, «lo ilimitado», del que surgen los opuestos por separación. Se le atribuyen también el primer mapa del mundo conocido y una teoría rudimentaria del origen de los animales a partir de criaturas acuáticas.",
+    },
+    {
       type: "quiz",
       question: "¿Por qué elige Tales el agua, y no cualquier otro elemento, como principio de todas las cosas?",
       options: [
@@ -49,12 +55,6 @@ export default {
       ],
       answer: 0,
       explain: "El agua se presenta en tres estados —sólido, líquido, vapor— y es esencial para la vida vegetal y animal: una candidata razonable para quien busca una causa natural y observable, no una revelación religiosa.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Los milesios: la pregunta por la physis",
-      body: "Anaximandro, discípulo o socio de Tales, da un paso más abstracto: si el mundo tiene cualidades opuestas —húmedo y seco, caliente y frío—, ninguna puede ser más básica que su contraria. Propone entonces como principio algo sin cualidades determinadas, el **ápeiron**, «lo ilimitado», del que surgen los opuestos por separación. Se le atribuyen también el primer mapa del mundo conocido y una teoría rudimentaria del origen de los animales a partir de criaturas acuáticas.",
     },
     {
       type: "quiz",
@@ -98,16 +98,16 @@ export default {
       body: "Casi dos siglos después de Tales, cuando Aristóteles escribe la primera historia de la filosofía al comienzo de su Metafísica, bautiza en retrospectiva lo que buscaban los milesios: llama **arché** al principio único y permanente del que están hechas todas las cosas y al que vuelven cuando perecen. Tales, Anaximandro y Anaxímenes coinciden, además, en que hay un solo tipo de elemento básico, así que se los llama **monistas cualitativos**, aunque acepten que existen muchas cosas hechas de él.",
     },
     {
-      type: "short",
-      question: "¿Cómo llama Aristóteles, en retrospectiva, al principio último y permanente del que están hechas todas las cosas?",
-      answers: ["arché", "arje"],
-      explain: "Es el término con el que Aristóteles agrupa, casi dos siglos después, la pregunta de fondo de todos los presocráticos: qué hay debajo del cambio, ya sea agua, ápeiron, aire, fuego o átomos.",
-    },
-    {
       type: "info",
       continues: true,
       title: "Aristóteles bautiza el problema: arché",
       body: "Pero la pregunta por el arché tiene también una cara cuantitativa, distinta de la cualitativa: ¿el universo es, en número, una sola cosa —una esfera compacta y sin partes— o son numéricamente muchas las cosas que existen? Esta segunda pregunta parece obvia —cada quien es distinto de los demás— pero se vuelve un problema filosófico serio cuando los eleatas la lleven al extremo, más adelante en esta misma clase.",
+    },
+    {
+      type: "short",
+      question: "¿Cómo llama Aristóteles, en retrospectiva, al principio último y permanente del que están hechas todas las cosas?",
+      answers: ["arché", "arje"],
+      explain: "Es el término con el que Aristóteles agrupa, casi dos siglos después, la pregunta de fondo de todos los presocráticos: qué hay debajo del cambio, ya sea agua, ápeiron, aire, fuego o átomos.",
     },
     {
       type: "quiz",
@@ -127,6 +127,12 @@ export default {
       body: "Heráclito de Éfeso, de familia aristocrática, es célebre en la Antigüedad por lo oscuro y sentencioso de su estilo, que le valió el apodo de «el Oscuro», y por su carácter altivo y solitario: no funda escuela ni deja discípulos. Su libro, del que sólo sobreviven fragmentos citados por autores posteriores, abre con una idea que organiza todo lo demás: «aunque este logos es siempre verdadero, los hombres no llegan a comprenderlo […] y viven como si tuvieran un entendimiento privado» (DK B1-B2).",
     },
     {
+      type: "info",
+      continues: true,
+      title: "Heráclito: el logos y el fuego",
+      body: "El fragmento que se hizo más famoso, «no se puede entrar dos veces en el mismo río», no es en realidad de Heráclito: es una radicalización posterior, atribuida a su seguidor Cratilo. Lo que Heráclito escribe (DK B12) es más sutil: «sobre quienes entran en los mismos ríos, fluyen aguas siempre distintas». El río sigue siendo el mismo río, con su nombre, su lugar y su forma, aunque el agua que lo compone cambie sin cesar: cambio y permanencia, juntos.",
+    },
+    {
       type: "quiz",
       question: "Para Heráclito, el logos es sobre todo…",
       options: [
@@ -137,12 +143,6 @@ export default {
       ],
       answer: 0,
       explain: "El mundo cambia sin parar, pero ese cambio no es caos: obedece a una razón o proporción común, el logos, que la mayoría de la gente ignora al vivir «como si tuviera un entendimiento privado».",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Heráclito: el logos y el fuego",
-      body: "El fragmento que se hizo más famoso, «no se puede entrar dos veces en el mismo río», no es en realidad de Heráclito: es una radicalización posterior, atribuida a su seguidor Cratilo. Lo que Heráclito escribe (DK B12) es más sutil: «sobre quienes entran en los mismos ríos, fluyen aguas siempre distintas». El río sigue siendo el mismo río, con su nombre, su lugar y su forma, aunque el agua que lo compone cambie sin cesar: cambio y permanencia, juntos.",
     },
     {
       type: "quiz",
@@ -180,15 +180,15 @@ export default {
       explain: "Ambos aceptan que el cambio es real y que está regido por un orden estable —el llamado doble aspecto—, pero Heráclito lo llama logos y lo asocia al fuego, mientras Pitágoras lo encuentra en proporciones numéricas.",
     },
     {
-      type: "short",
-      question: "¿Con qué palabra griega nombra Heráclito la razón común que gobierna el cambio?",
-      answers: ["logos"],
-      explain: "Logos —palabra, razón, proporción— es, para Heráclito, lo que hace que el flujo constante de las cosas no sea caos: una ley común que la mayoría no escucha.",
-    },
-    {
       type: "info",
       title: "Los eleatas: el ser inmóvil",
       body: "Parménides de Elea, en el sur de Italia, expone su filosofía en un poema, Sobre la naturaleza, donde una diosa le revela dos caminos posibles de investigación: «uno, que es y que no es posible que no sea, es el camino de la persuasión […]; el otro, que no es y que es necesario que no sea, ese te digo que es un sendero de todo en todo inescrutable» (DK B2). Sólo el primero es transitable: pensar el no-ser es, literalmente, no pensar nada.",
+    },
+    {
+      type: "info",
+      continues: true,
+      title: "Los eleatas: el ser inmóvil",
+      body: "De ahí Parménides deduce los «signos» del ser genuino (DK B8): «ingénito e imperecedero […] todo entero, único, inmóvil y sin fin». Y rechaza de plano la posición de quienes —sin nombrarlo, aunque muchos leen aquí una respuesta a Heráclito— piensan «que ser y no ser son lo mismo y no lo mismo» (DK B6): para Parménides no hay término medio entre ser y no ser, y quien lo busca «vaga confundido, con la mente errante».",
     },
     {
       type: "quiz",
@@ -201,12 +201,6 @@ export default {
       ],
       answer: 0,
       explain: "Su argumento es puramente lógico, no empírico: si algo cambia, pasa de no ser a ser o al revés, y pensar el no-ser es imposible. Por eso concluye que el ser tiene que ser uno, eterno e inmóvil.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Los eleatas: el ser inmóvil",
-      body: "De ahí Parménides deduce los «signos» del ser genuino (DK B8): «ingénito e imperecedero […] todo entero, único, inmóvil y sin fin». Y rechaza de plano la posición de quienes —sin nombrarlo, aunque muchos leen aquí una respuesta a Heráclito— piensan «que ser y no ser son lo mismo y no lo mismo» (DK B6): para Parménides no hay término medio entre ser y no ser, y quien lo busca «vaga confundido, con la mente errante».",
     },
     {
       type: "info",
@@ -276,6 +270,12 @@ export default {
       body: "Anaxágoras de Clazómenas, el primero en llevar la filosofía a Atenas —fue maestro de Pericles—, sostiene que hay tantos elementos básicos como tipos de sustancia, «semillas» de hueso, de piel, de sangre, y que «todo está en todo»: cada cosa contiene porciones de todas las demás, y lo que la define es cuál predomina. Para explicar por qué esa mezcla infinita no es un caos, introduce el **nous**, una mente separada de la materia que ordena las semillas.",
     },
     {
+      type: "info",
+      continues: true,
+      title: "Los pluralistas: salvar el cambio",
+      body: "Demócrito de Abdera completa el cuadro con el atomismo, heredado de su maestro Leucipo. Toda la realidad física está hecha de átomos: partículas indivisibles, eternas e infinitamente numerosas, que sólo se diferencian por su forma, tamaño y posición, y que se combinan al azar en el vacío. «Por convención lo dulce, por convención lo amargo […]; en realidad, átomos y vacío» (DK B9). El color, el sabor y la temperatura no son propiedades del átomo mismo, sino el efecto que sus combinaciones producen en quien percibe.",
+    },
+    {
       type: "quiz",
       question: "¿Qué le reprocha después Platón a la solución de Anaxágoras?",
       options: [
@@ -286,12 +286,6 @@ export default {
       ],
       answer: 0,
       explain: "Platón, en el Fedón, elogia la idea de una mente ordenadora, pero le reprocha no explotarla: una vez planteado el nous, Anaxágoras vuelve a explicar los fenómenos concretos de manera puramente mecánica.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Los pluralistas: salvar el cambio",
-      body: "Demócrito de Abdera completa el cuadro con el atomismo, heredado de su maestro Leucipo. Toda la realidad física está hecha de átomos: partículas indivisibles, eternas e infinitamente numerosas, que sólo se diferencian por su forma, tamaño y posición, y que se combinan al azar en el vacío. «Por convención lo dulce, por convención lo amargo […]; en realidad, átomos y vacío» (DK B9). El color, el sabor y la temperatura no son propiedades del átomo mismo, sino el efecto que sus combinaciones producen en quien percibe.",
     },
     {
       type: "info",

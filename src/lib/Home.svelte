@@ -20,12 +20,15 @@
   // El desafío de hoy: hecho o pendiente. Es lo único que cambia de estado en
   // la home día a día, así que se ve en el ícono, no en un texto.
   $: hoy = desafioDeHoy($progress);
+  // Ya hecho, ¿salió bien? Más aciertos que errores → azul; si no, naranja.
+  // Es la misma lectura de color que usa el desafío en su tablero de arriba.
+  $: ganado = hoy && 2 * hoy.aciertos > hoy.total;
   </script>
 
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
-  <RootHeader img={socrates} title="Pensadores" wash={0.35} position="50% 30%" zoom={1.9} />
+  <RootHeader img={socrates} title="Pensadores" wash={0.25} position="50% 30%" zoom={1.9} />
 
   <!-- La pieza fuerte: seguir donde quedaste. Sin nada empezado ocupa el mismo
        lugar y la misma forma, pero manda a elegir curso: la pregunta que la
@@ -91,19 +94,21 @@
   {/if}
 
   <!-- Desafío diario. El ícono lleva el estado: rayo hueco mientras está
-       pendiente, tilde sobre relleno de acento cuando ya lo hiciste. Es a
-       propósito que se vea "incompleto" hasta que lo contestás — es el único
-       pendiente que la app te pone por día. -->
+       pendiente; ya hecho, tilde si ganaste (azul) o cruz si no (naranja). Es
+       a propósito que se vea "incompleto" hasta que lo contestás — es el
+       único pendiente que la app te pone por día. -->
   <button
     class="mt-3.5 flex w-full cursor-pointer items-center gap-3.5 rounded-2xl bg-surface-3 px-5 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
     on:click={() => dispatch("desafio")}
   >
     <span
       class="flex h-9 w-9 flex-none items-center justify-center rounded-full {hoy
-        ? 'bg-accent text-on-accent'
+        ? ganado
+          ? 'bg-good text-bg'
+          : 'bg-bad text-bg'
         : 'bg-bg/70 text-accent'}"
     >
-      {#if hoy}
+      {#if hoy && ganado}
         <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"
           ><path
             fill="none"
@@ -112,6 +117,16 @@
             stroke-linecap="round"
             stroke-linejoin="round"
             d="M5 12.6 10 17.5 19 7"
+          /></svg
+        >
+      {:else if hoy}
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"
+          ><path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.6"
+            stroke-linecap="round"
+            d="M6 6l12 12M18 6L6 18"
           /></svg
         >
       {:else}
@@ -127,9 +142,16 @@
         >
       {/if}
     </span>
-    <span class="font-serif text-[18px] leading-tight font-semibold text-text">Desafío diario</span>
+    <span
+      class="font-serif text-[18px] leading-tight font-semibold {hoy
+        ? ganado
+          ? 'text-good-ink'
+          : 'text-bad-ink'
+        : 'text-text'}">Desafío diario</span
+    >
     {#if hoy}
-      <span class="ml-auto font-serif text-[15px] font-semibold text-accent"
+      <span
+        class="ml-auto font-serif text-[15px] font-semibold {ganado ? 'text-good-ink' : 'text-bad-ink'}"
         >{hoy.aciertos}/{hoy.total}</span
       >
     {:else}
@@ -151,7 +173,7 @@
 
       <div class="ml-auto flex">
         <!-- invertido: el más nuevo va último en el DOM, así queda encima -->
-        {#each cromos.slice(0, 4).reverse() as c (c.slug)}
+        {#each cromos.slice(0, 4).reverse() as c (c.curso + "-" + c.clase)}
           <span class="mini">
             {#if c.img}
               <img class="h-full w-full object-cover" src={c.img} alt="" />

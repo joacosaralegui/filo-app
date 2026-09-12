@@ -33,6 +33,11 @@ export default {
       body: "Epicuro (341-270 a. C.) llega a Atenas siendo joven y funda allí, hacia el 306 a. C., su propia escuela: un jardín donde vive junto a sus discípulos en una comunidad poco convencional para la época, que admite tanto a mujeres como a esclavos, algo que ni la Academia ni el Liceo hacían.",
     },
     {
+      type: "info",
+      title: "Átomos con un margen de libertad",
+      body: "En física, Epicuro retoma el atomismo de Demócrito de la Clase 1: todo está hecho de átomos que caen eternamente en el vacío. Pero le suma una novedad decisiva, el **clinamen** o desviación: de vez en cuando, sin causa que lo explique, un átomo se desvía levemente de su caída recta. Sin ese margen de azar, razona Epicuro, todo estaría determinado de antemano, y no habría lugar para la libertad humana.",
+    },
+    {
       type: "quiz",
       question: "¿Qué distingue a la comunidad que funda Epicuro en su Jardín?",
       options: [
@@ -43,11 +48,6 @@ export default {
       ],
       answer: 0,
       explain: "A diferencia de la Academia de Platón y el Liceo de Aristóteles, el Jardín de Epicuro admite tanto a mujeres como a esclavos, una comunidad poco convencional para los estándares educativos de su época.",
-    },
-    {
-      type: "info",
-      title: "Átomos con un margen de libertad",
-      body: "En física, Epicuro retoma el atomismo de Demócrito de la Clase 1: todo está hecho de átomos que caen eternamente en el vacío. Pero le suma una novedad decisiva, el **clinamen** o desviación: de vez en cuando, sin causa que lo explique, un átomo se desvía levemente de su caída recta. Sin ese margen de azar, razona Epicuro, todo estaría determinado de antemano, y no habría lugar para la libertad humana.",
     },
     {
       type: "quiz",
@@ -67,6 +67,11 @@ export default {
       body: "Epicuro no niega que existan los dioses, pero los aleja por completo de los asuntos humanos. Son seres perfectos y dichosos que viven en los espacios entre los mundos, y ocuparse de nosotros, premiando, castigando, exigiendo sacrificios, sería incompatible con su propia felicidad perfecta. El miedo a un castigo divino, tan extendido en su época, es para Epicuro un miedo sin ningún fundamento.",
     },
     {
+      type: "info",
+      title: "La muerte no es nada para nosotros",
+      body: "El otro gran miedo que Epicuro quiere disolver es el de la muerte. Su argumento, en la Carta a Meneceo, es directo: «mientras existimos, la muerte no está presente, y cuando la muerte está presente, ya no existimos». La muerte no es una experiencia mala porque no es una experiencia de nada: es la ausencia total de sensación, y nada de lo que ya no se siente puede hacer daño.",
+    },
+    {
       type: "quiz",
       question: "Según Epicuro, ¿por qué no hay que temer el castigo de los dioses?",
       options: [
@@ -77,11 +82,6 @@ export default {
       ],
       answer: 0,
       explain: "Epicuro no niega que existan los dioses: sostiene que son seres perfectos y dichosos para quienes premiar, castigar o exigir sacrificios sería incompatible con su propia felicidad. El miedo al castigo divino carece, entonces, de fundamento.",
-    },
-    {
-      type: "info",
-      title: "La muerte no es nada para nosotros",
-      body: "El otro gran miedo que Epicuro quiere disolver es el de la muerte. Su argumento, en la Carta a Meneceo, es directo: «mientras existimos, la muerte no está presente, y cuando la muerte está presente, ya no existimos». La muerte no es una experiencia mala porque no es una experiencia de nada: es la ausencia total de sensación, y nada de lo que ya no se siente puede hacer daño.",
     },
     {
       type: "quiz",
@@ -124,18 +124,6 @@ export default {
       body: "Para alcanzar esa serenidad, Epicuro clasifica los deseos en tres tipos. Los naturales y necesarios —comer, beber, descansar— son fáciles de satisfacer y hay que atenderlos. Los naturales pero no necesarios —una comida refinada en vez de una simple— se pueden disfrutar de vez en cuando, sin volverse indispensables. Los vanos —riqueza sin límite, fama, poder— nunca se satisfacen del todo, y perseguirlos sin freno es la receta segura para la infelicidad.",
     },
     {
-      type: "quiz",
-      question: "Según la clasificación de Epicuro, ¿qué tienen de particular los deseos «vanos», como la riqueza sin límite o la fama?",
-      options: [
-        "nunca se satisfacen del todo, sin importar cuánto se consiga",
-        "son los más fáciles de satisfacer de los tres tipos de deseo",
-        "coinciden exactamente con los deseos naturales y necesarios",
-        "son los únicos deseos que Epicuro considera legítimos",
-      ],
-      answer: 0,
-      explain: "A diferencia de los deseos naturales, que tienen un límite de satisfacción, los deseos vanos, riqueza sin fin, fama, poder, no se agotan nunca. Perseguirlos sin freno es, para Epicuro, la receta segura para la infelicidad.",
-    },
-    {
       type: "classify",
       question: "¿Cada rasgo corresponde al placer catastemático o al cinético?",
       groups: ["Placer catastemático", "Placer cinético"],
@@ -152,11 +140,11 @@ export default {
       question: "Uní cada término con lo que describe",
       pairs: [
         { left: "Clinamen", right: "La desviación azarosa que abre lugar a la libertad" },
-        { left: "Tetrapharmakos", right: "No temer a los dioses ni a la muerte; lo bueno es fácil" },
         { left: "Deseos vanos", right: "Riqueza, fama y poder: nunca se satisfacen del todo" },
         { left: "Ataraxia", right: "Serenidad de un cuerpo sin dolor y una mente sin perturbación" },
+        { left: "Jardín de Epicuro", right: "Comunidad que admitía tanto a mujeres como a esclavos" },
       ],
-      explain: "Las cuatro piezas arman el mismo programa: una física que deja lugar a la libertad, una fórmula breve para recordar lo esencial, una crítica a los deseos que nunca se sacian, y la meta final, la serenidad.",
+      explain: "Las cuatro piezas arman el mismo programa: una física que deja lugar a la libertad, una crítica a los deseos que nunca se sacian, la meta final de la serenidad, y la comunidad poco convencional donde se practicaba.",
     },
     {
       type: "info",

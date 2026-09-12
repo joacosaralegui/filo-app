@@ -118,18 +118,6 @@ export default {
       body: "Algunas de sus ideas más audaces, como que todas las almas preexisten a su nacimiento o que al final de los tiempos hasta el propio demonio podría salvarse, resultaron demasiado atrevidas para la Iglesia posterior, que las condenó siglos después de su muerte. Orígenes muestra, mejor que nadie en esta clase, lo difícil que es trazar la frontera exacta entre pensar con la filosofía griega y pensar dentro de ella.",
     },
     {
-      type: "quiz",
-      question: "¿Por qué es un caso especialmente revelador el de Orígenes, dentro de esta clase?",
-      options: [
-        "porque muestra lo difícil que es separar la fe de la filosofía griega",
-        "porque fue el único de los cuatro que nunca leyó ningún texto de Platón",
-        "porque rechazó por completo cualquier influencia filosófica en su teología",
-        "porque sus ideas fueron aceptadas sin ninguna controversia posterior",
-      ],
-      answer: 0,
-      explain: "Orígenes construye un sistema teológico tan ambicioso como el de Platón o Plotino, pero algunas de sus ideas más audaces terminaron condenadas siglos después: la síntesis entre filosofía griega y fe cristiana no fue nunca un asunto sencillo ni cerrado.",
-    },
-    {
       type: "classify",
       question: "¿Cada postura está a favor o en contra de integrar la filosofía griega a la fe cristiana?",
       groups: ["A favor de integrarla", "En contra de integrarla"],
@@ -151,12 +139,6 @@ export default {
         { left: "Orígenes", right: "El sistema más ambicioso, y también el más controvertido" },
       ],
       explain: "De Filón a Orígenes, cuatro generaciones de pensadores van tejiendo, cada vez con más ambición, el mismo puente entre la filosofía griega y la fe cristiana, sin que la Iglesia posterior aceptara sin más cada uno de sus pasos.",
-    },
-    {
-      type: "short",
-      question: "¿Cómo llama Justino Mártir a las porciones parciales del Logos ya presentes en filósofos paganos como Sócrates?",
-      answers: ["logos spermatikos", "semillas del logos"],
-      explain: "El Logos completo se encarna recién en Cristo, pero para Justino ya estaba difundido en semillas parciales entre todos los seres humanos capaces de razonar, incluidos los filósofos griegos anteriores al cristianismo.",
     },
     {
       type: "info",

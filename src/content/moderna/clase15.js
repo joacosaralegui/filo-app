@@ -105,6 +105,18 @@ export default {
       body: "Pero también señala que los tutores tienen interés en que la situación continúe. Primero atrofian la capacidad de andar solos y después muestran el peligro de intentarlo. Kant usa la imagen de las andaderas: los prejuicios son andaderas, y el que consigue liberarse de ellas ya no camina bien, porque no aprendió nunca.",
     },
     {
+      type: "quiz",
+      question: "Para Kant, los tutores de la minoría de edad…",
+      options: [
+        "tienen interés en que la situación continúe",
+        "sólo aparecen en la vida religiosa",
+        "buscan siempre el bien del tutelado",
+        "desaparecen apenas alguien se lo pide",
+      ],
+      answer: 0,
+      explain: "Kant los describe con ironía: primero atrofian la capacidad de andar solos y después muestran el peligro de intentarlo, como las andaderas que impiden aprender a caminar.",
+    },
+    {
       type: "info",
       continues: true,
       title: "La minoría de edad autoculpable",
@@ -121,6 +133,18 @@ export default {
       continues: true,
       title: "La minoría de edad autoculpable",
       body: "De ahí el lema del texto, tomado de Horacio: **sapere aude**, ten el valor de servirte de tu propio entendimiento. Es un imperativo, no una descripción. La Ilustración no es un estado en el que uno se encuentra sino un acto que hay que realizar, y que exige coraje más que talento.",
+    },
+    {
+      type: "quiz",
+      question: "Kant reconoce que emanciparse de golpe produce…",
+      options: [
+        "pasos torpes que los tutores usan como argumento",
+        "una seguridad inmediata en el propio juicio",
+        "el fin de cualquier riesgo de error",
+        "la aprobación instantánea de los tutores",
+      ],
+      answer: 0,
+      explain: "La torpeza inicial sirve de argumento a los tutores para justificar la tutela, pero Kant sostiene que el riesgo de unos tropiezos es infinitamente menor que el de una humanidad permanentemente tutelada.",
     },
     {
       type: "info",
@@ -167,6 +191,18 @@ export default {
       continues: true,
       title: "Uso público y uso privado de la razón",
       body: "El **uso privado** es el que alguien hace en el ejercicio del cargo o la función que le fue confiada. Ahí está actuando como pieza de una maquinaria, en nombre de otro, y ese uso puede legítimamente restringirse: si cada funcionario razonara a su gusto en el ejercicio del cargo, la maquinaria no funcionaría.",
+    },
+    {
+      type: "quiz",
+      question: "Para Kant, el uso público de la razón es el que se ejerce…",
+      options: [
+        "ante el conjunto de los lectores, como sabio",
+        "en el cargo o función que a uno le confiaron",
+        "sólo dentro de foros de gobierno abiertos",
+        "cuando se habla en voz alta frente a otros",
+      ],
+      answer: 0,
+      explain: "No importa el lugar físico ni el tema: lo público es la audiencia universal a la que alguien se dirige como sabio, y ese uso, dice Kant, debe ser enteramente libre.",
     },
     {
       type: "info",
@@ -276,6 +312,18 @@ export default {
       continues: true,
       title: "Época ilustrada y época de ilustración",
       body: "Kant llama a su siglo el siglo de Federico, y elogia al monarca por un motivo preciso: por no considerar indigno de sí mismo decir que no le corresponde prescribir nada a sus súbditos en materia de religión. El elogio al despotismo ilustrado es real, y también es el punto donde el texto muestra su época.",
+    },
+    {
+      type: "quiz",
+      question: "Kant elogia a Federico II porque…",
+      options: [
+        "no impone nada a sus súbditos en materia religiosa",
+        "abolió la servidumbre campesina en su reino",
+        "convocó una asamblea popular electa",
+        "prohibió cualquier crítica a su gobierno",
+      ],
+      answer: 0,
+      explain: "Kant destaca que Federico no considera indigno de sí mismo decir que no le corresponde prescribir nada a sus súbditos en materia de religión: el elogio al despotismo ilustrado es real y muestra la época del texto.",
     },
     {
       type: "info",

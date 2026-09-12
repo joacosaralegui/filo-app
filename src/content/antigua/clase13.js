@@ -10,6 +10,11 @@ export default {
       body: "Aristóteles empieza su Ética a Nicómaco preguntando cuál es el bien más alto para un ser humano, y responde con el argumento de la función (érgon). Así como el bien de un cuchillo es cortar bien, el bien de cualquier cosa depende de su función propia. La función propia del ser humano, lo que ningún otro ser vivo hace, es la actividad racional.",
     },
     {
+      type: "info",
+      title: "La eudaimonía no es un sentimiento",
+      body: "De ahí sale la definición de **eudaimonía**, la palabra griega que se suele traducir como «felicidad»: no un estado de ánimo pasajero, sino la actividad del alma de acuerdo con la virtud, sostenida a lo largo de una vida completa. Una sola buena acción, o un solo día feliz, no alcanzan: hace falta toda una vida bien vivida.",
+    },
+    {
       type: "quiz",
       question: "¿En qué se apoya el argumento de la función para definir el bien humano?",
       options: [
@@ -20,11 +25,6 @@ export default {
       ],
       answer: 0,
       explain: "Igual que el bien de un cuchillo es cortar bien, el bien de un ser humano depende de su función propia: la actividad racional, lo único que ningún otro ser vivo hace del mismo modo.",
-    },
-    {
-      type: "info",
-      title: "La eudaimonía no es un sentimiento",
-      body: "De ahí sale la definición de **eudaimonía**, la palabra griega que se suele traducir como «felicidad»: no un estado de ánimo pasajero, sino la actividad del alma de acuerdo con la virtud, sostenida a lo largo de una vida completa. Una sola buena acción, o un solo día feliz, no alcanzan: hace falta toda una vida bien vivida.",
     },
     {
       type: "quiz",
@@ -61,6 +61,12 @@ export default {
       body: "Cada virtud moral, sostiene Aristóteles, es un término medio entre dos vicios: uno por exceso y otro por defecto. El valor es el término medio entre la cobardía, que teme demasiado, y la temeridad, que no teme lo suficiente. La generosidad es el término medio entre la tacañería y el derroche.",
     },
     {
+      type: "info",
+      continues: true,
+      title: "El término medio",
+      body: "Ese término medio no es un punto matemático fijo, igual para todos: depende de la persona, la situación y las circunstancias, y hay que determinarlo cada vez con buen juicio. Y hay acciones para las que no existe ningún término medio posible, porque ya son malas en sí mismas: no hay una cantidad moderada de asesinato o de traición.",
+    },
+    {
       type: "quiz",
       question: "Según la doctrina del término medio, ¿qué es el valor?",
       options: [
@@ -71,12 +77,6 @@ export default {
       ],
       answer: 0,
       explain: "La cobardía teme demasiado; la temeridad, muy poco. El valor es el término medio entre ambos vicios, uno por exceso y otro por defecto, aunque ese punto medio no sea el mismo para todas las personas ni situaciones.",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "El término medio",
-      body: "Ese término medio no es un punto matemático fijo, igual para todos: depende de la persona, la situación y las circunstancias, y hay que determinarlo cada vez con buen juicio. Y hay acciones para las que no existe ningún término medio posible, porque ya son malas en sí mismas: no hay una cantidad moderada de asesinato o de traición.",
     },
     {
       type: "quiz",
@@ -108,21 +108,15 @@ export default {
       explain: "La sophía contempla verdades universales e inmutables; la phrónesis se ocupa de lo particular y cambiante, buscando el término medio en cada situación concreta, algo que ninguna fórmula general puede resolver de antemano.",
     },
     {
+      type: "short",
+      question: "¿Cómo llama Aristóteles a la sabiduría práctica que permite hallar el término medio en cada situación concreta?",
+      answers: ["phronesis", "fronesis"],
+      explain: "Distinta de la sophía, sabiduría teórica sobre lo universal, la phrónesis se ocupa de lo particular y cambiante, y no se puede reducir a una fórmula general que sirva para cualquier caso.",
+    },
+    {
       type: "info",
       title: "¿Existe la debilidad de la voluntad?",
       body: "Sócrates sostenía que nadie hace el mal a sabiendas, sólo por ignorancia. Aristóteles matiza esa tesis: reconoce que la experiencia muestra personas que actúan en contra de su propio mejor juicio, la **akrasia** o debilidad de la voluntad. Pero sostiene que, en el momento exacto de actuar mal, el conocimiento de esa persona está de algún modo nublado, como el de alguien dormido o borracho: no lo pierde del todo, pero tampoco lo tiene disponible de verdad.",
-    },
-    {
-      type: "quiz",
-      question: "¿Cómo explica Aristóteles la akrasia, la debilidad de la voluntad?",
-      options: [
-        "el conocimiento queda nublado en el momento de actuar",
-        "niega por completo que exista: nadie actúa jamás contra su propio juicio",
-        "la atribuye siempre a una enfermedad física grave y permanente",
-        "sostiene que sólo les ocurre a quienes nunca estudiaron filosofía",
-      ],
-      answer: 0,
-      explain: "A diferencia de Sócrates, Aristóteles admite que alguien puede actuar contra su mejor juicio. Pero matiza: en ese momento el conocimiento está nublado, como el de una persona dormida o borracha, no del todo perdido ni del todo disponible.",
     },
     {
       type: "classify",
@@ -146,12 +140,6 @@ export default {
         { left: "Akrasia", right: "Actuar en contra del propio mejor juicio" },
       ],
       explain: "Los cuatro términos describen distintas piezas de la misma ética: la meta (eudaimonía), cómo se forma la virtud (hexis), cómo se aplica en cada caso (phrónesis) y qué pasa cuando falla (akrasia).",
-    },
-    {
-      type: "short",
-      question: "¿Cómo llama Aristóteles a la sabiduría práctica que permite hallar el término medio en cada situación concreta?",
-      answers: ["phronesis", "fronesis"],
-      explain: "Distinta de la sophía, sabiduría teórica sobre lo universal, la phrónesis se ocupa de lo particular y cambiante, y no se puede reducir a una fórmula general que sirva para cualquier caso.",
     },
     {
       type: "info",

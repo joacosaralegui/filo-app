@@ -50,6 +50,11 @@ export default {
       body: "La justicia, tanto en la ciudad como en el alma, consiste para Platón en que cada parte cumpla su función propia sin invadir la de las demás: los productores producen, los guerreros defienden, y los filósofos gobiernan guiados por el conocimiento del Bien. Cuando cada clase se queda en lo suyo, la ciudad entera funciona en armonía; cuando una clase usurpa el lugar de otra, aparece la injusticia.",
     },
     {
+      type: "info",
+      title: "¿Por qué gobiernan los filósofos?",
+      body: "Sólo quien ha hecho el recorrido completo de la línea dividida y ha contemplado la Forma del Bien —el prisionero liberado de la caverna— está en condiciones de gobernar bien, porque conoce el verdadero criterio del bien común y no se deja arrastrar por su propio interés ni por la opinión de la mayoría. Por eso Platón concluye, en una frase célebre, que las ciudades no van a dejar de sufrir males hasta que los filósofos gobiernen, o los gobernantes se pongan a filosofar.",
+    },
+    {
       type: "quiz",
       question: "Para Platón, ¿en qué consiste la justicia dentro de la ciudad ideal?",
       options: [
@@ -60,11 +65,6 @@ export default {
       ],
       answer: 0,
       explain: "Los productores producen, los guerreros defienden y los filósofos gobiernan: la armonía de la ciudad depende de que cada clase se quede en lo suyo. La injusticia aparece cuando una invade la función de otra.",
-    },
-    {
-      type: "info",
-      title: "¿Por qué gobiernan los filósofos?",
-      body: "Sólo quien ha hecho el recorrido completo de la línea dividida y ha contemplado la Forma del Bien —el prisionero liberado de la caverna— está en condiciones de gobernar bien, porque conoce el verdadero criterio del bien común y no se deja arrastrar por su propio interés ni por la opinión de la mayoría. Por eso Platón concluye, en una frase célebre, que las ciudades no van a dejar de sufrir males hasta que los filósofos gobiernen, o los gobernantes se pongan a filosofar.",
     },
     {
       type: "quiz",
@@ -93,18 +93,6 @@ export default {
       type: "info",
       title: "Cuando la ciudad se degrada",
       body: "En el libro VIII, Platón describe cómo la ciudad ideal se va degradando en un ciclo de cuatro regímenes, cada uno peor que el anterior. La timocracia, gobierno de honor militar, degenera en oligarquía, gobierno de los ricos; la oligarquía, por su desigualdad creciente, estalla en democracia, gobierno de la libertad sin límites; y la democracia, por exceso de libertad y falta de autoridad, termina pariendo a un tirano.",
-    },
-    {
-      type: "quiz",
-      question: "Según el ciclo de regímenes de la República, ¿qué régimen nace directamente del exceso de libertad democrática?",
-      options: [
-        "la tiranía",
-        "la oligarquía",
-        "la timocracia",
-        "la aristocracia",
-      ],
-      answer: 0,
-      explain: "La democracia, por exceso de libertad y falta de autoridad compartida, termina, según Platón, pariendo a un tirano. Es el régimen más alejado de la ciudad ideal con la que abre el diálogo.",
     },
     {
       type: "classify",
