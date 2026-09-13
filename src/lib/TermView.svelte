@@ -31,11 +31,11 @@
     <article class="mt-8">
       <div class="mb-3 flex items-center gap-2.5">
         <span
-          class="rounded-full px-2.5 py-1 text-[11px] font-extrabold tracking-[1.2px] uppercase {KIND_CLASS[entry.kind] ||
+          class="rounded-[4px] px-2.5 py-1 text-sm font-extrabold uppercase {KIND_CLASS[entry.kind] ||
             ''}">{KIND_LABEL[entry.kind] || ""}</span
         >
         {#if entry.when}
-          <span class="text-[13px] font-bold text-text-soft [font-variant-numeric:tabular-nums]">{entry.when}</span>
+          <span class="text-[16px] font-bold text-text-soft [font-variant-numeric:tabular-nums]">{entry.when}</span>
         {/if}
       </div>
       <h1 class="mb-5 font-serif text-[32px] leading-[1.1] font-extrabold tracking-[-0.3px] text-text">

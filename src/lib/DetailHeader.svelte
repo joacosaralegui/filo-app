@@ -27,7 +27,7 @@
   </button>
   <div class="flex min-w-0 flex-col">
     {#if eyebrow}
-      <span class="text-[10px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">{eyebrow}</span>
+      <span class="text-[16px] font-bold text-text-soft/70 uppercase">{eyebrow}</span>
     {/if}
     <span class="truncate font-serif text-[17px] leading-tight font-semibold text-text">{title}</span>
   </div>

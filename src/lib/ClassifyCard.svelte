@@ -105,7 +105,7 @@
   }
 
   const CHIP_CLS =
-    "cursor-grab touch-none select-none rounded-[11px] border-[1.5px] border-line bg-surface px-[11px] py-[9px] text-left text-[13.5px] leading-[1.3] text-text [transition:transform_0.08s,border-color_0.16s,background-color_0.16s,box-shadow_0.16s] active:cursor-grabbing [@media(max-height:700px)]:px-2.5 [@media(max-height:700px)]:py-2 [@media(max-height:700px)]:text-[12.5px]";
+    "cursor-grab touch-none select-none rounded-[4px] halftone-surface-subtle border-[1.5px] border-line bg-surface px-[11px] py-[9px] text-left text-[16px] leading-[1.3] text-text [transition:transform_0.08s,border-color_0.16s,background-color_0.16s,box-shadow_0.16s] active:cursor-grabbing [@media(max-height:700px)]:px-2.5 [@media(max-height:700px)]:py-2 [@media(max-height:700px)]:text-[16px]";
 
   // Estado visual del chip: selección (tap-to-place), "fantasma" mientras se
   // arrastra, y corrección (sólo en los ya ubicados, tras confirmar).
@@ -125,7 +125,7 @@
 
 <div class="flex w-full max-w-[480px] flex-col justify-center {shake ? 'shake-anim' : ''}">
   <span
-    class="mb-4 self-start rounded-full px-[13px] py-1.5 text-xs font-extrabold tracking-[1.6px] text-bg uppercase transition-colors duration-[250ms] {correct
+    class="mb-4 self-start rounded-[4px] px-[13px] py-1.5 text-sm font-extrabold text-bg uppercase transition-colors duration-[250ms] {correct
       ? 'bg-good'
       : answered
         ? 'bg-bad'
@@ -141,7 +141,7 @@
 
   {#if !answered}
     <div
-      class="mb-3 flex min-h-[52px] flex-wrap content-center gap-[7px] rounded-[14px] bg-surface-2 p-2.5 {sel !== null
+      class="mb-3 flex min-h-[52px] flex-wrap content-center gap-[7px] rounded-[4px] bg-surface-2 p-2.5 {sel !== null
         ? '[outline:1.5px_dashed_color-mix(in_srgb,var(--text-soft)_40%,transparent)] [outline-offset:-3px]'
         : ''}"
       on:pointerdown={poolTap}
@@ -154,7 +154,7 @@
           >
         {/each}
       {:else}
-        <span class="m-auto text-[13px] font-semibold text-text-soft">Todo clasificado — confirmá abajo</span>
+        <span class="m-auto text-[16px] font-semibold text-text-soft">Todo clasificado — confirmá abajo</span>
       {/if}
     </div>
   {/if}
@@ -162,14 +162,14 @@
   <div class="mb-3 grid grid-cols-2 gap-2.5">
     {#each card.groups as g, gi}
       <div
-        class="zone rounded-[14px] border-[1.5px] border-dashed border-line p-2 [background:color-mix(in_srgb,var(--surface-2)_45%,transparent)] [transition:border-color_0.15s,background-color_0.15s,box-shadow_0.15s] {overGroup ===
+        class="zone rounded-[4px] border-[1.5px] border-dashed border-line p-2 [background:color-mix(in_srgb,var(--surface-2)_45%,transparent)] [transition:border-color_0.15s,background-color_0.15s,box-shadow_0.15s] {overGroup ===
           gi || (sel !== null && !answered)
           ? 'border-solid border-text-soft bg-surface-2 [box-shadow:inset_0_0_0_1px_color-mix(in_srgb,var(--text-soft)_25%,transparent)]'
           : ''}"
         data-group={gi}
         on:pointerdown={() => zoneTap(gi)}
       >
-        <span class="block pt-0.5 pb-2 text-center text-xs font-extrabold tracking-[0.4px] text-text-soft uppercase"
+        <span class="block pt-0.5 pb-2 text-center text-base font-extrabold text-text-soft uppercase"
           >{g}</span
         >
         <div class="flex min-h-[54px] flex-col gap-[7px]">
@@ -181,7 +181,7 @@
             >
           {/each}
           {#if grouped[gi].length === 0 && !answered}
-            <span class="grid min-h-[54px] place-items-center text-[12.5px] font-semibold [color:color-mix(in_srgb,var(--text-soft)_60%,transparent)]"
+            <span class="grid min-h-[54px] place-items-center text-[16px] font-semibold [color:color-mix(in_srgb,var(--text-soft)_60%,transparent)]"
               >Soltá acá</span
             >
           {/if}
@@ -191,7 +191,7 @@
   </div>
 
   <button
-    class="mt-3.5 cursor-pointer rounded-[13px] bg-accent px-[18px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] [transition:opacity_0.18s,transform_0.08s] not-disabled:active:scale-[0.985] disabled:cursor-default disabled:opacity-45 {answered ? 'invisible' : ''}"
+    class="mt-3.5 cursor-pointer rounded-[4px] halftone-surface bg-accent px-[18px] py-[13px] text-[16px] font-extrabold text-on-accent uppercase [font-family:inherit] [transition:opacity_0.18s,transform_0.08s] not-disabled:active:scale-[0.985] disabled:cursor-default disabled:opacity-45 {answered ? 'invisible' : ''}"
     on:click={confirm}
     disabled={answered || !allPlaced}
   >
@@ -200,7 +200,7 @@
 
   {#if drag && moved}
     <div
-      class="fixed z-[60] [transform:translate(-50%,-50%)_rotate(-1.5deg)] rounded-[11px] border-[1.5px] border-text-soft bg-surface px-[11px] py-[9px] text-[13.5px] leading-[1.3] font-semibold text-text [box-shadow:0_10px_24px_rgba(0,0,0,0.18)] pointer-events-none"
+      class="fixed z-[60] [transform:translate(-50%,-50%)_rotate(-1.5deg)] rounded-[4px] border-[1.5px] border-text-soft bg-surface px-[11px] py-[9px] text-[16px] leading-[1.3] font-semibold text-text pointer-events-none"
       style="left:{drag.x}px; top:{drag.y}px; width:{drag.w}px"
     >
       {drag.label}

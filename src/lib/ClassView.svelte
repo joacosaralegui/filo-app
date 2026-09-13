@@ -254,7 +254,7 @@
   <div class="mx-auto max-w-[480px]">
     <div class="flex items-center gap-2.5">
       <button
-        class="grid h-11 w-11 flex-none cursor-pointer place-items-center rounded-2xl border border-line bg-surface text-text transition-transform active:scale-[0.94]"
+        class="grid h-11 w-11 flex-none cursor-pointer place-items-center rounded-[4px] border border-line bg-surface text-text transition-transform active:scale-[0.94]"
         on:click={() => dispatch("back")}
         aria-label="Volver"
       >
@@ -270,15 +270,15 @@
         >
       </button>
 
-      <span class="min-w-0 flex-1 truncate text-[14px] font-semibold text-text"
-        >Clase {lecture.num} · {lecture.title}</span
+      <span class="min-w-0 flex-1 truncate text-[16px] font-semibold text-text"
+        >Clase {lecture.num}: {lecture.title}</span
       >
       <!-- Los aciertos, no puntos: es exactamente lo que determina las
            estrellas, así que se ve la calificación real en todo momento. En
            píldora, para que se lea como un marcador y no como texto suelto
            pegado al título. -->
       <span
-        class="flex flex-none items-center gap-1 rounded-full border border-line bg-surface px-2.5 py-[5px] text-[13.5px] font-extrabold whitespace-nowrap text-accent transition-transform duration-150 {pop
+        class="flex flex-none items-center gap-1 rounded-full border border-line bg-surface px-2.5 py-[5px] text-[16px] font-extrabold whitespace-nowrap text-accent transition-transform duration-150 {pop
           ? 'scale-[1.14]'
           : ''}"
       >
@@ -308,16 +308,17 @@
       {#if cromo}
         {@const ganado = !!$progress.cromos?.[cromo.slug]}
         <!-- El cromo en juego, apagado hasta que lo ganes. -->
-        <div class="mb-7 h-[132px] w-[132px] overflow-hidden rounded-2xl bg-surface-2">
+        <div class="relative mb-7 h-[132px] w-[132px] overflow-hidden rounded-[4px] bg-surface-2">
           <img
             class="h-full w-full object-cover {ganado ? 'opacity-75' : 'opacity-45 grayscale-[0.9]'}"
             src={cromo.img}
             alt=""
           />
+          <span class="img-halftone" aria-hidden="true"></span>
         </div>
       {/if}
 
-      <span class="text-[11px] font-bold tracking-[1.8px] text-text-soft/70 uppercase">
+      <span class="text-[16px] font-bold text-text-soft/70 uppercase">
         Clase {lecture.num}
       </span>
       <h2 class="mt-3 font-serif text-[32px] leading-[1.2] font-semibold tracking-[-0.3px] text-text">
@@ -326,8 +327,8 @@
 
       <!-- El gesto se enseña acá: la portada es la única slide sin nada que
            responder, así que es donde conviene decir cómo se avanza. -->
-      <span class="mt-10 flex items-center gap-1.5 text-[12px] font-semibold text-text-soft/70">
-        Deslizá para empezar <span class="text-[15px] leading-none">↓</span>
+      <span class="mt-10 flex items-center gap-1.5 text-[16px] font-semibold text-text-soft/70">
+        Deslizá para empezar <span class="text-[16px] leading-none">↓</span>
       </span>
     </div>
   </section>
@@ -376,12 +377,12 @@
       <h2 class="mt-5 m-0 font-serif text-[26px] leading-none font-semibold text-text">
         Clase completada
       </h2>
-      <p class="mt-2.5 text-[13.5px] font-semibold text-text-soft/80">
+      <p class="mt-2.5 text-[16px] font-semibold text-text-soft/80">
         {correctCount} de {totalQuiz} correctas
       </p>
 
       {#if lockedNext}
-        <p class="mt-4 text-[13.5px] leading-[1.45] font-semibold text-text-soft">
+        <p class="mt-4 text-[16px] leading-[1.45] font-semibold text-text-soft">
           La Clase {lockedNext.num} se habilita pronto.
         </p>
       {:else if !nextClass}
@@ -393,17 +394,17 @@
            a dónde vas. -->
       {#if nextClass}
         <button
-          class="mt-6 flex w-full cursor-pointer flex-col items-center gap-1 rounded-[14px] border-0 bg-accent px-5 py-3.5 [font-family:inherit] transition-transform active:scale-[0.98]"
+          class="mt-6 flex w-full cursor-pointer flex-col items-center gap-1 rounded-[4px] border-0 halftone-surface bg-accent px-5 py-3.5 [font-family:inherit] transition-transform active:scale-[0.98]"
           on:click={() => dispatch("open", nextClass)}
         >
-          <span class="text-[15px] font-extrabold text-on-accent">Siguiente clase →</span>
-          <span class="line-clamp-1 text-[12px] font-semibold text-on-accent/70"
-            >Clase {nextClass.num} · {nextClass.title}</span
+          <span class="text-[16px] font-extrabold text-on-accent uppercase">Siguiente clase</span>
+          <span class="line-clamp-1 text-[16px] font-semibold text-on-accent/70"
+            >Clase {nextClass.num}: {nextClass.title}</span
           >
         </button>
       {:else}
         <button
-          class="mt-6 w-full cursor-pointer rounded-[14px] border-0 bg-accent px-5 py-[15px] text-[15px] font-extrabold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
+          class="mt-6 w-full cursor-pointer rounded-[4px] border-0 halftone-surface bg-accent px-5 py-[15px] text-[16px] font-extrabold text-on-accent uppercase [font-family:inherit] transition-transform active:scale-[0.98]"
           on:click={() => dispatch("back")}>Volver al recorrido</button
         >
       {/if}
@@ -412,13 +413,13 @@
            pantalla y no como una lista de sobras debajo del botón.
            Rehacer sigue pidiendo dos toques porque borra las respuestas (los
            cromos no se tocan: lo ganado está ganado). -->
-      <div class="mt-4 flex items-center gap-3 text-[13px] font-bold text-text-soft/70">
+      <div class="mt-4 flex items-center gap-3 text-[16px] font-bold text-text-soft/70">
         {#if nextClass}
           <button
             class="cursor-pointer border-0 bg-transparent text-inherit [font-family:inherit] active:scale-[0.97]"
             on:click={() => dispatch("back")}>Volver al recorrido</button
           >
-          <span class="opacity-40" aria-hidden="true">·</span>
+          <span class="h-3 w-px bg-current opacity-30" aria-hidden="true"></span>
         {/if}
         <button
           class="cursor-pointer border-0 bg-transparent [font-family:inherit] active:scale-[0.97] {confirmReset
@@ -436,7 +437,7 @@
 
 {#if gateHint}
   <div
-    class="gate-hint-anim fixed bottom-[calc(env(safe-area-inset-bottom)+96px)] left-1/2 z-[55] -translate-x-1/2 rounded-full bg-accent-ink px-[18px] py-2.5 text-[13.5px] font-extrabold whitespace-nowrap text-bg pointer-events-none [box-shadow:0_6px_22px_color-mix(in_srgb,var(--accent)_45%,transparent)]"
+    class="gate-hint-anim fixed bottom-[calc(env(safe-area-inset-bottom)+96px)] left-1/2 z-[55] -translate-x-1/2 rounded-[4px] bg-accent-ink px-[18px] py-2.5 text-[16px] font-extrabold whitespace-nowrap text-bg pointer-events-none"
     role="status"
   >
     Respondé para continuar
@@ -449,18 +450,21 @@
   <div class="reveal-fondo fixed inset-0 z-[70] flex flex-col items-center justify-center gap-6 px-[22px]">
     <div class="relative grid place-items-center">
       <span class="reveal-halo" aria-hidden="true"></span>
-      <div class="reveal-carta overflow-hidden rounded-3xl bg-surface p-3">
+      <div class="reveal-carta overflow-hidden rounded-[4px] halftone-surface-subtle bg-surface p-3">
         {#if revelado.img}
-          <img class="block h-[210px] w-[210px] rounded-2xl object-cover" src={revelado.img} alt="" />
+          <span class="relative block h-[210px] w-[210px]">
+            <img class="block h-full w-full rounded-[4px] object-cover" src={revelado.img} alt="" />
+            <span class="img-halftone rounded-[4px]" aria-hidden="true"></span>
+          </span>
         {/if}
       </div>
     </div>
 
     <div class="reveal-texto flex flex-col items-center gap-2 text-center">
-      <span class="text-[11px] font-extrabold tracking-[2px] text-accent-3 uppercase">Nuevo cromo</span>
+      <span class="text-[16px] font-extrabold text-accent-3 uppercase">Nuevo cromo</span>
       <span class="font-serif text-[26px] leading-tight font-semibold text-text">{revelado.nombre}</span>
       <button
-        class="mt-4 cursor-pointer rounded-2xl border-0 bg-accent px-7 py-3.5 text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.97]"
+        class="mt-4 cursor-pointer rounded-[4px] border-0 halftone-surface bg-accent px-7 py-3.5 text-[16px] font-bold text-on-accent uppercase [font-family:inherit] transition-transform active:scale-[0.97]"
         on:click={() => (revelado = null)}
       >
         Seguir
@@ -480,7 +484,7 @@
       <span class="text-[46px] font-black text-accent-3"
         >×{pop.combo}</span
       >
-      <span class="text-[15px] font-extrabold tracking-[1.5px] text-accent-3">seguidas</span>
+      <span class="text-[16px] font-extrabold text-accent-3">seguidas</span>
     </div>
   {/key}
 {/if}
@@ -507,7 +511,6 @@
     animation: fade-suave 0.3s ease both;
   }
   .reveal-carta {
-    box-shadow: 0 24px 60px -20px color-mix(in srgb, var(--text) 45%, transparent);
     animation: cromo-in 0.72s cubic-bezier(0.16, 0.9, 0.3, 1.05) 0.1s both;
   }
   .reveal-halo {

@@ -47,7 +47,7 @@
 
 <div class="flex w-full max-w-[480px] flex-col justify-center {shake ? 'shake-anim' : ''}">
   <span
-    class="mb-[18px] self-start rounded-full px-[13px] py-1.5 text-xs font-extrabold tracking-[1.6px] text-bg uppercase transition-colors duration-[250ms] {correct
+    class="mb-[18px] self-start rounded-[4px] px-[13px] py-1.5 text-sm font-extrabold text-bg uppercase transition-colors duration-[250ms] {correct
       ? 'bg-good'
       : answered
         ? 'bg-bad'
@@ -62,7 +62,7 @@
   </h2>
 
   <div
-    class="flex items-center gap-2.5 rounded-[14px] border-[1.5px] border-line bg-surface px-4 py-1 transition-colors duration-[180ms] {fieldCls}"
+    class="flex items-center gap-2.5 rounded-[4px] border-[1.5px] border-line bg-surface px-4 py-1 transition-colors duration-[180ms] {fieldCls}"
   >
     <input
       type="text"
@@ -87,7 +87,7 @@
   <!-- Queda en su lugar aunque ya hayas respondido: si se saca del DOM la card
        cambia de alto y, como la slide centra vertical, la pregunta salta. -->
   <button
-    class="mt-3.5 cursor-pointer self-start rounded-[13px] bg-accent px-[22px] py-3 text-[15px] font-extrabold text-on-accent [font-family:inherit] not-disabled:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-45 {answered
+    class="mt-3.5 cursor-pointer self-start rounded-[4px] halftone-surface bg-accent px-[22px] py-3 text-[16px] font-extrabold text-on-accent uppercase [font-family:inherit] not-disabled:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-45 {answered
       ? 'invisible'
       : ''}"
     on:click={responder}

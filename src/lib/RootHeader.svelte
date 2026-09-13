@@ -1,10 +1,9 @@
 <script>
   // Header de las pantallas raíz (Inicio, Cursos, Glosario, Cromos).
   //
-  // Es la portada en arco de la home, ahora compartida: la lámina recortada en
-  // domo, un disco ocre asomando por detrás y el título encima. Los motivos
-  // (el arco y los discos de color plano) salen de la propia ilustración, y son
-  // los que hacen que interfaz e ilustración se lean como una sola pieza.
+  // Portada compartida: la lámina en un bloque recto, con el título encima.
+  // Sin arco ni disco decorativo (el arco es un motivo romano, no griego) —
+  // la única forma es la de la propia lámina.
   //
   // Las pantallas de detalle usan la otra familia (back + título, DetailHeader).
   export let img;
@@ -29,15 +28,23 @@
   // detalle que no está en el medio (el libro abierto de la lámina de Cursos,
   // abajo a la derecha), se corre el origen hacia él.
   export let origin = "50% 50%";
+  // Prueba: trama de puntos (grabado antiguo) sobre la lámina. Sólo en Inicio
+  // por ahora — si funciona se puede sumar a los otros headers.
+  export let halftone = false;
 </script>
 
 <header class="cover-wrap mb-8">
-  <span class="cover-disc" aria-hidden="true"></span>
   <div class="cover" style="--wash: {wash}">
-    <img class="cover-img" style="object-position: {position}; scale: {zoom}; transform-origin: {origin}" src={img} alt="" />
+    <img
+      class="cover-img"
+      style="object-position: {position}; scale: {zoom}; transform-origin: {origin}"
+      src={img}
+      alt=""
+    />
+    {#if halftone}<span class="cover-dots" aria-hidden="true"></span>{/if}
     <div class="cover-text">
       <h1
-        class="m-0 font-serif text-[clamp(30px,9.5vw,42px)] leading-none font-semibold tracking-[0.08em] text-text uppercase"
+        class="m-0 font-serif text-[clamp(26px,8vw,34px)] leading-none font-semibold tracking-[0.08em] text-text uppercase"
       >
         {title}
       </h1>
@@ -49,41 +56,40 @@
   .cover-wrap {
     position: relative;
   }
-  .cover-disc {
-    position: absolute;
-    top: 16px;
-    right: -12px;
-    width: 132px;
-    height: 132px;
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--accent-2) 60%, transparent);
-  }
   .cover {
     position: relative;
-    /* el fondo de la app asomando por debajo: es contra esto que se lava */
     background: var(--bg);
     overflow: hidden;
-    height: 25dvh;
-    min-height: 180px;
-    /* radio enorme arriba = domo; el navegador lo recorta a la mitad del ancho */
-    border-radius: 100vw 100vw 20px 20px;
+    border-radius: 0 0 4px 4px;
   }
   .cover-img {
-    display: block;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: calc(1 - var(--wash));
   }
-  .cover-text {
+  /* La trama en sí: puntos negros translúcidos con "multiply" — el negro
+     puro oscurece cada superficie en la misma PROPORCIÓN sin importar su
+     color de base (final = base × (1 − alpha)), así que se ve igual de
+     sutil sobre una lámina clara u oscura. No sigue el brillo real píxel a
+     píxel (eso pide leer la imagen, no un truco de CSS), pero a este
+     tamaño lee como trama de impresión vieja, sin desaturar la lámina.
+     Pareja en toda la lámina — se probó cargarla más en las esquinas
+     (vignette) pero sumaba ruido, no aportaba. */
+  .cover-dots {
     position: absolute;
     inset: 0;
+    background-image: radial-gradient(circle, rgb(0 0 0 / 2%) 42%, transparent 43%);
+    background-size: 5px 5px;
+    mix-blend-mode: multiply;
+  }
+  .cover-text {
+    position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    /* Centrado, el título se lee alto dentro del arco: lo bajamos. */
-    padding-top: 50px;
+    padding: 34px 16px;
   }
 </style>

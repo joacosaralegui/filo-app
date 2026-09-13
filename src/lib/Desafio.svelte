@@ -228,11 +228,11 @@
   </header>
 
   {#if cargando}
-    <p class="grid flex-1 place-items-center text-sm font-semibold text-text-soft">Armando la ronda…</p>
+    <p class="grid flex-1 place-items-center text-base font-semibold text-text-soft">Armando la ronda…</p>
   {:else if !ronda.length}
     <div class="flex flex-1 flex-col items-center justify-center gap-4 text-center">
       <p class="font-serif text-[20px] font-semibold text-text">Todavía no hay preguntas</p>
-      <p class="text-[13.5px] leading-[1.5] text-text-soft">
+      <p class="text-[16px] leading-[1.5] text-text-soft">
         Empezá un curso y volvé: el desafío se arma con lo que vayas viendo.
       </p>
     </div>
@@ -240,7 +240,7 @@
     <!-- Cierre de la ronda. Sin cromos ni desbloqueos: sólo el número, y una
          sola salida — el de hoy ya está jugado. -->
     <div class="flex flex-1 flex-col items-center justify-center gap-2 text-center">
-      <span class="text-[11px] font-bold tracking-[1.6px] text-text-soft/70 uppercase">{cierre}</span>
+      <span class="text-[16px] font-bold text-text-soft/70 uppercase">{cierre}</span>
       <!-- Los dos números pesan igual: el marcador se lee como una fracción,
            no como un puntaje con su letra chica al lado. -->
       <p
@@ -255,35 +255,20 @@
            derecho a repasar esa clase. -->
       {#if clase}
         <button
-          class="mt-3 flex max-w-full cursor-pointer items-center gap-1.5 rounded-full border-0 bg-surface/70 px-3.5 py-2 text-left [font-family:inherit] transition-transform active:scale-[0.97]"
+          class="mt-3 flex max-w-full cursor-pointer items-center gap-1.5 rounded-[4px] border-0 bg-surface/70 px-3.5 py-2 text-left [font-family:inherit] transition-transform active:scale-[0.97]"
           on:click={() => irALaClase(clase)}
         >
-          <span class="truncate text-[11.5px] font-semibold text-text-soft/80"
-            >Repasar Clase {clase.num} · {clase.title}</span
-          >
-          <svg
-            class="flex-none text-text-soft/60"
-            viewBox="0 0 24 24"
-            width="12"
-            height="12"
-            aria-hidden="true"
-            ><path
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9 5l7 7-7 7"
-            /></svg
+          <span class="truncate text-[16px] font-semibold text-text-soft/80"
+            >Repasar clase {clase.num}: {clase.title}</span
           >
         </button>
       {/if}
 
       <button
-        class="mt-6 w-full cursor-pointer rounded-2xl border-0 bg-accent px-6 py-[15px] text-[15px] font-bold text-on-accent [font-family:inherit] transition-transform active:scale-[0.98]"
+        class="mt-6 w-full cursor-pointer rounded-[4px] border-0 halftone-surface bg-accent px-6 py-[15px] text-[16px] font-bold text-on-accent uppercase [font-family:inherit] transition-transform active:scale-[0.98]"
         on:click={() => dispatch("salir")}>Volver al inicio</button
       >
-      <p class="mt-3 text-[12.5px] text-text-soft/70">Volvé mañana para un nuevo desafío.</p>
+      <p class="mt-3 text-[16px] text-text-soft/70">Volvé mañana para un nuevo desafío.</p>
     </div>
   {:else if actual}
     <div class="flex flex-1 flex-col justify-center py-6">
@@ -304,26 +289,11 @@
          vista: la gracia del desafío es descubrir qué te falta repasar, y el
          atajo tiene que estar ahí cuando te das cuenta. -->
     <button
-      class="mx-auto flex max-w-full cursor-pointer items-center gap-1.5 rounded-full border-0 bg-surface/70 px-3.5 py-2 text-left [font-family:inherit] transition-transform active:scale-[0.97]"
+      class="mx-auto flex max-w-full cursor-pointer items-center gap-1.5 rounded-[4px] border-0 bg-surface/70 px-3.5 py-2 text-left [font-family:inherit] transition-transform active:scale-[0.97]"
       on:click={() => irALaClase(actual)}
     >
-      <span class="truncate text-[11.5px] font-semibold text-text-soft/80"
-        >Clase {actual.num} · {actual.title}</span
-      >
-      <svg
-        class="flex-none text-text-soft/60"
-        viewBox="0 0 24 24"
-        width="12"
-        height="12"
-        aria-hidden="true"
-        ><path
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.6"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M9 5l7 7-7 7"
-        /></svg
+      <span class="truncate text-[16px] font-semibold text-text-soft/80"
+        >Clase {actual.num}: {actual.title}</span
       >
     </button>
   {/if}

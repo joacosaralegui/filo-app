@@ -74,7 +74,7 @@
      sans (por defecto en :root) para UI/labels */
   --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", ui-serif, serif;
 
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-serif);
   color: var(--text);
   background: var(--bg);
 }
@@ -121,4 +121,50 @@ html {
 
 #app {
   min-height: 100dvh;
+}
+
+/* Trama de puntos (grabado antiguo), para superficies de color planas:
+   botones y bloques como el del desafío o los cromos. Va en un ::before
+   —no directo en el fondo— porque acá SÍ hay contenido (texto, íconos)
+   encima: pinta detrás de ese contenido y sólo se mezcla con el propio
+   fondo pintado del botón/tarjeta, nunca con el texto.
+   El negro con "multiply" oscurece cada color base en la misma PROPORCIÓN
+   sea cual sea, así que se ve igual de sutil en un botón verde que en una
+   tarjeta clara. Pareja en toda la superficie — se probó cargarla más en
+   las esquinas pero sumaba ruido sin aportar nada.
+   ".halftone-surface-subtle" es la misma trama mucho más floja, para fondos
+   blancos/claros donde la normal se nota de más (tarjetas, chips). */
+.halftone-surface,
+.halftone-surface-subtle {
+  position: relative;
+  overflow: hidden;
+}
+.halftone-surface::before,
+.halftone-surface-subtle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-size: 5px 5px;
+  mix-blend-mode: multiply;
+}
+.halftone-surface::before {
+  background-image: radial-gradient(circle, rgb(0 0 0 / 2%) 42%, transparent 43%);
+}
+.halftone-surface-subtle::before {
+  background-image: radial-gradient(circle, rgb(0 0 0 / 0.7%) 42%, transparent 43%);
+}
+
+/* Misma trama para <img> sueltas (cromos, portadas de curso): no hay
+   background-color propio para blendear, así que va de overlay —un <span>
+   hermano, aria-hidden, dentro de un contenedor position:relative— igual
+   que .cover-dots en RootHeader.svelte. Usar el nivel "normal" (2%): son
+   fotos, no fondos blancos. */
+.img-halftone {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgb(0 0 0 / 2%) 42%, transparent 43%);
+  background-size: 5px 5px;
+  mix-blend-mode: multiply;
 }

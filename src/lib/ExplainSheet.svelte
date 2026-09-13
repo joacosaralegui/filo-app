@@ -28,25 +28,21 @@
     role="presentation"
   >
     <div
-      class="sheet-anim w-full max-w-[480px] rounded-t-[22px] border border-b-0 border-line bg-bg px-[22px] pt-2.5 pb-[calc(env(safe-area-inset-bottom)+24px)] [box-shadow:0_-12px_40px_rgba(0,0,0,0.5)]"
+      class="sheet-anim w-full max-w-[480px] rounded-t-[4px] border border-b-0 border-line bg-bg px-[22px] pt-2.5 pb-[calc(env(safe-area-inset-bottom)+24px)]"
       on:click|stopPropagation
       role="dialog"
       aria-modal="true"
     >
       <div class="mx-auto mb-3.5 h-1 w-10 rounded-[3px] bg-line"></div>
-      <span class="inline-block rounded-full bg-bad px-2.5 py-1 text-[11px] font-extrabold tracking-[1.4px] text-bg uppercase"
+      <span class="inline-block rounded-[4px] bg-bad px-2.5 py-1 text-[16px] font-extrabold text-bg uppercase"
         >¿Por qué?</span
       >
       {#if data.solucion}
         <h3 class="mt-3 font-serif text-[21px] font-extrabold tracking-[-0.3px] text-accent-ink">{data.solucion}</h3>
       {/if}
       {#if data.texto}
-        <p class="mt-3 font-serif text-[15px] leading-[1.6] text-text-soft"><RichText text={data.texto} /></p>
+        <p class="mt-3 mb-1 font-serif text-[16px] leading-[1.6] text-text-soft"><RichText text={data.texto} /></p>
       {/if}
-      <button
-        class="mt-5 w-full cursor-pointer rounded-[13px] border border-line bg-surface p-3.5 text-[15px] font-bold text-text [font-family:inherit] active:scale-[0.99]"
-        on:click={cerrar}>Entendido</button
-      >
     </div>
   </div>
 {/if}

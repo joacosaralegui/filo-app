@@ -6,12 +6,12 @@
 <div class="flex w-full max-w-[480px] flex-col justify-center gap-1">
   {#if card.continues}
     <span
-      class="mb-2.5 self-start text-[13px] font-semibold tracking-[0.2px] [color:color-mix(in_srgb,var(--text-soft)_55%,transparent)]"
+      class="mb-2.5 self-start text-[16px] font-semibold [color:color-mix(in_srgb,var(--text-soft)_55%,transparent)]"
       >↳ {card.title}</span
     >
   {:else}
     {#if card.tag}<span
-        class="mb-[18px] self-start rounded-full border px-3 py-1.5 text-xs font-bold tracking-[1.6px] text-accent-ink uppercase [border-color:color-mix(in_srgb,var(--accent)_35%,transparent)]"
+        class="mb-[18px] self-start rounded-[4px] border px-3 py-1.5 text-base font-bold text-accent-ink uppercase [border-color:color-mix(in_srgb,var(--accent)_35%,transparent)]"
         >{card.tag}</span
       >{/if}
     <h2

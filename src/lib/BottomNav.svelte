@@ -57,7 +57,7 @@
         aria-label={it.label}
       >
         <span
-          class="flex h-9 w-[58px] items-center justify-center rounded-full transition-colors duration-200 {on
+          class="flex h-9 w-[58px] items-center justify-center rounded-[4px] transition-colors duration-200 {on
             ? 'bg-accent text-on-accent'
             : ''}"
         >

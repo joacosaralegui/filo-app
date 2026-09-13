@@ -28,67 +28,51 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
-  <RootHeader img={socrates} title="Pensadores" wash={0.25} position="50% 30%" zoom={1.9} />
+  <RootHeader img={socrates} title="Pensadores" wash={0.42} position="50% 30%" zoom={1.9} halftone />
 
   <!-- La pieza fuerte: seguir donde quedaste. Sin nada empezado ocupa el mismo
        lugar y la misma forma, pero manda a elegir curso: la pregunta que la
        pantalla contesta es siempre "¿y ahora qué?". -->
   {#if hayProgreso}
+    <span class="mb-2 self-start text-sm font-bold text-text-soft/70 uppercase"
+      >Continuar con</span
+    >
     <button
-      class="group flex w-full cursor-pointer flex-col gap-3 rounded-[20px] bg-surface p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+      class="group flex w-full cursor-pointer flex-col gap-3 rounded-[4px] halftone-surface-subtle bg-surface p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
       on:click={() => dispatch("resume", { id: lastCourseMeta.id, num: last.num })}
     >
-      <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Continuar con</span>
       <div class="flex flex-col gap-2">
         <h2 class="font-serif text-[21px] leading-[1.25] font-semibold text-text">
-          Clase {last.num} · {last.title}
+          Clase {last.num}: {last.title}
         </h2>
-        <p class="font-serif text-[14px] leading-[1.3] font-medium text-accent italic">
-          {lastCourseMeta.title}{lastCourseMeta.subtitle ? ` · ${lastCourseMeta.subtitle}` : ""}
+        <p class="font-serif text-[16px] leading-[1.3] font-medium text-accent">
+          {lastCourseMeta.title}{lastCourseMeta.subtitle ? `: ${lastCourseMeta.subtitle}` : ""}
         </p>
       </div>
       <span
-        class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
+        class="mt-1 flex w-full items-center justify-center gap-2 rounded-[4px] halftone-surface bg-accent px-6 py-[15px] text-[16px] font-bold text-on-accent uppercase transition-transform group-active:scale-[0.97]"
       >
         Continuar
-        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
-          ><path
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M9 5l7 7-7 7"
-          /></svg
-        >
       </span>
     </button>
   {:else}
+    <span class="mb-2 self-start text-sm font-bold text-text-soft/70 uppercase"
+      >Para empezar</span
+    >
     <button
-      class="group flex w-full cursor-pointer flex-col gap-3 rounded-[20px] bg-surface p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+      class="group flex w-full cursor-pointer flex-col gap-3 rounded-[4px] halftone-surface-subtle bg-surface p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
       on:click={() => dispatch("cursos")}
     >
-      <span class="text-[11px] font-bold tracking-[1.4px] text-text-soft/70 uppercase">Para empezar</span>
       <h2 class="font-serif text-[21px] leading-[1.25] font-semibold text-text">
         Comenzá tu recorrido
       </h2>
-      <p class="text-[13.5px] leading-[1.5] text-text-soft">
+      <p class="text-[16px] leading-[1.5] text-text-soft">
         Elegí un curso y andá clase por clase. Cada una termina en un cromo para el álbum.
       </p>
       <span
-        class="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-[15px] text-[15px] font-bold text-on-accent transition-transform group-active:scale-[0.97]"
+        class="mt-1 flex w-full items-center justify-center gap-2 rounded-[4px] halftone-surface bg-accent px-6 py-[15px] text-[16px] font-bold text-on-accent uppercase transition-transform group-active:scale-[0.97]"
       >
         Ver los cursos
-        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
-          ><path
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M9 5l7 7-7 7"
-          /></svg
-        >
       </span>
     </button>
   {/if}
@@ -98,7 +82,7 @@
        a propósito que se vea "incompleto" hasta que lo contestás — es el
        único pendiente que la app te pone por día. -->
   <button
-    class="mt-3.5 flex w-full cursor-pointer items-center gap-3.5 rounded-2xl bg-surface-3 px-5 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+    class="mt-3.5 flex w-full cursor-pointer items-center gap-3.5 rounded-[4px] halftone-surface bg-surface-3 px-5 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
     on:click={() => dispatch("desafio")}
   >
     <span
@@ -151,11 +135,9 @@
     >
     {#if hoy}
       <span
-        class="ml-auto font-serif text-[15px] font-semibold {ganado ? 'text-good-ink' : 'text-bad-ink'}"
+        class="ml-auto font-serif text-[16px] font-semibold {ganado ? 'text-good-ink' : 'text-bad-ink'}"
         >{hoy.aciertos}/{hoy.total}</span
       >
-    {:else}
-      <span class="ml-auto text-2xl font-semibold text-text-soft/50">›</span>
     {/if}
   </button>
 
@@ -163,11 +145,11 @@
        aparece — una colección en cero desalienta y ensucia la pantalla. -->
   {#if cromos.length}
     <button
-      class="mt-3.5 flex w-full cursor-pointer items-center gap-3 rounded-2xl border-0 bg-surface px-5 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+      class="mt-3.5 flex w-full cursor-pointer items-center gap-3 rounded-[4px] halftone-surface-subtle border-0 bg-surface px-5 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
       on:click={() => dispatch("cromos")}
     >
       <div class="flex flex-col">
-        <span class="text-xs font-bold tracking-[1.4px] text-text-soft/75 uppercase">Cromos</span>
+        <span class="text-sm font-bold text-text-soft/75 uppercase">Cromos</span>
         <span class="font-serif text-[18px] font-semibold text-text">{cromos.length} de {TOTAL}</span>
       </div>
 
@@ -177,13 +159,13 @@
           <span class="mini">
             {#if c.img}
               <img class="h-full w-full object-cover" src={c.img} alt="" />
+              <span class="img-halftone" aria-hidden="true"></span>
             {:else}
               <span class="mini-ph">{c.nombre.replace(/^(La|El|A) /, "").charAt(0)}</span>
             {/if}
           </span>
         {/each}
       </div>
-      <span class="text-2xl font-semibold text-text-soft/50">›</span>
     </button>
   {/if}
 </div>
@@ -191,6 +173,7 @@
 <style>
   /* medallones superpuestos de la tira del álbum */
   .mini {
+    position: relative;
     width: 38px;
     height: 38px;
     flex: none;

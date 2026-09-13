@@ -194,13 +194,13 @@
   }
 
   const CHIP_CLS =
-    "chip relative flex min-h-[58px] cursor-pointer touch-none items-center gap-2 rounded-[13px] border-[1.5px] border-[var(--c)] bg-surface px-[11px] py-3 text-left text-sm leading-[1.32] text-text select-none [transition:transform_0.08s,border-color_0.18s,background-color_0.18s,box-shadow_0.18s] not-disabled:active:scale-[0.98] [@media(max-height:700px)]:min-h-[52px] [@media(max-height:700px)]:p-2.5 [@media(max-height:700px)]:text-[13px]";
+    "chip relative flex min-h-[58px] cursor-pointer touch-none items-center gap-2 rounded-[4px] halftone-surface-subtle border-[1.5px] border-[var(--c)] bg-surface px-[11px] py-3 text-left text-base leading-[1.32] text-text select-none [transition:transform_0.08s,border-color_0.18s,background-color_0.18s,box-shadow_0.18s] not-disabled:active:scale-[0.98] [@media(max-height:700px)]:min-h-[52px] [@media(max-height:700px)]:p-2.5 [@media(max-height:700px)]:text-[16px]";
   const NODE_CLS = "h-[11px] w-[11px] flex-none rounded-full border-2 border-[var(--c)] box-border";
 </script>
 
 <div class="flex w-full max-w-[480px] flex-col justify-center {shake ? 'shake-anim' : ''}">
   <span
-    class="mb-4 self-start rounded-full px-[13px] py-1.5 text-xs font-extrabold tracking-[1.6px] text-bg uppercase transition-colors duration-[250ms] {correct
+    class="mb-4 self-start rounded-[4px] px-[13px] py-1.5 text-sm font-extrabold text-bg uppercase transition-colors duration-[250ms] {correct
       ? 'bg-good'
       : answered
         ? 'bg-bad'
@@ -272,7 +272,7 @@
   </div>
 
   <button
-      class="mt-[18px] cursor-pointer rounded-[13px] bg-accent px-[18px] py-[13px] text-[15px] font-extrabold text-on-accent [font-family:inherit] [transition:opacity_0.18s,transform_0.08s] not-disabled:active:scale-[0.985] disabled:cursor-default disabled:opacity-45 {answered ? 'invisible' : ''}"
+      class="mt-[18px] cursor-pointer rounded-[4px] halftone-surface bg-accent px-[18px] py-[13px] text-[16px] font-extrabold text-on-accent uppercase [font-family:inherit] [transition:opacity_0.18s,transform_0.08s] not-disabled:active:scale-[0.985] disabled:cursor-default disabled:opacity-45 {answered ? 'invisible' : ''}"
       on:click={confirm}
       disabled={answered || !allLinked}
     >

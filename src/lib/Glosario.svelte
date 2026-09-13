@@ -72,7 +72,6 @@
     classes = classes;
     await tick();
     window.scrollTo({ top: saved.y, behavior: "instant" });
-    placeRail();
   });
 
   // --- búsqueda: lo que empieza con lo buscado va primero, el resto en su orden ---
@@ -98,50 +97,9 @@
       return acc;
     }, [])
     .sort((a, b) => (a.letter === "#") - (b.letter === "#"));
-  $: letters = groups.map((g) => g.letter);
   $: porCurso = courses.map((course) => ({ course, items: classes.filter((c) => c.course === course) }));
 
-  // --- índice de letras: tocar o arrastrar salta a la sección ---
-  let headerH = 0; // alto del buscador fijo: las secciones quedan justo debajo
-  let stickyEl;
-  // El índice arranca debajo del buscador. Arriba de todo el buscador está
-  // más abajo, bajo la lámina, y recién se pega arriba al scrollear: por eso
-  // se recalcula con el scroll y no alcanza con su alto.
-  let railTop = 0;
-  const placeRail = () => stickyEl && (railTop = stickyEl.getBoundingClientRect().bottom + 8);
-  $: headerH, placeRail();
-  let rail;
-  let scrubbing = false;
-  let current = null;
-
-  // El índice no aparece de entrada: al lado del buscador y los chips
-  // sobra, y compite con la lámina. Recién se muestra cuando esa lámina ya
-  // se scrolleó fuera de vista.
-  let coverH = 0;
-  let scrollY = 0;
-  $: showRail = scrollY > coverH;
-
-  function jumpAt(y) {
-    const r = rail.getBoundingClientRect();
-    const i = Math.min(letters.length - 1, Math.max(0, Math.floor(((y - r.top) / r.height) * letters.length)));
-    const letter = letters[i];
-    if (letter === current) return;
-    current = letter;
-    // instantáneo: el scroll suave global (global.css) no alcanza a seguir el dedo
-    document.getElementById(`letra-${letter}`)?.scrollIntoView({ block: "start", behavior: "instant" });
-  }
-  function down(e) {
-    scrubbing = true;
-    rail.setPointerCapture(e.pointerId);
-    jumpAt(e.clientY);
-  }
-  function move(e) {
-    if (scrubbing) jumpAt(e.clientY);
-  }
-  function up() {
-    scrubbing = false;
-    current = null;
-  }
+  let headerH = 0; // alto del buscador fijo: los encabezados de letra no quedan tapados al saltar
 
   function elegir(id) {
     filtro = id;
@@ -168,7 +126,7 @@
     <span class="min-w-0 flex-1 truncate font-serif text-[17px] font-semibold text-text">{t.entry.term}</span>
     {#if etiqueta}
       <span
-        class="flex-none rounded-full px-2 py-0.5 text-[10px] font-extrabold tracking-[1px] uppercase {KIND_CLASS[
+        class="flex-none rounded-[4px] px-2 py-0.5 text-sm font-extrabold uppercase {KIND_CLASS[
           t.entry.kind
         ] || ''}">{KIND_LABEL[t.entry.kind] || ""}</span
       >
@@ -178,33 +136,28 @@
 
 {#snippet classRow(c)}
   <button class={row} on:click={() => abrirClase(c)}>
-    <span class="w-6 flex-none text-sm font-bold text-text-soft [font-variant-numeric:tabular-nums]">{c.num}</span>
+    <span class="w-6 flex-none text-base font-bold text-text-soft [font-variant-numeric:tabular-nums]">{c.num}</span>
     <span class="min-w-0 flex-1 truncate font-serif text-[17px] font-semibold text-text">{c.title}</span>
   </button>
 {/snippet}
 
 {#snippet sectionTitle(label)}
-  <p class="mt-5 mb-1 text-xs font-bold tracking-[1.6px] text-text-soft/70 uppercase">{label}</p>
+  <p class="mt-5 mb-1 text-base font-bold text-text-soft/70 uppercase">{label}</p>
 {/snippet}
-
-<svelte:window on:scroll={placeRail} on:resize={placeRail} bind:scrollY />
 
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
   <!-- La lámina de Cursos, acercada al libro abierto de abajo a la derecha. -->
-  <div bind:clientHeight={coverH}>
-    <RootHeader img={portada} title="Glosario" wash={0.25} position="50% 100%" origin="100% 60%" zoom={2} />
-  </div>
+  <RootHeader img={portada} title="Glosario" wash={0.42} position="50% 100%" origin="100% 60%" zoom={2} halftone />
 
   <!-- Buscador y selector fijos arriba: se puede cambiar de filtro en la M sin volver al principio. -->
   <div
-    class="sticky top-0 z-20 -mx-[22px] bg-bg/95 px-[22px] pt-[calc(env(safe-area-inset-top)+10px)] pb-3 backdrop-blur-[6px]"
-    bind:this={stickyEl}
+    class="sticky top-0 z-20 -mx-[22px] px-[22px] pt-[calc(env(safe-area-inset-top)+2px)] pb-2 backdrop-blur-[6px]"
     bind:clientHeight={headerH}
   >
     <input
-      class="mb-3 w-full rounded-[13px] border border-line bg-surface px-4 py-3 text-base text-text [font-family:inherit] outline-none focus:border-accent"
+      class="mb-2 w-full rounded-[4px] border border-line bg-surface px-4 py-3 text-base text-text [font-family:inherit] outline-none focus:border-accent"
       type="search"
       placeholder="Buscar autores, conceptos o clases"
       bind:value={q}
@@ -214,7 +167,7 @@
          vez. -->
     <div class="relative">
       <select
-        class="w-full cursor-pointer appearance-none rounded-[13px] border border-line bg-surface px-4 py-3 text-base font-semibold text-text [font-family:inherit] outline-none focus:border-accent"
+        class="w-full cursor-pointer appearance-none rounded-[4px] border border-line bg-surface px-4 py-3 text-base font-semibold text-text [font-family:inherit] outline-none focus:border-accent"
         value={filtro}
         on:change={(e) => elegir(e.currentTarget.value)}
       >
@@ -240,48 +193,49 @@
     </div>
   </div>
 
-  {#if sinResultados}
-    <p class="mt-4 text-sm text-text-soft">Nada con «{q.trim()}».</p>
-  {:else if nq && filtro === "todos"}
-    <!-- Buscando en Todos: una sección por tipo, con los primeros resultados. -->
-    {#each SECCIONES as s (s.id)}
-      {@const items = porSeccion[s.id]}
-      {#if items.length}
-        {@const tope = s.id === "evento" ? items.length : POR_SECCION}
-        {@render sectionTitle(s.label)}
-        {#each items.slice(0, tope) as it (s.id === "clase" ? it.course.id + it.num : it.slug)}
-          {#if s.id === "clase"}{@render classRow(it)}{:else}{@render termRow(it, false)}{/if}
-        {/each}
-        {#if items.length > tope}
-          <button
-            class="cursor-pointer self-start border-0 bg-transparent py-2 text-[13px] font-bold text-accent [font-family:inherit]"
-            on:click={() => elegir(s.id)}>Ver los {items.length}</button
-          >
+  <!-- Todo lo que sale debajo del buscador va en una sola tarjeta, con el
+       mismo fondo blanco y trama que las secciones de Cromos — evita que la
+       lista quede suelta contra el fondo de la app. -->
+  <div class="mt-4 rounded-[4px] halftone-surface-subtle bg-surface p-4">
+    {#if sinResultados}
+      <p class="text-base text-text-soft">Nada con «{q.trim()}».</p>
+    {:else if nq && filtro === "todos"}
+      <!-- Buscando en Todos: una sección por tipo, con los primeros resultados. -->
+      {#each SECCIONES as s (s.id)}
+        {@const items = porSeccion[s.id]}
+        {#if items.length}
+          {@const tope = s.id === "evento" ? items.length : POR_SECCION}
+          {@render sectionTitle(s.label)}
+          {#each items.slice(0, tope) as it (s.id === "clase" ? it.course.id + it.num : it.slug)}
+            {#if s.id === "clase"}{@render classRow(it)}{:else}{@render termRow(it, false)}{/if}
+          {/each}
+          {#if items.length > tope}
+            <button
+              class="cursor-pointer self-start border-0 bg-transparent py-2 text-[16px] font-bold text-accent [font-family:inherit]"
+              on:click={() => elegir(s.id)}>Ver los {items.length}</button
+            >
+          {/if}
         {/if}
-      {/if}
-    {/each}
-  {:else if nq}
-    <!-- Buscando con un chip: todo lo de ese tipo. -->
-    <div class="mt-2">
+      {/each}
+    {:else if nq}
+      <!-- Buscando con un chip: todo lo de ese tipo. -->
       {#if filtro === "clase"}
         {#each hitClasses as c (c.course.id + c.num)}{@render classRow(c)}{/each}
       {:else}
         {#each hitTerms.filter((t) => t.entry.kind === filtro) as t (t.slug)}
           {@render termRow(t, false)}
         {:else}
-          <p class="mt-2 text-sm text-text-soft">Nada con «{q.trim()}» en {FILTROS.find((f) => f.id === filtro).label.toLowerCase()}.</p>
+          <p class="text-base text-text-soft">Nada con «{q.trim()}» en {FILTROS.find((f) => f.id === filtro).label.toLowerCase()}.</p>
         {/each}
       {/if}
-    </div>
-  {:else if filtro === "clase"}
-    <!-- Clases sin búsqueda: por curso y en orden, que acá el orden importa. -->
-    {#each porCurso as g (g.course.id)}
-      {@render sectionTitle(g.course.title)}
-      {#each g.items as c (c.num)}{@render classRow(c)}{/each}
-    {/each}
-  {:else}
-    <!-- A a Z. -->
-    <div class="pr-7">
+    {:else if filtro === "clase"}
+      <!-- Clases sin búsqueda: por curso y en orden, que acá el orden importa. -->
+      {#each porCurso as g (g.course.id)}
+        {@render sectionTitle(g.course.title)}
+        {#each g.items as c (c.num)}{@render classRow(c)}{/each}
+      {/each}
+    {:else}
+      <!-- A a Z. -->
       {#each groups as g (g.letter)}
         <p
           id="letra-{g.letter}"
@@ -292,38 +246,6 @@
         </p>
         {#each g.items as t (t.slug)}{@render termRow(t, filtro === "todos")}{/each}
       {/each}
-    </div>
-
-    <!-- El índice va fijo, alineado al borde derecho de la columna (no de la
-         ventana), entre el buscador y la barra de abajo. No aparece de
-         entrada: recién se desvanece adentro cuando la lámina ya se
-         scrolleó fuera de vista (showRail). -->
-    <div
-      class="pointer-events-none fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+80px)] z-30 mx-auto flex max-w-[480px] items-center justify-end pr-1.5 transition-opacity duration-200 {showRail
-        ? 'opacity-100'
-        : 'opacity-0'}"
-      style="top: {railTop}px"
-    >
-      <div
-        bind:this={rail}
-        class="flex touch-none flex-col items-center px-1.5 select-none {showRail
-          ? 'pointer-events-auto'
-          : 'pointer-events-none'}"
-        on:pointerdown={down}
-        on:pointermove={move}
-        on:pointerup={up}
-        on:pointercancel={up}
-        role="navigation"
-        aria-label="Índice alfabético"
-      >
-        {#each letters as l}
-          <span
-            class="flex h-[17px] w-5 items-center justify-center text-[11px] font-bold {current === l
-              ? 'text-accent'
-              : 'text-text-soft'}">{l}</span
-          >
-        {/each}
-      </div>
-    </div>
-  {/if}
+    {/if}
+  </div>
 </div>

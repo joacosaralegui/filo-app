@@ -38,7 +38,7 @@
 
 <div class="flex w-full max-w-[480px] flex-col justify-center {shake ? 'shake-anim' : ''}">
   <span
-    class="mb-[18px] self-start rounded-full px-[13px] py-1.5 text-xs font-extrabold tracking-[1.6px] text-bg uppercase transition-colors duration-[250ms] {correct
+    class="mb-[18px] self-start rounded-[4px] px-[13px] py-1.5 text-sm font-extrabold text-bg uppercase transition-colors duration-[250ms] {correct
       ? 'bg-good'
       : answered
         ? 'bg-bad'
@@ -62,7 +62,7 @@
             ? "border-bad bg-bad/16 text-bad-ink"
             : "opacity-40"}
       <button
-        class="flex cursor-pointer items-center gap-2.5 rounded-[14px] border-[1.5px] border-line bg-surface px-4 py-[15px] text-left text-[15.5px] leading-[1.4] text-text [font-family:inherit] [transition:transform_0.08s,background-color_0.18s,border-color_0.18s,opacity_0.18s] not-disabled:active:scale-[0.985] [@media(max-height:700px)]:px-3.5 [@media(max-height:700px)]:py-3 [@media(max-height:700px)]:text-[14.5px] {optCls}"
+        class="flex cursor-pointer items-center gap-2.5 rounded-[4px] halftone-surface-subtle border-[1.5px] border-line bg-surface px-4 py-[15px] text-left text-[16px] leading-[1.4] text-text [font-family:inherit] [transition:transform_0.08s,background-color_0.18s,border-color_0.18s,opacity_0.18s] not-disabled:active:scale-[0.985] [@media(max-height:700px)]:px-3.5 [@media(max-height:700px)]:py-3 [@media(max-height:700px)]:text-[16px] {optCls}"
         on:click={() => choose(i)}
         disabled={answered}
       >

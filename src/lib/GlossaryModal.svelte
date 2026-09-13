@@ -79,7 +79,7 @@
   >
     <div
       bind:this={sheet}
-      class="sheet-anim relative flex max-h-[90dvh] w-full max-w-[480px] flex-col overflow-hidden rounded-t-[22px] border border-b-0 border-line bg-bg [box-shadow:0_-8px_30px_rgba(0,0,0,0.22)] {dragging
+      class="sheet-anim relative flex max-h-[90dvh] w-full max-w-[480px] flex-col overflow-hidden rounded-t-[4px] border border-b-0 border-line bg-bg {dragging
         ? ''
         : 'transition-[height] duration-200 ease-out motion-reduce:transition-none'}"
       style:height={height == null ? null : `${height}px`}
@@ -101,11 +101,11 @@
         <div class="mx-auto mt-1 mb-4 h-1 w-10 rounded-[3px] bg-line"></div>
         <div class="mb-2.5 flex items-center gap-2.5 pr-10">
           <span
-            class="rounded-full px-2.5 py-1 text-[11px] font-extrabold tracking-[1.2px] uppercase {KIND_CLASS[
+            class="rounded-[4px] px-2.5 py-1 text-sm font-extrabold uppercase {KIND_CLASS[
               $activeTerm.kind
             ] || ''}">{KIND_LABEL[$activeTerm.kind] || ""}</span
           >
-          {#if $activeTerm.when}<span class="text-[13px] font-bold text-text-soft [font-variant-numeric:tabular-nums]"
+          {#if $activeTerm.when}<span class="text-[16px] font-bold text-text-soft [font-variant-numeric:tabular-nums]"
               >{$activeTerm.when}</span
             >{/if}
         </div>
@@ -128,8 +128,8 @@
 
       <div class="flex-none border-t border-line px-[22px] pt-3 pb-[calc(env(safe-area-inset-bottom)+14px)]">
         <button
-          class="cursor-pointer border-0 bg-transparent p-0 text-[14px] font-bold text-accent [font-family:inherit]"
-          on:click={verEnGlosario}>Ver en el glosario →</button
+          class="w-full cursor-pointer rounded-[4px] halftone-surface-subtle border border-line bg-surface p-3 text-[16px] font-bold text-text uppercase [font-family:inherit] active:scale-[0.99]"
+          on:click={verEnGlosario}>Ver en el glosario</button
         >
       </div>
     </div>

@@ -37,7 +37,7 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+100px)]"
 >
-  <RootHeader img={portada} title="Cromos" wash={0.25} position="50% 28%" zoom={2} />
+  <RootHeader img={portada} title="Cromos" wash={0.42} position="50% 28%" zoom={2} halftone />
 
   <!-- Un curso, una tarjeta. Sirve para dos cosas: le da a la colección la
        misma caja blanca que Inicio y Cursos tienen debajo del arco, y hace que la
@@ -48,7 +48,7 @@
   {#each secciones as seccion (seccion.titulo)}
     {@const tiene = seccion.cromos.filter((c) => ganados[c.slug]).length}
     {@const abiertaSeccion = abiertas[seccion.titulo] ?? true}
-    <section class="mb-4 rounded-[20px] bg-surface p-4">
+    <section class="mb-4 rounded-[4px] halftone-surface-subtle bg-surface p-4">
       <button
         class="flex w-full cursor-pointer items-center gap-2 border-0 bg-transparent p-0 px-1 text-left [font-family:inherit] {abiertaSeccion
           ? 'mb-3.5'
@@ -61,7 +61,7 @@
         </h2>
         <!-- El contador por curso: además de decir cuánto llevás, es lo que
              devuelve el número que el header perdió al sacarle la bajada. -->
-        <span class="ml-auto flex-none font-serif text-[15px] font-semibold text-text-soft/70">
+        <span class="ml-auto flex-none font-serif text-[16px] font-semibold text-text-soft/70">
           {tiene}/{seccion.cromos.length}
         </span>
         <svg
@@ -93,20 +93,21 @@
             <button
               class="flex cursor-pointer flex-col gap-1.5 border-0 bg-transparent p-0 [font-family:inherit] transition-transform active:scale-[0.94]"
               on:click={() => dispatch("open", { courseId: c.curso, num: c.clase })}
-              aria-label="Clase {c.clase} · {c.nombre}"
+              aria-label="Clase {c.clase}: {c.nombre}"
             >
               <!-- El cromo se ve siempre: apagado y desaturado mientras falta, a
                    todo color cuando lo ganaste. El contraste entre los dos
                    estados es lo que hace que llenar la colección se sienta. -->
-              <div class="aspect-square w-full overflow-hidden rounded-[10px] bg-surface-2">
+              <div class="relative aspect-square w-full overflow-hidden rounded-[4px] bg-surface-2">
                 <img
                   class="h-full w-full object-cover {got ? 'opacity-95' : 'opacity-45 grayscale-[0.9]'}"
                   src={c.img}
                   alt=""
                 />
+                <span class="img-halftone" aria-hidden="true"></span>
               </div>
               <span
-                class="line-clamp-2 text-center text-[9.5px] leading-[1.2] font-semibold {got
+                class="line-clamp-2 text-center text-[16px] leading-[1.2] font-semibold {got
                   ? 'text-text-soft'
                   : 'text-text-soft/45'}">{c.nombre}</span
               >
