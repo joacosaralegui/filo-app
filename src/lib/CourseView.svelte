@@ -41,26 +41,21 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+18px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
-  <DetailHeader title={course.title} eyebrow="Curso" on:back={() => dispatch("back")} />
+  <DetailHeader title={course.title} on:back={() => dispatch("back")} />
 
   <!-- Presentación del curso, en texto: de qué va y por dónde seguir. Sin la
        portada, que como bloque se comía la pantalla y como fondo ensuciaba la
        tarjeta — el recorrido, que es a lo que se viene, entra completo. -->
   <div class="mt-5 flex flex-col gap-3 rounded-[4px] halftone-surface-subtle bg-surface p-5">
-    <div class="flex flex-col gap-1.5">
-      {#if course.subtitle}
-        <p class="font-serif text-[16px] leading-[1.3] font-medium text-accent">
-          {course.subtitle}
-        </p>
-      {/if}
-      {#if course.blurb}
-        <p class="text-[16px] leading-[1.5] text-text-soft">{course.blurb}</p>
-      {/if}
-    </div>
+    {#if course.subtitle}
+      <p class="font-serif text-[16px] leading-[1.3] font-normal text-text">
+        {course.subtitle}
+      </p>
+    {/if}
 
     {#if primary}
       <button
-        class="mt-1 flex w-full cursor-pointer items-center justify-center gap-2 rounded-[4px] border-0 halftone-surface bg-accent px-6 py-[15px] text-[16px] font-bold text-on-accent uppercase [font-family:inherit] transition-transform active:scale-[0.98]"
+        class="mt-1 flex w-full cursor-pointer items-center justify-center gap-2 rounded-[4px] border-0 halftone-surface bg-accent-3 px-6 py-[15px] text-[19px] font-bold text-on-accent uppercase [font-family:inherit] transition-transform active:scale-[0.98]"
         on:click={() => open(primary)}
       >
         {primaryLabel}: Clase {primary.num}
@@ -76,7 +71,11 @@
         {@const started = !!c.content && !done && isStarted($progress, c.content)}
         {@const pct = started ? completionPct($progress, c.content) : 0}
         {@const titleCls = !c.content ? "text-text-soft opacity-55" : "text-text"}
-        {@const statusCls = started || done ? "text-accent-ink opacity-100" : "text-text-soft opacity-50"}
+        {@const statusCls = started
+          ? "text-accent-3 opacity-100"
+          : done
+            ? "text-accent-ink opacity-100"
+            : "text-text-soft opacity-50"}
         {@const cr = cromoDeClase(course.id, c.num)}
         {@const crGot = !!(cr && ganados[cr.slug])}
         <button

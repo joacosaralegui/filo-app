@@ -28,7 +28,7 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
-  <RootHeader img={socrates} title="Pensadores" wash={0.42} position="50% 30%" zoom={1.9} halftone />
+  <RootHeader img={socrates} title="Pensadores" wash={0.6} position="50% 30%" zoom={1.9} halftone />
 
   <!-- La pieza fuerte: seguir donde quedaste. Sin nada empezado ocupa el mismo
        lugar y la misma forma, pero manda a elegir curso: la pregunta que la
@@ -42,8 +42,8 @@
       on:click={() => dispatch("resume", { id: lastCourseMeta.id, num: last.num })}
     >
       <div class="flex flex-col gap-2">
-        <h2 class="font-serif text-[21px] leading-[1.25] font-semibold text-text">
-          Clase {last.num}: {last.title}
+        <h2 class="font-serif text-[24px] leading-[1.2] font-semibold text-text">
+          {last.title}
         </h2>
         <p class="font-serif text-[16px] leading-[1.3] font-medium text-accent">
           {lastCourseMeta.title}{lastCourseMeta.subtitle ? `: ${lastCourseMeta.subtitle}` : ""}
@@ -52,7 +52,7 @@
       <span
         class="mt-1 flex w-full items-center justify-center gap-2 rounded-[4px] halftone-surface bg-accent px-6 py-[15px] text-[16px] font-bold text-on-accent uppercase transition-transform group-active:scale-[0.97]"
       >
-        Continuar
+        Continuar Clase {last.num}
       </span>
     </button>
   {:else}
@@ -127,7 +127,7 @@
       {/if}
     </span>
     <span
-      class="font-serif text-[18px] leading-tight font-semibold {hoy
+      class="font-serif text-[21px] leading-tight font-semibold {hoy
         ? ganado
           ? 'text-good-ink'
           : 'text-bad-ink'

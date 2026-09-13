@@ -31,28 +31,45 @@
   // Prueba: trama de puntos (grabado antiguo) sobre la lámina. Sólo en Inicio
   // por ahora — si funciona se puede sumar a los otros headers.
   export let halftone = false;
+  // Sin lámina: nada de bloque ni trama, sólo el título — un rótulo de
+  // sección, no una portada. Bastante más bajo: no hay ilustración que
+  // pida aire alrededor.
+  export let plain = false;
 </script>
 
-<header class="cover-wrap mb-8">
-  <div class="cover" style="--wash: {wash}">
-    <img
-      class="cover-img"
-      style="object-position: {position}; scale: {zoom}; transform-origin: {origin}"
-      src={img}
-      alt=""
-    />
-    {#if halftone}<span class="cover-dots" aria-hidden="true"></span>{/if}
-    <div class="cover-text">
-      <h1
-        class="m-0 font-serif text-[clamp(26px,8vw,34px)] leading-none font-semibold tracking-[0.08em] text-text uppercase"
-      >
-        {title}
-      </h1>
+{#if plain}
+  <header class="cover-wrap-plain mb-6">
+    <h1
+      class="m-0 font-serif text-[clamp(26px,8vw,34px)] leading-none font-semibold tracking-[0.08em] text-text uppercase"
+    >
+      {title}
+    </h1>
+  </header>
+{:else}
+  <header class="cover-wrap mb-8">
+    <div class="cover" style="--wash: {wash}">
+      <img
+        class="cover-img"
+        style="object-position: {position}; scale: {zoom}; transform-origin: {origin}"
+        src={img}
+        alt=""
+      />
+      {#if halftone}<span class="cover-dots" aria-hidden="true"></span>{/if}
+      <div class="cover-text">
+        <h1
+          class="m-0 font-serif text-[clamp(32px,10vw,42px)] leading-none font-semibold tracking-[0.08em] text-text uppercase"
+        >
+          {title}
+        </h1>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
+{/if}
 
 <style>
+  .cover-wrap-plain {
+    text-align: center;
+  }
   .cover-wrap {
     position: relative;
   }
@@ -90,6 +107,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 34px 16px;
+    padding: 46px 16px;
   }
 </style>

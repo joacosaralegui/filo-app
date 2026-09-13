@@ -18,7 +18,6 @@
   import { loadContent, loadGlossary } from "./courses.js";
   import { KIND_LABEL, KIND_CLASS } from "./glossary.js";
   import RootHeader from "./RootHeader.svelte";
-  import portada from "../assets/cursos.webp";
 
   export let courses = [];
   const dispatch = createEventDispatcher();
@@ -149,7 +148,7 @@
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
   <!-- La lámina de Cursos, acercada al libro abierto de abajo a la derecha. -->
-  <RootHeader img={portada} title="Glosario" wash={0.42} position="50% 100%" origin="100% 60%" zoom={2} halftone />
+  <RootHeader title="Glosario" plain />
 
   <!-- Buscador y selector fijos arriba: se puede cambiar de filtro en la M sin volver al principio. -->
   <div

@@ -29,6 +29,6 @@
     {#if eyebrow}
       <span class="text-[16px] font-bold text-text-soft/70 uppercase">{eyebrow}</span>
     {/if}
-    <span class="truncate font-serif text-[17px] leading-tight font-semibold text-text">{title}</span>
+    <span class="truncate font-serif text-[20px] leading-tight font-semibold text-text">{title}</span>
   </div>
 </header>

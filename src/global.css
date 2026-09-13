@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* Fraunces: serif variable (peso 300–700), autohosteada para que la tipografía
+   sea idéntica en todas las plataformas (no depende de qué serif del sistema
+   traiga cada Android/iOS/desktop) y ande sin red en la app empaquetada. */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("./assets/fonts/fraunces-latin.woff2") format("woff2");
+}
+
 /* Mapea los tokens de :root a utilidades Tailwind (bg-bg, text-accent,
    border-line, font-serif, etc). Los VALORES siguen viviendo solo en
    :root de abajo — esto es solo el puente hacia las clases. */
@@ -70,9 +81,9 @@
   /* partículas de recompensa (las lee Burst.svelte) */
   --burst-colors: #71704a, #dda15e, #bc6c25, #8aa04a, #e9c48a;
 
-  /* tipografía: serif para títulos y contenido (tono editorial),
-     sans (por defecto en :root) para UI/labels */
-  --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", ui-serif, serif;
+  /* tipografía: una sola serif en toda la app, para todo (títulos, cuerpo,
+     UI/labels) — Fraunces, autohosteada (ver @font-face arriba). */
+  --font-serif: "Fraunces", Georgia, ui-serif, serif;
 
   font-family: var(--font-serif);
   color: var(--text);
@@ -96,7 +107,12 @@ body {
 /* Textura de fondo de TODA la app: la lámina de Sócrates bajo un velo del
    color de fondo al 95%, o sea insinuada (~5%). Va como background del body
    —y no como <img>— para que pinte detrás de todo sin tener que apilar
-   z-index, y para no costarle contraste al texto que va encima. */
+   z-index, y para no costarle contraste al texto que va encima.
+   `fixed`: sin esto, "cover" se calcula contra el alto de TODO el body, que
+   en una lista larga (Glosario, Cromos) mide miles de píxeles — la lámina
+   se estira tanto para cubrirlo que la porción visible en pantalla queda
+   lisa. Fijándolo al viewport, "cover" siempre lo cubre a él, sin importar
+   cuánto scrollee el contenido. */
 body {
   background-image:
     linear-gradient(
@@ -107,6 +123,7 @@ body {
   background-position: center, center top;
   background-size: cover, cover;
   background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
 }
 
 html {

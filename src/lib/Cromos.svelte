@@ -7,7 +7,6 @@
   import { progress, cromosGanados } from "./progress.js";
   import { CROMOS_CON_IMG } from "./cromos.js";
   import { COURSES } from "../content/courses.js";
-  import portada from "../assets/cromos-portada.webp";
   import RootHeader from "./RootHeader.svelte";
 
   const dispatch = createEventDispatcher();
@@ -37,7 +36,7 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+100px)]"
 >
-  <RootHeader img={portada} title="Cromos" wash={0.42} position="50% 28%" zoom={2} halftone />
+  <RootHeader title="Cromos" plain />
 
   <!-- Un curso, una tarjeta. Sirve para dos cosas: le da a la colección la
        misma caja blanca que Inicio y Cursos tienen debajo del arco, y hace que la

@@ -5,7 +5,6 @@
   import { createEventDispatcher } from "svelte";
   import RootHeader from "./RootHeader.svelte";
   import { progress, courseStateOf } from "./progress.js";
-  import portada from "../assets/cursos.webp";
   import iconAntigua from "../assets/cursos/antigua.webp";
   import iconModerna from "../assets/cursos/moderna.webp";
   import iconContemporanea from "../assets/cursos/contemporanea.webp";
@@ -26,7 +25,7 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
-  <RootHeader img={portada} title="Cursos" wash={0.42} position="50% 62%" zoom={2} halftone />
+  <RootHeader title="Cursos" plain />
 
   <div class="flex flex-col gap-[18px]">
     {#each courses as c (c.id)}
