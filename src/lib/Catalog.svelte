@@ -3,12 +3,12 @@
   // que acá no hay hero ni continuar — es puro descubrimiento, y por eso
   // scrollea normal, sin snap.
   import { createEventDispatcher } from "svelte";
-  import Landmark from "@lucide/svelte/icons/landmark";
-  import Orbit from "@lucide/svelte/icons/orbit";
-  import Brain from "@lucide/svelte/icons/brain";
   import RootHeader from "./RootHeader.svelte";
   import { progress, courseStateOf } from "./progress.js";
   import portada from "../assets/cursos.webp";
+  import iconAntigua from "../assets/cursos/antigua.webp";
+  import iconModerna from "../assets/cursos/moderna.webp";
+  import iconContemporanea from "../assets/cursos/contemporanea.webp";
   export let courses = [];
   const dispatch = createEventDispatcher();
 
@@ -19,9 +19,8 @@
     return st.lastClass != null ? st.lastClass : null;
   };
 
-  // Un ícono de Lucide por curso: columnata para la antigua, órbita para la
-  // nueva ciencia moderna, cerebro para la crisis del sujeto contemporánea.
-  const courseIcons = { antigua: Landmark, moderna: Orbit, contemporanea: Brain };
+  // Un ícono ilustrado por curso, recortado de la tira antigua/moderna/contemporánea.
+  const courseIcons = { antigua: iconAntigua, moderna: iconModerna, contemporanea: iconContemporanea };
 </script>
 
 <div
@@ -32,13 +31,13 @@
   <div class="flex flex-col gap-[18px]">
     {#each courses as c (c.id)}
       {@const num = enCurso(c.id)}
-      {@const Icon = courseIcons[c.id]}
+      {@const icon = courseIcons[c.id]}
       <button
         class="flex w-full cursor-pointer items-center gap-4 rounded-[4px] halftone-surface-subtle bg-surface p-5 text-left [font-family:inherit] active:scale-[0.995]"
         on:click={() => dispatch("open", c)}
       >
-        <span class="flex h-[52px] w-[52px] flex-none items-center justify-center rounded-[4px] bg-surface-2 text-accent">
-          <Icon size={26} strokeWidth={1.6} />
+        <span class="h-[104px] w-[104px] flex-none overflow-hidden rounded-[4px] bg-surface-2">
+          <img class="h-full w-full object-cover" src={icon} alt="" />
         </span>
         <div class="flex min-w-0 flex-1 flex-col">
           <b class="font-serif text-[22px] leading-[1.12] font-semibold text-text">{c.title}</b>
