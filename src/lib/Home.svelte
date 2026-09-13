@@ -82,15 +82,18 @@
        a propósito que se vea "incompleto" hasta que lo contestás — es el
        único pendiente que la app te pone por día. -->
   <button
-    class="mt-3.5 flex w-full cursor-pointer items-center gap-3.5 rounded-[4px] halftone-surface bg-surface-3 px-5 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+    class="mt-3.5 flex w-full cursor-pointer items-center gap-3.5 rounded-[4px] halftone-surface {hoy &&
+    ganado
+      ? 'bg-good'
+      : 'bg-accent-3'} px-5 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
     on:click={() => dispatch("desafio")}
   >
     <span
-      class="flex h-9 w-9 flex-none items-center justify-center rounded-full {hoy
+      class="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-bg/80 {hoy
         ? ganado
-          ? 'bg-good text-bg'
-          : 'bg-bad text-bg'
-        : 'bg-bg/70 text-accent'}"
+          ? 'text-good'
+          : 'text-bad'
+        : 'text-accent-3'}"
     >
       {#if hoy && ganado}
         <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"
@@ -126,16 +129,9 @@
         >
       {/if}
     </span>
-    <span
-      class="font-serif text-[21px] leading-tight font-semibold {hoy
-        ? ganado
-          ? 'text-good-ink'
-          : 'text-bad-ink'
-        : 'text-text'}">Desafío diario</span
-    >
+    <span class="font-serif text-[21px] leading-tight font-semibold text-on-accent">Desafío diario</span>
     {#if hoy}
-      <span
-        class="ml-auto font-serif text-[16px] font-semibold {ganado ? 'text-good-ink' : 'text-bad-ink'}"
+      <span class="ml-auto font-serif text-[19px] font-semibold text-on-accent"
         >{hoy.aciertos}/{hoy.total}</span
       >
     {/if}

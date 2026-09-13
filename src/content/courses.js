@@ -30,7 +30,7 @@
 export const COURSES = [
   {
     id: "contemporanea",
-    title: "Filosofía contemporánea",
+    title: "Contemporánea",
     subtitle: "Nietzsche, Sartre, Foucault y la crisis del sujeto moderno.",
     blurb: "De la muerte de Dios al fin de las certezas: vitalismo, existencialismo, estructuralismo y posmodernidad.",
     portada: "posmodernidad",
@@ -44,7 +44,7 @@ export const COURSES = [
   },
   {
     id: "moderna",
-    title: "Filosofía moderna",
+    title: "Moderna",
     subtitle: "Descartes, Kant, Hegel y el nacimiento de la razón moderna.",
     blurb: "Del Renacimiento al idealismo alemán: racionalismo, empirismo, Ilustración y revolución.",
     portada: "nueva-ciencia",
@@ -58,7 +58,7 @@ export const COURSES = [
   },
   {
     id: "antigua",
-    title: "Filosofía antigua",
+    title: "Antigua",
     subtitle: "Sócrates, Platón, Aristóteles y el origen de la filosofía.",
     blurb: "De los presocráticos a los Padres de la Iglesia: physis, virtud, alma y las escuelas helenísticas.",
     portada: "partenon",

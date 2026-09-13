@@ -21,7 +21,7 @@
     </h2>
   {/if}
   <p
-    class="m-0 font-serif text-[20px] leading-[1.65] whitespace-pre-line text-text-soft [@media(max-height:700px)]:text-[18px]"
+    class="m-0 font-serif text-[18px] leading-[1.65] whitespace-pre-line text-text-soft [@media(max-height:700px)]:text-[17px]"
   ><RichText text={card.body} /></p>
 </div>
 

@@ -122,10 +122,10 @@
 <!-- Una línea por fila: el nombre y, sólo cuando la lista mezcla tipos, la etiqueta. -->
 {#snippet termRow(t, etiqueta)}
   <button class={row} on:click={() => abrirTermino(t)}>
-    <span class="min-w-0 flex-1 truncate font-serif text-[17px] font-semibold text-text">{t.entry.term}</span>
+    <span class="min-w-0 flex-1 truncate font-serif text-[15px] font-normal text-text">{t.entry.term}</span>
     {#if etiqueta}
       <span
-        class="flex-none rounded-[4px] px-2 py-0.5 text-sm font-extrabold uppercase {KIND_CLASS[
+        class="flex-none rounded-[4px] px-1.5 py-0.5 text-xs font-extrabold uppercase {KIND_CLASS[
           t.entry.kind
         ] || ''}">{KIND_LABEL[t.entry.kind] || ""}</span
       >
@@ -136,7 +136,7 @@
 {#snippet classRow(c)}
   <button class={row} on:click={() => abrirClase(c)}>
     <span class="w-6 flex-none text-base font-bold text-text-soft [font-variant-numeric:tabular-nums]">{c.num}</span>
-    <span class="min-w-0 flex-1 truncate font-serif text-[17px] font-semibold text-text">{c.title}</span>
+    <span class="min-w-0 flex-1 truncate font-serif text-[15px] font-normal text-text">{c.title}</span>
   </button>
 {/snippet}
 
@@ -152,7 +152,7 @@
 
   <!-- Buscador y selector fijos arriba: se puede cambiar de filtro en la M sin volver al principio. -->
   <div
-    class="sticky top-0 z-20 -mx-[22px] px-[22px] pt-[calc(env(safe-area-inset-top)+2px)] pb-2 backdrop-blur-[6px]"
+    class="sticky top-0 z-20 -mx-[22px] px-[22px] pt-[calc(env(safe-area-inset-top)+2px)] pb-2"
     bind:clientHeight={headerH}
   >
     <input

@@ -73,8 +73,8 @@
   --accent-3: #bc6c25;    /* Tiger's eye (terracota) */
 
   /* rol: CORRECTO / INCORRECTO — provisorio (se define más adelante) */
-  --good: #2292a4;        /* borde/relleno */
-  --good-ink: #17707e;    /* texto legible */
+  --good: #5b8389;        /* borde/relleno */
+  --good-ink: #44696f;    /* texto legible */
   --bad: #d96c06;         /* borde/relleno */
   --bad-ink: #a3500a;     /* texto legible */
 
@@ -155,6 +155,15 @@ html {
 .halftone-surface-subtle {
   position: relative;
   overflow: hidden;
+}
+/* Esta regla vive fuera de @layer (Tailwind mete sus utilities en su propia
+   capa), así que por cascada le gana a `.fixed` aunque esa clase vaya
+   después en el HTML — el `position: relative` de arriba lo pisa y el
+   elemento deja de estar fijo. Con `.fixed` puesto a propósito (la barra de
+   navegación), hay que devolvérselo explícitamente. */
+.fixed.halftone-surface,
+.fixed.halftone-surface-subtle {
+  position: fixed;
 }
 .halftone-surface::before,
 .halftone-surface-subtle::before {

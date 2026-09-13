@@ -55,12 +55,12 @@
         on:click={() => toggle(seccion.titulo)}
         aria-expanded={abiertaSeccion}
       >
-        <h2 class="m-0 font-serif text-[17px] leading-tight font-semibold text-text">
+        <h2 class="m-0 font-serif text-[20px] leading-tight font-semibold text-text">
           {seccion.titulo}
         </h2>
         <!-- El contador por curso: además de decir cuánto llevás, es lo que
              devuelve el número que el header perdió al sacarle la bajada. -->
-        <span class="ml-auto flex-none font-serif text-[16px] font-semibold text-text-soft/70">
+        <span class="ml-auto flex-none font-serif text-[17px] font-semibold text-text-soft/70">
           {tiene}/{seccion.cromos.length}
         </span>
         <svg
