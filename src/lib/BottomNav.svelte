@@ -46,9 +46,8 @@
   class="halftone-surface-subtle fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bg/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-[6px]"
 >
   <div class="mx-auto flex max-w-[480px] items-stretch">
-    {#each items as it, i (it.id)}
+    {#each items as it (it.id)}
       {@const on = active === it.id}
-      {@const corner = i === 0 ? 'rounded-bl-[20px]' : i === items.length - 1 ? 'rounded-br-[20px]' : ''}
       <button
         class="flex flex-1 cursor-pointer items-center justify-center border-0 bg-transparent py-[13px] [font-family:inherit] {on
           ? 'text-accent'
@@ -58,7 +57,7 @@
         aria-label={it.label}
       >
         <span
-          class="flex h-9 w-[58px] items-center justify-center rounded-[4px] {corner} transition-colors duration-200 {on
+          class="flex h-9 w-[58px] items-center justify-center rounded-[4px] transition-colors duration-200 {on
             ? 'bg-accent text-on-accent'
             : ''}"
         >

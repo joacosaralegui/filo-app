@@ -10,9 +10,16 @@
   } from "./progress.js";
   import { cromoDeClase } from "./cromos.js";
   import DetailHeader from "./DetailHeader.svelte";
+  import iconAntigua from "../assets/cursos/antigua.webp";
+  import iconModerna from "../assets/cursos/moderna.webp";
+  import iconContemporanea from "../assets/cursos/contemporanea.webp";
   // Curso cargado: manifiesto (title, subtitle, blurb, portada, source) + classes.
   export let course;
   const dispatch = createEventDispatcher();
+
+  // Misma lámina que el catálogo, para que abrir el curso se sienta
+  // continuación de la tarjeta en la que se tocó, no una pantalla distinta.
+  const courseIcons = { antigua: iconAntigua, moderna: iconModerna, contemporanea: iconContemporanea };
 
   $: classes = course.classes || [];
   $: ganados = cromosGanados($progress);
@@ -33,6 +40,12 @@
   $: primary = resume || (lastClass && nextAfterLast) || firstAvailable;
   $: primaryLabel = resume ? "Continuar" : "Empezar";
 
+  // Sin nada empezado, la lámina del curso; retomando una clase puntual, su
+  // cromo — para que la tarjeta anticipe A QUIÉN vas a encontrar, no sólo
+  // que hay un curso genérico esperando.
+  $: primaryCromo = resume ? cromoDeClase(course.id, primary.num) : null;
+  $: coverImg = (primaryCromo && primaryCromo.img) || courseIcons[course.id];
+
   function open(c) {
     if (c && c.content) dispatch("open", c);
   }
@@ -43,24 +56,31 @@
 >
   <DetailHeader title={course.title} on:back={() => dispatch("back")} />
 
-  <!-- Presentación del curso, en texto: de qué va y por dónde seguir. Sin la
-       portada, que como bloque se comía la pantalla y como fondo ensuciaba la
-       tarjeta — el recorrido, que es a lo que se viene, entra completo. -->
-  <div class="mt-5 flex flex-col gap-3 rounded-[4px] halftone-surface-subtle bg-surface p-5">
-    {#if course.subtitle}
-      <p class="font-serif text-[16px] leading-[1.3] font-normal text-text">
-        {course.subtitle}
-      </p>
-    {/if}
+  <!-- Presentación del curso: la misma lámina del catálogo arriba, ancho
+       completo, y debajo la bajada + el botón — que así cae más cerca del
+       centro de la pantalla, más cómodo para el pulgar que pegado al header. -->
+  <div class="mt-5 flex flex-col rounded-[4px] halftone-surface-subtle bg-surface">
+    <div class="p-5 pb-0">
+      <img class="aspect-square w-full rounded-[4px] object-cover" src={coverImg} alt="" />
+    </div>
+    <div class="flex flex-col gap-3 p-5">
+      {#if course.subtitle}
+        <p class="font-serif text-[16px] leading-[1.3] font-normal text-text">
+          {course.subtitle}
+        </p>
+      {/if}
 
-    {#if primary}
-      <button
-        class="mt-1 flex w-full cursor-pointer items-center justify-center gap-2 rounded-[4px] border-0 halftone-surface bg-accent-3 px-6 py-[15px] text-[19px] font-bold text-on-accent uppercase [font-family:inherit] transition-transform active:scale-[0.98]"
-        on:click={() => open(primary)}
-      >
-        {primaryLabel}: Clase {primary.num}
-      </button>
-    {/if}
+      {#if primary}
+        <button
+          class="mt-1 flex w-full cursor-pointer items-center justify-center gap-2 rounded-[4px] border-0 halftone-surface bg-accent-3 px-6 py-[15px] text-[19px] font-bold text-on-accent uppercase [font-family:inherit] transition-transform active:scale-[0.98]"
+          on:click={() => open(primary)}
+        >
+          {primaryLabel === "Empezar" && primary === firstAvailable
+            ? "Empezar"
+            : `${primaryLabel}: Clase ${primary.num}`}
+        </button>
+      {/if}
+    </div>
   </div>
 
   <section class="pt-7">

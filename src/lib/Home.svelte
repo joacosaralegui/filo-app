@@ -52,7 +52,7 @@
       <span
         class="mt-1 flex w-full items-center justify-center gap-2 rounded-[4px] halftone-surface bg-accent px-6 py-[15px] text-[16px] font-bold text-on-accent uppercase transition-transform group-active:scale-[0.97]"
       >
-        Continuar Clase {last.num}
+        Continuar: Clase {last.num}
       </span>
     </button>
   {:else}
