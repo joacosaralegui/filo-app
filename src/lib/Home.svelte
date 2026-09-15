@@ -28,6 +28,7 @@
 <div
   class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
 >
+  <div class="flex flex-1 flex-col justify-center">
   <RootHeader img={socrates} title="Pensadores" wash={0.6} position="50% 30%" zoom={1.9} halftone />
 
   <!-- La pieza fuerte: seguir donde quedaste. Sin nada empezado ocupa el mismo
@@ -164,6 +165,7 @@
       </div>
     </button>
   {/if}
+  </div>
 </div>
 
 <style>
