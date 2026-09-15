@@ -228,13 +228,7 @@ export default {
       type: "info",
       continues: true,
       title: "Momentos clave de su pensamiento",
-      body: "Esa misma fusión de placer y dolor aparece, en un registro casi extático, en La gaya ciencia:",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "Momentos clave de su pensamiento",
-      body: "Pero si uno soportara, si pudiera soportar esta inmensa suma de aflicciones de toda clase, si pudiera contenerla toda en una sola alma y concentrarla en un único sentimiento, ello daría por resultado, sin duda, una felicidad que la humanidad no ha conocido hasta ahora.",
+      body: "Esa misma fusión de placer y dolor aparece, en un registro casi extático, en La gaya ciencia:\n«Pero si uno soportara, si pudiera soportar esta inmensa suma de aflicciones de toda clase, si pudiera contenerla toda en una sola alma y concentrarla en un único sentimiento, ello daría por resultado, sin duda, una felicidad que la humanidad no ha conocido hasta ahora.»",
     },
     {
       type: "info",
@@ -367,13 +361,7 @@ export default {
     {
       type: "info",
       title: "La muerte de Dios",
-      body: "En La gaya ciencia (1882) —die fröhliche Wissenschaft, la \"ciencia alegre\"— es un **loco** quien viene a dar la noticia, llegando siempre demasiado temprano o demasiado tarde:",
-    },
-    {
-      type: "info",
-      continues: true,
-      title: "La muerte de Dios",
-      body: "Dios ha muerto. Dios permanece muerto. Y nosotros lo hemos matado. ¿Cómo nos consolaremos nosotros, los asesinos entre los asesinos?",
+      body: "En La gaya ciencia (1882) —die fröhliche Wissenschaft, la \"ciencia alegre\"— es un **loco** quien viene a dar la noticia, llegando siempre demasiado temprano o demasiado tarde:\n \"Dios ha muerto. Dios permanece muerto. Y nosotros lo hemos matado. ¿Cómo nos consolaremos nosotros, los asesinos entre los asesinos?\"",
     },
     {
       type: "info",

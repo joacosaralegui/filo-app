@@ -90,6 +90,16 @@
     lastRoute.cursos = `#/cursos/${$route.courseId}${$route.num != null ? "/" + $route.num : ""}`;
   $: if ($route.view === "glosario")
     lastRoute.glosario = $route.slug ? `#/glosario/${encodeURIComponent($route.slug)}` : "#/glosario";
+
+  // Tocar la pestaña en la que ya estás no vuelve a donde quedaste, sube a la
+  // raíz de esa pestaña: de una clase al catálogo, de un término a la lista.
+  // Es el gesto de siempre en una barra de pestañas, y acá además es la única
+  // forma de salir de la profundidad sin usar "atrás". Si ya estás en la raíz
+  // no pasa nada, porque `go` ignora el hash repetido. Tampoco hace falta
+  // limpiar `lastRoute` a mano: llegar a la raíz vuelve a correr los de arriba,
+  // que la dejan recordada ahí.
+  const ROOTS = { inicio: "#/", cursos: "#/cursos", glosario: "#/glosario", cromos: "#/cromos" };
+  const goTab = (id) => go(tab === id ? ROOTS[id] : lastRoute[id] || ROOTS[id], true);
 </script>
 
 {#if $route.view === "cromos"}
@@ -155,10 +165,10 @@
 {#if $route.view !== "desafio"}
   <BottomNav
     active={tab}
-    on:inicio={() => toInicio()}
-    on:glosario={() => go(lastRoute.glosario, true)}
-    on:cursos={() => go(lastRoute.cursos, true)}
-    on:cromos={() => toCromos()}
+    on:inicio={() => goTab("inicio")}
+    on:glosario={() => goTab("glosario")}
+    on:cursos={() => goTab("cursos")}
+    on:cromos={() => goTab("cromos")}
   />
 {/if}
 

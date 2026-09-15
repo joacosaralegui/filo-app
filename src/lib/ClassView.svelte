@@ -24,8 +24,9 @@
   const totalQuiz = lecture.feed.filter((c) => SCORABLE.has(c.type)).length;
 
   // La clase abre con una slide de portada, así que la card `i` del feed vive
-  // en la slide `i + PORTADA`. Todo lo que traduce entre índice de feed e
-  // índice de slide pasa por esta constante.
+  // en la slide `i + PORTADA`. En repaso no hay portada y las slides son otras:
+  // todo lo que traduce entre índice de feed e índice de slide pasa por
+  // `slideDe` (más abajo), que contempla los dos casos.
   const PORTADA = 1;
 
   // Correcto según el tipo. 'quiz' guarda el índice elegido (número); el resto
@@ -50,6 +51,33 @@
   let answers = { ...saved.answers }; // { [cardIndex]: índice original elegido }
   let combo = saved.combo;
   let currentCard = saved.card;
+
+  // --- modo repaso ---
+  // Al terminar la clase con errores se puede volver a hacer SÓLO las que
+  // fallaste. `repasando` es la lista de índices de feed en repaso (null =
+  // modo normal): mientras está activa, el feed muestra nada más que esas
+  // cards y sus respuestas vuelven a estar sin contestar, así que la puerta,
+  // el burst y el guardado funcionan igual que en la primera vuelta.
+  //
+  // La nota no se calcula aparte: `answers` es la única fuente, y acertar en
+  // el repaso pisa la respuesta fallada. Por eso recuperar todas devuelve las
+  // 3★ de verdad — las mismas que habilitan los cromos de pensador y
+  // corriente, sin marca de asterisco.
+  let repasando = null;
+  // Sube cada vez que se entra o se sale del repaso: entra en la key de las
+  // cards para forzar su remontaje (ver el feed más abajo).
+  let pase = 0;
+  // Resultado del último repaso de esta visita, para la tarjeta de cierre.
+  let repasadas = 0;
+  let recuperadas = 0;
+
+  // Las interactivas que están respondidas MAL ahora mismo.
+  function calcFalladas(ans) {
+    return lecture.feed
+      .map((c, i) => (SCORABLE.has(c.type) && ans[i] != null && !isCorrect(c, ans[i]) ? i : -1))
+      .filter((i) => i >= 0);
+  }
+  $: falladas = calcFalladas(answers);
 
   // Correctas y "puerta" en función de un `answers` dado — funciones puras,
   // no reactivas: además de alimentar la UI (abajo) las necesita `onAnswer`
@@ -90,7 +118,7 @@
   // hacia abajo ANTES de que el scroll ocurra, evitando el rebote visible.
   function atGate() {
     if (gate < 0 || !feedEl) return false;
-    return feedEl.scrollTop >= (gate + PORTADA) * feedEl.clientHeight - 2;
+    return feedEl.scrollTop >= slideDe(gate) * feedEl.clientHeight - 2;
   }
 
   // Rueda del mouse / trackpad: bloquear el desplazamiento hacia abajo.
@@ -129,10 +157,13 @@
     clearTimeout(autoTimer);
     autoTimer = null;
   }
-  // `i` es índice de FEED; acá se traduce a slide.
-  function irA(i) {
+  // Avanzar de a una SLIDE, no de a una card del feed: en repaso la card
+  // siguiente del feed casi nunca es la slide siguiente (entre dos falladas
+  // puede haber veinte cards que no se muestran), y traducirla daba -1 —o sea,
+  // un salto al principio del feed—.
+  function irASlide(n) {
     if (!feedEl) return;
-    feedEl.scrollTo({ top: (i + PORTADA) * feedEl.clientHeight, behavior: "smooth" });
+    feedEl.scrollTo({ top: n * feedEl.clientHeight, behavior: "smooth" });
   }
 
   // recompensa
@@ -144,7 +175,15 @@
   let finaleId = 0;
   let ready = false; // evita celebrar en el salto de montaje
   let endCelebrated = false;
-  const endIndex = lecture.feed.length + PORTADA; // índice de la slide de cierre
+  // Geometría del feed: qué slide ocupa cada card, y dónde cae el cierre.
+  // En modo normal son las cards del feed detrás de la portada. En repaso la
+  // portada no se muestra (no hay nada nuevo que anunciar) y las únicas slides
+  // son las falladas, en orden, así que ambas cosas se recalculan.
+  $: slidesVisibles = repasando ?? lecture.feed.map((_, i) => i);
+  $: portada = repasando ? 0 : PORTADA;
+  $: endIndex = slidesVisibles.length + portada; // índice de la slide de cierre
+  // Índice de FEED -> índice de slide.
+  $: slideDe = (i) => slidesVisibles.indexOf(i) + portada;
 
   $: pct = totalQuiz ? Math.round((correctCount / totalQuiz) * 100) : 0;
 
@@ -182,7 +221,7 @@
     ];
     if (saved.card > 0 && feedEl) {
       // salto instantáneo a la última card vista, sin pasar la puerta
-      const target = gate >= 0 ? Math.min(saved.card, gate + PORTADA) : saved.card;
+      const target = gate >= 0 ? Math.min(saved.card, slideDe(gate)) : saved.card;
       feedEl.scrollTo({ top: target * feedEl.clientHeight, behavior: "instant" });
       if (target >= endIndex) endCelebrated = true; // ya está en el cierre: no festejar en la carga
     }
@@ -218,7 +257,7 @@
       if (combo > 1) showPop(combo);
       vibrate(combo >= 3 ? [12, 20, 18] : [14]);
       cancelarAuto();
-      autoTimer = setTimeout(() => irA(i + 1), 1200);
+      autoTimer = setTimeout(() => irASlide(slideDe(i) + 1), 1200);
     } else {
       combo = 0;
       vibrate([45, 40, 45]);
@@ -233,6 +272,45 @@
         answers,
         combo,
         card: currentCard,
+        stars: calcStars(answers),
+        done: calcGate(answers) < 0,
+      }),
+    ];
+  }
+
+  // Empezar el repaso: borra del progreso SÓLO las respuestas falladas y deja
+  // el feed mostrando esas cards. Borrarlas es lo que reabre la puerta (vuelven
+  // a estar sin contestar), así que no hace falta un camino aparte para el
+  // scroll ni para el guardado.
+  //
+  // La nota baja en el momento de empezar, porque esas respuestas dejan de
+  // contar como dadas, y vuelve a subir a medida que las acertás. Es lo
+  // correcto: mientras estás repasando, todavía no las recuperaste.
+  function empezarRepaso() {
+    if (!falladas.length) return;
+    cancelarAuto();
+    sheet = null;
+    const limpio = { ...answers };
+    for (const i of falladas) delete limpio[i];
+    repasando = falladas;
+    answers = limpio;
+    pase += 1;
+    combo = 0;
+    endCelebrated = false;
+    guardarRepaso();
+    // Al tope: la primera fallada es ahora la primera card del feed.
+    if (feedEl) feedEl.scrollTo({ top: 0, behavior: "instant" });
+  }
+
+  // Guardado del repaso. `answers` ya viene con las falladas borradas, así que
+  // `stars`/`done` se recalculan solos contra lo que queda respondido.
+  function guardarRepaso() {
+    revelados = [
+      ...revelados,
+      ...saveClass(lecture.num, {
+        answers,
+        combo,
+        card: 0,
         stars: calcStars(answers),
         done: calcGate(answers) < 0,
       }),
@@ -272,6 +350,10 @@
   // scroll eso come frames, así que se escribe recién cuando el scroll frena.
   let guardarTimer;
   function guardarPosicion(idx) {
+    // En repaso, `idx` cuenta slides del subconjunto y no de la clase: guardarlo
+    // dejaría a la clase reanudando en una card que no es. La posición guardada
+    // se actualiza sola al salir del repaso.
+    if (repasando) return;
     clearTimeout(guardarTimer);
     guardarTimer = setTimeout(() => {
       revelados = [...revelados, ...saveClass(lecture.num, { card: idx })];
@@ -299,6 +381,21 @@
     // llegó a la slide de cierre: festejar una vez
     if (ready && !endCelebrated && idx >= endIndex) {
       endCelebrated = true;
+      // Terminó el repaso: se cierra el modo, así el cierre vuelve a hablar de
+      // la clase entera (y el feed, si scrolleás para arriba, es otra vez la
+      // clase completa con todo respondido). `repasadas` sostiene el mensaje
+      // de "recuperaste N" en la tarjeta.
+      if (repasando) {
+        repasadas = repasando.length;
+        recuperadas = repasando.filter((i) => isCorrect(lecture.feed[i], answers[i])).length;
+        repasando = null;
+        pase += 1;
+        // El cierre de la clase entera, calculado a mano: `endIndex` es
+        // reactivo y en esta línea todavía vale la geometría del repaso
+        // (los `$:` recién corren en el próximo tick).
+        currentCard = lecture.feed.length + PORTADA;
+        revelados = [...revelados, ...saveClass(lecture.num, { card: currentCard })];
+      }
       // Los cromos que se hayan ganado en esta visita (por una respuesta o
       // por el backfill del mount) esperaban a este momento para mostrarse,
       // uno a la vez, encima del cierre.
@@ -357,7 +454,10 @@
   on:touchmove|nonpassive={onTouchMove}
 >
   <!-- Portada de la clase: anuncia de qué va, muestra su ilustración (grisada
-       hasta completarla) y enseña el gesto con la flecha. -->
+       hasta completarla) y enseña el gesto con la flecha. En repaso no va:
+       ya hiciste la clase, y lo que sigue son las preguntas sueltas que
+       fallaste, no un recorrido que haya que presentar. -->
+  {#if !repasando}
   <section
     class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-[calc(env(safe-area-inset-bottom)+86px)] [scroll-snap-align:center] [scroll-snap-stop:always]"
   >
@@ -388,24 +488,36 @@
       </span>
     </div>
   </section>
+  {/if}
 
   {#each lecture.feed as card, i}
     <!-- Después de la primera card sin responder no se renderiza nada: el
-         feed termina en la puerta. -->
-    {#if gate < 0 || i <= gate}
+         feed termina en la puerta. En repaso, además, sólo existen las cards
+         que fallaste: las que ya tenías bien no se vuelven a preguntar. -->
+    {#if (gate < 0 || i <= gate) && (!repasando || repasando.includes(i))}
     <section
       class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-[calc(env(safe-area-inset-bottom)+86px)] [scroll-snap-align:center] [scroll-snap-stop:always]"
     >
       {#if card.type === "info"}
         <InfoCard {card} />
-      {:else if card.type === "match"}
-        <MatchCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
-      {:else if card.type === "classify"}
-        <ClassifyCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
-      {:else if card.type === "short"}
-        <ShortCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
       {:else}
-        <QuizCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
+        <!-- `pase` en la key: las cards leen `saved` UNA sola vez, al montar
+             (ahí fijan la respuesta elegida y barajan las opciones). Al entrar
+             o salir del repaso la respuesta se borra, así que hay que
+             remontarlas o seguirían mostrándose contestadas y deshabilitadas.
+             De paso se rebarajan las opciones, que es lo que se quiere cuando
+             volvés a intentar la misma pregunta. -->
+        {#key `${pase}-${i}`}
+          {#if card.type === "match"}
+            <MatchCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
+          {:else if card.type === "classify"}
+            <ClassifyCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
+          {:else if card.type === "short"}
+            <ShortCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
+          {:else}
+            <QuizCard {card} saved={answers[i] ?? null} on:answer={(e) => onAnswer(e, i)} />
+          {/if}
+        {/key}
       {/if}
     </section>
     {/if}
@@ -430,12 +542,28 @@
       <!-- Un dato por renglón y cada uno con su trabajo: qué pasó, cómo te
            fue. El título de la clase no se repite acá — lo tenés en la barra de
            arriba, y a esta altura ya sabés qué clase hiciste. -->
+      <!-- "Perfecta" es sin ninguna fallada, no 3★: con 10 preguntas el corte
+           de 90% deja entrar una mal, y ahí el título estaría mintiendo. -->
       <h2 class="mt-5 m-0 font-serif text-[26px] leading-none font-semibold text-text">
-        Clase completada
+        {repasadas && !falladas.length ? "¡Clase perfecta!" : "Clase completada"}
       </h2>
       <p class="mt-2.5 text-[16px] font-semibold text-text-soft/80">
         {correctCount} de {totalQuiz} correctas
       </p>
+
+      <!-- Después de un repaso, decir qué cambió: la nota de arriba ya es la
+           nueva, pero sin esto no se ve que fue el repaso el que la movió. -->
+      {#if repasadas}
+        <p class="mt-1.5 text-[16px] font-semibold text-accent-ink">
+          {#if recuperadas === repasadas}
+            Recuperaste {recuperadas === 1 ? "la que habías fallado" : `las ${recuperadas} que habías fallado`}
+          {:else if recuperadas}
+            Recuperaste {recuperadas} de {repasadas}
+          {:else}
+            Todavía quedan {repasadas === 1 ? "esa" : `esas ${repasadas}`}
+          {/if}
+        </p>
+      {/if}
 
       {#if lockedNext}
         <p class="mt-4 text-[16px] leading-[1.45] font-semibold text-text-soft">
@@ -467,8 +595,10 @@
 
       <!-- Las secundarias en una fila, no apiladas: se leen como el pie de la
            pantalla y no como una lista de sobras debajo del botón.
-           Rehacer sigue pidiendo dos toques porque borra las respuestas (los
-           cromos no se tocan: lo ganado está ganado). -->
+           Mientras queden falladas, la segunda acción es repasarlas: es más
+           útil que rehacer la clase entera y es el camino a las 3★. Recién
+           cuando no queda ninguna aparece Rehacer, que pide dos toques porque
+           borra las respuestas (los cromos no se tocan: lo ganado está ganado). -->
       <div class="mt-4 flex items-center gap-3 text-[16px] font-bold text-text-soft/70">
         {#if nextClass}
           <button
@@ -477,14 +607,23 @@
           >
           <span class="h-3 w-px bg-current opacity-30" aria-hidden="true"></span>
         {/if}
-        <button
-          class="cursor-pointer border-0 bg-transparent [font-family:inherit] active:scale-[0.97] {confirmReset
-            ? 'text-bad'
-            : 'text-inherit'}"
-          on:click={pedirReset}
-        >
-          {confirmReset ? "¿Seguro? Tocá de nuevo" : "Rehacer la clase"}
-        </button>
+        {#if falladas.length}
+          <button
+            class="cursor-pointer border-0 bg-transparent text-inherit [font-family:inherit] active:scale-[0.97]"
+            on:click={empezarRepaso}
+          >
+            Repasar {falladas.length === 1 ? "la fallada" : `las ${falladas.length} falladas`}
+          </button>
+        {:else}
+          <button
+            class="cursor-pointer border-0 bg-transparent [font-family:inherit] active:scale-[0.97] {confirmReset
+              ? 'text-bad'
+              : 'text-inherit'}"
+            on:click={pedirReset}
+          >
+            {confirmReset ? "¿Seguro? Tocá de nuevo" : "Rehacer la clase"}
+          </button>
+        {/if}
       </div>
     </div>
   </section>

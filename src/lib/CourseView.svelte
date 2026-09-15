@@ -52,7 +52,10 @@
        (foto 30% + pretítulo + título), pegado más cerca del centro de la
        pantalla que del header — más cómodo para el pulgar. -->
   {#if primary}
-    <div class="mt-5">
+    <div class="mt-[15vh]">
+      <p class="pb-2 self-start text-sm font-bold text-text-soft/70 uppercase"
+        >Continuar con
+        </p>
       <ClassHero
         img={coverImg}
         pretitle="{course.title} | Clase {primary.num}"
