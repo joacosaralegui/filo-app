@@ -3,6 +3,7 @@
   import {
     progress,
     courseStateOf,
+    classStateOf,
     isComplete,
     isStarted,
     completionPct,
@@ -73,6 +74,7 @@
         {@const done = !!c.content && isComplete($progress, c.content)}
         {@const started = !!c.content && !done && isStarted($progress, c.content)}
         {@const pct = started ? completionPct($progress, c.content) : 0}
+        {@const stars = done ? classStateOf($progress, c.num, course.id).stars : 0}
         {@const titleCls = !c.content ? "text-text-soft opacity-55" : "text-text"}
         {@const statusCls = started
           ? "text-accent-3 opacity-100"
@@ -107,9 +109,19 @@
               >{c.num}. {c.title}</span
             >
           </span>
+          <!-- Completada muestra la calificación, no la palabra: las estrellas
+               dicen lo mismo (la hiciste) y además cuánto te salió, que es lo
+               que te dice si vale la pena volver a repasarla. Mismos símbolos
+               y colores que el cierre de la clase, para que se lean como la
+               misma nota. -->
           <span class="flex-none text-[16px] font-bold {statusCls}">
             {#if !c.content}Bloqueada
-            {:else if done}Completada
+            {:else if done}
+              <span class="flex gap-0.5 text-[15px] leading-none" role="img" aria-label="{stars} de 3 estrellas">
+                {#each [0, 1, 2] as i}
+                  <span class={i < stars ? "text-accent-2" : "text-line"}>★</span>
+                {/each}
+              </span>
             {:else if started}{pct}%
             {/if}
           </span>
