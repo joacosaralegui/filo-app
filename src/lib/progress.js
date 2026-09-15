@@ -11,22 +11,34 @@
 // `lastClass` alimenta el botón "Continuar" de la home del curso; `lastCourse`,
 // el del catálogo.
 import { writable, get } from "svelte/store";
+import { COURSES } from "../content/courses.js";
+import { CROMOS_CON_IMG } from "./cromos.js";
 
 const KEY = "filo-progress-v2";
 const OLD_KEY = "filo-progress-v1";
-const EMPTY_CLASS = { answers: {}, combo: 0, card: 0 };
+const EMPTY_CLASS = { answers: {}, combo: 0, card: 0, stars: 0, done: false };
 const EMPTY_COURSE = { lastClass: null, classes: {} };
 
 function load() {
   try {
     const raw = localStorage.getItem(KEY);
-    if (raw) return migrarCorte(migrarIds(JSON.parse(raw)));
+    if (raw) return migrarCromos(migrarCorte(migrarIds(JSON.parse(raw))));
     const old = localStorage.getItem(OLD_KEY);
-    if (old) return migrarCorte(migrateV1(JSON.parse(old)));
+    if (old) return migrarCromos(migrarCorte(migrateV1(JSON.parse(old))));
   } catch {
     /* almacenamiento no disponible o JSON corrupto: arrancamos de cero */
   }
   return {};
+}
+
+// El esquema de cromos pasó de "uno por clase" (59) a una colección de 28
+// logros con criterios nuevos: los slugs viejos guardados ya no significan
+// lo mismo (ej. "arche" era la clase 1 de Antigua, ahora es la corriente
+// Presocráticos), así que la colección guardada se limpia una sola vez al
+// detectar el cambio — se re-gana desde cero contra los criterios nuevos.
+function migrarCromos(p) {
+  if (p.cromosV2) return p;
+  return { ...p, cromos: {}, cromosV2: true };
 }
 
 // v1 guardaba un solo curso, plano: { lastClass, classes }. Era el que hoy se
@@ -126,19 +138,24 @@ export function courseStateOf(p, id = activeCourse) {
   return { ...EMPTY_COURSE, ...((p.courses && p.courses[id]) || {}) };
 }
 
-// Estado guardado de una clase del curso activo, a partir de un valor del store.
-export function classStateOf(p, num) {
-  return { ...EMPTY_CLASS, ...(courseStateOf(p).classes[num] || {}) };
+// Estado guardado de una clase (por defecto, del curso activo). El `id`
+// explícito lo usa el otorgamiento de cromos, que necesita leer clases de
+// cursos que no son el que estás cursando ahora mismo (p. ej. "Filósofo
+// completo" mira los tres a la vez).
+export function classStateOf(p, num, id = activeCourse) {
+  return { ...EMPTY_CLASS, ...(courseStateOf(p, id).classes[num] || {}) };
 }
 
 // Igual que classStateOf pero leyendo el valor actual del store (uso puntual).
-export function classState(num) {
-  return classStateOf(get(progress), num);
+export function classState(num, id) {
+  return classStateOf(get(progress), num, id);
 }
 
-// Mezcla `patch` en el estado de la clase `num` y la marca como última abierta.
+// Mezcla `patch` en el estado de la clase `num` y la marca como última
+// abierta. Devuelve los cromos recién ganados (puede ser ninguno): quien
+// llama (ClassView) decide si festeja.
 export function saveClass(num, patch) {
-  if (!activeCourse) return;
+  if (!activeCourse) return [];
   progress.update((p) => {
     const course = courseStateOf(p, activeCourse);
     const prev = { ...EMPTY_CLASS, ...(course.classes[num] || {}) };
@@ -155,6 +172,7 @@ export function saveClass(num, patch) {
       },
     };
   });
+  return evaluarCromosGanados();
 }
 
 // Borra el avance de una clase (respuestas, combo y posición) para volver a
@@ -192,6 +210,71 @@ export function cromosGanados(p) {
   return p.cromos || {};
 }
 
+// ¿Están completas TODAS las clases 1..total de un curso? Sólo mira
+// `done` guardado por clase — no necesita el contenido del curso cargado.
+function cursoCompleto(p, courseId) {
+  const total = COURSES.find((c) => c.id === courseId)?.total || 0;
+  if (!total) return false;
+  for (let n = 1; n <= total; n += 1) {
+    if (!classStateOf(p, n, courseId).done) return false;
+  }
+  return true;
+}
+
+// ¿Está en 3★ TODA una lista de clases de un curso?
+function todasA3Estrellas(p, courseId, clases) {
+  return clases.every((n) => classStateOf(p, n, courseId).stars >= 3);
+}
+
+// Si el criterio de `cromo` se cumple AHORA, mirando sólo lo guardado (sin
+// contenido de curso cargado en memoria — ver nota de arquitectura en el
+// plan: el contenido vive en un cache que no sobrevive un reload, así que
+// ningún criterio puede depender de tenerlo).
+function criterioCumplido(cromo, p) {
+  if (cromo.tipo === "curso") return cursoCompleto(p, cromo.curso);
+  if (cromo.tipo === "pensador" || cromo.tipo === "corriente") {
+    return todasA3Estrellas(p, cromo.curso, cromo.clases);
+  }
+  if (cromo.tipo !== "especial") return false;
+
+  switch (cromo.criterio) {
+    case "cursosCompletos":
+      return COURSES.every((c) => cursoCompleto(p, c.id));
+    case "desafioPerfecto": {
+      const dia = p.desafio?.dia;
+      return !!dia && dia.total > 0 && dia.aciertos === dia.total;
+    }
+    case "cursoPerfecto":
+      return COURSES.some((c) => todasA3Estrellas(p, c.id, range(1, c.total)));
+    case "coleccionista":
+      return CROMOS_CON_IMG.filter((c) => c.slug !== cromo.slug).every(
+        (c) => !!(p.cromos && p.cromos[c.slug])
+      );
+    default:
+      return false;
+  }
+}
+
+function range(from, to) {
+  const out = [];
+  for (let n = from; n <= to; n += 1) out.push(n);
+  return out;
+}
+
+// Recorre los 28 cromos y otorga los que se hayan cumplido y todavía no
+// estén ganados. "Coleccionista" va último en `CROMOS_CON_IMG` a propósito:
+// así ve, en la misma pasada, los otros 27 recién otorgados. Devuelve los
+// que fueron NUEVOS en esta pasada (para la ceremonia de revelación).
+export function evaluarCromosGanados() {
+  const nuevos = [];
+  for (const cromo of CROMOS_CON_IMG) {
+    const p = get(progress);
+    if (p.cromos && p.cromos[cromo.slug]) continue;
+    if (criterioCumplido(cromo, p) && ganarCromo(cromo.slug)) nuevos.push(cromo);
+  }
+  return nuevos;
+}
+
 // Tipos de card puntuables (interactivos). Única fuente de verdad: ClassView
 // también la importa de acá, para que no se desincronicen al agregar formatos.
 export const SCORABLE = new Set(["quiz", "match", "classify", "short"]);
@@ -211,18 +294,13 @@ export function isStarted(p, lecture) {
   return Object.keys(st.answers).length > 0 || st.card > 0;
 }
 
-// % de cards interactivas ya respondidas (0–100). Alimenta la barra de
-// progreso de fondo en las cards de la home.
+// % de avance por la card en la que quedaste contra el total (0–100), no por
+// preguntas respondidas: entre quizzes hay tramos de sólo lectura, y esos
+// también cuentan como avance aunque no sumen ningún acierto.
 export function completionPct(p, lecture) {
   const st = classStateOf(p, lecture.num);
-  let total = 0;
-  let done = 0;
-  lecture.feed.forEach((c, i) => {
-    if (!SCORABLE.has(c.type)) return;
-    total += 1;
-    if (st.answers[i] != null) done += 1;
-  });
-  return total > 0 ? Math.round((done / total) * 100) : 0;
+  const total = lecture.feed.length + 1; // +1: la portada, la primera slide
+  return Math.min(100, Math.round((st.card / total) * 100));
 }
 
 // --- desafío diario ---
@@ -248,13 +326,14 @@ export function desafioDeHoy(p) {
 // hoy, para poder ofrecer "ir a repasar" desde la tarjeta de cierre aunque
 // vuelvas más tarde el mismo día y el desafío ya esté hecho.
 export function saveDesafio(aciertos, total, clase) {
-  if (!total) return;
+  if (!total) return [];
   progress.update((p) => {
     // Por las dudas: si ya había uno de hoy, gana el primero. El desafío se
     // juega una vez.
     if (p.desafio?.dia?.fecha === hoyISO()) return p;
     return { ...p, desafio: { dia: { fecha: hoyISO(), aciertos, total, clase } } };
   });
+  return evaluarCromosGanados();
 }
 
 // Cursos con algún avance guardado. El desafío los usa para preguntar sobre lo

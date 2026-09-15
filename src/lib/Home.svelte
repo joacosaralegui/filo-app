@@ -3,11 +3,14 @@
   // dónde quedaste, qué podés jugar y cómo va la colección. Los destinos que
   // ya tienen pestaña propia (Cursos, Cromos) aparecen sólo cuando tienen algo
   // que contar, y con su información a la vista.
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
   import RootHeader from "./RootHeader.svelte";
+  import ClassHero from "./ClassHero.svelte";
   import socrates from "../assets/socrates.webp";
   import { progress, cromosGanados, desafioDeHoy } from "./progress.js";
-  import { conseguidos, TOTAL } from "./cromos.js";
+  import { conseguidos, TOTAL, imagenDeClase } from "./cromos.js";
+  import { courseIcons } from "./courseIcons.js";
+  import { armarDesafioDeHoy } from "./desafioHoy.js";
   export let courses = [];
   const dispatch = createEventDispatcher();
 
@@ -16,6 +19,12 @@
   $: lastCourseMeta = last ? courses.find((c) => c.id === last.courseId) : null;
   $: hayProgreso = !!(last && lastCourseMeta);
 
+  // La foto de la tarjeta "Continuar con": la ilustración de esa clase
+  // puntual, o la lámina del curso si todavía no tiene una propia.
+  $: lastImg =
+    (hayProgreso && imagenDeClase(lastCourseMeta.id, last.num)) ||
+    (lastCourseMeta && courseIcons[lastCourseMeta.id]);
+
   $: cromos = conseguidos(cromosGanados($progress));
   // El desafío de hoy: hecho o pendiente. Es lo único que cambia de estado en
   // la home día a día, así que se ve en el ícono, no en un texto.
@@ -23,6 +32,17 @@
   // Ya hecho, ¿salió bien? Más aciertos que errores → azul; si no, naranja.
   // Es la misma lectura de color que usa el desafío en su tablero de arriba.
   $: ganado = hoy && 2 * hoy.aciertos > hoy.total;
+
+  // De qué clase sale el desafío de hoy, para la bajadita bajo "Desafío
+  // diario". Si ya está hecho, sale gratis de lo guardado; si está
+  // pendiente, se precalcula acá (mismo sorteo determinista que usa
+  // Desafio.svelte) para no tener que abrirlo primero para saberlo.
+  let desafioPreview = null;
+  onMount(async () => {
+    if (!hoy) desafioPreview = (await armarDesafioDeHoy(courses, $progress))?.clase ?? null;
+  });
+  $: desafioClase = hoy?.clase ?? desafioPreview;
+  $: desafioCurso = desafioClase && courses.find((c) => c.id === desafioClase.courseId);
   </script>
 
 <div
@@ -38,24 +58,14 @@
     <span class="mb-2 self-start text-sm font-bold text-text-soft/70 uppercase"
       >Continuar con</span
     >
-    <button
-      class="group flex w-full cursor-pointer flex-col gap-3 rounded-[4px] halftone-surface-subtle bg-surface p-5 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+    <ClassHero
+      img={lastImg}
+      pretitle="{lastCourseMeta.title} | Clase {last.num}"
+      title={last.title}
+      buttonLabel="Continuar"
+      wholeCardClickable
       on:click={() => dispatch("resume", { id: lastCourseMeta.id, num: last.num })}
-    >
-      <div class="flex flex-col gap-2">
-        <h2 class="font-serif text-[24px] leading-[1.2] font-semibold text-text">
-          {last.title}
-        </h2>
-        <p class="font-serif text-[16px] leading-[1.3] font-medium text-accent">
-          {lastCourseMeta.title}{lastCourseMeta.subtitle ? `: ${lastCourseMeta.subtitle}` : ""}
-        </p>
-      </div>
-      <span
-        class="mt-1 flex w-full items-center justify-center gap-2 rounded-[4px] halftone-surface bg-accent px-6 py-[15px] text-[16px] font-bold text-on-accent uppercase transition-transform group-active:scale-[0.97]"
-      >
-        Continuar: Clase {last.num}
-      </span>
-    </button>
+    />
   {:else}
     <span class="mb-2 self-start text-sm font-bold text-text-soft/70 uppercase"
       >Para empezar</span
@@ -68,10 +78,10 @@
         Comenzá tu recorrido
       </h2>
       <p class="text-[16px] leading-[1.5] text-text-soft">
-        Elegí un curso y andá clase por clase. Cada una termina en un cromo para el álbum.
+        Elegí un curso y arrancá con la primera clase.
       </p>
       <span
-        class="mt-1 flex w-full items-center justify-center gap-2 rounded-[4px] halftone-surface bg-accent px-6 py-[15px] text-[16px] font-bold text-on-accent uppercase transition-transform group-active:scale-[0.97]"
+        class="mt-1 flex w-full items-center justify-center gap-2 rounded-[4px] halftone-surface bg-accent-3 px-6 py-[15px] text-[16px] font-bold text-on-accent uppercase transition-transform group-active:scale-[0.97]"
       >
         Ver los cursos
       </span>
@@ -83,18 +93,15 @@
        a propósito que se vea "incompleto" hasta que lo contestás — es el
        único pendiente que la app te pone por día. -->
   <button
-    class="mt-3.5 flex w-full cursor-pointer items-center gap-3.5 rounded-[4px] halftone-surface {hoy &&
-    ganado
-      ? 'bg-good'
-      : 'bg-accent-3'} px-5 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
+    class="mt-3.5 flex w-full cursor-pointer items-center gap-3.5 rounded-[4px] halftone-surface bg-accent px-5 py-4 text-left [font-family:inherit] transition-transform active:scale-[0.99]"
     on:click={() => dispatch("desafio")}
   >
     <span
-      class="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-bg/80 {hoy
+      class="flex h-9 w-9 flex-none items-center justify-center rounded-full {hoy
         ? ganado
-          ? 'text-good'
-          : 'text-bad'
-        : 'text-accent-3'}"
+          ? 'bg-good text-bg'
+          : 'bg-accent-3 text-bg'
+        : 'bg-bg/80 text-accent'}"
     >
       {#if hoy && ganado}
         <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"
@@ -130,9 +137,16 @@
         >
       {/if}
     </span>
-    <span class="font-serif text-[21px] leading-tight font-semibold text-on-accent">Desafío diario</span>
+    <span class="flex min-w-0 flex-1 flex-col">
+      <span class="font-serif text-[21px] leading-tight font-semibold text-on-accent">Desafío diario</span>
+      {#if desafioCurso}
+        <span class="truncate font-serif text-[15px] leading-tight font-medium text-on-accent/75">
+          {desafioCurso.title} | {desafioClase.title}
+        </span>
+      {/if}
+    </span>
     {#if hoy}
-      <span class="ml-auto font-serif text-[19px] font-semibold text-on-accent"
+      <span class="ml-auto flex-none font-serif text-[19px] font-semibold text-on-accent"
         >{hoy.aciertos}/{hoy.total}</span
       >
     {/if}
@@ -152,7 +166,7 @@
 
       <div class="ml-auto flex">
         <!-- invertido: el más nuevo va último en el DOM, así queda encima -->
-        {#each cromos.slice(0, 4).reverse() as c (c.curso + "-" + c.clase)}
+        {#each cromos.slice(0, 4).reverse() as c (c.slug)}
           <span class="mini">
             {#if c.img}
               <img class="h-full w-full object-cover" src={c.img} alt="" />

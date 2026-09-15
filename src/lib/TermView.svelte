@@ -41,7 +41,7 @@
       <h1 class="mb-5 font-serif text-[32px] leading-[1.1] font-extrabold tracking-[-0.3px] text-text">
         {entry.term}
       </h1>
-      <p class="font-serif text-[17px] leading-[1.7] text-text-soft">
+      <p class="font-serif text-[18px] leading-[1.7] text-text-soft">
         <RichText text={entry.body} exclude={slug} onTerm={(s) => dispatch("term", { slug: s })} />
       </p>
     </article>

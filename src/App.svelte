@@ -22,6 +22,7 @@
     toDesafio,
     toCourse,
     toClass,
+    go,
   } from "./lib/router.js";
 
   let course = null; // curso cargado: manifiesto + { classes }
@@ -79,10 +80,20 @@
       : $route.view === "glosario" || $route.view === "cromos"
         ? $route.view
         : "inicio";
+
+  // Dónde quedó cada pestaña la última vez que se la dejó: la barra vuelve
+  // ahí (el curso, la clase, el término), no siempre a la raíz — así irse a
+  // otra pestaña y volver no tira la profundidad a la que se había llegado.
+  let lastRoute = { cursos: "#/cursos", glosario: "#/glosario" };
+  $: if ($route.view === "cursos") lastRoute.cursos = "#/cursos";
+  $: if ($route.view === "curso")
+    lastRoute.cursos = `#/cursos/${$route.courseId}${$route.num != null ? "/" + $route.num : ""}`;
+  $: if ($route.view === "glosario")
+    lastRoute.glosario = $route.slug ? `#/glosario/${encodeURIComponent($route.slug)}` : "#/glosario";
 </script>
 
 {#if $route.view === "cromos"}
-  <Cromos on:open={(e) => toClass(e.detail.courseId, e.detail.num)} />
+  <Cromos />
 {:else if $route.view === "desafio"}
   <Desafio
     courses={COURSES}
@@ -145,8 +156,8 @@
   <BottomNav
     active={tab}
     on:inicio={() => toInicio()}
-    on:glosario={() => toGlosario()}
-    on:cursos={() => toCatalog()}
+    on:glosario={() => go(lastRoute.glosario, true)}
+    on:cursos={() => go(lastRoute.cursos, true)}
     on:cromos={() => toCromos()}
   />
 {/if}

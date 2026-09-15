@@ -3,26 +3,19 @@
   import {
     progress,
     courseStateOf,
-    cromosGanados,
     isComplete,
     isStarted,
     completionPct,
   } from "./progress.js";
-  import { cromoDeClase } from "./cromos.js";
+  import { imagenDeClase } from "./cromos.js";
+  import { courseIcons } from "./courseIcons.js";
   import DetailHeader from "./DetailHeader.svelte";
-  import iconAntigua from "../assets/cursos/antigua.webp";
-  import iconModerna from "../assets/cursos/moderna.webp";
-  import iconContemporanea from "../assets/cursos/contemporanea.webp";
+  import ClassHero from "./ClassHero.svelte";
   // Curso cargado: manifiesto (title, subtitle, blurb, portada, source) + classes.
   export let course;
   const dispatch = createEventDispatcher();
 
-  // Misma lámina que el catálogo, para que abrir el curso se sienta
-  // continuación de la tarjeta en la que se tocó, no una pantalla distinta.
-  const courseIcons = { antigua: iconAntigua, moderna: iconModerna, contemporanea: iconContemporanea };
-
   $: classes = course.classes || [];
-  $: ganados = cromosGanados($progress);
 
   // Botón principal: si hay una clase en curso, reanudarla ("Continuar");
   // si la última quedó completa, ofrecer la siguiente; si no, la primera.
@@ -41,10 +34,9 @@
   $: primaryLabel = resume ? "Continuar" : "Empezar";
 
   // Sin nada empezado, la lámina del curso; retomando una clase puntual, su
-  // cromo — para que la tarjeta anticipe A QUIÉN vas a encontrar, no sólo
-  // que hay un curso genérico esperando.
-  $: primaryCromo = resume ? cromoDeClase(course.id, primary.num) : null;
-  $: coverImg = (primaryCromo && primaryCromo.img) || courseIcons[course.id];
+  // propia ilustración — para que la tarjeta anticipe A QUIÉN vas a
+  // encontrar, no sólo que hay un curso genérico esperando.
+  $: coverImg = (resume && imagenDeClase(course.id, primary.num)) || courseIcons[course.id];
 
   function open(c) {
     if (c && c.content) dispatch("open", c);
@@ -56,32 +48,20 @@
 >
   <DetailHeader title={course.title} on:back={() => dispatch("back")} />
 
-  <!-- Presentación del curso: la misma lámina del catálogo arriba, ancho
-       completo, y debajo la bajada + el botón — que así cae más cerca del
-       centro de la pantalla, más cómodo para el pulgar que pegado al header. -->
-  <div class="mt-5 flex flex-col rounded-[4px] halftone-surface-subtle bg-surface">
-    <div class="p-5 pb-0">
-      <img class="aspect-square w-full rounded-[4px] object-cover" src={coverImg} alt="" />
+  <!-- Presentación del curso: misma tarjeta que "Continuar con" en Inicio
+       (foto 30% + pretítulo + título), pegado más cerca del centro de la
+       pantalla que del header — más cómodo para el pulgar. -->
+  {#if primary}
+    <div class="mt-5">
+      <ClassHero
+        img={coverImg}
+        pretitle="{course.title} | Clase {primary.num}"
+        title={primary.title}
+        buttonLabel={primaryLabel}
+        on:click={() => open(primary)}
+      />
     </div>
-    <div class="flex flex-col gap-3 p-5">
-      {#if course.subtitle}
-        <p class="font-serif text-[16px] leading-[1.3] font-normal text-text">
-          {course.subtitle}
-        </p>
-      {/if}
-
-      {#if primary}
-        <button
-          class="mt-1 flex w-full cursor-pointer items-center justify-center gap-2 rounded-[4px] border-0 halftone-surface bg-accent-3 px-6 py-[15px] text-[19px] font-bold text-on-accent uppercase [font-family:inherit] transition-transform active:scale-[0.98]"
-          on:click={() => open(primary)}
-        >
-          {primaryLabel === "Empezar" && primary === firstAvailable
-            ? "Empezar"
-            : `${primaryLabel}: Clase ${primary.num}`}
-        </button>
-      {/if}
-    </div>
-  </div>
+  {/if}
 
   <section class="pt-7">
     <p class="mb-3 text-base font-bold uppercase text-text-soft/70">El recorrido</p>
@@ -96,21 +76,21 @@
           : done
             ? "text-accent-ink opacity-100"
             : "text-text-soft opacity-50"}
-        {@const cr = cromoDeClase(course.id, c.num)}
-        {@const crGot = !!(cr && ganados[cr.slug])}
+        {@const img = imagenDeClase(course.id, c.num)}
         <button
           class="relative flex w-full items-center gap-[15px] rounded-[4px] halftone-surface-subtle bg-surface p-4 text-left text-inherit [font-family:inherit] disabled:cursor-default not-disabled:active:scale-[0.98]"
           class:cursor-pointer={!!c.content}
           on:click={() => open(c)}
           disabled={!c.content}
         >
-          <!-- El cromo ocupa el lugar que tenían los números. Se ve siempre:
-               apagado mientras no lo ganaste, a todo color cuando sí. -->
-          {#if cr}
+          <!-- La ilustración ocupa el lugar que tenían los números. Se ve
+               siempre: apagada mientras no completás la clase, a todo color
+               cuando sí. -->
+          {#if img}
             <span class="relative h-12 w-12 flex-none overflow-hidden rounded-[4px] bg-surface-2">
               <img
-                class="h-full w-full object-cover {crGot ? 'opacity-75' : 'opacity-45 grayscale-[0.9]'}"
-                src={cr.img}
+                class="h-full w-full object-cover {done ? 'opacity-75' : 'opacity-45 grayscale-[0.9]'}"
+                src={img}
                 alt=""
               />
               <span class="img-halftone" aria-hidden="true"></span>

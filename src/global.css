@@ -126,16 +126,6 @@ body {
   background-attachment: fixed, fixed;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-
 #app {
   min-height: 100dvh;
 }

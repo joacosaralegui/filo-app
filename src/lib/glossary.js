@@ -18,6 +18,29 @@ export const KIND_CLASS = {
   obra: "bg-bad/16 text-bad-ink",
   evento: "bg-text/8 text-text-soft",
 };
+// Mismo color que KIND_CLASS pero como sólido, para un puntito en vez de una
+// etiqueta. "clase" no es un tipo de entrada del glosario (no pasa por
+// KIND_CLASS), pero también entra como categoría en el selector del
+// Glosario, así que lleva su propio color: accent-2, el acento cálido que
+// ya se usa como color decorativo suelto (la estrella de racha en
+// ClassView) y no está tomado por ninguna otra categoría.
+export const KIND_DOT = {
+  autor: "bg-good-ink",
+  concepto: "bg-accent-ink",
+  obra: "bg-bad-ink",
+  evento: "bg-text-soft",
+  clase: "bg-accent-2",
+};
+// Mismo color, como texto: lo lleva el "← Categoría" y las letras de la
+// lista A-Z, así el color elegido en el selector sigue presente adentro de
+// la categoría y no se queda sólo en el puntito de la tarjeta.
+export const KIND_TEXT = {
+  autor: "text-good-ink",
+  concepto: "text-accent-ink",
+  obra: "text-bad-ink",
+  evento: "text-text-soft",
+  clase: "text-accent-2",
+};
 
 // --- término activo (para el modal) ---
 export const activeTerm = writable(null);

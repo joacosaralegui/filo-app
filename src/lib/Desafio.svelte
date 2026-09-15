@@ -7,26 +7,21 @@
   // la fecha, así que sale la misma cada vez que entrás y no hay forma de
   // rerollear hasta mañana. Tampoco se puede repetir: una vez que lo
   // contestaste, el número del día es ese. Sale de los cursos que ya empezaste
-  // (si no empezaste ninguno, de todos) y NO toca el progreso de las clases ni
-  // reparte cromos: acertar acá no completa nada.
+  // (si no empezaste ninguno, de todos) y NO toca el progreso de las clases:
+  // acertar acá no completa ninguna. La única excepción es el cromo de sacar
+  // 7/7 — ver `saveDesafio` en progress.js.
   import { createEventDispatcher, onMount, tick } from "svelte";
   import QuizCard from "./QuizCard.svelte";
   import MatchCard from "./MatchCard.svelte";
   import ClassifyCard from "./ClassifyCard.svelte";
   import ExplainSheet from "./ExplainSheet.svelte";
+  import CromoReveal from "./CromoReveal.svelte";
   import Burst from "./Burst.svelte";
-  import { loadContent } from "./courses.js";
-  import { progress, cursosEmpezados, saveDesafio, desafioDeHoy, hoyISO } from "./progress.js";
+  import { progress, saveDesafio, desafioDeHoy } from "./progress.js";
+  import { armarDesafioDeHoy, RONDA_MAX } from "./desafioHoy.js";
 
   export let courses = [];
   const dispatch = createEventDispatcher();
-
-  // Tipos que entran al desafío: se deja afuera "short" (la de término
-  // puntual) porque pide escribir, no elegir, y no encaja en el ritmo de la
-  // ronda.
-  const TIPOS = new Set(["quiz", "match", "classify"]);
-
-  const RONDA_MAX = 7; // tope de preguntas por ronda, para que una clase larga no se haga eterna
 
   let cargando = true;
   let ronda = []; // [{ card, courseId, num, title }]
@@ -40,68 +35,15 @@
   let burstId = 0; // acierto suelto
   let finaleId = 0; // los siete de siete
   let timer;
+  let revelado = null; // el cromo de "Desafío perfecto", si hoy lo ganaste
 
   $: aciertos = resultados.filter(Boolean).length;
 
-  // Generador con semilla (mulberry32) y semilla derivada de un texto (FNV-1a).
-  // Con la fecha como texto, el sorteo del día es siempre el mismo — en este
-  // teléfono y en cualquier otro, sin pedirle nada a ningún servidor.
-  function semilla(txt) {
-    let h = 2166136261;
-    for (let k = 0; k < txt.length; k++) {
-      h ^= txt.charCodeAt(k);
-      h = Math.imul(h, 16777619);
-    }
-    return h >>> 0;
-  }
-
-  function rng(seed) {
-    let a = seed;
-    return () => {
-      a = (a + 0x6d2b79f5) | 0;
-      let t = Math.imul(a ^ (a >>> 15), 1 | a);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-
-  function shuffle(arr, azar) {
-    const a = [...arr];
-    for (let j = a.length - 1; j > 0; j--) {
-      const k = Math.floor(azar() * (j + 1));
-      [a[j], a[k]] = [a[k], a[j]];
-    }
-    return a;
-  }
-
   async function armar() {
     cargando = true;
-    const empezados = cursosEmpezados($progress);
-    const metas = courses.filter((c) => !empezados.length || empezados.includes(c.id));
-    const elegibles = []; // clases con al menos una card de los tipos que entran
-    for (const meta of metas) {
-      const { classes } = await loadContent(meta);
-      for (const cls of classes) {
-        if (!cls.content) continue;
-        const cards = cls.content.feed.filter((c) => TIPOS.has(c.type));
-        if (cards.length) elegibles.push({ courseId: meta.id, num: cls.num, title: cls.title, cards });
-      }
-    }
-    // La lista se recorre siempre en el mismo orden (cursos, clases), así que
-    // con la misma semilla sale siempre la misma clase el mismo día. Adentro
-    // las cards NO se barajan: van en su orden original, de eso se trata.
-    const elegida = shuffle(elegibles, rng(semilla(hoyISO())))[0] || null;
-    let cartas = elegida ? elegida.cards : [];
-    if (cartas.length > RONDA_MAX) {
-      // Clases largas se recortan a un máximo, para que la ronda no se haga
-      // eterna: se sortea CUÁLES quedan (semillado, distinto sorteo del de
-      // arriba) pero se preserva su orden original — sigue siendo secuencial.
-      const azar = rng(semilla(hoyISO() + elegida.courseId + elegida.num));
-      const quedan = new Set(shuffle([...cartas.keys()], azar).slice(0, RONDA_MAX));
-      cartas = cartas.filter((_, idx) => quedan.has(idx));
-    }
-    clase = elegida ? { courseId: elegida.courseId, num: elegida.num, title: elegida.title } : null;
-    ronda = cartas.map((card) => ({ card, courseId: clase.courseId, num: clase.num, title: clase.title }));
+    const resultado = await armarDesafioDeHoy(courses, $progress);
+    clase = resultado?.clase ?? null;
+    ronda = resultado?.ronda ?? [];
     cargando = false;
   }
 
@@ -125,12 +67,18 @@
   async function avanzar() {
     if (i + 1 >= ronda.length) {
       terminada = true;
-      saveDesafio(aciertos, ronda.length, clase);
+      const nuevos = saveDesafio(aciertos, ronda.length, clase);
       // La celebración del pleno espera a que la pantalla de cierre esté
       // pintada: si no, las partículas salen de una pantalla que ya se fue.
       if (aciertos === ronda.length) {
         await tick();
         finaleId += 1;
+      }
+      // El cromo de "Desafío perfecto" se muestra recién después, encima del
+      // burst — mismo orden que en una clase.
+      if (nuevos.length) {
+        await tick();
+        revelado = nuevos[0];
       }
     } else {
       i += 1;
@@ -237,8 +185,9 @@
       </p>
     </div>
   {:else if terminada}
-    <!-- Cierre de la ronda. Sin cromos ni desbloqueos: sólo el número, y una
-         sola salida — el de hoy ya está jugado. -->
+    <!-- Cierre de la ronda: el número, y una sola salida — el de hoy ya está
+         jugado. El único desbloqueo posible es el cromo del pleno, que se
+         festeja aparte (ver CromoReveal más abajo). -->
     <div class="flex flex-1 flex-col items-center justify-center gap-2 text-center">
       <span class="text-[16px] font-bold text-text-soft/70 uppercase">{cierre}</span>
       <!-- Los dos números pesan igual: el marcador se lee como una fracción,
@@ -340,6 +289,7 @@
 {/if}
 
 <ExplainSheet data={sheet} on:close={cerrarSheet} />
+<CromoReveal cromo={revelado} on:next={() => (revelado = null)} />
 
 <Burst trigger={burstId} count={18} />
 <Burst trigger={finaleId} count={80} power={1.7} />

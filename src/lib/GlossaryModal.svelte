@@ -1,21 +1,21 @@
 <script>
   // Hoja de un término, dentro de una clase: un vistazo sin perder la card.
   //
-  // Abre a media altura —tipo, título y el comienzo de la explicación, con la
-  // card todavía a la vista— y se estira arrastrándola hacia arriba (o tocando
-  // la manija). Se cierra deslizándola hacia abajo, tocando afuera, con el ✕ o
-  // con Escape. Al pie, "Ver en el glosario" lleva a la página del término.
-  //
-  // Las dos alturas imitan las hojas de iOS: media y grande. Si la explicación
-  // es corta y entra entera en la media, hay una sola.
+  // Abre a una sola altura, generosa (72% de la pantalla, topeada por lo que
+  // ocupe el contenido) — así entran tipo, título y casi siempre toda la
+  // explicación, sin un segundo gesto que haya que descubrir. Si el término es
+  // largo igual, el párrafo scrollea adentro (scroll de toda la vida, no un
+  // tirón escondido). Se cierra arrastrando hacia abajo, tocando afuera, con
+  // el ✕ o con Escape. Al pie, "Ver en el glosario" lleva a la página del
+  // término.
   import { tick } from "svelte";
   import { activeTerm, closeTerm, KIND_LABEL, KIND_CLASS } from "./glossary.js";
   import { toTerm } from "./router.js";
 
   let sheet;
   let height = null; // alto en px; null = el natural, para medirlo al abrir
-  let media = 0;
-  let grande = 0;
+  let alto = 0; // altura de apertura (fija, salvo que se arrastre)
+  let max = 0; // tope: lo que ocupe el contenido, ya topeado por max-h (90dvh)
   let dragging = false;
   let startY = 0;
   let startH = 0;
@@ -26,9 +26,9 @@
     height = null;
     await tick();
     if (!sheet) return;
-    grande = sheet.offsetHeight; // natural, ya topeado por max-h (90dvh)
-    media = Math.min(grande, Math.round(window.innerHeight * 0.55));
-    height = media;
+    max = sheet.offsetHeight;
+    alto = Math.min(max, Math.round(window.innerHeight * 0.72));
+    height = alto;
   }
 
   function cerrar() {
@@ -50,18 +50,16 @@
     e.currentTarget.setPointerCapture(e.pointerId);
   }
   function move(e) {
-    if (dragging) height = Math.max(0, Math.min(grande, startH + (startY - e.clientY)));
+    if (dragging) height = Math.max(0, Math.min(max, startH + (startY - e.clientY)));
   }
-  function up(e) {
+  function up() {
     if (!dragging) return;
     dragging = false;
-    // un toque (sin arrastre) alterna las alturas
-    if (Math.abs(e.clientY - startY) < 6) {
-      height = height === grande ? media : grande;
-      return;
-    }
-    if (height < media * 0.6) return cerrar();
-    height = Math.abs(height - media) <= Math.abs(height - grande) ? media : grande;
+    // Se puede arrastrar más arriba o más abajo (hasta cerrar), pero al
+    // soltar siempre vuelve a la única altura de apertura — nada que
+    // "descubrir" quedando a mitad de camino.
+    if (height < alto * 0.6) return cerrar();
+    height = alto;
   }
 
   function onKey(e) {
@@ -126,9 +124,13 @@
         {$activeTerm.body}
       </p>
 
-      <div class="flex-none border-t border-line px-[22px] pt-3 pb-[calc(env(safe-area-inset-bottom)+14px)]">
+      <div class="flex flex-none items-center gap-2 border-t border-line px-[22px] pt-3 pb-[calc(env(safe-area-inset-bottom)+14px)]">
         <button
-          class="w-full cursor-pointer rounded-[4px] halftone-surface-subtle border border-line bg-surface p-3 text-[16px] font-bold text-text uppercase [font-family:inherit] active:scale-[0.99]"
+          class="cursor-pointer rounded-[4px] border-0 bg-transparent px-3 py-3 text-[16px] font-bold text-text-soft uppercase [font-family:inherit] active:scale-[0.99]"
+          on:click={cerrar}>Cerrar</button
+        >
+        <button
+          class="flex-1 cursor-pointer rounded-[4px] halftone-surface-subtle border-0 bg-surface p-3 text-[16px] font-bold text-text uppercase [font-family:inherit] active:scale-[0.99]"
           on:click={verEnGlosario}>Ver en el glosario</button
         >
       </div>

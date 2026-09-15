@@ -67,10 +67,29 @@
         disabled={answered}
       >
         <span class="flex-1">{card.options[i]}</span>
-        {#if answered && i === card.answer}<span class="text-[17px] font-extrabold text-good-ink">✓</span>{/if}
-        {#if answered && i === picked && i !== card.answer}<span class="text-[17px] font-extrabold text-bad-ink"
-            >✕</span
-          >{/if}
+        {#if answered && i === card.answer}
+          <svg class="flex-none text-good-ink" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"
+            ><path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 12.6 10 17.5 19 7"
+            /></svg
+          >
+        {/if}
+        {#if answered && i === picked && i !== card.answer}
+          <svg class="flex-none text-bad-ink" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"
+            ><path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              d="M6 6l12 12M18 6L6 18"
+            /></svg
+          >
+        {/if}
       </button>
     {/each}
   </div>

@@ -5,9 +5,7 @@
   import { createEventDispatcher } from "svelte";
   import RootHeader from "./RootHeader.svelte";
   import { progress, courseStateOf } from "./progress.js";
-  import iconAntigua from "../assets/cursos/antigua.webp";
-  import iconModerna from "../assets/cursos/moderna.webp";
-  import iconContemporanea from "../assets/cursos/contemporanea.webp";
+  import { courseIcons } from "./courseIcons.js";
   export let courses = [];
   const dispatch = createEventDispatcher();
 
@@ -17,9 +15,6 @@
     const st = courseStateOf($progress, id);
     return st.lastClass != null ? st.lastClass : null;
   };
-
-  // Un ícono ilustrado por curso, recortado de la tira antigua/moderna/contemporánea.
-  const courseIcons = { antigua: iconAntigua, moderna: iconModerna, contemporanea: iconContemporanea };
 </script>
 
 <div

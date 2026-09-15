@@ -6,14 +6,20 @@
   import ClassifyCard from "./ClassifyCard.svelte";
   import ShortCard from "./ShortCard.svelte";
   import ExplainSheet from "./ExplainSheet.svelte";
+  import CromoReveal from "./CromoReveal.svelte";
   import Burst from "./Burst.svelte";
-  import { progress, classState, saveClass, resetClass, ganarCromo, SCORABLE } from "./progress.js";
-  import { cromoDeClase } from "./cromos.js";
+  import { classState, saveClass, resetClass, SCORABLE } from "./progress.js";
+  import { imagenDeClase } from "./cromos.js";
+  import { findCourse } from "../content/courses.js";
+  import { readingProgress } from "./readingProgress.js";
 
   export let lecture;
   export let classes = []; // índice del curso, para saber cuál es la siguiente
-  export let courseId = null; // para saber qué cromo otorga esta clase
+  export let courseId = null; // para el título y la ilustración de la clase
   const dispatch = createEventDispatcher();
+
+  // Curso: Clase N — el título completo de la clase no entra en la barra.
+  const courseTitle = findCourse(courseId)?.title || "";
 
   const totalQuiz = lecture.feed.filter((c) => SCORABLE.has(c.type)).length;
 
@@ -45,18 +51,32 @@
   let combo = saved.combo;
   let currentCard = saved.card;
 
-  // aciertos, derivados de las respuestas guardadas
-  $: correctCount = lecture.feed.reduce(
-    (n, c, i) => n + (SCORABLE.has(c.type) && isCorrect(c, answers[i]) ? 1 : 0),
-    0
-  );
-
+  // Correctas y "puerta" en función de un `answers` dado — funciones puras,
+  // no reactivas: además de alimentar la UI (abajo) las necesita `onAnswer`
+  // para calcular `stars`/`done` en el momento exacto de guardar, sin
+  // esperar a que Svelte recalcule los `$:` (que corre en el siguiente
+  // tick, no en la misma línea).
+  function calcCorrectCount(ans) {
+    return lecture.feed.reduce(
+      (n, c, i) => n + (SCORABLE.has(c.type) && isCorrect(c, ans[i]) ? 1 : 0),
+      0
+    );
+  }
   // "Puerta": índice de la primera card interactiva aún sin responder. No se
   // puede scrollear más allá de ella hasta contestarla; si no queda ninguna,
   // el feed queda libre hasta el cierre.
-  $: gate = lecture.feed.findIndex(
-    (c, i) => SCORABLE.has(c.type) && answers[i] == null
-  );
+  function calcGate(ans) {
+    return lecture.feed.findIndex((c, i) => SCORABLE.has(c.type) && ans[i] == null);
+  }
+  function calcStars(ans) {
+    const cc = calcCorrectCount(ans);
+    const p = totalQuiz ? Math.round((cc / totalQuiz) * 100) : 0;
+    return p >= 90 ? 3 : p >= 70 ? 2 : p >= 40 ? 1 : 0;
+  }
+
+  // aciertos, derivados de las respuestas guardadas
+  $: correctCount = calcCorrectCount(answers);
+  $: gate = calcGate(answers);
 
   let gateHint = false;
   let gateHintTimer;
@@ -131,23 +151,49 @@
   // 3 estrellas según el porcentaje de aciertos: 90% / 70% / 40%
   $: stars = pct >= 90 ? 3 : pct >= 70 ? 2 : pct >= 40 ? 1 : 0;
 
-  // El cromo que otorga esta clase, con las 3 estrellas.
-  $: cromo = courseId ? cromoDeClase(courseId, lecture.num) : null;
-  let revelado = null; // el cromo recién ganado, mientras dura la ceremonia
+  // La ilustración de esta clase (progreso, no cromo): a color recién al
+  // completarla.
+  $: claseImg = courseId ? imagenDeClase(courseId, lecture.num) : null;
+
+  // Cromos ganados durante esta visita a la clase, pendientes de mostrar —
+  // terminar una clase puede cerrar más de uno a la vez (ej. la última de
+  // Platón cierra el cromo de Platón Y el de curso completo). Se muestran de
+  // a uno, recién al llegar al cierre: mostrarlos apenas se otorgan, en medio
+  // del feed, le rompería el impulso a la lectura.
+  let revelados = [];
+  let revelado = null; // el que se está mostrando ahora
+  function siguienteRevelado() {
+    revelado = revelados[0] ?? null;
+    revelados = revelados.slice(1);
+  }
 
   let feedEl;
   let scrollPct = 0;
 
   onMount(() => {
-    saveClass(lecture.num, {}); // marcar como última clase abierta
+    // Marca esta clase como la última abierta y, de paso, actualiza
+    // `stars`/`done` contra las respuestas ya guardadas — clases
+    // completadas ANTES de que estos dos campos existieran (o rehechas
+    // fuera de esta sesión) recién quedan al día al volver a abrirlas, y
+    // eso puede otorgar un cromo que antes no se había podido evaluar.
+    revelados = [
+      ...revelados,
+      ...saveClass(lecture.num, { stars: calcStars(saved.answers), done: calcGate(saved.answers) < 0 }),
+    ];
     if (saved.card > 0 && feedEl) {
       // salto instantáneo a la última card vista, sin pasar la puerta
       const target = gate >= 0 ? Math.min(saved.card, gate + PORTADA) : saved.card;
       feedEl.scrollTo({ top: target * feedEl.clientHeight, behavior: "instant" });
       if (target >= endIndex) endCelebrated = true; // ya está en el cierre: no festejar en la carga
     }
-    // habilitar la celebración recién tras acomodar el scroll inicial
-    setTimeout(() => (ready = true), 400);
+    // Habilitar la celebración recién tras acomodar el scroll inicial. Si la
+    // clase ya estaba completa (no va a pasar por `onScroll`, que es donde
+    // se festeja normalmente), y el backfill de arriba encontró algo nuevo,
+    // mostrarlo acá.
+    setTimeout(() => {
+      ready = true;
+      if (endCelebrated && revelados.length) siguienteRevelado();
+    }, 400);
   });
 
   // Burst de cierre: un poco más grande y sostenido que el de acierto.
@@ -181,7 +227,16 @@
         sheet = { solucion: e.detail.solucion ?? null, texto: card.explain };
       }
     }
-    saveClass(lecture.num, { answers, combo, card: currentCard });
+    revelados = [
+      ...revelados,
+      ...saveClass(lecture.num, {
+        answers,
+        combo,
+        card: currentCard,
+        stars: calcStars(answers),
+        done: calcGate(answers) < 0,
+      }),
+    ];
   }
 
   // Reinicio de la clase, en dos toques: el primero pide confirmación y se
@@ -210,6 +265,7 @@
   }
 
   onDestroy(cancelarAuto);
+  onDestroy(() => readingProgress.set(null));
 
   // Persistir la posición es barato en apariencia pero no lo es: cada llamada
   // serializa TODO el progreso y hace un setItem sincrónico. En medio de un
@@ -217,7 +273,9 @@
   let guardarTimer;
   function guardarPosicion(idx) {
     clearTimeout(guardarTimer);
-    guardarTimer = setTimeout(() => saveClass(lecture.num, { card: idx }), 300);
+    guardarTimer = setTimeout(() => {
+      revelados = [...revelados, ...saveClass(lecture.num, { card: idx })];
+    }, 300);
   }
   onDestroy(() => clearTimeout(guardarTimer));
 
@@ -232,6 +290,7 @@
     // Progreso por posición de card y no por scrollHeight: el alto del feed
     // crece a medida que se desbloquean cards, y la barra saltaría.
     scrollPct = Math.min(100, (feedEl.scrollTop / h / endIndex) * 100);
+    readingProgress.set(scrollPct);
     const idx = Math.round(feedEl.scrollTop / h);
     if (idx !== currentCard) {
       currentCard = idx;
@@ -240,25 +299,26 @@
     // llegó a la slide de cierre: festejar una vez
     if (ready && !endCelebrated && idx >= endIndex) {
       endCelebrated = true;
-      // La ceremonia sólo si el cromo era nuevo (ganarCromo devuelve false si
-      // ya lo tenías). Se muestra encima del cierre, no en lugar de él.
-      if (stars === 3 && cromo && ganarCromo(cromo.slug)) revelado = cromo;
+      // Los cromos que se hayan ganado en esta visita (por una respuesta o
+      // por el backfill del mount) esperaban a este momento para mostrarse,
+      // uno a la vez, encima del cierre.
+      if (revelados.length) siguienteRevelado();
       finale();
     }
   }
 </script>
 
 <div
-  class="fixed inset-x-0 top-0 z-40 px-4 pt-[calc(env(safe-area-inset-top)+10px)] pb-2 backdrop-blur-[6px] [background:linear-gradient(var(--bg),color-mix(in_srgb,var(--bg)_70%,transparent))]"
+  class="fixed inset-x-0 top-0 z-40 px-[22px] pt-[calc(env(safe-area-inset-top)+18px)] pb-2 backdrop-blur-[6px] [background:linear-gradient(var(--bg),color-mix(in_srgb,var(--bg)_70%,transparent))]"
 >
   <div class="mx-auto max-w-[480px]">
-    <div class="flex items-center gap-2.5">
+    <div class="flex items-center gap-3">
       <button
-        class="grid h-11 w-11 flex-none cursor-pointer place-items-center rounded-[4px] border border-line bg-surface text-text transition-transform active:scale-[0.94]"
+        class="flex h-10 w-10 flex-none cursor-pointer items-center justify-center rounded-full border-0 bg-surface text-text [font-family:inherit] transition-transform active:scale-[0.94]"
         on:click={() => dispatch("back")}
         aria-label="Volver"
       >
-        <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"
           ><path
             fill="none"
             stroke="currentColor"
@@ -270,24 +330,21 @@
         >
       </button>
 
-      <span class="min-w-0 flex-1 truncate text-[16px] font-semibold text-text"
-        >Clase {lecture.num}: {lecture.title}</span
+      <span class="min-w-0 flex-1 truncate font-serif text-[20px] leading-tight font-semibold text-text"
+        >{courseTitle}: Clase {lecture.num}</span
       >
       <!-- Los aciertos, no puntos: es exactamente lo que determina las
            estrellas, así que se ve la calificación real en todo momento. En
            píldora, para que se lea como un marcador y no como texto suelto
            pegado al título. -->
       <span
-        class="flex flex-none items-center gap-1 rounded-full border border-line bg-surface px-2.5 py-[5px] text-[16px] font-extrabold whitespace-nowrap text-accent transition-transform duration-150 {pop
+        class="halftone-surface flex flex-none items-center gap-1 rounded-[4px] border-0 bg-accent px-2.5 py-[5px] text-[16px] font-extrabold whitespace-nowrap text-bg transition-transform duration-150 {pop
           ? 'scale-[1.14]'
           : ''}"
       >
         <span class="text-accent-2">★</span>{correctCount}/{totalQuiz}
       </span>
     </div>
-  </div>
-  <div class="mx-auto mt-2 h-[3px] max-w-[480px] overflow-hidden rounded-[3px] bg-line">
-    <i class="block h-full bg-accent transition-[width] duration-150 ease-linear" style="width:{scrollPct}%"></i>
   </div>
 </div>
 
@@ -299,19 +356,18 @@
   on:touchstart={onTouchStart}
   on:touchmove|nonpassive={onTouchMove}
 >
-  <!-- Portada de la clase: anuncia de qué va, muestra el cromo en juego (o su
-       silueta, si todavía no lo ganaste) y enseña el gesto con la flecha. -->
+  <!-- Portada de la clase: anuncia de qué va, muestra su ilustración (grisada
+       hasta completarla) y enseña el gesto con la flecha. -->
   <section
     class="flex min-h-dvh items-center justify-center px-[22px] pt-[100px] pb-[calc(env(safe-area-inset-bottom)+86px)] [scroll-snap-align:center] [scroll-snap-stop:always]"
   >
     <div class="flex w-full max-w-[480px] flex-col items-center text-center">
-      {#if cromo}
-        {@const ganado = !!$progress.cromos?.[cromo.slug]}
-        <!-- El cromo en juego, apagado hasta que lo ganes. -->
-        <div class="relative mb-7 h-[132px] w-[132px] overflow-hidden rounded-[4px] bg-surface-2">
+      {#if claseImg}
+        <!-- Progreso de la clase, no un cromo: a color recién al terminarla. -->
+        <div class="relative mb-7 h-[172px] w-[172px] overflow-hidden rounded-[4px] bg-surface-2">
           <img
-            class="h-full w-full object-cover {ganado ? 'opacity-75' : 'opacity-45 grayscale-[0.9]'}"
-            src={cromo.img}
+            class="h-full w-full object-cover {gate < 0 ? 'opacity-75' : 'opacity-45 grayscale-[0.9]'}"
+            src={claseImg}
             alt=""
           />
           <span class="img-halftone" aria-hidden="true"></span>
@@ -444,34 +500,7 @@
   </div>
 {/if}
 
-<!-- Ceremonia del cromo. Va sobre el burst de cierre (z-60), así las partículas
-     estallan POR DETRÁS de la carta. -->
-{#if revelado}
-  <div class="reveal-fondo fixed inset-0 z-[70] flex flex-col items-center justify-center gap-6 px-[22px]">
-    <div class="relative grid place-items-center">
-      <span class="reveal-halo" aria-hidden="true"></span>
-      <div class="reveal-carta overflow-hidden rounded-[4px] halftone-surface-subtle bg-surface p-3">
-        {#if revelado.img}
-          <span class="relative block h-[210px] w-[210px]">
-            <img class="block h-full w-full rounded-[4px] object-cover" src={revelado.img} alt="" />
-            <span class="img-halftone rounded-[4px]" aria-hidden="true"></span>
-          </span>
-        {/if}
-      </div>
-    </div>
-
-    <div class="reveal-texto flex flex-col items-center gap-2 text-center">
-      <span class="text-[16px] font-extrabold text-accent-3 uppercase">Nuevo cromo</span>
-      <span class="font-serif text-[26px] leading-tight font-semibold text-text">{revelado.nombre}</span>
-      <button
-        class="mt-4 cursor-pointer rounded-[4px] border-0 halftone-surface bg-accent px-7 py-3.5 text-[16px] font-bold text-on-accent uppercase [font-family:inherit] transition-transform active:scale-[0.97]"
-        on:click={() => (revelado = null)}
-      >
-        Seguir
-      </button>
-    </div>
-  </div>
-{/if}
+<CromoReveal cromo={revelado} pendientes={revelados.length} on:next={siguienteRevelado} />
 
 <ExplainSheet data={sheet} on:close={() => (sheet = null)} />
 
@@ -501,51 +530,6 @@
     to { opacity: 1; transform: scale(1) rotate(0); }
   }
 
-  /* ---------- ceremonia del cromo ----------
-     La carta entra girando sobre su eje vertical, como cuando se da vuelta una
-     figurita, y pasa de largo el tamaño final antes de asentarse. El halo sale
-     detrás en el mismo momento del impacto. */
-  .reveal-fondo {
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(3px);
-    animation: fade-suave 0.3s ease both;
-  }
-  .reveal-carta {
-    animation: cromo-in 0.72s cubic-bezier(0.16, 0.9, 0.3, 1.05) 0.1s both;
-  }
-  .reveal-halo {
-    position: absolute;
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--accent-2) 70%, transparent) 0%,
-      transparent 70%
-    );
-    animation: halo 0.9s ease-out 0.34s both;
-  }
-  .reveal-texto {
-    animation: texto-in 0.5s ease 0.5s both;
-  }
-  @keyframes fade-suave {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes cromo-in {
-    0% { opacity: 0; transform: perspective(900px) rotateY(-160deg) scale(0.45); }
-    65% { opacity: 1; transform: perspective(900px) rotateY(12deg) scale(1.07); }
-    100% { opacity: 1; transform: perspective(900px) rotateY(0) scale(1); }
-  }
-  @keyframes halo {
-    from { opacity: 0.75; transform: scale(0.45); }
-    to { opacity: 0; transform: scale(1.85); }
-  }
-  @keyframes texto-in {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
   .gate-hint-anim {
     animation: gaterise 0.28s ease;
   }
@@ -565,7 +549,5 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .gate-hint-anim, .pop-anim { animation-duration: 1ms; }
-    .reveal-carta, .reveal-texto, .reveal-fondo { animation-duration: 1ms; }
-    .reveal-halo { animation: none; opacity: 0; }
   }
 </style>

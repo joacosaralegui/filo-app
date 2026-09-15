@@ -51,7 +51,9 @@ export const route = readable(parseHash(location.hash), (set) => {
 
 // `replace` reemplaza la entrada actual del historial en vez de apilar una
 // nueva: lo usan los cambios de pestaña y las redirecciones.
-function go(path, replace = false) {
+// Exportada aparte de los `toXxx` de abajo: la usa App.svelte para volver a
+// la ruta que cada pestaña tenía recordada (ver `lastRoute` ahí), no a la raíz.
+export function go(path, replace = false) {
   if (location.hash === path) return;
   if (!replace) {
     location.hash = path; // dispara hashchange solo

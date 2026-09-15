@@ -15,6 +15,7 @@
   // color y no un cambio de tono—, y el label viaja en `aria-label` para que
   // el lector de pantalla siga teniendo el nombre.
   import { createEventDispatcher } from "svelte";
+  import { readingProgress } from "./readingProgress.js";
 
   export let active = "inicio"; // "inicio" | "cursos" | "glosario" | "cromos"
 
@@ -45,6 +46,14 @@
 <nav
   class="halftone-surface-subtle fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bg/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-[6px]"
 >
+  <!-- Dentro de una clase, el borde superior de la nav se vuelve la barra de
+       lectura: no compite por espacio propio, y siempre está a la vista aunque
+       el feed sea inmersivo. -->
+  {#if $readingProgress !== null}
+    <div class="absolute inset-x-0 top-0 h-[4px] overflow-hidden bg-line">
+      <i class="block h-full bg-accent-3 transition-[width] duration-150 ease-linear" style="width:{$readingProgress}%"></i>
+    </div>
+  {/if}
   <div class="mx-auto flex max-w-[480px] items-stretch">
     {#each items as it (it.id)}
       {@const on = active === it.id}

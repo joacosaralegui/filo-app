@@ -2,6 +2,7 @@
 // Chequea las clases activas y el glosario, y sale con código 1 si hay errores.
 import { COURSES } from "../src/content/courses.js";
 import { GLOSSARY } from "../src/content/glossary.js";
+import { CROMOS } from "../src/content/cromos.js";
 
 // Las clases viven por curso (src/content/<id>/curso.js): se cargan todas y se
 // validan juntas. El glosario es uno solo (src/content/glossary.js).
@@ -20,6 +21,34 @@ for (const meta of CONTENT) {
     warnings.push(
       `${meta.id}: total declarado (${declared}) != classes.length (${meta.classes.length})`,
     );
+}
+
+// ---- cromos ----
+// Los `clases` de un cromo pensador/corriente tienen que existir de verdad
+// en el curso que declaran — si no, el cromo nunca se puede ganar.
+const clasesPorCurso = {};
+for (const c of CLASSES) (clasesPorCurso[c.courseId] ||= new Set()).add(c.num);
+
+const slugsDeCromo = new Set();
+for (const cromo of CROMOS) {
+  const tag = `cromo · ${cromo.slug}`;
+  if (slugsDeCromo.has(cromo.slug)) errors.push(`${tag}: slug repetido`);
+  slugsDeCromo.add(cromo.slug);
+
+  if (cromo.tipo === "curso") {
+    if (!COURSES.find((c) => c.id === cromo.curso)) errors.push(`${tag}: curso "${cromo.curso}" no existe`);
+  } else if (cromo.tipo === "pensador" || cromo.tipo === "corriente") {
+    const clases = clasesPorCurso[cromo.curso];
+    if (!clases) errors.push(`${tag}: curso "${cromo.curso}" no existe`);
+    if (!cromo.clases || !cromo.clases.length) errors.push(`${tag}: sin "clases"`);
+    else for (const n of cromo.clases) {
+      if (clases && !clases.has(n)) errors.push(`${tag}: clase ${n} no existe en "${cromo.curso}"`);
+    }
+  } else if (cromo.tipo === "especial") {
+    if (!cromo.criterio) errors.push(`${tag}: especial sin "criterio"`);
+  } else {
+    errors.push(`${tag}: tipo inválido (${cromo.tipo})`);
+  }
 }
 
 // ---- clases ----

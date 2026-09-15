@@ -14,8 +14,6 @@
 //   subtitle : segunda línea del hero (se muestra en el color de acento)
 //   blurb    : una frase de qué recorre el curso (pantalla de selección)
 //   source   : { label, url } de la fuente original (opcional)
-//   portada  : imagen que representa al curso. Por ahora reusa el slug de un
-//              cromo; el día que cada curso tenga arte propio, cambia acá.
 //   theme    : overrides de tokens de global.css (opcional), p. ej.
 //              { "--accent": "#7b4b94" }. Se aplican al entrar al curso.
 //              Hoy ningún curso lo usa: todos comparten la paleta.
@@ -33,7 +31,6 @@ export const COURSES = [
     title: "Contemporánea",
     subtitle: "Nietzsche, Sartre, Foucault y la crisis del sujeto moderno.",
     blurb: "De la muerte de Dios al fin de las certezas: vitalismo, existencialismo, estructuralismo y posmodernidad.",
-    portada: "posmodernidad",
     total: 20,
     source: {
       label: "European Intellectual History since Nietzsche",
@@ -47,7 +44,6 @@ export const COURSES = [
     title: "Moderna",
     subtitle: "Descartes, Kant, Hegel y el nacimiento de la razón moderna.",
     blurb: "Del Renacimiento al idealismo alemán: racionalismo, empirismo, Ilustración y revolución.",
-    portada: "nueva-ciencia",
     total: 21,
     source: {
       label: "Historia de las ideas en la modernidad — Maestría en Filosofía, UNQ",
@@ -61,7 +57,6 @@ export const COURSES = [
     title: "Antigua",
     subtitle: "Sócrates, Platón, Aristóteles y el origen de la filosofía.",
     blurb: "De los presocráticos a los Padres de la Iglesia: physis, virtud, alma y las escuelas helenísticas.",
-    portada: "partenon",
     total: 18,
     source: {
       label: "A History of Philosophy — Dr. Arthur Holmes, Wheaton College",

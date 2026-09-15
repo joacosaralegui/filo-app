@@ -1,42 +1,41 @@
 <script context="module">
   // La búsqueda, el filtro y el scroll sobreviven a abrir un término o una
   // clase y volver con "atrás".
-  let saved = { q: "", filtro: "todos", y: 0 };
+  let saved = { q: "", filtro: null, y: 0 };
 </script>
 
 <script>
   // Pestaña "Glosario": los términos del glosario y las clases de todos los cursos.
   //
-  //   Sin búsqueda  la lista de A a Z (o las clases por curso, con el chip
-  //                 Clases), con un índice de letras que se puede arrastrar.
-  //   Buscando      en "Todos", resultados por secciones como en Spotify
-  //                 (Autores, Conceptos, Obras, Clases, Eventos); con un chip,
-  //                 la lista entera de ese tipo.
+  //   Sin búsqueda  primero se elige categoría (Autores, Conceptos, Obras,
+  //                 Clases, Eventos, o Todos); al elegir, la lista de A a Z
+  //                 de esa categoría (o las clases por curso), con "atrás"
+  //                 para volver a elegir.
+  //   Buscando      en cualquier momento: sin categoría elegida (o en
+  //                 "Todos"), resultados por secciones como en Spotify
+  //                 (Autores, Conceptos, Obras, Clases, Eventos); con una
+  //                 categoría elegida, la lista entera de ese tipo.
   //
   // Un término abre su página (TermView); una clase lleva a la clase.
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { loadContent, loadGlossary } from "./courses.js";
-  import { KIND_LABEL, KIND_CLASS } from "./glossary.js";
+  import { KIND_LABEL, KIND_CLASS, KIND_DOT, KIND_TEXT } from "./glossary.js";
   import RootHeader from "./RootHeader.svelte";
 
   export let courses = [];
   const dispatch = createEventDispatcher();
 
-  const FILTROS = [
+  const CATEGORIAS = [
     { id: "todos", label: "Todos" },
-    { id: "autor", label: "Autores" },
-    { id: "concepto", label: "Conceptos" },
-    { id: "obra", label: "Obras" },
-    { id: "clase", label: "Clases" },
-  ];
-  // Eventos no tiene chip (son pocos), pero sí sección al buscar.
-  const SECCIONES = [
     { id: "autor", label: "Autores" },
     { id: "concepto", label: "Conceptos" },
     { id: "obra", label: "Obras" },
     { id: "clase", label: "Clases" },
     { id: "evento", label: "Eventos" },
   ];
+  // Las secciones del buscador son las categorías menos "Todos" (que ahí se
+  // resuelve mostrando todas las secciones, no una sección "Todos").
+  const SECCIONES = CATEGORIAS.filter((c) => c.id !== "todos");
   const POR_SECCION = 4;
 
   let terms = []; // { slug, entry, name, letter, key }
@@ -85,6 +84,9 @@
     SECCIONES.map((s) => [s.id, s.id === "clase" ? hitClasses : hitTerms.filter((t) => t.entry.kind === s.id)]),
   );
   $: sinResultados = nq && !hitTerms.length && !hitClasses.length;
+  // El primer vistazo (sin buscar ni categoría elegida) se centra como Home y
+  // Catálogo; apenas se busca o se elige una categoría, pasa al layout normal.
+  $: landing = !nq && !filtro;
 
   // --- lista de A a Z del filtro elegido, agrupada por letra ("#" al final) ---
   $: lista = filtro === "todos" ? terms : terms.filter((t) => t.entry.kind === filtro);
@@ -104,6 +106,10 @@
     filtro = id;
     window.scrollTo({ top: 0, behavior: "instant" });
   }
+  function volver() {
+    filtro = null;
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
 
   // Antes de irse se anota el scroll, para volver al mismo lugar de la lista.
   function abrirTermino(t) {
@@ -117,6 +123,9 @@
 
   const row =
     "flex w-full cursor-pointer items-center gap-3 border-0 border-b border-line bg-transparent py-2.5 text-left [font-family:inherit]";
+  // Cajita propia por categoría, como las tarjetas de curso del Catálogo.
+  const cardRow =
+    "flex w-full cursor-pointer items-center gap-3 rounded-[4px] halftone-surface-subtle bg-surface p-4 text-left [font-family:inherit] transition-transform active:scale-[0.995]";
 </script>
 
 <!-- Una línea por fila: el nombre y, sólo cuando la lista mezcla tipos, la etiqueta. -->
@@ -144,107 +153,140 @@
   <p class="mt-5 mb-1 text-base font-bold text-text-soft/70 uppercase">{label}</p>
 {/snippet}
 
-<div
-  class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+40px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
->
-  <!-- La lámina de Cursos, acercada al libro abierto de abajo a la derecha. -->
-  <RootHeader title="Glosario" plain />
+<!-- Landing sin categoría elegida: una fila grande por categoría, con el
+     mismo color de cada tipo que ya se usa en la etiqueta de la lista
+     (Todos mezcla de todo, así que va con el círculo vacío en vez de un
+     color). -->
+{#snippet categoriaRow(c)}
+  <button class={cardRow} on:click={() => elegir(c.id)}>
+    <span
+      class="h-2.5 w-2.5 flex-none rounded-full {KIND_DOT[c.id] || 'border-[1.5px] border-text-soft/40 bg-transparent'}"
+    ></span>
+    <span class="min-w-0 flex-1 font-serif text-[17px] font-semibold text-text">{c.label}</span>
+    <svg class="flex-none text-text-soft" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"
+      ><path
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M9 6l6 6-6 6"
+      /></svg
+    >
+  </button>
+{/snippet}
 
-  <!-- Buscador y selector fijos arriba: se puede cambiar de filtro en la M sin volver al principio. -->
-  <div
-    class="sticky top-0 z-20 -mx-[22px] px-[22px] pt-[calc(env(safe-area-inset-top)+2px)] pb-2"
-    bind:clientHeight={headerH}
+<!-- Con categoría elegida: volver a la pantalla de categorías. El color de
+     la categoría (el mismo puntito de su tarjeta) sigue acá, no se queda
+     sólo en el selector. -->
+{#snippet backHeader(label, color)}
+  <button
+    class="mb-3 flex cursor-pointer items-center gap-1 border-0 bg-transparent p-0 text-[16px] font-bold {color ||
+      'text-accent'} [font-family:inherit]"
+    on:click={volver}
   >
-    <input
-      class="mb-2 w-full rounded-[4px] border border-line bg-surface px-4 py-3 text-base text-text [font-family:inherit] outline-none focus:border-accent"
-      type="search"
-      placeholder="Buscar autores, conceptos o clases"
-      bind:value={q}
-    />
-    <!-- Select nativo en vez de chips: con cinco no entraban en una fila sin
-         scrollear feo, y un desplegable deja clarísimo que es UN filtro a la
-         vez. -->
-    <div class="relative">
-      <select
-        class="w-full cursor-pointer appearance-none rounded-[4px] border border-line bg-surface px-4 py-3 text-base font-semibold text-text [font-family:inherit] outline-none focus:border-accent"
-        value={filtro}
-        on:change={(e) => elegir(e.currentTarget.value)}
-      >
-        {#each FILTROS as f (f.id)}
-          <option value={f.id}>{f.label}</option>
-        {/each}
-      </select>
-      <svg
-        class="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-text-soft"
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-        ><path
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M6 9l6 6 6-6"
-        /></svg
-      >
-    </div>
-  </div>
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"
+      ><path
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15 6l-6 6 6 6"
+      /></svg
+    >
+    {label}
+  </button>
+{/snippet}
 
-  <!-- Todo lo que sale debajo del buscador va en una sola tarjeta, con el
-       mismo fondo blanco y trama que las secciones de Cromos — evita que la
-       lista quede suelta contra el fondo de la app. -->
-  <div class="mt-4 rounded-[4px] halftone-surface-subtle bg-surface p-4">
-    {#if sinResultados}
-      <p class="text-base text-text-soft">Nada con «{q.trim()}».</p>
-    {:else if nq && filtro === "todos"}
-      <!-- Buscando en Todos: una sección por tipo, con los primeros resultados. -->
-      {#each SECCIONES as s (s.id)}
-        {@const items = porSeccion[s.id]}
-        {#if items.length}
-          {@const tope = s.id === "evento" ? items.length : POR_SECCION}
-          {@render sectionTitle(s.label)}
-          {#each items.slice(0, tope) as it (s.id === "clase" ? it.course.id + it.num : it.slug)}
-            {#if s.id === "clase"}{@render classRow(it)}{:else}{@render termRow(it, false)}{/if}
-          {/each}
-          {#if items.length > tope}
-            <button
-              class="cursor-pointer self-start border-0 bg-transparent py-2 text-[16px] font-bold text-accent [font-family:inherit]"
-              on:click={() => elegir(s.id)}>Ver los {items.length}</button
-            >
-          {/if}
-        {/if}
-      {/each}
-    {:else if nq}
-      <!-- Buscando con un chip: todo lo de ese tipo. -->
-      {#if filtro === "clase"}
-        {#each hitClasses as c (c.course.id + c.num)}{@render classRow(c)}{/each}
-      {:else}
-        {#each hitTerms.filter((t) => t.entry.kind === filtro) as t (t.slug)}
-          {@render termRow(t, false)}
-        {:else}
-          <p class="text-base text-text-soft">Nada con «{q.trim()}» en {FILTROS.find((f) => f.id === filtro).label.toLowerCase()}.</p>
-        {/each}
-      {/if}
-    {:else if filtro === "clase"}
-      <!-- Clases sin búsqueda: por curso y en orden, que acá el orden importa. -->
-      {#each porCurso as g (g.course.id)}
-        {@render sectionTitle(g.course.title)}
-        {#each g.items as c (c.num)}{@render classRow(c)}{/each}
-      {/each}
+<div
+  class="mx-auto flex min-h-dvh max-w-[480px] flex-col px-[22px] pt-[calc(env(safe-area-inset-top)+64px)] pb-[calc(env(safe-area-inset-bottom)+110px)]"
+>
+  <!-- El primer vistazo se centra igual que Home y Catálogo; en cuanto se
+       busca o se elige una categoría, "justify-center" se suelta y todo
+       vuelve al layout normal de arriba a abajo. -->
+  <div class="flex flex-1 flex-col {landing ? 'justify-center' : ''}">
+    <!-- La lámina de Cursos, acercada al libro abierto de abajo a la derecha. -->
+    <RootHeader title="Glosario" plain />
+
+    <!-- Buscador fijo arriba: se puede buscar sin perder el scroll de la lista. -->
+    <div
+      class="sticky top-0 z-20 -mx-[22px] px-[22px] pt-[calc(env(safe-area-inset-top)+2px)] pb-2"
+      bind:clientHeight={headerH}
+    >
+      <input
+        class="w-full rounded-[4px] border border-line bg-surface px-4 py-3 text-base text-text [font-family:inherit] outline-none focus:border-accent"
+        type="search"
+        placeholder="Buscar autores, conceptos o clases"
+        bind:value={q}
+      />
+    </div>
+
+    {#if landing}
+      <!-- Sin buscar ni categoría: una cajita por categoría, como las
+           tarjetas de curso del Catálogo (sin imagen, sólo el texto). -->
+      <div class="mt-4 flex flex-col gap-[2px]">
+        {#each CATEGORIAS as c (c.id)}{@render categoriaRow(c)}{/each}
+      </div>
     {:else}
-      <!-- A a Z. -->
-      {#each groups as g (g.letter)}
-        <p
-          id="letra-{g.letter}"
-          class="mt-4 mb-0.5 font-serif text-xl font-semibold text-accent"
-          style="scroll-margin-top: {headerH}px"
-        >
-          {g.letter}
-        </p>
-        {#each g.items as t (t.slug)}{@render termRow(t, filtro === "todos")}{/each}
-      {/each}
+      <!-- Todo lo que sale debajo del buscador va en una sola tarjeta, con el
+           mismo fondo blanco y trama que las secciones de Cromos — evita que la
+           lista quede suelta contra el fondo de la app. -->
+      <div class="mt-4 rounded-[4px] halftone-surface-subtle bg-surface p-4">
+        {#if sinResultados}
+          <p class="text-base text-text-soft">Nada con «{q.trim()}».</p>
+        {:else if nq && (filtro === "todos" || !filtro)}
+          <!-- Buscando sin categoría (o en Todos): una sección por tipo, con los primeros resultados. -->
+          {#each SECCIONES as s (s.id)}
+            {@const items = porSeccion[s.id]}
+            {#if items.length}
+              {@const tope = s.id === "evento" ? items.length : POR_SECCION}
+              {@render sectionTitle(s.label)}
+              {#each items.slice(0, tope) as it (s.id === "clase" ? it.course.id + it.num : it.slug)}
+                {#if s.id === "clase"}{@render classRow(it)}{:else}{@render termRow(it, false)}{/if}
+              {/each}
+              {#if items.length > tope}
+                <button
+                  class="cursor-pointer self-start border-0 bg-transparent py-2 text-[16px] font-bold text-accent [font-family:inherit]"
+                  on:click={() => elegir(s.id)}>Ver los {items.length}</button
+                >
+              {/if}
+            {/if}
+          {/each}
+        {:else if nq}
+          <!-- Buscando dentro de una categoría: todo lo de ese tipo. -->
+          {@render backHeader(CATEGORIAS.find((c) => c.id === filtro).label, KIND_TEXT[filtro])}
+          {#if filtro === "clase"}
+            {#each hitClasses as c (c.course.id + c.num)}{@render classRow(c)}{/each}
+          {:else}
+            {#each hitTerms.filter((t) => t.entry.kind === filtro) as t (t.slug)}
+              {@render termRow(t, false)}
+            {:else}
+              <p class="text-base text-text-soft">Nada con «{q.trim()}» en {CATEGORIAS.find((c) => c.id === filtro).label.toLowerCase()}.</p>
+            {/each}
+          {/if}
+        {:else if filtro === "clase"}
+          <!-- Clases sin búsqueda: por curso y en orden, que acá el orden importa. -->
+          {@render backHeader("Clases", KIND_TEXT.clase)}
+          {#each porCurso as g (g.course.id)}
+            {@render sectionTitle(g.course.title)}
+            {#each g.items as c (c.num)}{@render classRow(c)}{/each}
+          {/each}
+        {:else}
+          <!-- A a Z dentro de la categoría elegida. -->
+          {@render backHeader(CATEGORIAS.find((c) => c.id === filtro).label, KIND_TEXT[filtro])}
+          {#each groups as g (g.letter)}
+            <p
+              id="letra-{g.letter}"
+              class="mt-4 mb-0.5 font-serif text-xl font-semibold {KIND_TEXT[filtro] || 'text-accent'}"
+              style="scroll-margin-top: {headerH}px"
+            >
+              {g.letter}
+            </p>
+            {#each g.items as t (t.slug)}{@render termRow(t, filtro === "todos")}{/each}
+          {/each}
+        {/if}
+      </div>
     {/if}
   </div>
 </div>
